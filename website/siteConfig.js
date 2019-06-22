@@ -23,13 +23,8 @@ const users = [
 const siteConfig = {
   title: 'Rails Setup', // Title for your website.
   tagline: 'Documentation for Rails and related libraries',
-  url: 'https://your-docusaurus-test-site.com', // Your website URL
-  baseUrl: '/', // Base URL for your project */
-  // For github.io type URLs, you would set the url and baseUrl like:
-  //   url: 'https://facebook.github.io',
-  //   baseUrl: '/test-site/',
-
-  // Used for publishing and more
+  url: 'https://HenryTabima.github.io', // Your website URL
+  baseUrl: '/rails-setup/', // Base URL for your project */
   projectName: 'Rails Setup',
   organizationName: 'HenryTabima',
   // For top-level user or org sites, the organization is still the same.
@@ -39,8 +34,7 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     {doc: 'getting started', label: 'Rails Docs'},
-    {page: 'help', label: 'Help'},
-    {blog: true, label: 'Blog'},
+    {href: 'https://github.com/HenryTabima/rails-setup', label: 'GitHub'}
   ],
 
   // If you have users set above, you add it here:
@@ -54,7 +48,7 @@ const siteConfig = {
   /* Colors for website */
   colors: {
     primaryColor: '#C5333B',
-    secondaryColor: '#D5E9F6',
+    secondaryColor: '#444',
   },
 
   /* Custom fonts for website */
