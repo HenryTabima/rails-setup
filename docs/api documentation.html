@@ -1,0 +1,300 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>API Documentation Guidelines · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This guide documents the Ruby on Rails API documentation guidelines.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="API Documentation Guidelines · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;This guide documents the Ruby on Rails API documentation guidelines.&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/getting started" target="_self">Rails Docs</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Contributions</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Start Here</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/getting started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/development dependencies install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Models</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/multiple databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Views</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/layouts and rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action view form helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Controllers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Other Components</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active support core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active support instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Digging Deeper</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/testing rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/securing rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/debugging rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/configuring rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails command line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/asset pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/working with javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/autoloading and reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/caching with rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/api only apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Extending Rails</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails on rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/generators &amp; templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/application templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/creating rails plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Contributions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/contributing to rails">Contributing to Ruby on Rails</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/api documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/guides guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Policies</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/maintenance policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">API Documentation Guidelines</h1></header><article><div><span><p>This guide documents the Ruby on Rails API documentation guidelines.</p>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>How to write effective prose for documentation purposes.</li>
+<li>Style guidelines for documenting different kinds of Ruby code.</li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="rdoc"></a><a href="#rdoc" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RDoc</h2>
+<p>The <a href="https://api.rubyonrails.org">Rails API documentation</a> is generated with
+<a href="https://ruby.github.io/rdoc/">RDoc</a>. To generate it, make sure you are
+in the rails root directory, run <code>bundle install</code> and execute:</p>
+<pre><code class="hljs css language-bash">  bundle <span class="hljs-built_in">exec</span> rake rdoc
+</code></pre>
+<p>Resulting HTML files can be found in the ./doc/rdoc directory.</p>
+<p>Please consult the RDoc documentation for help with the
+<a href="https://ruby.github.io/rdoc/RDoc/Markup.html">markup</a>,
+and also take into account these <a href="https://ruby.github.io/rdoc/RDoc/Parser/Ruby.html">additional
+directives</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="wording"></a><a href="#wording" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Wording</h2>
+<p>Write simple, declarative sentences. Brevity is a plus: get to the point.</p>
+<p>Write in present tense: &quot;Returns a hash that...&quot;, rather than &quot;Returned a hash that...&quot; or &quot;Will return a hash that...&quot;.</p>
+<p>Start comments in upper case. Follow regular punctuation rules:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Declares an attribute reader backed by an internally-named</span>
+<span class="hljs-comment"># instance variable.</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">attr_internal_reader</span><span class="hljs-params">(*attrs)</span></span>
+  ...
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Communicate to the reader the current way of doing things, both explicitly and implicitly. Use the idioms recommended in edge. Reorder sections to emphasize favored approaches if needed, etc. The documentation should be a model for best practices and canonical, modern Rails usage.</p>
+<p>Documentation has to be concise but comprehensive. Explore and document edge cases. What happens if a module is anonymous? What if a collection is empty? What if an argument is nil?</p>
+<p>The proper names of Rails components have a space in between the words, like &quot;Active Support&quot;. <code>ActiveRecord</code> is a Ruby module, whereas Active Record is an ORM. All Rails documentation should consistently refer to Rails components by their proper name, and if in your next blog post or presentation you remember this tidbit and take it into account that'd be phenomenal.</p>
+<p>Spell names correctly: Arel, minitest, RSpec, HTML, MySQL, JavaScript, ERB. When in doubt, please have a look at some authoritative source like their official documentation.</p>
+<p>Use the article &quot;an&quot; for &quot;SQL&quot;, as in &quot;an SQL statement&quot;. Also &quot;an SQLite database&quot;.</p>
+<p>Prefer wordings that avoid &quot;you&quot;s and &quot;your&quot;s. For example, instead of</p>
+<pre><code class="hljs css language-markdown">If you need to use <span class="hljs-code">`return`</span> statements in your callbacks, it is recommended that you explicitly define them as methods.
+</code></pre>
+<p>use this style:</p>
+<pre><code class="hljs css language-markdown">If <span class="hljs-code">`return`</span> is needed it is recommended to explicitly define a method.
+</code></pre>
+<p>That said, when using pronouns in reference to a hypothetical person, such as &quot;a
+user with a session cookie&quot;, gender neutral pronouns (they/their/them) should be
+used. Instead of:</p>
+<ul>
+<li>he or she... use they.</li>
+<li>him or her... use them.</li>
+<li>his or her... use their.</li>
+<li>his or hers... use theirs.</li>
+<li>himself or herself... use themselves.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="english"></a><a href="#english" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>English</h2>
+<p>Please use American English (<em>color</em>, <em>center</em>, <em>modularize</em>, etc). See <a href="https://en.wikipedia.org/wiki/American_and_British_English_spelling_differences">a list of American and British English spelling differences here</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="oxford-comma"></a><a href="#oxford-comma" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Oxford Comma</h2>
+<p>Please use the <a href="https://en.wikipedia.org/wiki/Serial_comma">Oxford comma</a>
+(&quot;red, white, and blue&quot;, instead of &quot;red, white and blue&quot;).</p>
+<h2><a class="anchor" aria-hidden="true" id="example-code"></a><a href="#example-code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example Code</h2>
+<p>Choose meaningful examples that depict and cover the basics as well as interesting points or gotchas.</p>
+<p>Use two spaces to indent chunks of code--that is, for markup purposes, two spaces with respect to the left margin. The examples themselves should use <a href="contributing_to_ruby_on_rails.html#follow-the-coding-conventions">Rails coding conventions</a>.</p>
+<p>Short docs do not need an explicit &quot;Examples&quot; label to introduce snippets; they just follow paragraphs:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Converts a collection of elements into a formatted string by</span>
+<span class="hljs-comment"># calling +to_s+ on all elements and joining them.</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment">#   Blog.all.to_formatted_s # =&gt; "First PostSecond PostThird Post"</span>
+</code></pre>
+<p>On the other hand, big chunks of structured documentation may have a separate &quot;Examples&quot; section:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># ==== Examples</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment">#   Person.exists?(5)</span>
+<span class="hljs-comment">#   Person.exists?('5')</span>
+<span class="hljs-comment">#   Person.exists?(name: "David")</span>
+<span class="hljs-comment">#   Person.exists?(['name LIKE ?', "%#{query}%"])</span>
+</code></pre>
+<p>The results of expressions follow them and are introduced by &quot;# =&gt; &quot;, vertically aligned:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># For checking if an integer is even or odd.</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment">#   1.even? # =&gt; false</span>
+<span class="hljs-comment">#   1.odd?  # =&gt; true</span>
+<span class="hljs-comment">#   2.even? # =&gt; true</span>
+<span class="hljs-comment">#   2.odd?  # =&gt; false</span>
+</code></pre>
+<p>If a line is too long, the comment may be placed on the next line:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment">#   label(:article, :title)</span>
+<span class="hljs-comment">#   # =&gt; &lt;label for="article_title"&gt;Title&lt;/label&gt;</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment">#   label(:article, :title, "A short title")</span>
+<span class="hljs-comment">#   # =&gt; &lt;label for="article_title"&gt;A short title&lt;/label&gt;</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment">#   label(:article, :title, "A short title", class: "title_label")</span>
+<span class="hljs-comment">#   # =&gt; &lt;label for="article_title" class="title_label"&gt;A short title&lt;/label&gt;</span>
+</code></pre>
+<p>Avoid using any printing methods like <code>puts</code> or <code>p</code> for that purpose.</p>
+<p>On the other hand, regular comments do not use an arrow:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment">#   polymorphic_url(record)  # same as comment_url(record)</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="booleans"></a><a href="#booleans" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Booleans</h2>
+<p>In predicates and flags prefer documenting boolean semantics over exact values.</p>
+<p>When &quot;true&quot; or &quot;false&quot; are used as defined in Ruby use regular font. The
+singletons <code>true</code> and <code>false</code> need fixed-width font. Please avoid terms like
+&quot;truthy&quot;, Ruby defines what is true and false in the language, and thus those
+words have a technical meaning and need no substitutes.</p>
+<p>As a rule of thumb, do not document singletons unless absolutely necessary. That
+prevents artificial constructs like <code>!!</code> or ternaries, allows refactors, and the
+code does not need to rely on the exact values returned by methods being called
+in the implementation.</p>
+<p>For example:</p>
+<pre><code class="hljs css language-markdown"><span class="hljs-code">`config.action_mailer.perform_deliveries`</span> specifies whether mail will actually be delivered and is true by default
+</code></pre>
+<p>the user does not need to know which is the actual default value of the flag,
+and so we only document its boolean semantics.</p>
+<p>An example with a predicate:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Returns true if the collection is empty.</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># If the collection has been loaded</span>
+<span class="hljs-comment"># it is equivalent to &lt;tt&gt;collection.size.zero?&lt;/tt&gt;. If the</span>
+<span class="hljs-comment"># collection has not been loaded, it is equivalent to</span>
+<span class="hljs-comment"># &lt;tt&gt;collection.exists?&lt;/tt&gt;. If the collection has not already been</span>
+<span class="hljs-comment"># loaded and you are going to fetch the records anyway it is better to</span>
+<span class="hljs-comment"># check &lt;tt&gt;collection.length.zero?&lt;/tt&gt;.</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">empty?</span></span>
+  <span class="hljs-keyword">if</span> loaded?
+    size.zero?
+  <span class="hljs-keyword">else</span>
+    @target.blank? &amp;&amp; !scope.exists?
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The API is careful not to commit to any particular value, the method has
+predicate semantics, that's enough.</p>
+<h2><a class="anchor" aria-hidden="true" id="file-names"></a><a href="#file-names" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>File Names</h2>
+<p>As a rule of thumb, use filenames relative to the application root:</p>
+<pre><code class="hljs">config/routes.rb            <span class="hljs-meta"># YES</span>
+routes.rb                   <span class="hljs-meta"># NO</span>
+RAILS_ROOT<span class="hljs-meta-keyword">/config/</span>routes.rb <span class="hljs-meta"># NO</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="fonts"></a><a href="#fonts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fonts</h2>
+<h3><a class="anchor" aria-hidden="true" id="fixed-width-font"></a><a href="#fixed-width-font" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fixed-width Font</h3>
+<p>Use fixed-width fonts for:</p>
+<ul>
+<li>Constants, in particular class and module names.</li>
+<li>Method names.</li>
+<li>Literals like <code>nil</code>, <code>false</code>, <code>true</code>, <code>self</code>.</li>
+<li>Symbols.</li>
+<li>Method parameters.</li>
+<li>File names.</li>
+</ul>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Array</span></span>
+  <span class="hljs-comment"># Calls +to_param+ on all its elements and joins the result with</span>
+  <span class="hljs-comment"># slashes. This is used by +url_for+ in Action Pack.</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">to_param</span></span>
+    collect { <span class="hljs-params">|e|</span> e.to_param }.join <span class="hljs-string">'/'</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>WARNING: Using <code>+...+</code> for fixed-width font only works with simple content like
+ordinary method names, symbols, paths (with forward slashes), etc. Please use
+<code>&lt;tt&gt;...&lt;/tt&gt;</code> for everything else, notably class or module names with a
+namespace as in <code>&lt;tt&gt;ActiveRecord::Base&lt;/tt&gt;</code>.</p>
+<p>You can quickly test the RDoc output with the following command:</p>
+<pre><code class="hljs">$ echo <span class="hljs-string">"+:to_param+"</span> | rdoc --pipe
+<span class="hljs-meta"># =&gt; <span class="hljs-meta-string">&lt;p&gt;</span><span class="hljs-meta-string">&lt;code&gt;</span>:to_param<span class="hljs-meta-string">&lt;/code&gt;</span><span class="hljs-meta-string">&lt;/p&gt;</span></span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="regular-font"></a><a href="#regular-font" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Regular Font</h3>
+<p>When &quot;true&quot; and &quot;false&quot; are English words rather than Ruby keywords use a regular font:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Runs all the validations within the specified context.</span>
+<span class="hljs-comment"># Returns true if no errors are found, false otherwise.</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># If the argument is false (default is +nil+), the context is</span>
+<span class="hljs-comment"># set to &lt;tt&gt;:create&lt;/tt&gt; if &lt;tt&gt;new_record?&lt;/tt&gt; is true,</span>
+<span class="hljs-comment"># and to &lt;tt&gt;:update&lt;/tt&gt; if it is not.</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># Validations with no &lt;tt&gt;:on&lt;/tt&gt; option will run no</span>
+<span class="hljs-comment"># matter the context. Validations with # some &lt;tt&gt;:on&lt;/tt&gt;</span>
+<span class="hljs-comment"># option will only run in the specified context.</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">valid?</span><span class="hljs-params">(context = <span class="hljs-literal">nil</span>)</span></span>
+  ...
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="description-lists"></a><a href="#description-lists" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description Lists</h2>
+<p>In lists of options, parameters, etc. use a hyphen between the item and its description (reads better than a colon because normally options are symbols):</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># * &lt;tt&gt;:allow_nil&lt;/tt&gt; - Skip validation if attribute is +nil+.</span>
+</code></pre>
+<p>The description starts in upper case and ends with a full stop-it's standard English.</p>
+<h2><a class="anchor" aria-hidden="true" id="dynamically-generated-methods"></a><a href="#dynamically-generated-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dynamically Generated Methods</h2>
+<p>Methods created with <code>(module|class)_eval(STRING)</code> have a comment by their side with an instance of the generated code. That comment is 2 spaces away from the template:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">for</span> severity <span class="hljs-keyword">in</span> Severity.constants
+  class_eval &lt;&lt;-EOT, __FILE_<span class="hljs-number">_</span>, __LINE_<span class="hljs-number">_</span> + <span class="hljs-number">1</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-comment">#{severity.downcase}(message = nil, progname = nil, &amp;block)  # def debug(message = nil, progname = nil, &amp;block)</span></span>
+      add(<span class="hljs-comment">#{severity}, message, progname, &amp;block)                    #   add(DEBUG, message, progname, &amp;block)</span>
+    <span class="hljs-keyword">end</span>                                                              <span class="hljs-comment"># end</span>
+                                                                     <span class="hljs-comment">#</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-comment">#{severity.downcase}?                                        # def debug?</span></span>
+      <span class="hljs-comment">#{severity} &gt;= <span class="hljs-doctag">@level</span>                                          #   DEBUG &gt;= <span class="hljs-doctag">@level</span></span>
+    <span class="hljs-keyword">end</span>                                                              <span class="hljs-comment"># end</span>
+  EOT
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If the resulting lines are too wide, say 200 columns or more, put the comment above the call:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># def self.find_by_login_and_activated(*args)</span>
+<span class="hljs-comment">#   options = args.extract_options!</span>
+<span class="hljs-comment">#   ...</span>
+<span class="hljs-comment"># end</span>
+<span class="hljs-keyword">self</span>.class_eval <span class="hljs-string">%{
+  def self.<span class="hljs-subst">#{method_id}</span>(*args)
+    options = args.extract_options!
+    ...
+  end
+}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="method-visibility"></a><a href="#method-visibility" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Method Visibility</h2>
+<p>When writing documentation for Rails, it's important to understand the difference between public user-facing API vs internal API.</p>
+<p>Rails, like most libraries, uses the private keyword from Ruby for defining internal API. However, public API follows a slightly different convention. Instead of assuming all public methods are designed for user consumption, Rails uses the <code>:nodoc:</code> directive to annotate these kinds of methods as internal API.</p>
+<p>This means that there are methods in Rails with <code>public</code> visibility that aren't meant for user consumption.</p>
+<p>An example of this is <code>ActiveRecord::Core::ClassMethods#arel_table</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">ActiveRecord::Core::ClassMethods</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">arel_table</span> <span class="hljs-comment">#:nodoc:</span></span>
+    <span class="hljs-comment"># do some magic..</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If you thought, &quot;this method looks like a public class method for <code>ActiveRecord::Core</code>&quot;, you were right. But actually the Rails team doesn't want users to rely on this method. So they mark it as <code>:nodoc:</code> and it's removed from public documentation. The reasoning behind this is to allow the team to change these methods according to their internal needs across releases as they see fit. The name of this method could change, or the return value, or this entire class may disappear; there's no guarantee and so you shouldn't depend on this API in your plugins or applications. Otherwise, you risk your app or gem breaking when you upgrade to a newer release of Rails.</p>
+<p>As a contributor, it's important to think about whether this API is meant for end-user consumption. The Rails team is committed to not making any breaking changes to public API across releases without going through a full deprecation cycle. It's recommended that you <code>:nodoc:</code> any of your internal methods/classes unless they're already private (meaning visibility), in which case it's internal by default. Once the API stabilizes the visibility can change, but changing public API is much harder due to backwards compatibility.</p>
+<p>A class or module is marked with <code>:nodoc:</code> to indicate that all methods are internal API and should never be used directly.</p>
+<p>To summarize, the Rails team uses <code>:nodoc:</code> to mark publicly visible methods and classes for internal use; changes to the visibility of API should be considered carefully and discussed over a pull request first.</p>
+<h2><a class="anchor" aria-hidden="true" id="regarding-the-rails-stack"></a><a href="#regarding-the-rails-stack" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Regarding the Rails Stack</h2>
+<p>When documenting parts of Rails API, it's important to remember all of the
+pieces that go into the Rails stack.</p>
+<p>This means that behavior may change depending on the scope or context of the
+method or class you're trying to document.</p>
+<p>In various places there is different behavior when you take the entire stack
+into account, one such example is
+<code>ActionView::Helpers::AssetTagHelper#image_tag</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># image_tag("icon.png")</span>
+<span class="hljs-comment">#   # =&gt; &lt;img src="/assets/icon.png" /&gt;</span>
+</code></pre>
+<p>Although the default behavior for <code>#image_tag</code> is to always return
+<code>/images/icon.png</code>, we take into account the full Rails stack (including the
+Asset Pipeline) we may see the result seen above.</p>
+<p>We're only concerned with the behavior experienced when using the full default
+Rails stack.</p>
+<p>In this case, we want to document the behavior of the <em>framework</em>, and not just
+this specific method.</p>
+<p>If you have a question on how the Rails team handles certain API, don't hesitate to open a ticket or send a patch to the <a href="https://github.com/rails/rails/issues">issue tracker</a>.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/contributing%20to%20rails"><span class="arrow-prev">← </span><span>Contributing to Ruby on Rails</span></a><a class="docs-next button" href="/rails-setup/docs/guides%20guidelines"><span>Ruby on Rails Guides Guidelines</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#rdoc">RDoc</a></li><li><a href="#wording">Wording</a></li><li><a href="#english">English</a></li><li><a href="#oxford-comma">Oxford Comma</a></li><li><a href="#example-code">Example Code</a></li><li><a href="#booleans">Booleans</a></li><li><a href="#file-names">File Names</a></li><li><a href="#fonts">Fonts</a><ul class="toc-headings"><li><a href="#fixed-width-font">Fixed-width Font</a></li><li><a href="#regular-font">Regular Font</a></li></ul></li><li><a href="#description-lists">Description Lists</a></li><li><a href="#dynamically-generated-methods">Dynamically Generated Methods</a></li><li><a href="#method-visibility">Method Visibility</a></li><li><a href="#regarding-the-rails-stack">Regarding the Rails Stack</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Rails Setup</section></footer></div></body></html>

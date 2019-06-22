@@ -1,0 +1,426 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>The Basics of Creating Rails Plugins · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;A Rails plugin is either an extension or a modification of the core framework. Plugins provide:&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="The Basics of Creating Rails Plugins · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;A Rails plugin is either an extension or a modification of the core framework. Plugins provide:&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/getting started" target="_self">Rails Docs</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Extending Rails</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Start Here</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/getting started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/development dependencies install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Models</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/multiple databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Views</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/layouts and rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action view form helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Controllers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Other Components</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active support core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active support instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Digging Deeper</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/testing rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/securing rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/debugging rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/configuring rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails command line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/asset pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/working with javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/autoloading and reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/caching with rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/api only apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Extending Rails</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails on rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/generators &amp; templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/application templates">Rails Application Templates</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/creating rails plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Contributions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/contributing to rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/api documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/guides guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Policies</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/maintenance policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">The Basics of Creating Rails Plugins</h1></header><article><div><span><p>A Rails plugin is either an extension or a modification of the core framework. Plugins provide:</p>
+<ul>
+<li>A way for developers to share bleeding-edge ideas without hurting the stable code base.</li>
+<li>A segmented architecture so that units of code can be fixed or updated on their own release schedule.</li>
+<li>An outlet for the core developers so that they don't have to include every cool new feature under the sun.</li>
+</ul>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>How to create a plugin from scratch.</li>
+<li>How to write and run tests for the plugin.</li>
+</ul>
+<p>This guide describes how to build a test-driven plugin that will:</p>
+<ul>
+<li>Extend core Ruby classes like Hash and String.</li>
+<li>Add methods to <code>ApplicationRecord</code> in the tradition of the <code>acts_as</code> plugins.</li>
+<li>Give you information about where to put generators in your plugin.</li>
+</ul>
+<p>For the purpose of this guide pretend for a moment that you are an avid bird watcher.
+Your favorite bird is the Yaffle, and you want to create a plugin that allows other developers to share in the Yaffle
+goodness.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="setup"></a><a href="#setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup</h2>
+<p>Currently, Rails plugins are built as gems, <em>gemified plugins</em>. They can be shared across
+different Rails applications using RubyGems and Bundler if desired.</p>
+<h3><a class="anchor" aria-hidden="true" id="generate-a-gemified-plugin"></a><a href="#generate-a-gemified-plugin" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generate a gemified plugin.</h3>
+<p>Rails ships with a <code>rails plugin new</code> command which creates a
+skeleton for developing any kind of Rails extension with the ability
+to run integration tests using a dummy Rails application. Create your
+plugin with the command:</p>
+<pre><code class="hljs css language-bash">$ rails plugin new yaffle
+</code></pre>
+<p>See usage and options by asking for help:</p>
+<pre><code class="hljs css language-bash">$ rails plugin new --<span class="hljs-built_in">help</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="testing-your-newly-generated-plugin"></a><a href="#testing-your-newly-generated-plugin" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Testing Your Newly Generated Plugin</h2>
+<p>You can navigate to the directory that contains the plugin, run the <code>bundle install</code> command
+and run the one generated test using the <code>bin/test</code> command.</p>
+<p>You should see:</p>
+<pre><code class="hljs css language-bash">  1 runs, 1 assertions, 0 failures, 0 errors, 0 skips
+</code></pre>
+<p>This will tell you that everything got generated properly and you are ready to start adding functionality.</p>
+<h2><a class="anchor" aria-hidden="true" id="extending-core-classes"></a><a href="#extending-core-classes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Extending Core Classes</h2>
+<p>This section will explain how to add a method to String that will be available anywhere in your Rails application.</p>
+<p>In this example you will add a method to String named <code>to_squawk</code>. To begin, create a new test file with a few assertions:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># yaffle/test/core_ext_test.rb</span>
+
+<span class="hljs-keyword">require</span> <span class="hljs-string">"test_helper"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CoreExtTest</span> &lt; ActiveSupport::TestCase</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_to_squawk_prepends_the_word_squawk</span></span>
+    assert_equal <span class="hljs-string">"squawk! Hello World"</span>, <span class="hljs-string">"Hello World"</span>.to_squawk
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Run <code>bin/test</code> to run the test. This test should fail because we haven't implemented the <code>to_squawk</code> method:</p>
+<pre><code class="hljs css language-bash">E
+
+Error:
+CoreExtTest<span class="hljs-comment">#test_to_squawk_prepends_the_word_squawk:</span>
+NoMethodError: undefined method `to_squawk<span class="hljs-string">' for "Hello World":String
+
+
+bin/test /path/to/yaffle/test/core_ext_test.rb:4
+
+.
+
+Finished in 0.003358s, 595.6483 runs/s, 297.8242 assertions/s.
+
+2 runs, 1 assertions, 0 failures, 1 errors, 0 skips
+</span></code></pre>
+<p>Great - now you are ready to start development.</p>
+<p>In <code>lib/yaffle.rb</code>, add <code>require &quot;yaffle/core_ext&quot;</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># yaffle/lib/yaffle.rb</span>
+
+<span class="hljs-keyword">require</span> <span class="hljs-string">"yaffle/railtie"</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">"yaffle/core_ext"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Yaffle</span></span>
+  <span class="hljs-comment"># Your code goes here...</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Finally, create the <code>core_ext.rb</code> file and add the <code>to_squawk</code> method:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># yaffle/lib/yaffle/core_ext.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">String</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">to_squawk</span></span>
+    <span class="hljs-string">"squawk! <span class="hljs-subst">#{<span class="hljs-keyword">self</span>}</span>"</span>.strip
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>To test that your method does what it says it does, run the unit tests with <code>bin/test</code> from your plugin directory.</p>
+<pre><code class="hljs css language-bash">  2 runs, 2 assertions, 0 failures, 0 errors, 0 skips
+</code></pre>
+<p>To see this in action, change to the <code>test/dummy</code> directory, fire up a console, and start squawking:</p>
+<pre><code class="hljs css language-bash">$ rails console
+&gt;&gt; <span class="hljs-string">"Hello World"</span>.to_squawk
+=&gt; <span class="hljs-string">"squawk! Hello World"</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="add-an-acts_as-method-to-active-record"></a><a href="#add-an-acts_as-method-to-active-record" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add an &quot;acts_as&quot; Method to Active Record</h2>
+<p>A common pattern in plugins is to add a method called <code>acts_as_something</code> to models. In this case, you
+want to write a method called <code>acts_as_yaffle</code> that adds a <code>squawk</code> method to your Active Record models.</p>
+<p>To begin, set up your files so that you have:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># yaffle/test/acts_as_yaffle_test.rb</span>
+
+<span class="hljs-keyword">require</span> <span class="hljs-string">"test_helper"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ActsAsYaffleTest</span> &lt; ActiveSupport::TestCase</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># yaffle/lib/yaffle.rb</span>
+
+<span class="hljs-keyword">require</span> <span class="hljs-string">"yaffle/railtie"</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">"yaffle/core_ext"</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">"yaffle/acts_as_yaffle"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Yaffle</span></span>
+  <span class="hljs-comment"># Your code goes here...</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># yaffle/lib/yaffle/acts_as_yaffle.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Yaffle</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">ActsAsYaffle</span></span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="add-a-class-method"></a><a href="#add-a-class-method" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add a Class Method</h3>
+<p>This plugin will expect that you've added a method to your model named <code>last_squawk</code>. However, the
+plugin users might have already defined a method on their model named <code>last_squawk</code> that they use
+for something else. This plugin will allow the name to be changed by adding a class method called <code>yaffle_text_field</code>.</p>
+<p>To start out, write a failing test that shows the behavior you'd like:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># yaffle/test/acts_as_yaffle_test.rb</span>
+
+<span class="hljs-keyword">require</span> <span class="hljs-string">"test_helper"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ActsAsYaffleTest</span> &lt; ActiveSupport::TestCase</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_a_hickwalls_yaffle_text_field_should_be_last_squawk</span></span>
+    assert_equal <span class="hljs-string">"last_squawk"</span>, Hickwall.yaffle_text_field
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_a_wickwalls_yaffle_text_field_should_be_last_tweet</span></span>
+    assert_equal <span class="hljs-string">"last_tweet"</span>, Wickwall.yaffle_text_field
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>When you run <code>bin/test</code>, you should see the following:</p>
+<pre><code class="hljs"># Running:
+
+..E
+
+<span class="hljs-keyword">Error:
+</span>ActsAsYaffleTest#test_a_wickwalls_yaffle_text_field_should_be_last_tweet:
+NameError: uninitialized constant ActsAsYaffleTest::Wickwall
+
+
+bin/test /path/to/yaffle/test/acts_as_yaffle_test.rb:8
+
+E
+
+<span class="hljs-keyword">Error:
+</span>ActsAsYaffleTest#test_a_hickwalls_yaffle_text_field_should_be_last_squawk:
+NameError: uninitialized constant ActsAsYaffleTest::Hickwall
+
+
+bin/test /path/to/yaffle/test/acts_as_yaffle_test.rb:4
+
+
+
+Finished in 0.004812s, 831.2949 runs/s, 415.6475 assertions/s.
+
+4 runs, 2 assertions, 0 failures, 2 errors, 0 skips
+</code></pre>
+<p>This tells us that we don't have the necessary models (Hickwall and Wickwall) that we are trying to test.
+We can easily generate these models in our &quot;dummy&quot; Rails application by running the following commands from the
+<code>test/dummy</code> directory:</p>
+<pre><code class="hljs css language-bash">$ <span class="hljs-built_in">cd</span> <span class="hljs-built_in">test</span>/dummy
+$ rails generate model Hickwall last_squawk:string
+$ rails generate model Wickwall last_squawk:string last_tweet:string
+</code></pre>
+<p>Now you can create the necessary database tables in your testing database by navigating to your dummy app
+and migrating the database. First, run:</p>
+<pre><code class="hljs css language-bash">$ <span class="hljs-built_in">cd</span> <span class="hljs-built_in">test</span>/dummy
+$ rails db:migrate
+</code></pre>
+<p>While you are here, change the Hickwall and Wickwall models so that they know that they are supposed to act
+like yaffles.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># test/dummy/app/models/hickwall.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hickwall</span> &lt; ApplicationRecord</span>
+  acts_as_yaffle
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># test/dummy/app/models/wickwall.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Wickwall</span> &lt; ApplicationRecord</span>
+  acts_as_yaffle <span class="hljs-symbol">yaffle_text_field:</span> <span class="hljs-symbol">:last_tweet</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>We will also add code to define the <code>acts_as_yaffle</code> method.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># yaffle/lib/yaffle/acts_as_yaffle.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Yaffle</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">ActsAsYaffle</span></span>
+    extend ActiveSupport::Concern
+
+    class_methods <span class="hljs-keyword">do</span>
+      <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">acts_as_yaffle</span><span class="hljs-params">(options = {})</span></span>
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># test/dummy/app/models/application_record.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationRecord</span> &lt; ActiveRecord::Base</span>
+  <span class="hljs-keyword">include</span> Yaffle::ActsAsYaffle
+
+  <span class="hljs-keyword">self</span>.abstract_class = <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>You can then return to the root directory (<code>cd ../..</code>) of your plugin and rerun the tests using <code>bin/test</code>.</p>
+<pre><code class="hljs"># Running:
+
+.E
+
+Error:
+ActsAsYaffleTest#test_a_hickwalls_yaffle_text_field_should_be_last_squawk:
+NoMethodError: undefined <span class="hljs-function"><span class="hljs-keyword">method</span> `<span class="hljs-title">yaffle_text_field</span>' <span class="hljs-title">for</span> #&lt;<span class="hljs-title">Class</span>:</span><span class="hljs-number">0</span>x0055974ebbe9d8&gt;
+
+
+bin/test /path/<span class="hljs-keyword">to</span>/yaffle/test/acts_as_yaffle_test.rb:<span class="hljs-number">4</span>
+
+E
+
+Error:
+ActsAsYaffleTest#test_a_wickwalls_yaffle_text_field_should_be_last_tweet:
+NoMethodError: undefined <span class="hljs-function"><span class="hljs-keyword">method</span> `<span class="hljs-title">yaffle_text_field</span>' <span class="hljs-title">for</span> #&lt;<span class="hljs-title">Class</span>:</span><span class="hljs-number">0</span>x0055974eb8cfc8&gt;
+
+
+bin/test /path/<span class="hljs-keyword">to</span>/yaffle/test/acts_as_yaffle_test.rb:<span class="hljs-number">8</span>
+
+.
+
+Finished <span class="hljs-keyword">in</span> <span class="hljs-number">0.008263</span>s, <span class="hljs-number">484.0999</span> runs/s, <span class="hljs-number">242.0500</span> assertions/s.
+
+<span class="hljs-number">4</span> runs, <span class="hljs-number">2</span> assertions, <span class="hljs-number">0</span> failures, <span class="hljs-number">2</span> errors, <span class="hljs-number">0</span> skips
+</code></pre>
+<p>Getting closer... Now we will implement the code of the <code>acts_as_yaffle</code> method to make the tests pass.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># yaffle/lib/yaffle/acts_as_yaffle.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Yaffle</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">ActsAsYaffle</span></span>
+    extend ActiveSupport::Concern
+
+    class_methods <span class="hljs-keyword">do</span>
+      <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">acts_as_yaffle</span><span class="hljs-params">(options = {})</span></span>
+        cattr_accessor <span class="hljs-symbol">:yaffle_text_field</span>, <span class="hljs-symbol">default:</span> (options[<span class="hljs-symbol">:yaffle_text_field</span>] <span class="hljs-params">||</span> <span class="hljs-symbol">:last_squawk</span>).to_s
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># test/dummy/app/models/application_record.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationRecord</span> &lt; ActiveRecord::Base</span>
+  <span class="hljs-keyword">include</span> Yaffle::ActsAsYaffle
+
+  <span class="hljs-keyword">self</span>.abstract_class = <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>When you run <code>bin/test</code>, you should see the tests all pass:</p>
+<pre><code class="hljs css language-bash">  4 runs, 4 assertions, 0 failures, 0 errors, 0 skips
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="add-an-instance-method"></a><a href="#add-an-instance-method" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add an Instance Method</h3>
+<p>This plugin will add a method named 'squawk' to any Active Record object that calls <code>acts_as_yaffle</code>. The 'squawk'
+method will simply set the value of one of the fields in the database.</p>
+<p>To start out, write a failing test that shows the behavior you'd like:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># yaffle/test/acts_as_yaffle_test.rb</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">"test_helper"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ActsAsYaffleTest</span> &lt; ActiveSupport::TestCase</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_a_hickwalls_yaffle_text_field_should_be_last_squawk</span></span>
+    assert_equal <span class="hljs-string">"last_squawk"</span>, Hickwall.yaffle_text_field
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_a_wickwalls_yaffle_text_field_should_be_last_tweet</span></span>
+    assert_equal <span class="hljs-string">"last_tweet"</span>, Wickwall.yaffle_text_field
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_hickwalls_squawk_should_populate_last_squawk</span></span>
+    hickwall = Hickwall.new
+    hickwall.squawk(<span class="hljs-string">"Hello World"</span>)
+    assert_equal <span class="hljs-string">"squawk! Hello World"</span>, hickwall.last_squawk
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_wickwalls_squawk_should_populate_last_tweet</span></span>
+    wickwall = Wickwall.new
+    wickwall.squawk(<span class="hljs-string">"Hello World"</span>)
+    assert_equal <span class="hljs-string">"squawk! Hello World"</span>, wickwall.last_tweet
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Run the test to make sure the last two tests fail with an error that contains &quot;NoMethodError: undefined method <code>squawk'&quot;, then update</code>acts_as_yaffle.rb` to look like this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># yaffle/lib/yaffle/acts_as_yaffle.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Yaffle</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">ActsAsYaffle</span></span>
+    extend ActiveSupport::Concern
+
+    included <span class="hljs-keyword">do</span>
+      <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">squawk</span><span class="hljs-params">(string)</span></span>
+        write_attribute(<span class="hljs-keyword">self</span>.<span class="hljs-keyword">class</span>.yaffle_text_field, string.to_squawk)
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+
+    class_methods <span class="hljs-keyword">do</span>
+      <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">acts_as_yaffle</span><span class="hljs-params">(options = {})</span></span>
+        cattr_accessor <span class="hljs-symbol">:yaffle_text_field</span>, <span class="hljs-symbol">default:</span> (options[<span class="hljs-symbol">:yaffle_text_field</span>] <span class="hljs-params">||</span> <span class="hljs-symbol">:last_squawk</span>).to_s
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># test/dummy/app/models/application_record.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationRecord</span> &lt; ActiveRecord::Base</span>
+  <span class="hljs-keyword">include</span> Yaffle::ActsAsYaffle
+
+  <span class="hljs-keyword">self</span>.abstract_class = <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Run <code>bin/test</code> one final time and you should see:</p>
+<pre><code class="hljs">  <span class="hljs-number">6</span> runs, <span class="hljs-number">6</span> assertions, <span class="hljs-number">0</span> failures, <span class="hljs-number">0</span> errors, <span class="hljs-number">0</span> skips
+</code></pre>
+<p>NOTE: The use of <code>write_attribute</code> to write to the field in model is just one example of how a plugin can interact with the model, and will not always be the right method to use. For example, you could also use:</p>
+<pre><code class="hljs css language-ruby">send(<span class="hljs-string">"<span class="hljs-subst">#{<span class="hljs-keyword">self</span>.<span class="hljs-keyword">class</span>.yaffle_text_field}</span>="</span>, string.to_squawk)
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="generators"></a><a href="#generators" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generators</h2>
+<p>Generators can be included in your gem simply by creating them in a <code>lib/generators</code> directory of your plugin. More information about
+the creation of generators can be found in the <a href="generators.html">Generators Guide</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="publishing-your-gem"></a><a href="#publishing-your-gem" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Publishing Your Gem</h2>
+<p>Gem plugins currently in development can easily be shared from any Git repository. To share the Yaffle gem with others, simply
+commit the code to a Git repository (like GitHub) and add a line to the <code>Gemfile</code> of the application in question:</p>
+<pre><code class="hljs css language-ruby">gem <span class="hljs-string">"yaffle"</span>, <span class="hljs-symbol">git:</span> <span class="hljs-string">"https://github.com/rails/yaffle.git"</span>
+</code></pre>
+<p>After running <code>bundle install</code>, your gem functionality will be available to the application.</p>
+<p>When the gem is ready to be shared as a formal release, it can be published to <a href="https://rubygems.org">RubyGems</a>.
+For more information about publishing gems to RubyGems, see: <a href="https://guides.rubygems.org/publishing">Publishing your gem</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="rdoc-documentation"></a><a href="#rdoc-documentation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RDoc Documentation</h2>
+<p>Once your plugin is stable and you are ready to deploy, do everyone else a favor and document it! Luckily, writing documentation for your plugin is easy.</p>
+<p>The first step is to update the README file with detailed information about how to use your plugin. A few key things to include are:</p>
+<ul>
+<li>Your name</li>
+<li>How to install</li>
+<li>How to add the functionality to the app (several examples of common use cases)</li>
+<li>Warnings, gotchas or tips that might help users and save them time</li>
+</ul>
+<p>Once your README is solid, go through and add rdoc comments to all of the methods that developers will use. It's also customary to add <code>#:nodoc:</code> comments to those parts of the code that are not included in the public API.</p>
+<p>Once your comments are good to go, navigate to your plugin directory and run:</p>
+<pre><code class="hljs css language-bash">$ bundle <span class="hljs-built_in">exec</span> rake rdoc
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
+<ul>
+<li><a href="https://github.com/radar/guides/blob/master/gem-development.md">Developing a RubyGem using Bundler</a></li>
+<li><a href="http://yehudakatz.com/2010/04/02/using-gemspecs-as-intended/">Using .gemspecs as Intended</a></li>
+<li><a href="https://guides.rubygems.org/specification-reference/">Gemspec Reference</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/application%20templates"><span class="arrow-prev">← </span><span>Rails Application Templates</span></a><a class="docs-next button" href="/rails-setup/docs/contributing%20to%20rails"><span>Contributing to Ruby on Rails</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#setup">Setup</a><ul class="toc-headings"><li><a href="#generate-a-gemified-plugin">Generate a gemified plugin.</a></li></ul></li><li><a href="#testing-your-newly-generated-plugin">Testing Your Newly Generated Plugin</a></li><li><a href="#extending-core-classes">Extending Core Classes</a></li><li><a href="#add-an-acts_as-method-to-active-record">Add an &quot;acts_as&quot; Method to Active Record</a><ul class="toc-headings"><li><a href="#add-a-class-method">Add a Class Method</a></li><li><a href="#add-an-instance-method">Add an Instance Method</a></li></ul></li><li><a href="#generators">Generators</a></li><li><a href="#publishing-your-gem">Publishing Your Gem</a></li><li><a href="#rdoc-documentation">RDoc Documentation</a><ul class="toc-headings"><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Rails Setup</section></footer></div></body></html>

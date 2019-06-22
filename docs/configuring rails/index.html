@@ -1,0 +1,1093 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Configuring Rails Applications · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This guide covers the configuration and initialization features available to Rails applications.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Configuring Rails Applications · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;This guide covers the configuration and initialization features available to Rails applications.&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/getting started" target="_self">Rails Docs</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Digging Deeper</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Start Here</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/getting started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/development dependencies install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Models</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/multiple databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Views</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/layouts and rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action view form helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Controllers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Other Components</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active support core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active support instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Digging Deeper</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/testing rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/securing rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/debugging rails">Debugging Rails Applications</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/configuring rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails command line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/asset pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/working with javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/autoloading and reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/caching with rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/api only apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Extending Rails</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails on rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/generators &amp; templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/application templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/creating rails plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Contributions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/contributing to rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/api documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/guides guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Policies</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/maintenance policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Configuring Rails Applications</h1></header><article><div><span><p>This guide covers the configuration and initialization features available to Rails applications.</p>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>How to adjust the behavior of your Rails applications.</li>
+<li>How to add additional code to be run at application start time.</li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="locations-for-initialization-code"></a><a href="#locations-for-initialization-code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Locations for Initialization Code</h2>
+<p>Rails offers four standard spots to place initialization code:</p>
+<ul>
+<li><code>config/application.rb</code></li>
+<li>Environment-specific configuration files</li>
+<li>Initializers</li>
+<li>After-initializers</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="running-code-before-rails"></a><a href="#running-code-before-rails" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Running Code Before Rails</h2>
+<p>In the rare event that your application needs to run some code before Rails itself is loaded, put it above the call to <code>require 'rails/all'</code> in <code>config/application.rb</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="configuring-rails-components"></a><a href="#configuring-rails-components" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Rails Components</h2>
+<p>In general, the work of configuring Rails means configuring the components of Rails, as well as configuring Rails itself. The configuration file <code>config/application.rb</code> and environment-specific configuration files (such as <code>config/environments/production.rb</code>) allow you to specify the various settings that you want to pass down to all of the components.</p>
+<p>For example, you could add this setting to <code>config/application.rb</code> file:</p>
+<pre><code class="hljs css language-ruby">config.time_zone = <span class="hljs-string">'Central Time (US &amp; Canada)'</span>
+</code></pre>
+<p>This is a setting for Rails itself. If you want to pass settings to individual Rails components, you can do so via the same <code>config</code> object in <code>config/application.rb</code>:</p>
+<pre><code class="hljs css language-ruby">config.active_record.schema_format = <span class="hljs-symbol">:ruby</span>
+</code></pre>
+<p>Rails will use that particular setting to configure Active Record.</p>
+<h3><a class="anchor" aria-hidden="true" id="rails-general-configuration"></a><a href="#rails-general-configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rails General Configuration</h3>
+<p>These configuration methods are to be called on a <code>Rails::Railtie</code> object, such as a subclass of <code>Rails::Engine</code> or <code>Rails::Application</code>.</p>
+<ul>
+<li><p><code>config.after_initialize</code> takes a block which will be run <em>after</em> Rails has finished initializing the application. That includes the initialization of the framework itself, engines, and all the application's initializers in <code>config/initializers</code>. Note that this block <em>will</em> be run for rake tasks. Useful for configuring values set up by other initializers:</p>
+<pre><code class="hljs css language-ruby">config.after_initialize <span class="hljs-keyword">do</span>
+  ActionView::Base.sanitized_allowed_tags.delete <span class="hljs-string">'div'</span>
+<span class="hljs-keyword">end</span>
+</code></pre></li>
+<li><p><code>config.asset_host</code> sets the host for the assets. Useful when CDNs are used for hosting assets, or when you want to work around the concurrency constraints built-in in browsers using different domain aliases. Shorter version of <code>config.action_controller.asset_host</code>.</p></li>
+<li><p><code>config.autoload_once_paths</code> accepts an array of paths from which Rails will autoload constants that won't be wiped per request. Relevant if <code>config.cache_classes</code> is <code>false</code>, which is the case in development mode by default. Otherwise, all autoloading happens only once. All elements of this array must also be in <code>autoload_paths</code>. Default is an empty array.</p></li>
+<li><p><code>config.autoload_paths</code> accepts an array of paths from which Rails will autoload constants. Default is all directories under <code>app</code>. It is no longer recommended to adjust this. See <a href="autoloading_and_reloading_constants.html#autoload-paths-and-eager-load-paths">Autoloading and Reloading Constants</a></p></li>
+<li><p><code>config.add_autoload_paths_to_load_path</code> says whether autoload paths have to be added to <code>$LOAD_PATH</code>. This flag is <code>true</code> by default, but it is recommended to be set to <code>false</code> in <code>:zeitwerk</code> mode early, in <code>config/application.rb</code>. Zeitwerk uses absolute paths internally, and applications running in <code>:zeitwerk</code> mode do not need <code>require_dependency</code>, so models, controllers, jobs, etc. do not need to be in <code>$LOAD_PATH</code>. Setting this to <code>false</code> saves Ruby from checking these directories when resolving <code>require</code> calls with relative paths, and saves Bootsnap work and RAM, since it does not need to build an index for them.</p></li>
+<li><p><code>config.cache_classes</code> controls whether or not application classes and modules should be reloaded on each request. Defaults to <code>false</code> in development mode, and <code>true</code> in test and production modes.</p></li>
+<li><p><code>config.beginning_of_week</code> sets the default beginning of week for the
+application. Accepts a valid day of week as a symbol (e.g. <code>:monday</code>).</p></li>
+<li><p><code>config.cache_store</code> configures which cache store to use for Rails caching. Options include one of the symbols <code>:memory_store</code>, <code>:file_store</code>, <code>:mem_cache_store</code>, <code>:null_store</code>, <code>:redis_cache_store</code>, or an object that implements the cache API. Defaults to <code>:file_store</code>.</p></li>
+<li><p><code>config.colorize_logging</code> specifies whether or not to use ANSI color codes when logging information. Defaults to <code>true</code>.</p></li>
+<li><p><code>config.consider_all_requests_local</code> is a flag. If <code>true</code> then any error will cause detailed debugging information to be dumped in the HTTP response, and the <code>Rails::Info</code> controller will show the application runtime context in <code>/rails/info/properties</code>. <code>true</code> by default in development and test environments, and <code>false</code> in production mode. For finer-grained control, set this to <code>false</code> and implement <code>local_request?</code> in controllers to specify which requests should provide debugging information on errors.</p></li>
+<li><p><code>config.console</code> allows you to set class that will be used as console you run <code>rails console</code>. It's best to run it in <code>console</code> block:</p>
+<pre><code class="hljs css language-ruby">console <span class="hljs-keyword">do</span>
+  <span class="hljs-comment"># this block is called only when running console,</span>
+  <span class="hljs-comment"># so we can safely require pry here</span>
+  <span class="hljs-keyword">require</span> <span class="hljs-string">"pry"</span>
+  config.console = Pry
+<span class="hljs-keyword">end</span>
+</code></pre></li>
+<li><p><code>config.disable_sandbox</code> controls whether or not someone can start a console in sandbox mode. This is helpful to avoid a long running session of sandbox console, that could lead a database server to run out of memory. Defaults to false.</p></li>
+<li><p><code>config.eager_load</code> when <code>true</code>, eager loads all registered <code>config.eager_load_namespaces</code>. This includes your application, engines, Rails frameworks, and any other registered namespace.</p></li>
+<li><p><code>config.eager_load_namespaces</code> registers namespaces that are eager loaded when <code>config.eager_load</code> is <code>true</code>. All namespaces in the list must respond to the <code>eager_load!</code> method.</p></li>
+<li><p><code>config.eager_load_paths</code> accepts an array of paths from which Rails will eager load on boot if cache classes is enabled. Defaults to every folder in the <code>app</code> directory of the application.</p></li>
+<li><p><code>config.enable_dependency_loading</code>: when true, enables autoloading, even if the application is eager loaded and <code>config.cache_classes</code> is set as true. Defaults to false.</p></li>
+<li><p><code>config.encoding</code> sets up the application-wide encoding. Defaults to UTF-8.</p></li>
+<li><p><code>config.exceptions_app</code> sets the exceptions application invoked by the ShowException middleware when an exception happens. Defaults to <code>ActionDispatch::PublicExceptions.new(Rails.public_path)</code>.</p></li>
+<li><p><code>config.debug_exception_response_format</code> sets the format used in responses when errors occur in development mode. Defaults to <code>:api</code> for API only apps and <code>:default</code> for normal apps.</p></li>
+<li><p><code>config.file_watcher</code> is the class used to detect file updates in the file system when <code>config.reload_classes_only_on_change</code> is <code>true</code>. Rails ships with <code>ActiveSupport::FileUpdateChecker</code>, the default, and <code>ActiveSupport::EventedFileUpdateChecker</code> (this one depends on the <a href="https://github.com/guard/listen">listen</a> gem). Custom classes must conform to the <code>ActiveSupport::FileUpdateChecker</code> API.</p></li>
+<li><p><code>config.filter_parameters</code> used for filtering out the parameters that
+you don't want shown in the logs, such as passwords or credit card
+numbers. It also filters out sensitive values of database columns when call <code>#inspect</code> on an Active Record object. By default, Rails filters out passwords by adding <code>Rails.application.config.filter_parameters += [:password]</code> in <code>config/initializers/filter_parameter_logging.rb</code>. Parameters filter works by partial matching regular expression.</p></li>
+<li><p><code>config.force_ssl</code> forces all requests to be served over HTTPS by using the <code>ActionDispatch::SSL</code> middleware, and sets <code>config.action_mailer.default_url_options</code> to be <code>{ protocol: 'https' }</code>. This can be configured by setting <code>config.ssl_options</code> - see the <a href="https://api.rubyonrails.org/classes/ActionDispatch/SSL.html">ActionDispatch::SSL documentation</a> for details.</p></li>
+<li><p><code>config.log_formatter</code> defines the formatter of the Rails logger. This option defaults to an instance of <code>ActiveSupport::Logger::SimpleFormatter</code> for all modes. If you are setting a value for <code>config.logger</code> you must manually pass the value of your formatter to your logger before it is wrapped in an <code>ActiveSupport::TaggedLogging</code> instance, Rails will not do it for you.</p></li>
+<li><p><code>config.log_level</code> defines the verbosity of the Rails logger. This option
+defaults to <code>:debug</code> for all environments. The available log levels are: <code>:debug</code>,
+<code>:info</code>, <code>:warn</code>, <code>:error</code>, <code>:fatal</code>, and <code>:unknown</code>.</p></li>
+<li><p><code>config.log_tags</code> accepts a list of: methods that the <code>request</code> object responds to, a <code>Proc</code> that accepts the <code>request</code> object, or something that responds to <code>to_s</code>. This makes it easy to tag log lines with debug information like subdomain and request id - both very helpful in debugging multi-user production applications.</p></li>
+<li><p><code>config.logger</code> is the logger that will be used for <code>Rails.logger</code> and any related Rails logging such as <code>ActiveRecord::Base.logger</code>. It defaults to an instance of <code>ActiveSupport::TaggedLogging</code> that wraps an instance of <code>ActiveSupport::Logger</code> which outputs a log to the <code>log/</code> directory. You can supply a custom logger, to get full compatibility you must follow these guidelines:</p>
+<ul>
+<li><p>To support a formatter, you must manually assign a formatter from the <code>config.log_formatter</code> value to the logger.</p></li>
+<li><p>To support tagged logs, the log instance must be wrapped with <code>ActiveSupport::TaggedLogging</code>.</p></li>
+<li><p>To support silencing, the logger must include <code>ActiveSupport::LoggerSilence</code>  module. The <code>ActiveSupport::Logger</code> class already includes these modules.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyLogger</span> &lt; ::<span class="hljs-title">Logger</span></span>
+  <span class="hljs-keyword">include</span> ActiveSupport::LoggerSilence
+<span class="hljs-keyword">end</span>
+
+mylogger           = MyLogger.new(STDOUT)
+mylogger.formatter = config.log_formatter
+config.logger      = ActiveSupport::TaggedLogging.new(mylogger)
+</code></pre></li>
+</ul></li>
+<li><p><code>config.middleware</code> allows you to configure the application's middleware. This is covered in depth in the <a href="#configuring-middleware">Configuring Middleware</a> section below.</p></li>
+<li><p><code>config.reload_classes_only_on_change</code> enables or disables reloading of classes only when tracked files change. By default tracks everything on autoload paths and is set to <code>true</code>. If <code>config.cache_classes</code> is <code>true</code>, this option is ignored.</p></li>
+<li><p><code>config.credentials.content_path</code> configures lookup path for encrypted credentials.</p></li>
+<li><p><code>config.credentials.key_path</code> configures lookup path for encryption key.</p></li>
+<li><p><code>secret_key_base</code> is used for specifying a key which allows sessions for the application to be verified against a known secure key to prevent tampering. Applications get a random generated key in test and development environments, other environments should set one in <code>config/credentials.yml.enc</code>.</p></li>
+<li><p><code>config.public_file_server.enabled</code> configures Rails to serve static files from the public directory. This option defaults to <code>true</code>, but in the production environment it is set to <code>false</code> because the server software (e.g. NGINX or Apache) used to run the application should serve static files instead. If you are running or testing your app in production mode using WEBrick (it is not recommended to use WEBrick in production) set the option to <code>true</code>. Otherwise, you won't be able to use page caching and request for files that exist under the public directory.</p></li>
+<li><p><code>config.session_store</code> specifies what class to use to store the session. Possible values are <code>:cookie_store</code> which is the default, <code>:mem_cache_store</code>, and <code>:disabled</code>. The last one tells Rails not to deal with sessions. Defaults to a cookie store with application name as the session key. Custom session stores can also be specified:</p>
+<pre><code class="hljs css language-ruby">config.session_store <span class="hljs-symbol">:my_custom_store</span>
+</code></pre>
+<p>This custom store must be defined as <code>ActionDispatch::Session::MyCustomStore</code>.</p></li>
+<li><p><code>config.time_zone</code> sets the default time zone for the application and enables time zone awareness for Active Record.</p></li>
+<li><p><code>config.autoloader</code> sets the autoloading mode. This option defaults to <code>:zeitwerk</code> if <code>6.0</code> is specified in <code>config.load_defaults</code>. Applications can still use the classic autoloader by setting this value to <code>:classic</code> after loading the framework defaults:</p>
+<pre><code class="hljs css language-ruby">config.load_defaults <span class="hljs-string">"6.0"</span>
+config.autoloader = <span class="hljs-symbol">:classic</span>
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configuring-assets"></a><a href="#configuring-assets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Assets</h3>
+<ul>
+<li><p><code>config.assets.enabled</code> a flag that controls whether the asset
+pipeline is enabled. It is set to <code>true</code> by default.</p></li>
+<li><p><code>config.assets.css_compressor</code> defines the CSS compressor to use. It is set by default by <code>sass-rails</code>. The unique alternative value at the moment is <code>:yui</code>, which uses the <code>yui-compressor</code> gem.</p></li>
+<li><p><code>config.assets.js_compressor</code> defines the JavaScript compressor to use. Possible values are <code>:closure</code>, <code>:uglifier</code> and <code>:yui</code> which require the use of the <code>closure-compiler</code>, <code>uglifier</code> or <code>yui-compressor</code> gems respectively.</p></li>
+<li><p><code>config.assets.gzip</code> a flag that enables the creation of gzipped version of compiled assets, along with non-gzipped assets. Set to <code>true</code> by default.</p></li>
+<li><p><code>config.assets.paths</code> contains the paths which are used to look for assets. Appending paths to this configuration option will cause those paths to be used in the search for assets.</p></li>
+<li><p><code>config.assets.precompile</code> allows you to specify additional assets (other than <code>application.css</code> and <code>application.js</code>) which are to be precompiled when <code>rake assets:precompile</code> is run.</p></li>
+<li><p><code>config.assets.unknown_asset_fallback</code> allows you to modify the behavior of the asset pipeline when an asset is not in the pipeline, if you use sprockets-rails 3.2.0 or newer. Defaults to <code>false</code>.</p></li>
+<li><p><code>config.assets.prefix</code> defines the prefix where assets are served from. Defaults to <code>/assets</code>.</p></li>
+<li><p><code>config.assets.manifest</code> defines the full path to be used for the asset precompiler's manifest file. Defaults to a file named <code>manifest-&lt;random&gt;.json</code> in the <code>config.assets.prefix</code> directory within the public folder.</p></li>
+<li><p><code>config.assets.digest</code> enables the use of SHA256 fingerprints in asset names. Set to <code>true</code> by default.</p></li>
+<li><p><code>config.assets.debug</code> disables the concatenation and compression of assets. Set to <code>true</code> by default in <code>development.rb</code>.</p></li>
+<li><p><code>config.assets.version</code> is an option string that is used in SHA256 hash generation. This can be changed to force all files to be recompiled.</p></li>
+<li><p><code>config.assets.compile</code> is a boolean that can be used to turn on live Sprockets compilation in production.</p></li>
+<li><p><code>config.assets.logger</code> accepts a logger conforming to the interface of Log4r or the default Ruby <code>Logger</code> class. Defaults to the same configured at <code>config.logger</code>. Setting <code>config.assets.logger</code> to <code>false</code> will turn off served assets logging.</p></li>
+<li><p><code>config.assets.quiet</code> disables logging of assets requests. Set to <code>true</code> by default in <code>development.rb</code>.</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configuring-generators"></a><a href="#configuring-generators" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Generators</h3>
+<p>Rails allows you to alter what generators are used with the <code>config.generators</code> method. This method takes a block:</p>
+<pre><code class="hljs css language-ruby">config.generators <span class="hljs-keyword">do</span> <span class="hljs-params">|g|</span>
+  g.orm <span class="hljs-symbol">:active_record</span>
+  g.test_framework <span class="hljs-symbol">:test_unit</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The full set of methods that can be used in this block are as follows:</p>
+<ul>
+<li><code>assets</code> allows to create assets on generating a scaffold. Defaults to <code>true</code>.</li>
+<li><code>force_plural</code> allows pluralized model names. Defaults to <code>false</code>.</li>
+<li><code>helper</code> defines whether or not to generate helpers. Defaults to <code>true</code>.</li>
+<li><code>integration_tool</code> defines which integration tool to use to generate integration tests. Defaults to <code>:test_unit</code>.</li>
+<li><code>system_tests</code> defines which integration tool to use to generate system tests. Defaults to <code>:test_unit</code>.</li>
+<li><code>orm</code> defines which orm to use. Defaults to <code>false</code> and will use Active Record by default.</li>
+<li><code>resource_controller</code> defines which generator to use for generating a controller when using <code>rails generate resource</code>. Defaults to <code>:controller</code>.</li>
+<li><code>resource_route</code> defines whether a resource route definition should be generated
+or not. Defaults to <code>true</code>.</li>
+<li><code>scaffold_controller</code> different from <code>resource_controller</code>, defines which generator to use for generating a <em>scaffolded</em> controller when using <code>rails generate scaffold</code>. Defaults to <code>:scaffold_controller</code>.</li>
+<li><code>stylesheets</code> turns on the hook for stylesheets in generators. Used in Rails for when the <code>scaffold</code> generator is run, but this hook can be used in other generates as well. Defaults to <code>true</code>.</li>
+<li><code>stylesheet_engine</code> configures the stylesheet engine (for eg. sass) to be used when generating assets. Defaults to <code>:css</code>.</li>
+<li><code>scaffold_stylesheet</code> creates <code>scaffold.css</code> when generating a scaffolded resource. Defaults to <code>true</code>.</li>
+<li><code>test_framework</code> defines which test framework to use. Defaults to <code>false</code> and will use minitest by default.</li>
+<li><code>template_engine</code> defines which template engine to use, such as ERB or Haml. Defaults to <code>:erb</code>.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configuring-middleware"></a><a href="#configuring-middleware" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Middleware</h3>
+<p>Every Rails application comes with a standard set of middleware which it uses in this order in the development environment:</p>
+<ul>
+<li><code>ActionDispatch::SSL</code> forces every request to be served using HTTPS. Enabled if <code>config.force_ssl</code> is set to <code>true</code>. Options passed to this can be configured by setting <code>config.ssl_options</code>.</li>
+<li><code>ActionDispatch::Static</code> is used to serve static assets. Disabled if <code>config.public_file_server.enabled</code> is <code>false</code>. Set <code>config.public_file_server.index_name</code> if you need to serve a static directory index file that is not named <code>index</code>. For example, to serve <code>main.html</code> instead of <code>index.html</code> for directory requests, set <code>config.public_file_server.index_name</code> to <code>&quot;main&quot;</code>.</li>
+<li><code>ActionDispatch::Executor</code> allows thread safe code reloading. Disabled if <code>config.allow_concurrency</code> is <code>false</code>, which causes <code>Rack::Lock</code> to be loaded. <code>Rack::Lock</code> wraps the app in mutex so it can only be called by a single thread at a time.</li>
+<li><code>ActiveSupport::Cache::Strategy::LocalCache</code> serves as a basic memory backed cache. This cache is not thread safe and is intended only for serving as a temporary memory cache for a single thread.</li>
+<li><code>Rack::Runtime</code> sets an <code>X-Runtime</code> header, containing the time (in seconds) taken to execute the request.</li>
+<li><code>Rails::Rack::Logger</code> notifies the logs that the request has begun. After request is complete, flushes all the logs.</li>
+<li><code>ActionDispatch::ShowExceptions</code> rescues any exception returned by the application and renders nice exception pages if the request is local or if <code>config.consider_all_requests_local</code> is set to <code>true</code>. If <code>config.action_dispatch.show_exceptions</code> is set to <code>false</code>, exceptions will be raised regardless.</li>
+<li><code>ActionDispatch::RequestId</code> makes a unique X-Request-Id header available to the response and enables the <code>ActionDispatch::Request#uuid</code> method.</li>
+<li><code>ActionDispatch::RemoteIp</code> checks for IP spoofing attacks and gets valid <code>client_ip</code> from request headers. Configurable with the <code>config.action_dispatch.ip_spoofing_check</code>, and <code>config.action_dispatch.trusted_proxies</code> options.</li>
+<li><code>Rack::Sendfile</code> intercepts responses whose body is being served from a file and replaces it with a server specific X-Sendfile header. Configurable with <code>config.action_dispatch.x_sendfile_header</code>.</li>
+<li><code>ActionDispatch::Callbacks</code> runs the prepare callbacks before serving the request.</li>
+<li><code>ActionDispatch::Cookies</code> sets cookies for the request.</li>
+<li><code>ActionDispatch::Session::CookieStore</code> is responsible for storing the session in cookies. An alternate middleware can be used for this by changing the <code>config.action_controller.session_store</code> to an alternate value. Additionally, options passed to this can be configured by using <code>config.action_controller.session_options</code>.</li>
+<li><code>ActionDispatch::Flash</code> sets up the <code>flash</code> keys. Only available if <code>config.action_controller.session_store</code> is set to a value.</li>
+<li><code>Rack::MethodOverride</code> allows the method to be overridden if <code>params[:_method]</code> is set. This is the middleware which supports the PATCH, PUT, and DELETE HTTP method types.</li>
+<li><code>Rack::Head</code> converts HEAD requests to GET requests and serves them as so.</li>
+</ul>
+<p>Besides these usual middleware, you can add your own by using the <code>config.middleware.use</code> method:</p>
+<pre><code class="hljs css language-ruby">config.middleware.use Magical::Unicorns
+</code></pre>
+<p>This will put the <code>Magical::Unicorns</code> middleware on the end of the stack. You can use <code>insert_before</code> if you wish to add a middleware before another.</p>
+<pre><code class="hljs css language-ruby">config.middleware.insert_before Rack::Head, Magical::Unicorns
+</code></pre>
+<p>Or you can insert a middleware to exact position by using indexes. For example, if you want to insert <code>Magical::Unicorns</code> middleware on top of the stack, you can do it, like so:</p>
+<pre><code class="hljs css language-ruby">config.middleware.insert_before <span class="hljs-number">0</span>, Magical::Unicorns
+</code></pre>
+<p>There's also <code>insert_after</code> which will insert a middleware after another:</p>
+<pre><code class="hljs css language-ruby">config.middleware.insert_after Rack::Head, Magical::Unicorns
+</code></pre>
+<p>Middlewares can also be completely swapped out and replaced with others:</p>
+<pre><code class="hljs css language-ruby">config.middleware.swap ActionController::Failsafe, Lifo::Failsafe
+</code></pre>
+<p>They can also be removed from the stack completely:</p>
+<pre><code class="hljs css language-ruby">config.middleware.delete Rack::MethodOverride
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="configuring-i18n"></a><a href="#configuring-i18n" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring i18n</h3>
+<p>All these configuration options are delegated to the <code>I18n</code> library.</p>
+<ul>
+<li><p><code>config.i18n.available_locales</code> defines the permitted available locales for the app. Defaults to all locale keys found in locale files, usually only <code>:en</code> on a new application.</p></li>
+<li><p><code>config.i18n.default_locale</code> sets the default locale of an application used for i18n. Defaults to <code>:en</code>.</p></li>
+<li><p><code>config.i18n.enforce_available_locales</code> ensures that all locales passed through i18n must be declared in the <code>available_locales</code> list, raising an <code>I18n::InvalidLocale</code> exception when setting an unavailable locale. Defaults to <code>true</code>. It is recommended not to disable this option unless strongly required, since this works as a security measure against setting any invalid locale from user input.</p></li>
+<li><p><code>config.i18n.load_path</code> sets the path Rails uses to look for locale files. Defaults to <code>config/locales/*.{yml,rb}</code>.</p></li>
+<li><p><code>config.i18n.fallbacks</code> sets fallback behavior for missing translations. Here are 3 usage examples for this option:</p>
+<ul>
+<li><p>You can set the option to <code>true</code> for using default locale as fallback, like so:</p>
+<pre><code class="hljs css language-ruby">config.i18n.fallbacks = <span class="hljs-literal">true</span>
+</code></pre></li>
+<li><p>Or you can set an array of locales as fallback, like so:</p>
+<pre><code class="hljs css language-ruby">config.i18n.fallbacks = [<span class="hljs-symbol">:tr</span>, <span class="hljs-symbol">:en</span>]
+</code></pre></li>
+<li><p>Or you can set different fallbacks for locales individually. For example, if you want to use <code>:tr</code> for <code>:az</code> and <code>:de</code>, <code>:en</code> for <code>:da</code> as fallbacks, you can do it, like so:</p>
+<pre><code class="hljs css language-ruby">config.i18n.fallbacks = { <span class="hljs-symbol">az:</span> <span class="hljs-symbol">:tr</span>, <span class="hljs-symbol">da:</span> [<span class="hljs-symbol">:de</span>, <span class="hljs-symbol">:en</span>] }
+<span class="hljs-comment">#or</span>
+config.i18n.fallbacks.map = { <span class="hljs-symbol">az:</span> <span class="hljs-symbol">:tr</span>, <span class="hljs-symbol">da:</span> [<span class="hljs-symbol">:de</span>, <span class="hljs-symbol">:en</span>] }
+</code></pre></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configuring-active-model"></a><a href="#configuring-active-model" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Active Model</h3>
+<ul>
+<li><code>config.active_model.i18n_customize_full_message</code> is a boolean value which controls whether the <code>full_message</code> error format can be overridden at the attribute or model level in the locale files. This is <code>false</code> by default.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configuring-active-record"></a><a href="#configuring-active-record" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Active Record</h3>
+<p><code>config.active_record</code> includes a variety of configuration options:</p>
+<ul>
+<li><p><code>config.active_record.logger</code> accepts a logger conforming to the interface of Log4r or the default Ruby Logger class, which is then passed on to any new database connections made. You can retrieve this logger by calling <code>logger</code> on either an Active Record model class or an Active Record model instance. Set to <code>nil</code> to disable logging.</p></li>
+<li><p><code>config.active_record.primary_key_prefix_type</code> lets you adjust the naming for primary key columns. By default, Rails assumes that primary key columns are named <code>id</code> (and this configuration option doesn't need to be set.) There are two other choices:</p>
+<ul>
+<li><code>:table_name</code> would make the primary key for the Customer class <code>customerid</code>.</li>
+<li><code>:table_name_with_underscore</code> would make the primary key for the Customer class <code>customer_id</code>.</li>
+</ul></li>
+<li><p><code>config.active_record.table_name_prefix</code> lets you set a global string to be prepended to table names. If you set this to <code>northwest_</code>, then the Customer class will look for <code>northwest_customers</code> as its table. The default is an empty string.</p></li>
+<li><p><code>config.active_record.table_name_suffix</code> lets you set a global string to be appended to table names. If you set this to <code>_northwest</code>, then the Customer class will look for <code>customers_northwest</code> as its table. The default is an empty string.</p></li>
+<li><p><code>config.active_record.schema_migrations_table_name</code> lets you set a string to be used as the name of the schema migrations table.</p></li>
+<li><p><code>config.active_record.internal_metadata_table_name</code> lets you set a string to be used as the name of the internal metadata table.</p></li>
+<li><p><code>config.active_record.protected_environments</code> lets you set an array of names of environments where destructive actions should be prohibited.</p></li>
+<li><p><code>config.active_record.pluralize_table_names</code> specifies whether Rails will look for singular or plural table names in the database. If set to <code>true</code> (the default), then the Customer class will use the <code>customers</code> table. If set to false, then the Customer class will use the <code>customer</code> table.</p></li>
+<li><p><code>config.active_record.default_timezone</code> determines whether to use <code>Time.local</code> (if set to <code>:local</code>) or <code>Time.utc</code> (if set to <code>:utc</code>) when pulling dates and times from the database. The default is <code>:utc</code>.</p></li>
+<li><p><code>config.active_record.schema_format</code> controls the format for dumping the database schema to a file. The options are <code>:ruby</code> (the default) for a database-independent version that depends on migrations, or <code>:sql</code> for a set of (potentially database-dependent) SQL statements.</p></li>
+<li><p><code>config.active_record.error_on_ignored_order</code> specifies if an error should be raised if the order of a query is ignored during a batch query. The options are <code>true</code> (raise error) or <code>false</code> (warn). Default is <code>false</code>.</p></li>
+<li><p><code>config.active_record.timestamped_migrations</code> controls whether migrations are numbered with serial integers or with timestamps. The default is <code>true</code>, to use timestamps, which are preferred if there are multiple developers working on the same application.</p></li>
+<li><p><code>config.active_record.lock_optimistically</code> controls whether Active Record will use optimistic locking and is <code>true</code> by default.</p></li>
+<li><p><code>config.active_record.cache_timestamp_format</code> controls the format of the timestamp value in the cache key. Default is <code>:nsec</code>.</p></li>
+<li><p><code>config.active_record.record_timestamps</code> is a boolean value which controls whether or not timestamping of <code>create</code> and <code>update</code> operations on a model occur. The default value is <code>true</code>.</p></li>
+<li><p><code>config.active_record.partial_writes</code> is a boolean value and controls whether or not partial writes are used (i.e. whether updates only set attributes that are dirty). Note that when using partial writes, you should also use optimistic locking <code>config.active_record.lock_optimistically</code> since concurrent updates may write attributes based on a possibly stale read state. The default value is <code>true</code>.</p></li>
+<li><p><code>config.active_record.maintain_test_schema</code> is a boolean value which controls whether Active Record should try to keep your test database schema up-to-date with <code>db/schema.rb</code> (or <code>db/structure.sql</code>) when you run your tests. The default is <code>true</code>.</p></li>
+<li><p><code>config.active_record.dump_schema_after_migration</code> is a flag which
+controls whether or not schema dump should happen (<code>db/schema.rb</code> or
+<code>db/structure.sql</code>) when you run migrations. This is set to <code>false</code> in
+<code>config/environments/production.rb</code> which is generated by Rails. The
+default value is <code>true</code> if this configuration is not set.</p></li>
+<li><p><code>config.active_record.dump_schemas</code> controls which database schemas will be dumped when calling <code>db:structure:dump</code>.
+The options are <code>:schema_search_path</code> (the default) which dumps any schemas listed in <code>schema_search_path</code>,
+<code>:all</code> which always dumps all schemas regardless of the <code>schema_search_path</code>,
+or a string of comma separated schemas.</p></li>
+<li><p><code>config.active_record.belongs_to_required_by_default</code> is a boolean value and
+controls whether a record fails validation if <code>belongs_to</code> association is not
+present.</p></li>
+<li><p><code>config.active_record.warn_on_records_fetched_greater_than</code> allows setting a
+warning threshold for query result size. If the number of records returned
+by a query exceeds the threshold, a warning is logged. This can be used to
+identify queries which might be causing a memory bloat.</p></li>
+<li><p><code>config.active_record.index_nested_attribute_errors</code> allows errors for nested
+<code>has_many</code> relationships to be displayed with an index as well as the error.
+Defaults to <code>false</code>.</p></li>
+<li><p><code>config.active_record.use_schema_cache_dump</code> enables users to get schema cache information
+from <code>db/schema_cache.yml</code> (generated by <code>rails db:schema:cache:dump</code>), instead of
+having to send a query to the database to get this information.
+Defaults to <code>true</code>.</p></li>
+<li><p><code>config.active_record.collection_cache_versioning</code> enables the same cache key
+to be reused when the object being cached of type <code>ActiveRecord::Relation</code>
+changes by moving the volatile information (max updated at and count) of
+the relation's cache key into the cache version to support recycling cache key.
+Defaults to <code>false</code>.</p></li>
+</ul>
+<p>The MySQL adapter adds one additional configuration option:</p>
+<ul>
+<li><code>ActiveRecord::ConnectionAdapters::Mysql2Adapter.emulate_booleans</code> controls whether Active Record will consider all <code>tinyint(1)</code> columns as booleans. Defaults to <code>true</code>.</li>
+</ul>
+<p>The PostgreSQL adapter adds one additional configuration option:</p>
+<ul>
+<li><code>ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.create_unlogged_tables</code>
+controls whether database tables created should be &quot;unlogged,&quot; which can speed
+up performance but adds a risk of data loss if the database crashes. It is
+highly recommended that you do not enable this in a production environment.
+Defaults to <code>false</code> in all environments.</li>
+</ul>
+<p>The schema dumper adds two additional configuration options:</p>
+<ul>
+<li><p><code>ActiveRecord::SchemaDumper.ignore_tables</code> accepts an array of tables that should <em>not</em> be included in any generated schema file.</p></li>
+<li><p><code>ActiveRecord::SchemaDumper.fk_ignore_pattern</code> allows setting a different regular
+expression that will be used to decide whether a foreign key's name should be
+dumped to db/schema.rb or not. By default, foreign key names starting with
+<code>fk_rails_</code> are not exported to the database schema dump.
+Defaults to <code>/^fk_rails_[0-9a-f]{10}$/</code>.</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configuring-action-controller"></a><a href="#configuring-action-controller" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Action Controller</h3>
+<p><code>config.action_controller</code> includes a number of configuration settings:</p>
+<ul>
+<li><p><code>config.action_controller.asset_host</code> sets the host for the assets. Useful when CDNs are used for hosting assets rather than the application server itself.</p></li>
+<li><p><code>config.action_controller.perform_caching</code> configures whether the application should perform the caching features provided by the Action Controller component or not. Set to <code>false</code> in development mode, <code>true</code> in production. If it's not specified, the default will be <code>true</code>.</p></li>
+<li><p><code>config.action_controller.default_static_extension</code> configures the extension used for cached pages. Defaults to <code>.html</code>.</p></li>
+<li><p><code>config.action_controller.include_all_helpers</code> configures whether all view helpers are available everywhere or are scoped to the corresponding controller. If set to <code>false</code>, <code>UsersHelper</code> methods are only available for views rendered as part of <code>UsersController</code>. If <code>true</code>, <code>UsersHelper</code> methods are available everywhere. The default configuration behavior (when this option is not explicitly set to <code>true</code> or <code>false</code>) is that all view helpers are available to each controller.</p></li>
+<li><p><code>config.action_controller.logger</code> accepts a logger conforming to the interface of Log4r or the default Ruby Logger class, which is then used to log information from Action Controller. Set to <code>nil</code> to disable logging.</p></li>
+<li><p><code>config.action_controller.request_forgery_protection_token</code> sets the token parameter name for RequestForgery. Calling <code>protect_from_forgery</code> sets it to <code>:authenticity_token</code> by default.</p></li>
+<li><p><code>config.action_controller.allow_forgery_protection</code> enables or disables CSRF protection. By default this is <code>false</code> in test mode and <code>true</code> in all other modes.</p></li>
+<li><p><code>config.action_controller.forgery_protection_origin_check</code> configures whether the HTTP <code>Origin</code> header should be checked against the site's origin as an additional CSRF defense.</p></li>
+<li><p><code>config.action_controller.per_form_csrf_tokens</code> configures whether CSRF tokens are only valid for the method/action they were generated for.</p></li>
+<li><p><code>config.action_controller.default_protect_from_forgery</code> determines whether forgery protection is added on <code>ActionController:Base</code>. This is false by default.</p></li>
+<li><p><code>config.action_controller.relative_url_root</code> can be used to tell Rails that you are <a href="configuring.html#deploy-to-a-subdirectory-relative-url-root">deploying to a subdirectory</a>. The default is <code>ENV['RAILS_RELATIVE_URL_ROOT']</code>.</p></li>
+<li><p><code>config.action_controller.permit_all_parameters</code> sets all the parameters for mass assignment to be permitted by default. The default value is <code>false</code>.</p></li>
+<li><p><code>config.action_controller.action_on_unpermitted_parameters</code> enables logging or raising an exception if parameters that are not explicitly permitted are found. Set to <code>:log</code> or <code>:raise</code> to enable. The default value is <code>:log</code> in development and test environments, and <code>false</code> in all other environments.</p></li>
+<li><p><code>config.action_controller.always_permitted_parameters</code> sets a list of permitted parameters that are permitted by default. The default values are <code>['controller', 'action']</code>.</p></li>
+<li><p><code>config.action_controller.enable_fragment_cache_logging</code> determines whether to log fragment cache reads and writes in verbose format as follows:</p>
+<pre><code class="hljs">Read fragment views/v1/<span class="hljs-number">2914079</span>/v1/<span class="hljs-number">2914079</span>/recordings/<span class="hljs-number">70182313</span><span class="hljs-number">-20160225015037000000</span>/d0bdf2974e1ef6d31685c3b392ad0b74 (<span class="hljs-number">0.6</span>ms)
+Rendered messages/_message.html.erb <span class="hljs-keyword">in</span> <span class="hljs-number">1.2</span> ms [cache hit]
+Write fragment views/v1/<span class="hljs-number">2914079</span>/v1/<span class="hljs-number">2914079</span>/recordings/<span class="hljs-number">70182313</span><span class="hljs-number">-20160225015037000000</span>/<span class="hljs-number">3</span>b4e249ac9d168c617e32e84b99218b5 (<span class="hljs-number">1.1</span>ms)
+Rendered recordings/threads/_thread.html.erb <span class="hljs-keyword">in</span> <span class="hljs-number">1.5</span> ms [cache miss]
+</code></pre>
+<p>By default it is set to <code>false</code> which results in following output:</p>
+<pre><code class="hljs">Rendered messages/_message.html.erb <span class="hljs-keyword">in</span> <span class="hljs-number">1.2</span> <span class="hljs-keyword">ms</span> <span class="hljs-title">[cache</span> hit]
+Rendered recordings/threads/_thread.html.erb <span class="hljs-keyword">in</span> <span class="hljs-number">1.5</span> <span class="hljs-keyword">ms</span> <span class="hljs-title">[cache</span> miss]
+</code></pre></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configuring-action-dispatch"></a><a href="#configuring-action-dispatch" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Action Dispatch</h3>
+<ul>
+<li><p><code>config.action_dispatch.session_store</code> sets the name of the store for session data. The default is <code>:cookie_store</code>; other valid options include <code>:active_record_store</code>, <code>:mem_cache_store</code> or the name of your own custom class.</p></li>
+<li><p><code>config.action_dispatch.default_headers</code> is a hash with HTTP headers that are set by default in each response. By default, this is defined as:</p>
+<pre><code class="hljs css language-ruby">config.action_dispatch.default_headers = {
+  <span class="hljs-string">'X-Frame-Options'</span> =&gt; <span class="hljs-string">'SAMEORIGIN'</span>,
+  <span class="hljs-string">'X-XSS-Protection'</span> =&gt; <span class="hljs-string">'1; mode=block'</span>,
+  <span class="hljs-string">'X-Content-Type-Options'</span> =&gt; <span class="hljs-string">'nosniff'</span>,
+  <span class="hljs-string">'X-Download-Options'</span> =&gt; <span class="hljs-string">'noopen'</span>,
+  <span class="hljs-string">'X-Permitted-Cross-Domain-Policies'</span> =&gt; <span class="hljs-string">'none'</span>,
+  <span class="hljs-string">'Referrer-Policy'</span> =&gt; <span class="hljs-string">'strict-origin-when-cross-origin'</span>
+}
+</code></pre></li>
+<li><p><code>config.action_dispatch.default_charset</code> specifies the default character set for all renders. Defaults to <code>nil</code>.</p></li>
+<li><p><code>config.action_dispatch.tld_length</code> sets the TLD (top-level domain) length for the application. Defaults to <code>1</code>.</p></li>
+<li><p><code>config.action_dispatch.ignore_accept_header</code> is used to determine whether to ignore accept headers from a request. Defaults to <code>false</code>.</p></li>
+<li><p><code>config.action_dispatch.x_sendfile_header</code> specifies server specific X-Sendfile header. This is useful for accelerated file sending from server. For example it can be set to 'X-Sendfile' for Apache.</p></li>
+<li><p><code>config.action_dispatch.http_auth_salt</code> sets the HTTP Auth salt value. Defaults
+to <code>'http authentication'</code>.</p></li>
+<li><p><code>config.action_dispatch.signed_cookie_salt</code> sets the signed cookies salt value.
+Defaults to <code>'signed cookie'</code>.</p></li>
+<li><p><code>config.action_dispatch.encrypted_cookie_salt</code> sets the encrypted cookies salt
+value. Defaults to <code>'encrypted cookie'</code>.</p></li>
+<li><p><code>config.action_dispatch.encrypted_signed_cookie_salt</code> sets the signed
+encrypted cookies salt value. Defaults to <code>'signed encrypted cookie'</code>.</p></li>
+<li><p><code>config.action_dispatch.authenticated_encrypted_cookie_salt</code> sets the
+authenticated encrypted cookie salt. Defaults to <code>'authenticated encrypted cookie'</code>.</p></li>
+<li><p><code>config.action_dispatch.encrypted_cookie_cipher</code> sets the cipher to be
+used for encrypted cookies. This defaults to <code>&quot;aes-256-gcm&quot;</code>.</p></li>
+<li><p><code>config.action_dispatch.signed_cookie_digest</code> sets the digest to be
+used for signed cookies. This defaults to <code>&quot;SHA1&quot;</code>.</p></li>
+<li><p><code>config.action_dispatch.cookies_rotations</code> allows rotating
+secrets, ciphers, and digests for encrypted and signed cookies.</p></li>
+<li><p><code>config.action_dispatch.use_authenticated_cookie_encryption</code> controls whether
+signed and encrypted cookies use the AES-256-GCM cipher or
+the older AES-256-CBC cipher. It defaults to <code>true</code>.</p></li>
+<li><p><code>config.action_dispatch.use_cookies_with_metadata</code> enables writing
+cookies with the purpose and expiry metadata embedded. It defaults to <code>true</code>.</p></li>
+<li><p><code>config.action_dispatch.perform_deep_munge</code> configures whether <code>deep_munge</code>
+method should be performed on the parameters. See <a href="security.html#unsafe-query-generation">Security Guide</a>
+for more information. It defaults to <code>true</code>.</p></li>
+<li><p><code>config.action_dispatch.rescue_responses</code> configures what exceptions are assigned to an HTTP status. It accepts a hash and you can specify pairs of exception/status. By default, this is defined as:</p>
+<pre><code class="hljs css language-ruby">config.action_dispatch.rescue_responses = {
+  <span class="hljs-string">'ActionController::RoutingError'</span>               =&gt; <span class="hljs-symbol">:not_found</span>,
+  <span class="hljs-string">'AbstractController::ActionNotFound'</span>           =&gt; <span class="hljs-symbol">:not_found</span>,
+  <span class="hljs-string">'ActionController::MethodNotAllowed'</span>           =&gt; <span class="hljs-symbol">:method_not_allowed</span>,
+  <span class="hljs-string">'ActionController::UnknownHttpMethod'</span>          =&gt; <span class="hljs-symbol">:method_not_allowed</span>,
+  <span class="hljs-string">'ActionController::NotImplemented'</span>             =&gt; <span class="hljs-symbol">:not_implemented</span>,
+  <span class="hljs-string">'ActionController::UnknownFormat'</span>              =&gt; <span class="hljs-symbol">:not_acceptable</span>,
+  <span class="hljs-string">'ActionController::InvalidAuthenticityToken'</span>   =&gt; <span class="hljs-symbol">:unprocessable_entity</span>,
+  <span class="hljs-string">'ActionController::InvalidCrossOriginRequest'</span>  =&gt; <span class="hljs-symbol">:unprocessable_entity</span>,
+  <span class="hljs-string">'ActionDispatch::Http::Parameters::ParseError'</span> =&gt; <span class="hljs-symbol">:bad_request</span>,
+  <span class="hljs-string">'ActionController::BadRequest'</span>                 =&gt; <span class="hljs-symbol">:bad_request</span>,
+  <span class="hljs-string">'ActionController::ParameterMissing'</span>           =&gt; <span class="hljs-symbol">:bad_request</span>,
+  <span class="hljs-string">'Rack::QueryParser::ParameterTypeError'</span>        =&gt; <span class="hljs-symbol">:bad_request</span>,
+  <span class="hljs-string">'Rack::QueryParser::InvalidParameterError'</span>     =&gt; <span class="hljs-symbol">:bad_request</span>,
+  <span class="hljs-string">'ActiveRecord::RecordNotFound'</span>                 =&gt; <span class="hljs-symbol">:not_found</span>,
+  <span class="hljs-string">'ActiveRecord::StaleObjectError'</span>               =&gt; <span class="hljs-symbol">:conflict</span>,
+  <span class="hljs-string">'ActiveRecord::RecordInvalid'</span>                  =&gt; <span class="hljs-symbol">:unprocessable_entity</span>,
+  <span class="hljs-string">'ActiveRecord::RecordNotSaved'</span>                 =&gt; <span class="hljs-symbol">:unprocessable_entity</span>
+}
+</code></pre>
+<p>Any exceptions that are not configured will be mapped to 500 Internal Server Error.</p></li>
+<li><p><code>ActionDispatch::Callbacks.before</code> takes a block of code to run before the request.</p></li>
+<li><p><code>ActionDispatch::Callbacks.after</code> takes a block of code to run after the request.</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configuring-action-view"></a><a href="#configuring-action-view" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Action View</h3>
+<p><code>config.action_view</code> includes a small number of configuration settings:</p>
+<ul>
+<li><p><code>config.action_view.cache_template_loading</code> controls whether or not templates should be reloaded on each request. Defaults to whatever is set for <code>config.cache_classes</code>.</p></li>
+<li><p><code>config.action_view.field_error_proc</code> provides an HTML generator for displaying errors that come from Active Model. The default is</p>
+<pre><code class="hljs css language-ruby">Proc.new <span class="hljs-keyword">do</span> <span class="hljs-params">|html_tag, instance|</span>
+  <span class="hljs-string">%Q(&lt;div class="field_with_errors"&gt;<span class="hljs-subst">#{html_tag}</span>&lt;/div&gt;)</span>.html_safe
+<span class="hljs-keyword">end</span>
+</code></pre></li>
+<li><p><code>config.action_view.default_form_builder</code> tells Rails which form builder to
+use by default. The default is <code>ActionView::Helpers::FormBuilder</code>. If you
+want your form builder class to be loaded after initialization (so it's
+reloaded on each request in development), you can pass it as a <code>String</code>.</p></li>
+<li><p><code>config.action_view.logger</code> accepts a logger conforming to the interface of Log4r or the default Ruby Logger class, which is then used to log information from Action View. Set to <code>nil</code> to disable logging.</p></li>
+<li><p><code>config.action_view.erb_trim_mode</code> gives the trim mode to be used by ERB. It defaults to <code>'-'</code>, which turns on trimming of tail spaces and newline when using <code>&lt;%= -%&gt;</code> or <code>&lt;%= =%&gt;</code>. See the <a href="http://www.kuwata-lab.com/erubis/users-guide.06.html#topics-trimspaces">Erubis documentation</a> for more information.</p></li>
+<li><p><code>config.action_view.embed_authenticity_token_in_remote_forms</code> allows you to
+set the default behavior for <code>authenticity_token</code> in forms with <code>remote: true</code>. By default it's set to <code>false</code>, which means that remote forms will not
+include <code>authenticity_token</code>, which is helpful when you're fragment-caching
+the form. Remote forms get the authenticity from the <code>meta</code> tag, so embedding
+is unnecessary unless you support browsers without JavaScript. In such case
+you can either pass <code>authenticity_token: true</code> as a form option or set this
+config setting to <code>true</code>.</p></li>
+<li><p><code>config.action_view.prefix_partial_path_with_controller_namespace</code> determines whether or not partials are looked up from a subdirectory in templates rendered from namespaced controllers. For example, consider a controller named <code>Admin::ArticlesController</code> which renders this template:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render @article </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>The default setting is <code>true</code>, which uses the partial at <code>/admin/articles/_article.erb</code>. Setting the value to <code>false</code> would render <code>/articles/_article.erb</code>, which is the same behavior as rendering from a non-namespaced controller such as <code>ArticlesController</code>.</p></li>
+<li><p><code>config.action_view.raise_on_missing_translations</code> determines whether an
+error should be raised for missing translations. This defaults to <code>false</code>.</p></li>
+<li><p><code>config.action_view.automatically_disable_submit_tag</code> determines whether
+<code>submit_tag</code> should automatically disable on click, this defaults to <code>true</code>.</p></li>
+<li><p><code>config.action_view.debug_missing_translation</code> determines whether to wrap the missing translations key in a <code>&lt;span&gt;</code> tag or not. This defaults to <code>true</code>.</p></li>
+<li><p><code>config.action_view.form_with_generates_remote_forms</code> determines whether <code>form_with</code> generates remote forms or not. This defaults to <code>true</code>.</p></li>
+<li><p><code>config.action_view.form_with_generates_ids</code> determines whether <code>form_with</code> generates ids on inputs. This defaults to <code>false</code>.</p></li>
+<li><p><code>config.action_view.default_enforce_utf8</code> determines whether forms are generated with a hidden tag that forces older versions of Internet Explorer to submit forms encoded in UTF-8. This defaults to <code>false</code>.</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configuring-action-mailbox"></a><a href="#configuring-action-mailbox" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Action Mailbox</h3>
+<p><code>config.action_mailbox</code> provides the following configuration options:</p>
+<ul>
+<li><p><code>config.action_mailbox.logger</code> contains the logger used by Action Mailbox. It accepts a logger conforming to the interface of Log4r or the default Ruby Logger class. The default is <code>Rails.logger</code>.</p>
+<pre><code class="hljs css language-ruby">config.action_mailbox.logger = ActiveSupport::Logger.new(STDOUT)
+</code></pre></li>
+<li><p><code>config.action_mailbox.incinerate_after</code> accepts an <code>ActiveSupport::Duration</code> indicating how long after processing <code>ActionMailbox::InboundEmail</code> records should be destroyed. It defaults to <code>30.days</code>.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Incinerate inbound emails 14 days after processing.</span>
+config.action_mailbox.incinerate_after = <span class="hljs-number">14</span>.days
+</code></pre></li>
+<li><p><code>config.action_mailbox.queues.incineration</code> accepts a symbol indicating the Active Job queue to use for incineration jobs. It defaults to <code>:action_mailbox_incineration</code>.</p></li>
+<li><p><code>config.action_mailbox.queues.routing</code> accepts a symbol indicating the Active Job queue to use for routing jobs. It defaults to <code>:action_mailbox_routing</code>.</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configuring-action-mailer"></a><a href="#configuring-action-mailer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Action Mailer</h3>
+<p>There are a number of settings available on <code>config.action_mailer</code>:</p>
+<ul>
+<li><p><code>config.action_mailer.logger</code> accepts a logger conforming to the interface of Log4r or the default Ruby Logger class, which is then used to log information from Action Mailer. Set to <code>nil</code> to disable logging.</p></li>
+<li><p><code>config.action_mailer.smtp_settings</code> allows detailed configuration for the <code>:smtp</code> delivery method. It accepts a hash of options, which can include any of these options:</p>
+<ul>
+<li><code>:address</code> - Allows you to use a remote mail server. Just change it from its default &quot;localhost&quot; setting.</li>
+<li><code>:port</code> - On the off chance that your mail server doesn't run on port 25, you can change it.</li>
+<li><code>:domain</code> - If you need to specify a HELO domain, you can do it here.</li>
+<li><code>:user_name</code> - If your mail server requires authentication, set the username in this setting.</li>
+<li><code>:password</code> - If your mail server requires authentication, set the password in this setting.</li>
+<li><code>:authentication</code> - If your mail server requires authentication, you need to specify the authentication type here. This is a symbol and one of <code>:plain</code>, <code>:login</code>, <code>:cram_md5</code>.</li>
+<li><code>:enable_starttls_auto</code> - Detects if STARTTLS is enabled in your SMTP server and starts to use it. It defaults to <code>true</code>.</li>
+<li><code>:openssl_verify_mode</code> - When using TLS, you can set how OpenSSL checks the certificate. This is useful if you need to validate a self-signed and/or a wildcard certificate. This can be one of the OpenSSL verify constants, <code>:none</code> or <code>:peer</code> -- or the constant directly <code>OpenSSL::SSL::VERIFY_NONE</code> or <code>OpenSSL::SSL::VERIFY_PEER</code>, respectively.</li>
+<li><code>:ssl/:tls</code> - Enables the SMTP connection to use SMTP/TLS (SMTPS: SMTP over direct TLS connection).</li>
+</ul></li>
+<li><p><code>config.action_mailer.sendmail_settings</code> allows detailed configuration for the <code>sendmail</code> delivery method. It accepts a hash of options, which can include any of these options:</p>
+<ul>
+<li><code>:location</code> - The location of the sendmail executable. Defaults to <code>/usr/sbin/sendmail</code>.</li>
+<li><code>:arguments</code> - The command line arguments. Defaults to <code>-i</code>.</li>
+</ul></li>
+<li><p><code>config.action_mailer.raise_delivery_errors</code> specifies whether to raise an error if email delivery cannot be completed. It defaults to <code>true</code>.</p></li>
+<li><p><code>config.action_mailer.delivery_method</code> defines the delivery method and defaults to <code>:smtp</code>. See the <a href="action_mailer_basics.html#action-mailer-configuration">configuration section in the Action Mailer guide</a> for more info.</p></li>
+<li><p><code>config.action_mailer.perform_deliveries</code> specifies whether mail will actually be delivered and is true by default. It can be convenient to set it to <code>false</code> for testing.</p></li>
+<li><p><code>config.action_mailer.default_options</code> configures Action Mailer defaults. Use to set options like <code>from</code> or <code>reply_to</code> for every mailer. These default to:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-symbol">mime_version:</span>  <span class="hljs-string">"1.0"</span>,
+<span class="hljs-symbol">charset:</span>       <span class="hljs-string">"UTF-8"</span>,
+<span class="hljs-symbol">content_type:</span> <span class="hljs-string">"text/plain"</span>,
+<span class="hljs-symbol">parts_order:</span>  [<span class="hljs-string">"text/plain"</span>, <span class="hljs-string">"text/enriched"</span>, <span class="hljs-string">"text/html"</span>]
+</code></pre>
+<p>Assign a hash to set additional options:</p>
+<pre><code class="hljs css language-ruby">config.action_mailer.default_options = {
+  <span class="hljs-symbol">from:</span> <span class="hljs-string">"noreply@example.com"</span>
+}
+</code></pre></li>
+<li><p><code>config.action_mailer.observers</code> registers observers which will be notified when mail is delivered.</p>
+<pre><code class="hljs css language-ruby">config.action_mailer.observers = [<span class="hljs-string">"MailObserver"</span>]
+</code></pre></li>
+<li><p><code>config.action_mailer.interceptors</code> registers interceptors which will be called before mail is sent.</p>
+<pre><code class="hljs css language-ruby">config.action_mailer.interceptors = [<span class="hljs-string">"MailInterceptor"</span>]
+</code></pre></li>
+<li><p><code>config.action_mailer.preview_interceptors</code> registers interceptors which will be called before mail is previewed.</p>
+<pre><code class="hljs css language-ruby">config.action_mailer.preview_interceptors = [<span class="hljs-string">"MyPreviewMailInterceptor"</span>]
+</code></pre></li>
+<li><p><code>config.action_mailer.preview_path</code> specifies the location of mailer previews.</p>
+<pre><code class="hljs css language-ruby">config.action_mailer.preview_path = <span class="hljs-string">"<span class="hljs-subst">#{Rails.root}</span>/lib/mailer_previews"</span>
+</code></pre></li>
+<li><p><code>config.action_mailer.show_previews</code> enable or disable mailer previews. By default this is <code>true</code> in development.</p>
+<pre><code class="hljs css language-ruby">config.action_mailer.show_previews = <span class="hljs-literal">false</span>
+</code></pre></li>
+<li><p><code>config.action_mailer.deliver_later_queue_name</code> specifies the queue name for
+mailers. By default this is <code>mailers</code>.</p></li>
+<li><p><code>config.action_mailer.perform_caching</code> specifies whether the mailer templates should perform fragment caching or not. If it's not specified, the default will be <code>true</code>.</p></li>
+<li><p><code>config.action_mailer.delivery_job</code> specifies delivery job for mail. Defaults to <code>ActionMailer::DeliveryJob</code>.</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configuring-active-support"></a><a href="#configuring-active-support" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Active Support</h3>
+<p>There are a few configuration options available in Active Support:</p>
+<ul>
+<li><p><code>config.active_support.bare</code> enables or disables the loading of <code>active_support/all</code> when booting Rails. Defaults to <code>nil</code>, which means <code>active_support/all</code> is loaded.</p></li>
+<li><p><code>config.active_support.test_order</code> sets the order in which the test cases are executed. Possible values are <code>:random</code> and <code>:sorted</code>. Defaults to <code>:random</code>.</p></li>
+<li><p><code>config.active_support.escape_html_entities_in_json</code> enables or disables the escaping of HTML entities in JSON serialization. Defaults to <code>true</code>.</p></li>
+<li><p><code>config.active_support.use_standard_json_time_format</code> enables or disables serializing dates to ISO 8601 format. Defaults to <code>true</code>.</p></li>
+<li><p><code>config.active_support.time_precision</code> sets the precision of JSON encoded time values. Defaults to <code>3</code>.</p></li>
+<li><p><code>config.active_support.use_sha1_digests</code> specifies whether to use SHA-1 instead of MD5 to generate non-sensitive digests, such as the ETag header. Defaults to false.</p></li>
+<li><p><code>config.active_support.use_authenticated_message_encryption</code> specifies whether to use AES-256-GCM authenticated encryption as the default cipher for encrypting messages instead of AES-256-CBC. This is false by default.</p></li>
+<li><p><code>ActiveSupport::Logger.silencer</code> is set to <code>false</code> to disable the ability to silence logging in a block. The default is <code>true</code>.</p></li>
+<li><p><code>ActiveSupport::Cache::Store.logger</code> specifies the logger to use within cache store operations.</p></li>
+<li><p><code>ActiveSupport::Deprecation.behavior</code> alternative setter to <code>config.active_support.deprecation</code> which configures the behavior of deprecation warnings for Rails.</p></li>
+<li><p><code>ActiveSupport::Deprecation.silence</code> takes a block in which all deprecation warnings are silenced.</p></li>
+<li><p><code>ActiveSupport::Deprecation.silenced</code> sets whether or not to display deprecation warnings. The default is <code>false</code>.</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configuring-active-job"></a><a href="#configuring-active-job" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Active Job</h3>
+<p><code>config.active_job</code> provides the following configuration options:</p>
+<ul>
+<li><p><code>config.active_job.queue_adapter</code> sets the adapter for the queuing backend. The default adapter is <code>:async</code>. For an up-to-date list of built-in adapters see the <a href="https://api.rubyonrails.org/classes/ActiveJob/QueueAdapters.html">ActiveJob::QueueAdapters API documentation</a>.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Be sure to have the adapter's gem in your Gemfile</span>
+<span class="hljs-comment"># and follow the adapter's specific installation</span>
+<span class="hljs-comment"># and deployment instructions.</span>
+config.active_job.queue_adapter = <span class="hljs-symbol">:sidekiq</span>
+</code></pre></li>
+<li><p><code>config.active_job.default_queue_name</code> can be used to change the default queue name. By default this is <code>&quot;default&quot;</code>.</p>
+<pre><code class="hljs css language-ruby">config.active_job.default_queue_name = <span class="hljs-symbol">:medium_priority</span>
+</code></pre></li>
+<li><p><code>config.active_job.queue_name_prefix</code> allows you to set an optional, non-blank, queue name prefix for all jobs. By default it is blank and not used.</p>
+<p>The following configuration would queue the given job on the <code>production_high_priority</code> queue when run in production:</p>
+<pre><code class="hljs css language-ruby">config.active_job.queue_name_prefix = Rails.env
+</code></pre>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GuestsCleanupJob</span> &lt; ActiveJob::Base</span>
+  queue_as <span class="hljs-symbol">:high_priority</span>
+  <span class="hljs-comment">#....</span>
+<span class="hljs-keyword">end</span>
+</code></pre></li>
+<li><p><code>config.active_job.queue_name_delimiter</code> has a default value of <code>'_'</code>. If <code>queue_name_prefix</code> is set, then <code>queue_name_delimiter</code> joins the prefix and the non-prefixed queue name.</p>
+<p>The following configuration would queue the provided job on the <code>video_server.low_priority</code> queue:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># prefix must be set for delimiter to be used</span>
+config.active_job.queue_name_prefix = <span class="hljs-string">'video_server'</span>
+config.active_job.queue_name_delimiter = <span class="hljs-string">'.'</span>
+</code></pre>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EncoderJob</span> &lt; ActiveJob::Base</span>
+  queue_as <span class="hljs-symbol">:low_priority</span>
+  <span class="hljs-comment">#....</span>
+<span class="hljs-keyword">end</span>
+</code></pre></li>
+<li><p><code>config.active_job.logger</code> accepts a logger conforming to the interface of Log4r or the default Ruby Logger class, which is then used to log information from Active Job. You can retrieve this logger by calling <code>logger</code> on either an Active Job class or an Active Job instance. Set to <code>nil</code> to disable logging.</p></li>
+<li><p><code>config.active_job.custom_serializers</code> allows to set custom argument serializers. Defaults to <code>[]</code>.</p></li>
+<li><p><code>config.active_job.return_false_on_aborted_enqueue</code> change the return value of <code>#enqueue</code> to false instead of the job instance when the enqueuing is aborted. Defaults to <code>false</code>.</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configuring-action-cable"></a><a href="#configuring-action-cable" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Action Cable</h3>
+<ul>
+<li><code>config.action_cable.url</code> accepts a string for the URL for where
+you are hosting your Action Cable server. You would use this option
+if you are running Action Cable servers that are separated from your
+main application.</li>
+<li><code>config.action_cable.mount_path</code> accepts a string for where to mount Action
+Cable, as part of the main server process. Defaults to <code>/cable</code>.
+You can set this as nil to not mount Action Cable as part of your
+normal Rails server.</li>
+</ul>
+<p>You can find more detailed configuration options in the
+<a href="action_cable_overview.html#configuration">Action Cable Overview</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="configuring-active-storage"></a><a href="#configuring-active-storage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Active Storage</h3>
+<p><code>config.active_storage</code> provides the following configuration options:</p>
+<ul>
+<li><p><code>config.active_storage.variant_processor</code> accepts a symbol <code>:mini_magick</code> or <code>:vips</code>, specifying whether variant transformations will be performed with MiniMagick or ruby-vips. The default is <code>:mini_magick</code>.</p></li>
+<li><p><code>config.active_storage.analyzers</code> accepts an array of classes indicating the analyzers available for Active Storage blobs. The default is <code>[ActiveStorage::Analyzer::ImageAnalyzer, ActiveStorage::Analyzer::VideoAnalyzer]</code>. The former can extract width and height of an image blob; the latter can extract width, height, duration, angle, and aspect ratio of a video blob.</p></li>
+<li><p><code>config.active_storage.previewers</code> accepts an array of classes indicating the image previewers available in Active Storage blobs. The default is <code>[ActiveStorage::Previewer::PDFPreviewer, ActiveStorage::Previewer::VideoPreviewer]</code>. The former can generate a thumbnail from the first page of a PDF blob; the latter from the relevant frame of a video blob.</p></li>
+<li><p><code>config.active_storage.paths</code> accepts a hash of options indicating the locations of previewer/analyzer commands. The default is <code>{}</code>, meaning the commands will be looked for in the default path. Can include any of these options:</p>
+<ul>
+<li><code>:ffprobe</code> - The location of the ffprobe executable.</li>
+<li><code>:mutool</code> - The location of the mutool executable.</li>
+<li><code>:ffmpeg</code> - The location of the ffmpeg executable.</li>
+</ul>
+<pre><code class="hljs css language-ruby">config.active_storage.paths[<span class="hljs-symbol">:ffprobe</span>] = <span class="hljs-string">'/usr/local/bin/ffprobe'</span>
+</code></pre></li>
+<li><p><code>config.active_storage.variable_content_types</code> accepts an array of strings indicating the content types that Active Storage can transform through ImageMagick. The default is <code>%w(image/png image/gif image/jpg image/jpeg image/pjpeg image/tiff image/vnd.adobe.photoshop image/vnd.microsoft.icon)</code>.</p></li>
+<li><p><code>config.active_storage.content_types_to_serve_as_binary</code> accepts an array of strings indicating the content types that Active Storage will always serve as an attachment, rather than inline. The default is <code>%w(text/html text/javascript image/svg+xml application/postscript application/x-shockwave-flash text/xml application/xml application/xhtml+xml)</code>.</p></li>
+<li><p><code>config.active_storage.queues.analysis</code> accepts a symbol indicating the Active Job queue to use for analysis jobs. When this option is <code>nil</code>, analysis jobs are sent to the default Active Job queue (see <code>config.active_job.default_queue_name</code>).</p>
+<pre><code class="hljs css language-ruby">config.active_storage.queues.analysis = <span class="hljs-symbol">:low_priority</span>
+</code></pre></li>
+<li><p><code>config.active_storage.queues.purge</code> accepts a symbol indicating the Active Job queue to use for purge jobs. When this option is <code>nil</code>, purge jobs are sent to the default Active Job queue (see <code>config.active_job.default_queue_name</code>).</p>
+<pre><code class="hljs css language-ruby">config.active_storage.queues.purge = <span class="hljs-symbol">:low_priority</span>
+</code></pre></li>
+<li><p><code>config.active_storage.queues.mirror</code> accepts a symbol indicating the Active Job queue to use for direct upload mirroring jobs. The default is <code>:active_storage_mirror</code>.</p>
+<pre><code class="hljs css language-ruby">config.active_storage.queues.mirror = <span class="hljs-symbol">:low_priority</span>
+</code></pre></li>
+<li><p><code>config.active_storage.logger</code> can be used to set the logger used by Active Storage. Accepts a logger conforming to the interface of Log4r or the default Ruby Logger class.</p>
+<pre><code class="hljs css language-ruby">config.active_storage.logger = ActiveSupport::Logger.new(STDOUT)
+</code></pre></li>
+<li><p><code>config.active_storage.service_urls_expire_in</code> determines the default expiry of URLs generated by:</p>
+<ul>
+<li><code>ActiveStorage::Blob#service_url</code></li>
+<li><code>ActiveStorage::Blob#service_url_for_direct_upload</code></li>
+<li><code>ActiveStorage::Variant#service_url</code></li>
+</ul>
+<p>The default is 5 minutes.</p></li>
+<li><p><code>config.active_storage.routes_prefix</code> can be used to set the route prefix for the routes served by Active Storage. Accepts a string that will be prepended to the generated routes.</p>
+<pre><code class="hljs css language-ruby">config.active_storage.routes_prefix = <span class="hljs-string">'/files'</span>
+</code></pre>
+<p>The default is <code>/rails/active_storage</code></p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="results-of-load_defaults"></a><a href="#results-of-load_defaults" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Results of <code>load_defaults</code></h3>
+<h4><a class="anchor" aria-hidden="true" id="with-50"></a><a href="#with-50" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>With '5.0':</h4>
+<ul>
+<li><code>config.action_controller.per_form_csrf_tokens</code>: <code>true</code></li>
+<li><code>config.action_controller.forgery_protection_origin_check</code>: <code>true</code></li>
+<li><code>ActiveSupport.to_time_preserves_timezone</code>: <code>true</code></li>
+<li><code>config.active_record.belongs_to_required_by_default</code>: <code>true</code></li>
+<li><code>config.ssl_options</code>: <code>{ hsts: { subdomains: true } }</code></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="with-51"></a><a href="#with-51" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>With '5.1':</h4>
+<ul>
+<li><code>config.assets.unknown_asset_fallback</code>: <code>false</code></li>
+<li><code>config.action_view.form_with_generates_remote_forms</code>: <code>true</code></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="with-52"></a><a href="#with-52" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>With '5.2':</h4>
+<ul>
+<li><code>config.active_record.cache_versioning</code>: <code>true</code></li>
+<li><code>config.action_dispatch.use_authenticated_cookie_encryption</code>: <code>true</code></li>
+<li><code>config.active_support.use_authenticated_message_encryption</code>: <code>true</code></li>
+<li><code>config.active_support.use_sha1_digests</code>: <code>true</code></li>
+<li><code>config.action_controller.default_protect_from_forgery</code>: <code>true</code></li>
+<li><code>config.action_view.form_with_generates_ids</code>: <code>true</code></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="with-60"></a><a href="#with-60" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>With '6.0':</h4>
+<ul>
+<li><code>config.autoloader</code>: <code>:zeitwerk</code></li>
+<li><code>config.action_view.default_enforce_utf8</code>: <code>false</code></li>
+<li><code>config.action_dispatch.use_cookies_with_metadata</code>: <code>true</code></li>
+<li><code>config.action_mailer.delivery_job</code>: <code>&quot;ActionMailer::MailDeliveryJob&quot;</code></li>
+<li><code>config.active_job.return_false_on_aborted_enqueue</code>: <code>true</code></li>
+<li><code>config.active_storage.queues.analysis</code>: <code>:active_storage_analysis</code></li>
+<li><code>config.active_storage.queues.purge</code>: <code>:active_storage_purge</code></li>
+<li><code>config.active_record.collection_cache_versioning</code>: <code>true</code></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configuring-a-database"></a><a href="#configuring-a-database" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring a Database</h3>
+<p>Just about every Rails application will interact with a database. You can connect to the database by setting an environment variable <code>ENV['DATABASE_URL']</code> or by using a configuration file called <code>config/database.yml</code>.</p>
+<p>Using the <code>config/database.yml</code> file you can specify all the information needed to access your database:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">development:</span>
+<span class="hljs-attr">  adapter:</span> <span class="hljs-string">postgresql</span>
+<span class="hljs-attr">  database:</span> <span class="hljs-string">blog_development</span>
+<span class="hljs-attr">  pool:</span> <span class="hljs-number">5</span>
+</code></pre>
+<p>This will connect to the database named <code>blog_development</code> using the <code>postgresql</code> adapter. This same information can be stored in a URL and provided via an environment variable like this:</p>
+<pre><code class="hljs css language-ruby">&gt; puts ENV[<span class="hljs-string">'DATABASE_URL'</span>]
+<span class="hljs-symbol">postgresql:</span>/<span class="hljs-regexp">/localhost/blog</span>_development?pool=<span class="hljs-number">5</span>
+</code></pre>
+<p>The <code>config/database.yml</code> file contains sections for three different environments in which Rails can run by default:</p>
+<ul>
+<li>The <code>development</code> environment is used on your development/local computer as you interact manually with the application.</li>
+<li>The <code>test</code> environment is used when running automated tests.</li>
+<li>The <code>production</code> environment is used when you deploy your application for the world to use.</li>
+</ul>
+<p>If you wish, you can manually specify a URL inside of your <code>config/database.yml</code></p>
+<pre><code class="hljs"><span class="hljs-attribute">development</span>:
+  <span class="hljs-attribute">url</span>: <span class="hljs-attribute">postgresql</span>:<span class="hljs-comment">//localhost/blog_development?pool=5</span>
+</code></pre>
+<p>The <code>config/database.yml</code> file can contain ERB tags <code>&lt;%= %&gt;</code>. Anything in the tags will be evaluated as Ruby code. You can use this to pull out data from an environment variable or to perform calculations to generate the needed connection information.</p>
+<p>TIP: You don't have to update the database configurations manually. If you look at the options of the application generator, you will see that one of the options is named <code>--database</code>. This option allows you to choose an adapter from a list of the most used relational databases. You can even run the generator repeatedly: <code>cd .. &amp;&amp; rails new blog --database=mysql</code>. When you confirm the overwriting of the <code>config/database.yml</code> file, your application will be configured for MySQL instead of SQLite. Detailed examples of the common database connections are below.</p>
+<h3><a class="anchor" aria-hidden="true" id="connection-preference"></a><a href="#connection-preference" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Connection Preference</h3>
+<p>Since there are two ways to configure your connection (using <code>config/database.yml</code> or using an environment variable) it is important to understand how they can interact.</p>
+<p>If you have an empty <code>config/database.yml</code> file but your <code>ENV['DATABASE_URL']</code> is present, then Rails will connect to the database via your environment variable:</p>
+<pre><code class="hljs"><span class="hljs-variable">$ </span>cat config/database.yml
+
+<span class="hljs-variable">$ </span>echo <span class="hljs-variable">$DATABASE_URL</span>
+<span class="hljs-symbol">postgresql:</span>/<span class="hljs-regexp">/localhost/my</span>_database
+</code></pre>
+<p>If you have a <code>config/database.yml</code> but no <code>ENV['DATABASE_URL']</code> then this file will be used to connect to your database:</p>
+<pre><code class="hljs">$ cat config/database.yml
+<span class="hljs-symbol">development:</span>
+<span class="hljs-symbol">  adapter:</span> postgresql
+<span class="hljs-symbol">  database:</span> my_database
+<span class="hljs-symbol">  host:</span> localhost
+
+$ echo $DATABASE_URL
+</code></pre>
+<p>If you have both <code>config/database.yml</code> and <code>ENV['DATABASE_URL']</code> set then Rails will merge the configuration together. To better understand this we must see some examples.</p>
+<p>When duplicate connection information is provided the environment variable will take precedence:</p>
+<pre><code class="hljs">$ cat config/database.yml
+<span class="hljs-symbol">development:</span>
+  <span class="hljs-symbol">adapter:</span> sqlite3
+  <span class="hljs-symbol">database:</span> NOT_my_database
+  <span class="hljs-symbol">host:</span> localhost
+
+$ echo $DATABASE_URL
+<span class="hljs-symbol">postgresql:</span>/<span class="hljs-regexp">/localhost/my</span>_database
+
+$ rails runner <span class="hljs-string">'puts ActiveRecord::Base.configurations'</span>
+<span class="hljs-comment">#&lt;ActiveRecord::DatabaseConfigurations:0x00007fd50e209a28&gt;</span>
+
+$ rails runner <span class="hljs-string">'puts ActiveRecord::Base.configurations.inspect'</span>
+<span class="hljs-comment">#&lt;ActiveRecord::DatabaseConfigurations:0x00007fc8eab02880 <span class="hljs-doctag">@configurations</span>=[</span>
+  <span class="hljs-comment">#&lt;ActiveRecord::DatabaseConfigurations::UrlConfig:0x00007fc8eab020b0</span>
+    @env_name=<span class="hljs-string">"development"</span>, @spec_name=<span class="hljs-string">"primary"</span>,
+    @config={<span class="hljs-string">"adapter"</span>=&gt;<span class="hljs-string">"postgresql"</span>, <span class="hljs-string">"database"</span>=&gt;<span class="hljs-string">"my_database"</span>, <span class="hljs-string">"host"</span>=&gt;<span class="hljs-string">"localhost"</span>}
+    @url=<span class="hljs-string">"postgresql://localhost/my_database"</span>&gt;
+  ]
+</code></pre>
+<p>Here the adapter, host, and database match the information in <code>ENV['DATABASE_URL']</code>.</p>
+<p>If non-duplicate information is provided you will get all unique values, environment variable still takes precedence in cases of any conflicts.</p>
+<pre><code class="hljs">$ cat config/database.yml
+<span class="hljs-symbol">development:</span>
+  <span class="hljs-symbol">adapter:</span> sqlite3
+  <span class="hljs-symbol">pool:</span> <span class="hljs-number">5</span>
+
+$ echo $DATABASE_URL
+<span class="hljs-symbol">postgresql:</span>/<span class="hljs-regexp">/localhost/my</span>_database
+
+$ rails runner <span class="hljs-string">'puts ActiveRecord::Base.configurations'</span>
+<span class="hljs-comment">#&lt;ActiveRecord::DatabaseConfigurations:0x00007fd50e209a28&gt;</span>
+
+$ rails runner <span class="hljs-string">'puts ActiveRecord::Base.configurations.inspect'</span>
+<span class="hljs-comment">#&lt;ActiveRecord::DatabaseConfigurations:0x00007fc8eab02880 <span class="hljs-doctag">@configurations</span>=[</span>
+  <span class="hljs-comment">#&lt;ActiveRecord::DatabaseConfigurations::UrlConfig:0x00007fc8eab020b0</span>
+    @env_name=<span class="hljs-string">"development"</span>, @spec_name=<span class="hljs-string">"primary"</span>,
+    @config={<span class="hljs-string">"adapter"</span>=&gt;<span class="hljs-string">"postgresql"</span>, <span class="hljs-string">"database"</span>=&gt;<span class="hljs-string">"my_database"</span>, <span class="hljs-string">"host"</span>=&gt;<span class="hljs-string">"localhost"</span>, <span class="hljs-string">"pool"</span>=&gt;<span class="hljs-number">5</span>}
+    @url=<span class="hljs-string">"postgresql://localhost/my_database"</span>&gt;
+  ]
+</code></pre>
+<p>Since pool is not in the <code>ENV['DATABASE_URL']</code> provided connection information its information is merged in. Since <code>adapter</code> is duplicate, the <code>ENV['DATABASE_URL']</code> connection information wins.</p>
+<p>The only way to explicitly not use the connection information in <code>ENV['DATABASE_URL']</code> is to specify an explicit URL connection using the <code>&quot;url&quot;</code> sub key:</p>
+<pre><code class="hljs">$ cat config/database.yml
+<span class="hljs-symbol">development:</span>
+  <span class="hljs-symbol">url:</span> <span class="hljs-symbol">sqlite3:</span>NOT_my_database
+
+$ echo $DATABASE_URL
+<span class="hljs-symbol">postgresql:</span>/<span class="hljs-regexp">/localhost/my</span>_database
+
+$ rails runner <span class="hljs-string">'puts ActiveRecord::Base.configurations'</span>
+<span class="hljs-comment">#&lt;ActiveRecord::DatabaseConfigurations:0x00007fd50e209a28&gt;</span>
+
+$ rails runner <span class="hljs-string">'puts ActiveRecord::Base.configurations.inspect'</span>
+<span class="hljs-comment">#&lt;ActiveRecord::DatabaseConfigurations:0x00007fc8eab02880 <span class="hljs-doctag">@configurations</span>=[</span>
+  <span class="hljs-comment">#&lt;ActiveRecord::DatabaseConfigurations::UrlConfig:0x00007fc8eab020b0</span>
+    @env_name=<span class="hljs-string">"development"</span>, @spec_name=<span class="hljs-string">"primary"</span>,
+    @config={<span class="hljs-string">"adapter"</span>=&gt;<span class="hljs-string">"sqlite3"</span>, <span class="hljs-string">"database"</span>=&gt;<span class="hljs-string">"NOT_my_database"</span>}
+    @url=<span class="hljs-string">"sqlite3:NOT_my_database"</span>&gt;
+  ]
+</code></pre>
+<p>Here the connection information in <code>ENV['DATABASE_URL']</code> is ignored, note the different adapter and database name.</p>
+<p>Since it is possible to embed ERB in your <code>config/database.yml</code> it is best practice to explicitly show you are using the <code>ENV['DATABASE_URL']</code> to connect to your database. This is especially useful in production since you should not commit secrets like your database password into your source control (such as Git).</p>
+<pre><code class="hljs">$ cat config/database.yml
+<span class="hljs-symbol">production:</span>
+<span class="hljs-symbol">  url:</span> <span class="hljs-params">&lt;%= ENV['DATABASE_URL'] %&gt;</span>
+</code></pre>
+<p>Now the behavior is clear, that we are only using the connection information in <code>ENV['DATABASE_URL']</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="configuring-an-sqlite3-database"></a><a href="#configuring-an-sqlite3-database" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring an SQLite3 Database</h4>
+<p>Rails comes with built-in support for <a href="http://www.sqlite.org">SQLite3</a>, which is a lightweight serverless database application. While a busy production environment may overload SQLite, it works well for development and testing. Rails defaults to using an SQLite database when creating a new project, but you can always change it later.</p>
+<p>Here's the section of the default configuration file (<code>config/database.yml</code>) with connection information for the development environment:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">development:</span>
+<span class="hljs-attr">  adapter:</span> <span class="hljs-string">sqlite3</span>
+<span class="hljs-attr">  database:</span> <span class="hljs-string">db/development.sqlite3</span>
+<span class="hljs-attr">  pool:</span> <span class="hljs-number">5</span>
+<span class="hljs-attr">  timeout:</span> <span class="hljs-number">5000</span>
+</code></pre>
+<p>NOTE: Rails uses an SQLite3 database for data storage by default because it is a zero configuration database that just works. Rails also supports MySQL (including MariaDB) and PostgreSQL &quot;out of the box&quot;, and has plugins for many database systems. If you are using a database in a production environment Rails most likely has an adapter for it.</p>
+<h4><a class="anchor" aria-hidden="true" id="configuring-a-mysql-or-mariadb-database"></a><a href="#configuring-a-mysql-or-mariadb-database" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring a MySQL or MariaDB Database</h4>
+<p>If you choose to use MySQL or MariaDB instead of the shipped SQLite3 database, your <code>config/database.yml</code> will look a little different. Here's the development section:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">development:</span>
+<span class="hljs-attr">  adapter:</span> <span class="hljs-string">mysql2</span>
+<span class="hljs-attr">  encoding:</span> <span class="hljs-string">utf8mb4</span>
+<span class="hljs-attr">  database:</span> <span class="hljs-string">blog_development</span>
+<span class="hljs-attr">  pool:</span> <span class="hljs-number">5</span>
+<span class="hljs-attr">  username:</span> <span class="hljs-string">root</span>
+<span class="hljs-attr">  password:</span>
+<span class="hljs-attr">  socket:</span> <span class="hljs-string">/tmp/mysql.sock</span>
+</code></pre>
+<p>If your development database has a root user with an empty password, this configuration should work for you. Otherwise, change the username and password in the <code>development</code> section as appropriate.</p>
+<p>NOTE: If your MySQL version is 5.5 or 5.6 and want to use the <code>utf8mb4</code> character set by default, please configure your MySQL server to support the longer key prefix by enabling <code>innodb_large_prefix</code> system variable.</p>
+<p>Advisory Locks are enabled by default on MySQL and are used to make database migrations concurrent safe. You can disable advisory locks by setting <code>advisory_locks</code> to <code>false</code>:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">production:</span>
+<span class="hljs-attr">  adapter:</span> <span class="hljs-string">mysql2</span>
+<span class="hljs-attr">  advisory_locks:</span> <span class="hljs-literal">false</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="configuring-a-postgresql-database"></a><a href="#configuring-a-postgresql-database" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring a PostgreSQL Database</h4>
+<p>If you choose to use PostgreSQL, your <code>config/database.yml</code> will be customized to use PostgreSQL databases:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">development:</span>
+<span class="hljs-attr">  adapter:</span> <span class="hljs-string">postgresql</span>
+<span class="hljs-attr">  encoding:</span> <span class="hljs-string">unicode</span>
+<span class="hljs-attr">  database:</span> <span class="hljs-string">blog_development</span>
+<span class="hljs-attr">  pool:</span> <span class="hljs-number">5</span>
+</code></pre>
+<p>By default Active Record uses database features like prepared statements and advisory locks. You might need to disable those features if you're using an external connection pooler like PgBouncer:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">production:</span>
+<span class="hljs-attr">  adapter:</span> <span class="hljs-string">postgresql</span>
+<span class="hljs-attr">  prepared_statements:</span> <span class="hljs-literal">false</span>
+<span class="hljs-attr">  advisory_locks:</span> <span class="hljs-literal">false</span>
+</code></pre>
+<p>If enabled, Active Record will create up to <code>1000</code> prepared statements per database connection by default. To modify this behavior you can set <code>statement_limit</code> to a different value:</p>
+<pre><code class="hljs"><span class="hljs-symbol">production:</span>
+<span class="hljs-symbol">  adapter:</span> postgresql
+<span class="hljs-symbol">  statement_limit:</span> <span class="hljs-number">200</span>
+</code></pre>
+<p>The more prepared statements in use: the more memory your database will require. If your PostgreSQL database is hitting memory limits, try lowering <code>statement_limit</code> or disabling prepared statements.</p>
+<h4><a class="anchor" aria-hidden="true" id="configuring-an-sqlite3-database-for-jruby-platform"></a><a href="#configuring-an-sqlite3-database-for-jruby-platform" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring an SQLite3 Database for JRuby Platform</h4>
+<p>If you choose to use SQLite3 and are using JRuby, your <code>config/database.yml</code> will look a little different. Here's the development section:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">development:</span>
+<span class="hljs-attr">  adapter:</span> <span class="hljs-string">jdbcsqlite3</span>
+<span class="hljs-attr">  database:</span> <span class="hljs-string">db/development.sqlite3</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="configuring-a-mysql-or-mariadb-database-for-jruby-platform"></a><a href="#configuring-a-mysql-or-mariadb-database-for-jruby-platform" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring a MySQL or MariaDB Database for JRuby Platform</h4>
+<p>If you choose to use MySQL or MariaDB and are using JRuby, your <code>config/database.yml</code> will look a little different. Here's the development section:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">development:</span>
+<span class="hljs-attr">  adapter:</span> <span class="hljs-string">jdbcmysql</span>
+<span class="hljs-attr">  database:</span> <span class="hljs-string">blog_development</span>
+<span class="hljs-attr">  username:</span> <span class="hljs-string">root</span>
+<span class="hljs-attr">  password:</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="configuring-a-postgresql-database-for-jruby-platform"></a><a href="#configuring-a-postgresql-database-for-jruby-platform" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring a PostgreSQL Database for JRuby Platform</h4>
+<p>If you choose to use PostgreSQL and are using JRuby, your <code>config/database.yml</code> will look a little different. Here's the development section:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">development:</span>
+<span class="hljs-attr">  adapter:</span> <span class="hljs-string">jdbcpostgresql</span>
+<span class="hljs-attr">  encoding:</span> <span class="hljs-string">unicode</span>
+<span class="hljs-attr">  database:</span> <span class="hljs-string">blog_development</span>
+<span class="hljs-attr">  username:</span> <span class="hljs-string">blog</span>
+<span class="hljs-attr">  password:</span>
+</code></pre>
+<p>Change the username and password in the <code>development</code> section as appropriate.</p>
+<h3><a class="anchor" aria-hidden="true" id="creating-rails-environments"></a><a href="#creating-rails-environments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating Rails Environments</h3>
+<p>By default Rails ships with three environments: &quot;development&quot;, &quot;test&quot;, and &quot;production&quot;. While these are sufficient for most use cases, there are circumstances when you want more environments.</p>
+<p>Imagine you have a server which mirrors the production environment but is only used for testing. Such a server is commonly called a &quot;staging server&quot;. To define an environment called &quot;staging&quot; for this server, just create a file called <code>config/environments/staging.rb</code>. Please use the contents of any existing file in <code>config/environments</code> as a starting point and make the necessary changes from there.</p>
+<p>That environment is no different than the default ones, start a server with <code>rails server -e staging</code>, a console with <code>rails console -e staging</code>, <code>Rails.env.staging?</code> works, etc.</p>
+<h3><a class="anchor" aria-hidden="true" id="deploy-to-a-subdirectory-relative-url-root"></a><a href="#deploy-to-a-subdirectory-relative-url-root" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Deploy to a subdirectory (relative URL root)</h3>
+<p>By default Rails expects that your application is running at the root
+(eg. <code>/</code>). This section explains how to run your application inside a directory.</p>
+<p>Let's assume we want to deploy our application to &quot;/app1&quot;. Rails needs to know
+this directory to generate the appropriate routes:</p>
+<pre><code class="hljs css language-ruby">config.relative_url_root = <span class="hljs-string">"/app1"</span>
+</code></pre>
+<p>alternatively you can set the <code>RAILS_RELATIVE_URL_ROOT</code> environment
+variable.</p>
+<p>Rails will now prepend &quot;/app1&quot; when generating links.</p>
+<h4><a class="anchor" aria-hidden="true" id="using-passenger"></a><a href="#using-passenger" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Passenger</h4>
+<p>Passenger makes it easy to run your application in a subdirectory. You can find the relevant configuration in the <a href="https://www.phusionpassenger.com/library/deploy/apache/deploy/ruby/#deploying-an-app-to-a-sub-uri-or-subdirectory">Passenger manual</a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="using-a-reverse-proxy"></a><a href="#using-a-reverse-proxy" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using a Reverse Proxy</h4>
+<p>Deploying your application using a reverse proxy has definite advantages over traditional deploys. They allow you to have more control over your server by layering the components required by your application.</p>
+<p>Many modern web servers can be used as a proxy server to balance third-party elements such as caching servers or application servers.</p>
+<p>One such application server you can use is <a href="https://bogomips.org/unicorn/">Unicorn</a> to run behind a reverse proxy.</p>
+<p>In this case, you would need to configure the proxy server (NGINX, Apache, etc) to accept connections from your application server (Unicorn). By default Unicorn will listen for TCP connections on port 8080, but you can change the port or configure it to use sockets instead.</p>
+<p>You can find more information in the <a href="https://bogomips.org/unicorn/README.html">Unicorn readme</a> and understand the <a href="https://bogomips.org/unicorn/PHILOSOPHY.html">philosophy</a> behind it.</p>
+<p>Once you've configured the application server, you must proxy requests to it by configuring your web server appropriately. For example your NGINX config may include:</p>
+<pre><code class="hljs"><span class="hljs-attribute">upstream</span> application_server {
+  <span class="hljs-attribute">server</span> <span class="hljs-number">0.0.0.0:8080</span>;
+}
+
+<span class="hljs-section">server</span> {
+  <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;
+  <span class="hljs-attribute">server_name</span> localhost;
+
+  <span class="hljs-attribute">root</span> /root/path/to/your_app/public;
+
+  <span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span>/index.html <span class="hljs-variable">$uri</span>.html <span class="hljs-variable">@app</span>;
+
+  <span class="hljs-attribute">location</span> <span class="hljs-variable">@app</span> {
+    <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;
+    <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$http_host</span>;
+    <span class="hljs-attribute">proxy_redirect</span> <span class="hljs-literal">off</span>;
+    <span class="hljs-attribute">proxy_pass</span> http://application_server;
+  }
+
+  <span class="hljs-comment"># some other configuration</span>
+}
+</code></pre>
+<p>Be sure to read the <a href="https://nginx.org/en/docs/">NGINX documentation</a> for the most up-to-date information.</p>
+<h2><a class="anchor" aria-hidden="true" id="rails-environment-settings"></a><a href="#rails-environment-settings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rails Environment Settings</h2>
+<p>Some parts of Rails can also be configured externally by supplying environment variables. The following environment variables are recognized by various parts of Rails:</p>
+<ul>
+<li><p><code>ENV[&quot;RAILS_ENV&quot;]</code> defines the Rails environment (production, development, test, and so on) that Rails will run under.</p></li>
+<li><p><code>ENV[&quot;RAILS_RELATIVE_URL_ROOT&quot;]</code> is used by the routing code to recognize URLs when you <a href="configuring.html#deploy-to-a-subdirectory-relative-url-root">deploy your application to a subdirectory</a>.</p></li>
+<li><p><code>ENV[&quot;RAILS_CACHE_ID&quot;]</code> and <code>ENV[&quot;RAILS_APP_VERSION&quot;]</code> are used to generate expanded cache keys in Rails' caching code. This allows you to have multiple separate caches from the same application.</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="using-initializer-files"></a><a href="#using-initializer-files" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Initializer Files</h2>
+<p>After loading the framework and any gems in your application, Rails turns to loading initializers. An initializer is any Ruby file stored under <code>config/initializers</code> in your application. You can use initializers to hold configuration settings that should be made after all of the frameworks and gems are loaded, such as options to configure settings for these parts.</p>
+<p>NOTE: There is no guarantee that your initializers will run after all the gem initializers, so any initialization code that depends on a given gem having been initialized should go into a <code>config.after_initialize</code> block.</p>
+<p>NOTE: You can use subfolders to organize your initializers if you like, because Rails will look into the whole file hierarchy from the initializers folder on down.</p>
+<p>TIP: While Rails supports numbering of initializer file names for load ordering purposes, a better technique is to place any code that need to load in a specific order within the same file. This reduces file name churn, makes dependencies more explicit, and can help surface new concepts within your application.</p>
+<h2><a class="anchor" aria-hidden="true" id="initialization-events"></a><a href="#initialization-events" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Initialization events</h2>
+<p>Rails has 5 initialization events which can be hooked into (listed in the order that they are run):</p>
+<ul>
+<li><p><code>before_configuration</code>: This is run as soon as the application constant inherits from <code>Rails::Application</code>. The <code>config</code> calls are evaluated before this happens.</p></li>
+<li><p><code>before_initialize</code>: This is run directly before the initialization process of the application occurs with the <code>:bootstrap_hook</code> initializer near the beginning of the Rails initialization process.</p></li>
+<li><p><code>to_prepare</code>: Run after the initializers are run for all Railties (including the application itself), but before eager loading and the middleware stack is built. More importantly, will run upon every request in <code>development</code>, but only once (during boot-up) in <code>production</code> and <code>test</code>.</p></li>
+<li><p><code>before_eager_load</code>: This is run directly before eager loading occurs, which is the default behavior for the <code>production</code> environment and not for the <code>development</code> environment.</p></li>
+<li><p><code>after_initialize</code>: Run directly after the initialization of the application, after the application initializers in <code>config/initializers</code> are run.</p></li>
+</ul>
+<p>To define an event for these hooks, use the block syntax within a <code>Rails::Application</code>, <code>Rails::Railtie</code> or <code>Rails::Engine</code> subclass:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">YourApp</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> &lt; Rails::Application</span>
+    config.before_initialize <span class="hljs-keyword">do</span>
+      <span class="hljs-comment"># initialization code goes here</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Alternatively, you can also do it through the <code>config</code> method on the <code>Rails.application</code> object:</p>
+<pre><code class="hljs css language-ruby">Rails.application.config.before_initialize <span class="hljs-keyword">do</span>
+  <span class="hljs-comment"># initialization code goes here</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>WARNING: Some parts of your application, notably routing, are not yet set up at the point where the <code>after_initialize</code> block is called.</p>
+<h3><a class="anchor" aria-hidden="true" id="rails-railtie-initializer"></a><a href="#rails-railtie-initializer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>Rails::Railtie#initializer</code></h3>
+<p>Rails has several initializers that run on startup that are all defined by using the <code>initializer</code> method from <code>Rails::Railtie</code>. Here's an example of the <code>set_helpers_path</code> initializer from Action Controller:</p>
+<pre><code class="hljs css language-ruby">initializer <span class="hljs-string">"action_controller.set_helpers_path"</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|app|</span>
+  ActionController::Helpers.helpers_path = app.helpers_paths
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The <code>initializer</code> method takes three arguments with the first being the name for the initializer and the second being an options hash (not shown here) and the third being a block. The <code>:before</code> key in the options hash can be specified to specify which initializer this new initializer must run before, and the <code>:after</code> key will specify which initializer to run this initializer <em>after</em>.</p>
+<p>Initializers defined using the <code>initializer</code> method will be run in the order they are defined in, with the exception of ones that use the <code>:before</code> or <code>:after</code> methods.</p>
+<p>WARNING: You may put your initializer before or after any other initializer in the chain, as long as it is logical. Say you have 4 initializers called &quot;one&quot; through &quot;four&quot; (defined in that order) and you define &quot;four&quot; to go <em>before</em> &quot;four&quot; but <em>after</em> &quot;three&quot;, that just isn't logical and Rails will not be able to determine your initializer order.</p>
+<p>The block argument of the <code>initializer</code> method is the instance of the application itself, and so we can access the configuration on it by using the <code>config</code> method as done in the example.</p>
+<p>Because <code>Rails::Application</code> inherits from <code>Rails::Railtie</code> (indirectly), you can use the <code>initializer</code> method in <code>config/application.rb</code> to define initializers for the application.</p>
+<h3><a class="anchor" aria-hidden="true" id="initializers"></a><a href="#initializers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Initializers</h3>
+<p>Below is a comprehensive list of all the initializers found in Rails in the order that they are defined (and therefore run in, unless otherwise stated).</p>
+<ul>
+<li><p><code>load_environment_hook</code>: Serves as a placeholder so that <code>:load_environment_config</code> can be defined to run before it.</p></li>
+<li><p><code>load_active_support</code>: Requires <code>active_support/dependencies</code> which sets up the basis for Active Support. Optionally requires <code>active_support/all</code> if <code>config.active_support.bare</code> is un-truthful, which is the default.</p></li>
+<li><p><code>initialize_logger</code>: Initializes the logger (an <code>ActiveSupport::Logger</code> object) for the application and makes it accessible at <code>Rails.logger</code>, provided that no initializer inserted before this point has defined <code>Rails.logger</code>.</p></li>
+<li><p><code>initialize_cache</code>: If <code>Rails.cache</code> isn't set yet, initializes the cache by referencing the value in <code>config.cache_store</code> and stores the outcome as <code>Rails.cache</code>. If this object responds to the <code>middleware</code> method, its middleware is inserted before <code>Rack::Runtime</code> in the middleware stack.</p></li>
+<li><p><code>set_clear_dependencies_hook</code>: This initializer - which runs only if <code>cache_classes</code> is set to <code>false</code> - uses <code>ActionDispatch::Callbacks.after</code> to remove the constants which have been referenced during the request from the object space so that they will be reloaded during the following request.</p></li>
+<li><p><code>initialize_dependency_mechanism</code>: If <code>config.cache_classes</code> is true, configures <code>ActiveSupport::Dependencies.mechanism</code> to <code>require</code> dependencies rather than <code>load</code> them.</p></li>
+<li><p><code>bootstrap_hook</code>: Runs all configured <code>before_initialize</code> blocks.</p></li>
+<li><p><code>i18n.callbacks</code>: In the development environment, sets up a <code>to_prepare</code> callback which will call <code>I18n.reload!</code> if any of the locales have changed since the last request. In production mode this callback will only run on the first request.</p></li>
+<li><p><code>active_support.deprecation_behavior</code>: Sets up deprecation reporting for environments, defaulting to <code>:log</code> for development, <code>:notify</code> for production, and <code>:stderr</code> for test. If a value isn't set for <code>config.active_support.deprecation</code> then this initializer will prompt the user to configure this line in the current environment's <code>config/environments</code> file. Can be set to an array of values.</p></li>
+<li><p><code>active_support.initialize_time_zone</code>: Sets the default time zone for the application based on the <code>config.time_zone</code> setting, which defaults to &quot;UTC&quot;.</p></li>
+<li><p><code>active_support.initialize_beginning_of_week</code>: Sets the default beginning of week for the application based on <code>config.beginning_of_week</code> setting, which defaults to <code>:monday</code>.</p></li>
+<li><p><code>active_support.set_configs</code>: Sets up Active Support by using the settings in <code>config.active_support</code> by <code>send</code>'ing the method names as setters to <code>ActiveSupport</code> and passing the values through.</p></li>
+<li><p><code>action_dispatch.configure</code>: Configures the <code>ActionDispatch::Http::URL.tld_length</code> to be set to the value of <code>config.action_dispatch.tld_length</code>.</p></li>
+<li><p><code>action_view.set_configs</code>: Sets up Action View by using the settings in <code>config.action_view</code> by <code>send</code>'ing the method names as setters to <code>ActionView::Base</code> and passing the values through.</p></li>
+<li><p><code>action_controller.assets_config</code>: Initializes the <code>config.actions_controller.assets_dir</code> to the app's public directory if not explicitly configured.</p></li>
+<li><p><code>action_controller.set_helpers_path</code>: Sets Action Controller's <code>helpers_path</code> to the application's <code>helpers_path</code>.</p></li>
+<li><p><code>action_controller.parameters_config</code>: Configures strong parameters options for <code>ActionController::Parameters</code>.</p></li>
+<li><p><code>action_controller.set_configs</code>: Sets up Action Controller by using the settings in <code>config.action_controller</code> by <code>send</code>'ing the method names as setters to <code>ActionController::Base</code> and passing the values through.</p></li>
+<li><p><code>action_controller.compile_config_methods</code>: Initializes methods for the config settings specified so that they are quicker to access.</p></li>
+<li><p><code>active_record.initialize_timezone</code>: Sets <code>ActiveRecord::Base.time_zone_aware_attributes</code> to <code>true</code>, as well as setting <code>ActiveRecord::Base.default_timezone</code> to UTC. When attributes are read from the database, they will be converted into the time zone specified by <code>Time.zone</code>.</p></li>
+<li><p><code>active_record.logger</code>: Sets <code>ActiveRecord::Base.logger</code> - if it's not already set - to <code>Rails.logger</code>.</p></li>
+<li><p><code>active_record.migration_error</code>: Configures middleware to check for pending migrations.</p></li>
+<li><p><code>active_record.check_schema_cache_dump</code>: Loads the schema cache dump if configured and available.</p></li>
+<li><p><code>active_record.warn_on_records_fetched_greater_than</code>: Enables warnings when queries return large numbers of records.</p></li>
+<li><p><code>active_record.set_configs</code>: Sets up Active Record by using the settings in <code>config.active_record</code> by <code>send</code>'ing the method names as setters to <code>ActiveRecord::Base</code> and passing the values through.</p></li>
+<li><p><code>active_record.initialize_database</code>: Loads the database configuration (by default) from <code>config/database.yml</code> and establishes a connection for the current environment.</p></li>
+<li><p><code>active_record.log_runtime</code>: Includes <code>ActiveRecord::Railties::ControllerRuntime</code> which is responsible for reporting the time taken by Active Record calls for the request back to the logger.</p></li>
+<li><p><code>active_record.set_reloader_hooks</code>: Resets all reloadable connections to the database if <code>config.cache_classes</code> is set to <code>false</code>.</p></li>
+<li><p><code>active_record.add_watchable_files</code>: Adds <code>schema.rb</code> and <code>structure.sql</code> files to watchable files.</p></li>
+<li><p><code>active_job.logger</code>: Sets <code>ActiveJob::Base.logger</code> - if it's not already set -
+to <code>Rails.logger</code>.</p></li>
+<li><p><code>active_job.set_configs</code>: Sets up Active Job by using the settings in <code>config.active_job</code> by <code>send</code>'ing the method names as setters to <code>ActiveJob::Base</code> and passing the values through.</p></li>
+<li><p><code>action_mailer.logger</code>: Sets <code>ActionMailer::Base.logger</code> - if it's not already set - to <code>Rails.logger</code>.</p></li>
+<li><p><code>action_mailer.set_configs</code>: Sets up Action Mailer by using the settings in <code>config.action_mailer</code> by <code>send</code>'ing the method names as setters to <code>ActionMailer::Base</code> and passing the values through.</p></li>
+<li><p><code>action_mailer.compile_config_methods</code>: Initializes methods for the config settings specified so that they are quicker to access.</p></li>
+<li><p><code>set_load_path</code>: This initializer runs before <code>bootstrap_hook</code>. Adds paths specified by <code>config.load_paths</code> and all autoload paths to <code>$LOAD_PATH</code>.</p></li>
+<li><p><code>set_autoload_paths</code>: This initializer runs before <code>bootstrap_hook</code>. Adds all sub-directories of <code>app</code> and paths specified by <code>config.autoload_paths</code>, <code>config.eager_load_paths</code> and <code>config.autoload_once_paths</code> to <code>ActiveSupport::Dependencies.autoload_paths</code>.</p></li>
+<li><p><code>add_routing_paths</code>: Loads (by default) all <code>config/routes.rb</code> files (in the application and railties, including engines) and sets up the routes for the application.</p></li>
+<li><p><code>add_locales</code>: Adds the files in <code>config/locales</code> (from the application, railties, and engines) to <code>I18n.load_path</code>, making available the translations in these files.</p></li>
+<li><p><code>add_view_paths</code>: Adds the directory <code>app/views</code> from the application, railties, and engines to the lookup path for view files for the application.</p></li>
+<li><p><code>load_environment_config</code>: Loads the <code>config/environments</code> file for the current environment.</p></li>
+<li><p><code>prepend_helpers_path</code>: Adds the directory <code>app/helpers</code> from the application, railties, and engines to the lookup path for helpers for the application.</p></li>
+<li><p><code>load_config_initializers</code>: Loads all Ruby files from <code>config/initializers</code> in the application, railties, and engines. The files in this directory can be used to hold configuration settings that should be made after all of the frameworks are loaded.</p></li>
+<li><p><code>engines_blank_point</code>: Provides a point-in-initialization to hook into if you wish to do anything before engines are loaded. After this point, all railtie and engine initializers are run.</p></li>
+<li><p><code>add_generator_templates</code>: Finds templates for generators at <code>lib/templates</code> for the application, railties, and engines and adds these to the <code>config.generators.templates</code> setting, which will make the templates available for all generators to reference.</p></li>
+<li><p><code>ensure_autoload_once_paths_as_subset</code>: Ensures that the <code>config.autoload_once_paths</code> only contains paths from <code>config.autoload_paths</code>. If it contains extra paths, then an exception will be raised.</p></li>
+<li><p><code>add_to_prepare_blocks</code>: The block for every <code>config.to_prepare</code> call in the application, a railtie, or engine is added to the <code>to_prepare</code> callbacks for Action Dispatch which will be run per request in development, or before the first request in production.</p></li>
+<li><p><code>add_builtin_route</code>: If the application is running under the development environment then this will append the route for <code>rails/info/properties</code> to the application routes. This route provides the detailed information such as Rails and Ruby version for <code>public/index.html</code> in a default Rails application.</p></li>
+<li><p><code>build_middleware_stack</code>: Builds the middleware stack for the application, returning an object which has a <code>call</code> method which takes a Rack environment object for the request.</p></li>
+<li><p><code>eager_load!</code>: If <code>config.eager_load</code> is <code>true</code>, runs the <code>config.before_eager_load</code> hooks and then calls <code>eager_load!</code> which will load all <code>config.eager_load_namespaces</code>.</p></li>
+<li><p><code>finisher_hook</code>: Provides a hook for after the initialization of process of the application is complete, as well as running all the <code>config.after_initialize</code> blocks for the application, railties, and engines.</p></li>
+<li><p><code>set_routes_reloader_hook</code>: Configures Action Dispatch to reload the routes file using <code>ActiveSupport::Callbacks.to_run</code>.</p></li>
+<li><p><code>disable_dependency_loading</code>: Disables the automatic dependency loading if the <code>config.eager_load</code> is set to <code>true</code>.</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="database-pooling"></a><a href="#database-pooling" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Database pooling</h2>
+<p>Active Record database connections are managed by <code>ActiveRecord::ConnectionAdapters::ConnectionPool</code> which ensures that a connection pool synchronizes the amount of thread access to a limited number of database connections. This limit defaults to 5 and can be configured in <code>database.yml</code>.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-symbol">development:</span>
+  <span class="hljs-symbol">adapter:</span> sqlite3
+  <span class="hljs-symbol">database:</span> db/development.sqlite3
+  <span class="hljs-symbol">pool:</span> <span class="hljs-number">5</span>
+  <span class="hljs-symbol">timeout:</span> <span class="hljs-number">5000</span>
+</code></pre>
+<p>Since the connection pooling is handled inside of Active Record by default, all application servers (Thin, Puma, Unicorn etc.) should behave the same. The database connection pool is initially empty. As demand for connections increases it will create them until it reaches the connection pool limit.</p>
+<p>Any one request will check out a connection the first time it requires access to the database. At the end of the request it will check the connection back in. This means that the additional connection slot will be available again for the next request in the queue.</p>
+<p>If you try to use more connections than are available, Active Record will block
+you and wait for a connection from the pool. If it cannot get a connection, a
+timeout error similar to that given below will be thrown.</p>
+<pre><code class="hljs css language-ruby">ActiveRecord::ConnectionTimeoutError - could <span class="hljs-keyword">not</span> obtain a database connection within <span class="hljs-number">5.000</span> seconds (waited <span class="hljs-number">5.000</span> seconds)
+</code></pre>
+<p>If you get the above error, you might want to increase the size of the
+connection pool by incrementing the <code>pool</code> option in <code>database.yml</code></p>
+<p>NOTE. If you are running in a multi-threaded environment, there could be a chance that several threads may be accessing multiple connections simultaneously. So depending on your current request load, you could very well have multiple threads contending for a limited number of connections.</p>
+<h2><a class="anchor" aria-hidden="true" id="custom-configuration"></a><a href="#custom-configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom configuration</h2>
+<p>You can configure your own code through the Rails configuration object with
+custom configuration under either the <code>config.x</code> namespace, or <code>config</code> directly.
+The key difference between these two is that you should be using <code>config.x</code> if you
+are defining <em>nested</em> configuration (ex: <code>config.x.nested.hi</code>), and just
+<code>config</code> for <em>single level</em> configuration (ex: <code>config.hello</code>).</p>
+<pre><code class="hljs css language-ruby">config.x.payment_processing.schedule = <span class="hljs-symbol">:daily</span>
+config.x.payment_processing.retries  = <span class="hljs-number">3</span>
+config.super_debugger = <span class="hljs-literal">true</span>
+</code></pre>
+<p>These configuration points are then available through the configuration object:</p>
+<pre><code class="hljs css language-ruby">Rails.configuration.x.payment_processing.schedule <span class="hljs-comment"># =&gt; :daily</span>
+Rails.configuration.x.payment_processing.retries  <span class="hljs-comment"># =&gt; 3</span>
+Rails.configuration.x.payment_processing.not_set  <span class="hljs-comment"># =&gt; nil</span>
+Rails.configuration.super_debugger                <span class="hljs-comment"># =&gt; true</span>
+</code></pre>
+<p>You can also use <code>Rails::Application.config_for</code> to load whole configuration files:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># config/payment.yml:</span>
+<span class="hljs-symbol">production:</span>
+  <span class="hljs-symbol">environment:</span> production
+  <span class="hljs-symbol">merchant_id:</span> production_merchant_id
+  <span class="hljs-symbol">public_key:</span>  production_public_key
+  <span class="hljs-symbol">private_key:</span> production_private_key
+<span class="hljs-symbol">development:</span>
+  <span class="hljs-symbol">environment:</span> sandbox
+  <span class="hljs-symbol">merchant_id:</span> development_merchant_id
+  <span class="hljs-symbol">public_key:</span>  development_public_key
+  <span class="hljs-symbol">private_key:</span> development_private_key
+
+<span class="hljs-comment"># config/application.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">MyApp</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> &lt; Rails::Application</span>
+    config.payment = config_for(<span class="hljs-symbol">:payment</span>)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<pre><code class="hljs css language-ruby">Rails.configuration.payment[<span class="hljs-string">'merchant_id'</span>] <span class="hljs-comment"># =&gt; production_merchant_id or development_merchant_id</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="search-engines-indexing"></a><a href="#search-engines-indexing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Search Engines Indexing</h2>
+<p>Sometimes, you may want to prevent some pages of your application to be visible
+on search sites like Google, Bing, Yahoo, or Duck Duck Go. The robots that index
+these sites will first analyze the <code>http://your-site.com/robots.txt</code> file to
+know which pages it is allowed to index.</p>
+<p>Rails creates this file for you inside the <code>/public</code> folder. By default, it allows
+search engines to index all pages of your application. If you want to block
+indexing on all pages of your application, use this:</p>
+<pre><code class="hljs">User-<span class="hljs-string">agent:</span> *
+<span class="hljs-string">Disallow:</span> /
+</code></pre>
+<p>To block just specific pages, it's necessary to use a more complex syntax. Learn
+it on the <a href="http://www.robotstxt.org/robotstxt.html">official documentation</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="evented-file-system-monitor"></a><a href="#evented-file-system-monitor" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Evented File System Monitor</h2>
+<p>If the <a href="https://github.com/guard/listen">listen gem</a> is loaded Rails uses an
+evented file system monitor to detect changes when <code>config.cache_classes</code> is
+<code>false</code>:</p>
+<pre><code class="hljs css language-ruby">group <span class="hljs-symbol">:development</span> <span class="hljs-keyword">do</span>
+  gem <span class="hljs-string">'listen'</span>, <span class="hljs-string">'&gt;= 3.0.5'</span>, <span class="hljs-string">'&lt; 3.2'</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Otherwise, in every request Rails walks the application tree to check if
+anything has changed.</p>
+<p>On Linux and macOS no additional gems are needed, but some are required
+<a href="https://github.com/guard/listen#on-bsd">for *BSD</a> and
+<a href="https://github.com/guard/listen#on-windows">for Windows</a>.</p>
+<p>Note that <a href="https://github.com/guard/listen#issues--limitations">some setups are unsupported</a>.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/debugging%20rails"><span class="arrow-prev">← </span><span>Debugging Rails Applications</span></a><a class="docs-next button" href="/rails-setup/docs/rails%20command%20line"><span>The Rails Command Line</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#locations-for-initialization-code">Locations for Initialization Code</a></li><li><a href="#running-code-before-rails">Running Code Before Rails</a></li><li><a href="#configuring-rails-components">Configuring Rails Components</a><ul class="toc-headings"><li><a href="#rails-general-configuration">Rails General Configuration</a></li><li><a href="#configuring-assets">Configuring Assets</a></li><li><a href="#configuring-generators">Configuring Generators</a></li><li><a href="#configuring-middleware">Configuring Middleware</a></li><li><a href="#configuring-i18n">Configuring i18n</a></li><li><a href="#configuring-active-model">Configuring Active Model</a></li><li><a href="#configuring-active-record">Configuring Active Record</a></li><li><a href="#configuring-action-controller">Configuring Action Controller</a></li><li><a href="#configuring-action-dispatch">Configuring Action Dispatch</a></li><li><a href="#configuring-action-view">Configuring Action View</a></li><li><a href="#configuring-action-mailbox">Configuring Action Mailbox</a></li><li><a href="#configuring-action-mailer">Configuring Action Mailer</a></li><li><a href="#configuring-active-support">Configuring Active Support</a></li><li><a href="#configuring-active-job">Configuring Active Job</a></li><li><a href="#configuring-action-cable">Configuring Action Cable</a></li><li><a href="#configuring-active-storage">Configuring Active Storage</a></li><li><a href="#results-of-load_defaults">Results of <code>load_defaults</code></a></li><li><a href="#configuring-a-database">Configuring a Database</a></li><li><a href="#connection-preference">Connection Preference</a></li><li><a href="#creating-rails-environments">Creating Rails Environments</a></li><li><a href="#deploy-to-a-subdirectory-relative-url-root">Deploy to a subdirectory (relative URL root)</a></li></ul></li><li><a href="#rails-environment-settings">Rails Environment Settings</a></li><li><a href="#using-initializer-files">Using Initializer Files</a></li><li><a href="#initialization-events">Initialization events</a><ul class="toc-headings"><li><a href="#rails-railtie-initializer"><code>Rails::Railtie#initializer</code></a></li><li><a href="#initializers">Initializers</a></li></ul></li><li><a href="#database-pooling">Database pooling</a></li><li><a href="#custom-configuration">Custom configuration</a></li><li><a href="#search-engines-indexing">Search Engines Indexing</a></li><li><a href="#evented-file-system-monitor">Evented File System Monitor</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Rails Setup</section></footer></div></body></html>

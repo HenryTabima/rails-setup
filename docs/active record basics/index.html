@@ -1,0 +1,350 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Active Record Basics · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This guide is an introduction to Active Record.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Active Record Basics · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;This guide is an introduction to Active Record.&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/getting started" target="_self">Rails Docs</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Models</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Start Here</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/getting started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/development dependencies install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Models</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/active record basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/multiple databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Views</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/layouts and rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action view form helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Controllers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Other Components</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active support core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active support instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Digging Deeper</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/testing rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/securing rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/debugging rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/configuring rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails command line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/asset pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/working with javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/autoloading and reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/caching with rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/api only apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Extending Rails</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails on rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/generators &amp; templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/application templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/creating rails plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Contributions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/contributing to rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/api documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/guides guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Policies</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/maintenance policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Active Record Basics</h1></header><article><div><span><p>This guide is an introduction to Active Record.</p>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>What Object Relational Mapping and Active Record are and how they are used in
+Rails.</li>
+<li>How Active Record fits into the Model-View-Controller paradigm.</li>
+<li>How to use Active Record models to manipulate data stored in a relational
+database.</li>
+<li>Active Record schema naming conventions.</li>
+<li>The concepts of database migrations, validations, and callbacks.</li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="what-is-active-record"></a><a href="#what-is-active-record" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is Active Record?</h2>
+<p>Active Record is the M in <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a> - the
+model - which is the layer of the system responsible for representing business
+data and logic. Active Record facilitates the creation and use of business
+objects whose data requires persistent storage to a database. It is an
+implementation of the Active Record pattern which itself is a description of an
+Object Relational Mapping system.</p>
+<h3><a class="anchor" aria-hidden="true" id="the-active-record-pattern"></a><a href="#the-active-record-pattern" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Active Record Pattern</h3>
+<p><a href="https://www.martinfowler.com/eaaCatalog/activeRecord.html">Active Record was described by Martin Fowler</a>
+in his book <em>Patterns of Enterprise Application Architecture</em>. In
+Active Record, objects carry both persistent data and behavior which
+operates on that data. Active Record takes the opinion that ensuring
+data access logic as part of the object will educate users of that
+object on how to write to and read from the database.</p>
+<h3><a class="anchor" aria-hidden="true" id="object-relational-mapping"></a><a href="#object-relational-mapping" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Object Relational Mapping</h3>
+<p><a href="https://en.wikipedia.org/wiki/Object-relational_mapping">Object Relational Mapping</a>, commonly referred to as its abbreviation ORM, is
+a technique that connects the rich objects of an application to tables in
+a relational database management system. Using ORM, the properties and
+relationships of the objects in an application can be easily stored and
+retrieved from a database without writing SQL statements directly and with less
+overall database access code.</p>
+<p>NOTE: Basic knowledge of relational database management systems (RDBMS) and structured query language (SQL) is helpful in order to fully understand Active Record. Please refer to <a href="https://www.w3schools.com/sql/default.asp">this tutorial</a> (or <a href="http://www.sqlcourse.com/">this one</a>) or study them by other means if you would like to learn more.</p>
+<h3><a class="anchor" aria-hidden="true" id="active-record-as-an-orm-framework"></a><a href="#active-record-as-an-orm-framework" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Active Record as an ORM Framework</h3>
+<p>Active Record gives us several mechanisms, the most important being the ability
+to:</p>
+<ul>
+<li>Represent models and their data.</li>
+<li>Represent associations between these models.</li>
+<li>Represent inheritance hierarchies through related models.</li>
+<li>Validate models before they get persisted to the database.</li>
+<li>Perform database operations in an object-oriented fashion.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="convention-over-configuration-in-active-record"></a><a href="#convention-over-configuration-in-active-record" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Convention over Configuration in Active Record</h2>
+<p>When writing applications using other programming languages or frameworks, it
+may be necessary to write a lot of configuration code. This is particularly true
+for ORM frameworks in general. However, if you follow the conventions adopted by
+Rails, you'll need to write very little configuration (in some cases no
+configuration at all) when creating Active Record models. The idea is that if
+you configure your applications in the very same way most of the time then this
+should be the default way. Thus, explicit configuration would be needed
+only in those cases where you can't follow the standard convention.</p>
+<h3><a class="anchor" aria-hidden="true" id="naming-conventions"></a><a href="#naming-conventions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Naming Conventions</h3>
+<p>By default, Active Record uses some naming conventions to find out how the
+mapping between models and database tables should be created. Rails will
+pluralize your class names to find the respective database table. So, for
+a class <code>Book</code>, you should have a database table called <strong>books</strong>. The Rails
+pluralization mechanisms are very powerful, being capable of pluralizing (and
+singularizing) both regular and irregular words. When using class names composed
+of two or more words, the model class name should follow the Ruby conventions,
+using the CamelCase form, while the table name must contain the words separated
+by underscores. Examples:</p>
+<ul>
+<li>Model Class - Singular with the first letter of each word capitalized (e.g.,
+<code>BookClub</code>).</li>
+<li>Database Table - Plural with underscores separating words (e.g., <code>book_clubs</code>).</li>
+</ul>
+<table>
+<thead>
+<tr><th>Model / Class</th><th>Table / Schema</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Article</code></td><td><code>articles</code></td></tr>
+<tr><td><code>LineItem</code></td><td><code>line_items</code></td></tr>
+<tr><td><code>Deer</code></td><td><code>deers</code></td></tr>
+<tr><td><code>Mouse</code></td><td><code>mice</code></td></tr>
+<tr><td><code>Person</code></td><td><code>people</code></td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="schema-conventions"></a><a href="#schema-conventions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Schema Conventions</h3>
+<p>Active Record uses naming conventions for the columns in database tables,
+depending on the purpose of these columns.</p>
+<ul>
+<li><strong>Foreign keys</strong> - These fields should be named following the pattern
+<code>singularized_table_name_id</code> (e.g., <code>item_id</code>, <code>order_id</code>). These are the
+fields that Active Record will look for when you create associations between
+your models.</li>
+<li><strong>Primary keys</strong> - By default, Active Record will use an integer column named
+<code>id</code> as the table's primary key (<code>bigint</code> for PostgreSQL and MySQL, <code>integer</code>
+for SQLite). When using <a href="active_record_migrations.html">Active Record Migrations</a>
+to create your tables, this column will be automatically created.</li>
+</ul>
+<p>There are also some optional column names that will add additional features
+to Active Record instances:</p>
+<ul>
+<li><code>created_at</code> - Automatically gets set to the current date and time when the
+record is first created.</li>
+<li><code>updated_at</code> - Automatically gets set to the current date and time whenever
+the record is created or updated.</li>
+<li><code>lock_version</code> - Adds <a href="https://api.rubyonrails.org/classes/ActiveRecord/Locking.html">optimistic
+locking</a> to
+a model.</li>
+<li><code>type</code> - Specifies that the model uses <a href="https://api.rubyonrails.org/classes/ActiveRecord/Base.html#class-ActiveRecord::Base-label-Single+table+inheritance">Single Table
+Inheritance</a>.</li>
+<li><code>(association_name)_type</code> - Stores the type for
+<a href="association_basics.html#polymorphic-associations">polymorphic associations</a>.</li>
+<li><code>(table_name)_count</code> - Used to cache the number of belonging objects on
+associations. For example, a <code>comments_count</code> column in an <code>Article</code> class that
+has many instances of <code>Comment</code> will cache the number of existent comments
+for each article.</li>
+</ul>
+<p>NOTE: While these column names are optional, they are in fact reserved by Active Record. Steer clear of reserved keywords unless you want the extra functionality. For example, <code>type</code> is a reserved keyword used to designate a table using Single Table Inheritance (STI). If you are not using STI, try an analogous keyword like &quot;context&quot;, that may still accurately describe the data you are modeling.</p>
+<h2><a class="anchor" aria-hidden="true" id="creating-active-record-models"></a><a href="#creating-active-record-models" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating Active Record Models</h2>
+<p>It is very easy to create Active Record models. All you have to do is to
+subclass the <code>ApplicationRecord</code> class and you're good to go:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Product</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This will create a <code>Product</code> model, mapped to a <code>products</code> table at the
+database. By doing this you'll also have the ability to map the columns of each
+row in that table with the attributes of the instances of your model. Suppose
+that the <code>products</code> table was created using an SQL (or one of its extensions) statement like:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> products (
+   <span class="hljs-keyword">id</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> auto_increment,
+   <span class="hljs-keyword">name</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>),
+   PRIMARY <span class="hljs-keyword">KEY</span>  (<span class="hljs-keyword">id</span>)
+);
+</code></pre>
+<p>Schema above declares a table with two columns: <code>id</code> and <code>name</code>. Each row of
+this table represents a certain product with these two parameters. Thus, you
+would be able to write code like the following:</p>
+<pre><code class="hljs css language-ruby">p = Product.new
+p.name = <span class="hljs-string">"Some Book"</span>
+puts p.name <span class="hljs-comment"># "Some Book"</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="overriding-the-naming-conventions"></a><a href="#overriding-the-naming-conventions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overriding the Naming Conventions</h2>
+<p>What if you need to follow a different naming convention or need to use your
+Rails application with a legacy database? No problem, you can easily override
+the default conventions.</p>
+<p><code>ApplicationRecord</code> inherits from <code>ActiveRecord::Base</code>, which defines a
+number of helpful methods. You can use the <code>ActiveRecord::Base.table_name=</code>
+method to specify the table name that should be used:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Product</span> &lt; ApplicationRecord</span>
+  <span class="hljs-keyword">self</span>.table_name = <span class="hljs-string">"my_products"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If you do so, you will have to define manually the class name that is hosting
+the fixtures (my_products.yml) using the <code>set_fixture_class</code> method in your test
+definition:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductTest</span> &lt; ActiveSupport::TestCase</span>
+  set_fixture_class <span class="hljs-symbol">my_products:</span> Product
+  fixtures <span class="hljs-symbol">:my_products</span>
+  ...
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>It's also possible to override the column that should be used as the table's
+primary key using the <code>ActiveRecord::Base.primary_key=</code> method:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Product</span> &lt; ApplicationRecord</span>
+  <span class="hljs-keyword">self</span>.primary_key = <span class="hljs-string">"product_id"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>NOTE: Active Record does not support using non-primary key columns named <code>id</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="crud-reading-and-writing-data"></a><a href="#crud-reading-and-writing-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CRUD: Reading and Writing Data</h2>
+<p>CRUD is an acronym for the four verbs we use to operate on data: <strong>C</strong>reate,
+<strong>R</strong>ead, <strong>U</strong>pdate and <strong>D</strong>elete. Active Record automatically creates methods
+to allow an application to read and manipulate data stored within its tables.</p>
+<h3><a class="anchor" aria-hidden="true" id="create"></a><a href="#create" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create</h3>
+<p>Active Record objects can be created from a hash, a block, or have their
+attributes manually set after creation. The <code>new</code> method will return a new
+object while <code>create</code> will return the object and save it to the database.</p>
+<p>For example, given a model <code>User</code> with attributes of <code>name</code> and <code>occupation</code>,
+the <code>create</code> method call will create and save a new record into the database:</p>
+<pre><code class="hljs css language-ruby">user = User.create(<span class="hljs-symbol">name:</span> <span class="hljs-string">"David"</span>, <span class="hljs-symbol">occupation:</span> <span class="hljs-string">"Code Artist"</span>)
+</code></pre>
+<p>Using the <code>new</code> method, an object can be instantiated without being saved:</p>
+<pre><code class="hljs css language-ruby">user = User.new
+user.name = <span class="hljs-string">"David"</span>
+user.occupation = <span class="hljs-string">"Code Artist"</span>
+</code></pre>
+<p>A call to <code>user.save</code> will commit the record to the database.</p>
+<p>Finally, if a block is provided, both <code>create</code> and <code>new</code> will yield the new
+object to that block for initialization:</p>
+<pre><code class="hljs css language-ruby">user = User.new <span class="hljs-keyword">do</span> <span class="hljs-params">|u|</span>
+  u.name = <span class="hljs-string">"David"</span>
+  u.occupation = <span class="hljs-string">"Code Artist"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="read"></a><a href="#read" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Read</h3>
+<p>Active Record provides a rich API for accessing data within a database. Below
+are a few examples of different data access methods provided by Active Record.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># return a collection with all users</span>
+users = User.all
+</code></pre>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># return the first user</span>
+user = User.first
+</code></pre>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># return the first user named David</span>
+david = User.find_by(<span class="hljs-symbol">name:</span> <span class="hljs-string">'David'</span>)
+</code></pre>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># find all users named David who are Code Artists and sort by created_at in reverse chronological order</span>
+users = User.where(<span class="hljs-symbol">name:</span> <span class="hljs-string">'David'</span>, <span class="hljs-symbol">occupation:</span> <span class="hljs-string">'Code Artist'</span>).order(<span class="hljs-symbol">created_at:</span> <span class="hljs-symbol">:desc</span>)
+</code></pre>
+<p>You can learn more about querying an Active Record model in the <a href="active_record_querying.html">Active Record
+Query Interface</a> guide.</p>
+<h3><a class="anchor" aria-hidden="true" id="update"></a><a href="#update" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Update</h3>
+<p>Once an Active Record object has been retrieved, its attributes can be modified
+and it can be saved to the database.</p>
+<pre><code class="hljs css language-ruby">user = User.find_by(<span class="hljs-symbol">name:</span> <span class="hljs-string">'David'</span>)
+user.name = <span class="hljs-string">'Dave'</span>
+user.save
+</code></pre>
+<p>A shorthand for this is to use a hash mapping attribute names to the desired
+value, like so:</p>
+<pre><code class="hljs css language-ruby">user = User.find_by(<span class="hljs-symbol">name:</span> <span class="hljs-string">'David'</span>)
+user.update(<span class="hljs-symbol">name:</span> <span class="hljs-string">'Dave'</span>)
+</code></pre>
+<p>This is most useful when updating several attributes at once. If, on the other
+hand, you'd like to update several records in bulk, you may find the
+<code>update_all</code> class method useful:</p>
+<pre><code class="hljs css language-ruby">User.update_all <span class="hljs-string">"max_login_attempts = 3, must_change_password = 'true'"</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="delete"></a><a href="#delete" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Delete</h3>
+<p>Likewise, once retrieved an Active Record object can be destroyed which removes
+it from the database.</p>
+<pre><code class="hljs css language-ruby">user = User.find_by(<span class="hljs-symbol">name:</span> <span class="hljs-string">'David'</span>)
+user.destroy
+</code></pre>
+<p>If you'd like to delete several records in bulk, you may use <code>destroy_by</code>
+or <code>destroy_all</code> method:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># find and delete all users named David</span>
+User.destroy_by(<span class="hljs-symbol">name:</span> <span class="hljs-string">'David'</span>)
+
+<span class="hljs-comment"># delete all users</span>
+User.destroy_all
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="validations"></a><a href="#validations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Validations</h2>
+<p>Active Record allows you to validate the state of a model before it gets written
+into the database. There are several methods that you can use to check your
+models and validate that an attribute value is not empty, is unique and not
+already in the database, follows a specific format, and many more.</p>
+<p>Validation is a very important issue to consider when persisting to the database, so
+the methods <code>save</code> and <code>update</code> take it into account when
+running: they return <code>false</code> when validation fails and they don't actually
+perform any operations on the database. All of these have a bang counterpart (that
+is, <code>save!</code> and <code>update!</code>), which are stricter in that
+they raise the exception <code>ActiveRecord::RecordInvalid</code> if validation fails.
+A quick example to illustrate:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+
+user = User.new
+user.save  <span class="hljs-comment"># =&gt; false</span>
+user.save! <span class="hljs-comment"># =&gt; ActiveRecord::RecordInvalid: Validation failed: Name can't be blank</span>
+</code></pre>
+<p>You can learn more about validations in the <a href="active_record_validations.html">Active Record Validations
+guide</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="callbacks"></a><a href="#callbacks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Callbacks</h2>
+<p>Active Record callbacks allow you to attach code to certain events in the
+life-cycle of your models. This enables you to add behavior to your models by
+transparently executing code when those events occur, like when you create a new
+record, update it, destroy it, and so on. You can learn more about callbacks in
+the <a href="active_record_callbacks.html">Active Record Callbacks guide</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="migrations"></a><a href="#migrations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Migrations</h2>
+<p>Rails provides a domain-specific language for managing a database schema called
+migrations. Migrations are stored in files which are executed against any
+database that Active Record supports using <code>rake</code>. Here's a migration that
+creates a table:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreatePublications</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    create_table <span class="hljs-symbol">:publications</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+      t.string <span class="hljs-symbol">:title</span>
+      t.text <span class="hljs-symbol">:description</span>
+      t.references <span class="hljs-symbol">:publication_type</span>
+      t.integer <span class="hljs-symbol">:publisher_id</span>
+      t.string <span class="hljs-symbol">:publisher_type</span>
+      t.boolean <span class="hljs-symbol">:single_issue</span>
+
+      t.timestamps
+    <span class="hljs-keyword">end</span>
+    add_index <span class="hljs-symbol">:publications</span>, <span class="hljs-symbol">:publication_type_id</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Rails keeps track of which files have been committed to the database and
+provides rollback features. To actually create the table, you'd run <code>rails db:migrate</code>
+and to roll it back, <code>rails db:rollback</code>.</p>
+<p>Note that the above code is database-agnostic: it will run in MySQL,
+PostgreSQL, Oracle, and others. You can learn more about migrations in the
+<a href="active_record_migrations.html">Active Record Migrations guide</a>.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/development%20dependencies%20install"><span class="arrow-prev">← </span><span>Development Dependencies Install</span></a><a class="docs-next button" href="/rails-setup/docs/active%20record%20migrations"><span>Active Record Migrations</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#what-is-active-record">What is Active Record?</a><ul class="toc-headings"><li><a href="#the-active-record-pattern">The Active Record Pattern</a></li><li><a href="#object-relational-mapping">Object Relational Mapping</a></li><li><a href="#active-record-as-an-orm-framework">Active Record as an ORM Framework</a></li></ul></li><li><a href="#convention-over-configuration-in-active-record">Convention over Configuration in Active Record</a><ul class="toc-headings"><li><a href="#naming-conventions">Naming Conventions</a></li><li><a href="#schema-conventions">Schema Conventions</a></li></ul></li><li><a href="#creating-active-record-models">Creating Active Record Models</a></li><li><a href="#overriding-the-naming-conventions">Overriding the Naming Conventions</a></li><li><a href="#crud-reading-and-writing-data">CRUD: Reading and Writing Data</a><ul class="toc-headings"><li><a href="#create">Create</a></li><li><a href="#read">Read</a></li><li><a href="#update">Update</a></li><li><a href="#delete">Delete</a></li></ul></li><li><a href="#validations">Validations</a></li><li><a href="#callbacks">Callbacks</a></li><li><a href="#migrations">Migrations</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Rails Setup</section></footer></div></body></html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Active Storage Overview · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This guide covers how to attach files to your Active Record models.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Active Storage Overview · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;This guide covers how to attach files to your Active Record models.&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/getting started" target="_self">Rails Docs</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Other Components</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Start Here</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/getting started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/development dependencies install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Models</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/multiple databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Views</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/layouts and rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action view form helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Controllers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Other Components</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active support core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active support instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action text">Action Text Overview</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/active storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Digging Deeper</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/testing rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/securing rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/debugging rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/configuring rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails command line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/asset pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/working with javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/autoloading and reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/caching with rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/api only apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Extending Rails</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails on rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/generators &amp; templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/application templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/creating rails plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Contributions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/contributing to rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/api documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/guides guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Policies</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/maintenance policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Active Storage Overview</h1></header><article><div><span><p>This guide covers how to attach files to your Active Record models.</p>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>How to attach one or many files to a record.</li>
+<li>How to delete an attached file.</li>
+<li>How to link to an attached file.</li>
+<li>How to use variants to transform images.</li>
+<li>How to generate an image representation of a non-image file, such as a PDF or a video.</li>
+<li>How to send file uploads directly from browsers to a storage service,
+bypassing your application servers.</li>
+<li>How to clean up files stored during testing.</li>
+<li>How to implement support for additional storage services.</li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="what-is-active-storage"></a><a href="#what-is-active-storage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is Active Storage?</h2>
+<p>Active Storage facilitates uploading files to a cloud storage service like
+Amazon S3, Google Cloud Storage, or Microsoft Azure Storage and attaching those
+files to Active Record objects. It comes with a local disk-based service for
+development and testing and supports mirroring files to subordinate services for
+backups and migrations.</p>
+<p>Using Active Storage, an application can transform image uploads with
+<a href="https://www.imagemagick.org">ImageMagick</a>, generate image representations of
+non-image uploads like PDFs and videos, and extract metadata from arbitrary
+files.</p>
+<h2><a class="anchor" aria-hidden="true" id="setup"></a><a href="#setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup</h2>
+<p>Active Storage uses two tables in your application’s database named
+<code>active_storage_blobs</code> and <code>active_storage_attachments</code>. After creating a new
+application (or upgrading your application to Rails 5.2), run
+<code>rails active_storage:install</code> to generate a migration that creates these
+tables. Use <code>rails db:migrate</code> to run the migration.</p>
+<p>WARNING: <code>active_storage_attachments</code> is a polymorphic join table that stores your model's class name. If your model's class name changes, you will need to run a migration on this table to update the underlying <code>record_type</code> to your model's new class name.</p>
+<p>Declare Active Storage services in <code>config/storage.yml</code>. For each service your
+application uses, provide a name and the requisite configuration. The example
+below declares three services named <code>local</code>, <code>test</code>, and <code>amazon</code>:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">local:</span>
+<span class="hljs-attr">  service:</span> <span class="hljs-string">Disk</span>
+<span class="hljs-attr">  root:</span> &lt;%=<span class="ruby"> Rails.root.join(<span class="hljs-string">"storage"</span>) </span>%&gt;
+
+<span class="hljs-attr">test:</span>
+<span class="hljs-attr">  service:</span> <span class="hljs-string">Disk</span>
+<span class="hljs-attr">  root:</span> &lt;%=<span class="ruby"> Rails.root.join(<span class="hljs-string">"tmp/storage"</span>) </span>%&gt;
+
+<span class="hljs-attr">amazon:</span>
+<span class="hljs-attr">  service:</span> <span class="hljs-string">S3</span>
+<span class="hljs-attr">  access_key_id:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  secret_access_key:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  bucket:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  region:</span> <span class="hljs-string">""</span> <span class="hljs-comment"># e.g. 'us-east-1'</span>
+</code></pre>
+<p>Tell Active Storage which service to use by setting
+<code>Rails.application.config.active_storage.service</code>. Because each environment will
+likely use a different service, it is recommended to do this on a
+per-environment basis. To use the disk service from the previous example in the
+development environment, you would add the following to
+<code>config/environments/development.rb</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Store files locally.</span>
+config.active_storage.service = <span class="hljs-symbol">:local</span>
+</code></pre>
+<p>To use the Amazon S3 service in production, you add the following to
+<code>config/environments/production.rb</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Store files on Amazon S3.</span>
+config.active_storage.service = <span class="hljs-symbol">:amazon</span>
+</code></pre>
+<p>To use the test service when testing, you add the following to
+<code>config/environments/test.rb</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Store uploaded files on the local file system in a temporary directory.</span>
+config.active_storage.service = <span class="hljs-symbol">:test</span>
+</code></pre>
+<p>Continue reading for more information on the built-in service adapters (e.g.
+<code>Disk</code> and <code>S3</code>) and the configuration they require.</p>
+<h3><a class="anchor" aria-hidden="true" id="disk-service"></a><a href="#disk-service" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Disk Service</h3>
+<p>Declare a Disk service in <code>config/storage.yml</code>:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">local:</span>
+<span class="hljs-attr">  service:</span> <span class="hljs-string">Disk</span>
+<span class="hljs-attr">  root:</span> &lt;%=<span class="ruby"> Rails.root.join(<span class="hljs-string">"storage"</span>) </span>%&gt;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="amazon-s3-service"></a><a href="#amazon-s3-service" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Amazon S3 Service</h3>
+<p>Declare an S3 service in <code>config/storage.yml</code>:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">amazon:</span>
+<span class="hljs-attr">  service:</span> <span class="hljs-string">S3</span>
+<span class="hljs-attr">  access_key_id:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  secret_access_key:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  region:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  bucket:</span> <span class="hljs-string">""</span>
+</code></pre>
+<p>Add the <a href="https://github.com/aws/aws-sdk-ruby"><code>aws-sdk-s3</code></a> gem to your <code>Gemfile</code>:</p>
+<pre><code class="hljs css language-ruby">gem <span class="hljs-string">"aws-sdk-s3"</span>, <span class="hljs-symbol">require:</span> <span class="hljs-literal">false</span>
+</code></pre>
+<p>NOTE: The core features of Active Storage require the following permissions: <code>s3:ListBucket</code>, <code>s3:PutObject</code>, <code>s3:GetObject</code>, and <code>s3:DeleteObject</code>. If you have additional upload options configured such as setting ACLs then additional permissions may be required.</p>
+<p>NOTE: If you want to use environment variables, standard SDK configuration files, profiles,
+IAM instance profiles or task roles, you can omit the <code>access_key_id</code>, <code>secret_access_key</code>,
+and <code>region</code> keys in the example above. The Amazon S3 Service supports all of the
+authentication options described in the [AWS SDK documentation]
+(<a href="https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/setup-config.html">https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/setup-config.html</a>).</p>
+<h3><a class="anchor" aria-hidden="true" id="microsoft-azure-storage-service"></a><a href="#microsoft-azure-storage-service" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Microsoft Azure Storage Service</h3>
+<p>Declare an Azure Storage service in <code>config/storage.yml</code>:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">azure:</span>
+<span class="hljs-attr">  service:</span> <span class="hljs-string">AzureStorage</span>
+<span class="hljs-attr">  storage_account_name:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  storage_access_key:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  container:</span> <span class="hljs-string">""</span>
+</code></pre>
+<p>Add the <a href="https://github.com/Azure/azure-storage-ruby"><code>azure-storage</code></a> gem to your <code>Gemfile</code>:</p>
+<pre><code class="hljs css language-ruby">gem <span class="hljs-string">"azure-storage"</span>, <span class="hljs-symbol">require:</span> <span class="hljs-literal">false</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="google-cloud-storage-service"></a><a href="#google-cloud-storage-service" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Google Cloud Storage Service</h3>
+<p>Declare a Google Cloud Storage service in <code>config/storage.yml</code>:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">google:</span>
+<span class="hljs-attr">  service:</span> <span class="hljs-string">GCS</span>
+<span class="hljs-attr">  credentials:</span> &lt;%=<span class="ruby"> Rails.root.join(<span class="hljs-string">"path/to/keyfile.json"</span>) </span>%&gt;
+<span class="hljs-attr">  project:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  bucket:</span> <span class="hljs-string">""</span>
+</code></pre>
+<p>Optionally provide a Hash of credentials instead of a keyfile path:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">google:</span>
+<span class="hljs-attr">  service:</span> <span class="hljs-string">GCS</span>
+<span class="hljs-attr">  credentials:</span>
+<span class="hljs-attr">    type:</span> <span class="hljs-string">"service_account"</span>
+<span class="hljs-attr">    project_id:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">    private_key_id:</span> &lt;%=<span class="ruby"> Rails.application.credentials.dig(<span class="hljs-symbol">:gcs</span>, <span class="hljs-symbol">:private_key_id</span>) </span>%&gt;
+<span class="hljs-attr">    private_key:</span> &lt;%=<span class="ruby"> Rails.application.credentials.dig(<span class="hljs-symbol">:gcs</span>, <span class="hljs-symbol">:private_key</span>).dump </span>%&gt;
+<span class="hljs-attr">    client_email:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">    client_id:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">    auth_uri:</span> <span class="hljs-string">"https://accounts.google.com/o/oauth2/auth"</span>
+<span class="hljs-attr">    token_uri:</span> <span class="hljs-string">"https://accounts.google.com/o/oauth2/token"</span>
+<span class="hljs-attr">    auth_provider_x509_cert_url:</span> <span class="hljs-string">"https://www.googleapis.com/oauth2/v1/certs"</span>
+<span class="hljs-attr">    client_x509_cert_url:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  project:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  bucket:</span> <span class="hljs-string">""</span>
+</code></pre>
+<p>Add the <a href="https://github.com/GoogleCloudPlatform/google-cloud-ruby/tree/master/google-cloud-storage"><code>google-cloud-storage</code></a> gem to your <code>Gemfile</code>:</p>
+<pre><code class="hljs css language-ruby">gem <span class="hljs-string">"google-cloud-storage"</span>, <span class="hljs-string">"~&gt; 1.11"</span>, <span class="hljs-symbol">require:</span> <span class="hljs-literal">false</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="mirror-service"></a><a href="#mirror-service" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Mirror Service</h3>
+<p>You can keep multiple services in sync by defining a mirror service. A mirror
+service replicates uploads and deletes across two or more subordinate services.</p>
+<p>A mirror service is intended to be used temporarily during a migration between
+services in production. You can start mirroring to a new service, copy
+pre-existing files from the old service to the new, then go all-in on the new
+service.</p>
+<p>NOTE: Mirroring is not atomic. It is possible for an upload to succeed on the
+primary service and fail on any of the subordinate services. Before going
+all-in on a new service, verify that all files have been copied.</p>
+<p>Define each of the services you'd like to mirror as described above. Reference
+them by name when defining a mirror service:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">s3_west_coast:</span>
+<span class="hljs-attr">  service:</span> <span class="hljs-string">S3</span>
+<span class="hljs-attr">  access_key_id:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  secret_access_key:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  region:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  bucket:</span> <span class="hljs-string">""</span>
+
+<span class="hljs-attr">s3_east_coast:</span>
+<span class="hljs-attr">  service:</span> <span class="hljs-string">S3</span>
+<span class="hljs-attr">  access_key_id:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  secret_access_key:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  region:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">  bucket:</span> <span class="hljs-string">""</span>
+
+<span class="hljs-attr">production:</span>
+<span class="hljs-attr">  service:</span> <span class="hljs-string">Mirror</span>
+<span class="hljs-attr">  primary:</span> <span class="hljs-string">s3_east_coast</span>
+<span class="hljs-attr">  mirrors:</span>
+<span class="hljs-bullet">    -</span> <span class="hljs-string">s3_west_coast</span>
+</code></pre>
+<p>Although all secondary services receive uploads, downloads are always handled
+by the primary service.</p>
+<p>Mirror services are compatible with direct uploads. New files are directly
+uploaded to the primary service. When a directly-uploaded file is attached to a
+record, a background job is enqueued to copy it to the secondary services.</p>
+<h2><a class="anchor" aria-hidden="true" id="attaching-files-to-records"></a><a href="#attaching-files-to-records" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Attaching Files to Records</h2>
+<h3><a class="anchor" aria-hidden="true" id="has_one_attached"></a><a href="#has_one_attached" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>has_one_attached</code></h3>
+<p>The <code>has_one_attached</code> macro sets up a one-to-one mapping between records and
+files. Each record can have one file attached to it.</p>
+<p>For example, suppose your application has a <code>User</code> model. If you want each user to
+have an avatar, define the <code>User</code> model like this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> &lt; ApplicationRecord</span>
+  has_one_attached <span class="hljs-symbol">:avatar</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>You can create a user with an avatar:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> form.file_field <span class="hljs-symbol">:avatar</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SignupController</span> &lt; ApplicationController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
+    user = User.create!(user_params)
+    session[<span class="hljs-symbol">:user_id</span>] = user.id
+    redirect_to root_path
+  <span class="hljs-keyword">end</span>
+
+  private
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">user_params</span></span>
+      params.<span class="hljs-keyword">require</span>(<span class="hljs-symbol">:user</span>).permit(<span class="hljs-symbol">:email_address</span>, <span class="hljs-symbol">:password</span>, <span class="hljs-symbol">:avatar</span>)
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Call <code>avatar.attach</code> to attach an avatar to an existing user:</p>
+<pre><code class="hljs css language-ruby">user.avatar.attach(params[<span class="hljs-symbol">:avatar</span>])
+</code></pre>
+<p>Call <code>avatar.attached?</code> to determine whether a particular user has an avatar:</p>
+<pre><code class="hljs css language-ruby">user.avatar.attached?
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="has_many_attached"></a><a href="#has_many_attached" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>has_many_attached</code></h3>
+<p>The <code>has_many_attached</code> macro sets up a one-to-many relationship between records
+and files. Each record can have many files attached to it.</p>
+<p>For example, suppose your application has a <code>Message</code> model. If you want each
+message to have many images, define the <code>Message</code> model like this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Message</span> &lt; ApplicationRecord</span>
+  has_many_attached <span class="hljs-symbol">:images</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>You can create a message with images:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MessagesController</span> &lt; ApplicationController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
+    message = Message.create!(message_params)
+    redirect_to message
+  <span class="hljs-keyword">end</span>
+
+  private
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">message_params</span></span>
+      params.<span class="hljs-keyword">require</span>(<span class="hljs-symbol">:message</span>).permit(<span class="hljs-symbol">:title</span>, <span class="hljs-symbol">:content</span>, <span class="hljs-symbol">images:</span> [])
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Call <code>images.attach</code> to add new images to an existing message:</p>
+<pre><code class="hljs css language-ruby">@message.images.attach(params[<span class="hljs-symbol">:images</span>])
+</code></pre>
+<p>Call <code>images.attached?</code> to determine whether a particular message has any images:</p>
+<pre><code class="hljs css language-ruby">@message.images.attached?
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="attaching-file-io-objects"></a><a href="#attaching-file-io-objects" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Attaching File/IO Objects</h3>
+<p>Sometimes you need to attach a file that doesn’t arrive via an HTTP request.
+For example, you may want to attach a file you generated on disk or downloaded
+from a user-submitted URL. You may also want to attach a fixture file in a
+model test. To do that, provide a Hash containing at least an open IO object
+and a filename:</p>
+<pre><code class="hljs css language-ruby">@message.image.attach(<span class="hljs-symbol">io:</span> File.open(<span class="hljs-string">'/path/to/file'</span>), <span class="hljs-symbol">filename:</span> <span class="hljs-string">'file.pdf'</span>)
+</code></pre>
+<p>When possible, provide a content type as well. Active Storage attempts to
+determine a file’s content type from its data. It falls back to the content
+type you provide if it can’t do that.</p>
+<pre><code class="hljs css language-ruby">@message.image.attach(<span class="hljs-symbol">io:</span> File.open(<span class="hljs-string">'/path/to/file'</span>), <span class="hljs-symbol">filename:</span> <span class="hljs-string">'file.pdf'</span>, <span class="hljs-symbol">content_type:</span> <span class="hljs-string">'application/pdf'</span>)
+</code></pre>
+<p>You can bypass the content type inference from the data by passing in
+<code>identify: false</code> along with the <code>content_type</code>.</p>
+<pre><code class="hljs css language-ruby">@message.image.attach(
+  <span class="hljs-symbol">io:</span> File.open(<span class="hljs-string">'/path/to/file'</span>),
+  <span class="hljs-symbol">filename:</span> <span class="hljs-string">'file.pdf'</span>,
+  <span class="hljs-symbol">content_type:</span> <span class="hljs-string">'application/pdf'</span>,
+  <span class="hljs-symbol">identify:</span> <span class="hljs-literal">false</span>
+)
+</code></pre>
+<p>If you don’t provide a content type and Active Storage can’t determine the
+file’s content type automatically, it defaults to application/octet-stream.</p>
+<h2><a class="anchor" aria-hidden="true" id="removing-files"></a><a href="#removing-files" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Removing Files</h2>
+<p>To remove an attachment from a model, call <code>purge</code> on the attachment. Removal
+can be done in the background if your application is setup to use Active Job.
+Purging deletes the blob and the file from the storage service.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Synchronously destroy the avatar and actual resource files.</span>
+user.avatar.purge
+
+<span class="hljs-comment"># Destroy the associated models and actual resource files async, via Active Job.</span>
+user.avatar.purge_later
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="linking-to-files"></a><a href="#linking-to-files" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Linking to Files</h2>
+<p>Generate a permanent URL for the blob that points to the application. Upon
+access, a redirect to the actual service endpoint is returned. This indirection
+decouples the public URL from the actual one, and allows, for example, mirroring
+attachments in different services for high-availability. The redirection has an
+HTTP expiration of 5 min.</p>
+<pre><code class="hljs css language-ruby">url_for(user.avatar)
+</code></pre>
+<p>To create a download link, use the <code>rails_blob_{path|url}</code> helper. Using this
+helper allows you to set the disposition.</p>
+<pre><code class="hljs css language-ruby">rails_blob_path(user.avatar, <span class="hljs-symbol">disposition:</span> <span class="hljs-string">"attachment"</span>)
+</code></pre>
+<p>If you need to create a link from outside of controller/view context (Background
+jobs, Cronjobs, etc.), you can access the rails_blob_path like this:</p>
+<pre><code class="hljs"><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Rails</span>.</span></span>application.routes.url_helpers.rails<span class="hljs-constructor">_blob_path(<span class="hljs-params">user</span>.<span class="hljs-params">avatar</span>, <span class="hljs-params">only_path</span>: <span class="hljs-params">true</span>)</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="downloading-files"></a><a href="#downloading-files" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Downloading Files</h2>
+<p>Sometimes you need to process a blob after it’s uploaded—for example, to convert
+it to a different format. Use <code>ActiveStorage::Blob#download</code> to read a blob’s
+binary data into memory:</p>
+<pre><code class="hljs css language-ruby">binary = user.avatar.download
+</code></pre>
+<p>You might want to download a blob to a file on disk so an external program (e.g.
+a virus scanner or media transcoder) can operate on it. Use
+<code>ActiveStorage::Blob#open</code> to download a blob to a tempfile on disk:</p>
+<pre><code class="hljs css language-ruby">message.video.open <span class="hljs-keyword">do</span> <span class="hljs-params">|file|</span>
+  system <span class="hljs-string">'/path/to/virus/scanner'</span>, file.path
+  <span class="hljs-comment"># ...</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="transforming-images"></a><a href="#transforming-images" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Transforming Images</h2>
+<p>To create a variation of the image, call <code>variant</code> on the <code>Blob</code>. You can pass
+any transformation to the method supported by the processor. The default
+processor is <a href="https://github.com/minimagick/minimagick">MiniMagick</a>, but you
+can also use <a href="https://www.rubydoc.info/gems/ruby-vips/Vips/Image">Vips</a>.</p>
+<p>To enable variants, add the <code>image_processing</code> gem to your <code>Gemfile</code>:</p>
+<pre><code class="hljs css language-ruby">gem <span class="hljs-string">'image_processing'</span>, <span class="hljs-string">'~&gt; 1.2'</span>
+</code></pre>
+<p>When the browser hits the variant URL, Active Storage will lazily transform the
+original blob into the specified format and redirect to its new service
+location.</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> image_tag user.avatar.variant(<span class="hljs-symbol">resize_to_limit:</span> [<span class="hljs-number">100</span>, <span class="hljs-number">100</span>]) </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>To switch to the Vips processor, you would add the following to
+<code>config/application.rb</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Use Vips for processing variants.</span>
+config.active_storage.variant_processor = <span class="hljs-symbol">:vips</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="previewing-files"></a><a href="#previewing-files" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Previewing Files</h2>
+<p>Some non-image files can be previewed: that is, they can be presented as images.
+For example, a video file can be previewed by extracting its first frame. Out of
+the box, Active Storage supports previewing videos and PDF documents.</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> @message.files.each <span class="hljs-keyword">do</span> <span class="hljs-params">|file|</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> image_tag file.preview(<span class="hljs-symbol">resize_to_limit:</span> [<span class="hljs-number">100</span>, <span class="hljs-number">100</span>]) </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">end</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+</span></code></pre>
+<p>WARNING: Extracting previews requires third-party applications, FFmpeg for
+video and muPDF for PDFs, and on macOS also XQuartz and Poppler.
+These libraries are not provided by Rails. You must install them yourself to
+use the built-in previewers. Before you install and use third-party software,
+make sure you understand the licensing implications of doing so.</p>
+<h2><a class="anchor" aria-hidden="true" id="direct-uploads"></a><a href="#direct-uploads" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Direct Uploads</h2>
+<p>Active Storage, with its included JavaScript library, supports uploading
+directly from the client to the cloud.</p>
+<h3><a class="anchor" aria-hidden="true" id="direct-upload-installation"></a><a href="#direct-upload-installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Direct upload installation</h3>
+<ol>
+<li><p>Include <code>activestorage.js</code> in your application's JavaScript bundle.</p>
+<p>Using the asset pipeline:</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">//= require activestorage</span>
+
+</code></pre>
+<p>Using the npm package:</p>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">require</span>(<span class="hljs-string">"@rails/activestorage"</span>).start()
+</code></pre></li>
+<li><p>Annotate file inputs with the direct upload URL.</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> form.file_field <span class="hljs-symbol">:attachments</span>, <span class="hljs-symbol">multiple:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">direct_upload:</span> <span class="hljs-literal">true</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre></li>
+<li><p>That's it! Uploads begin upon form submission.</p></li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="direct-upload-javascript-events"></a><a href="#direct-upload-javascript-events" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Direct upload JavaScript events</h3>
+<table>
+<thead>
+<tr><th>Event name</th><th>Event target</th><th>Event data (<code>event.detail</code>)</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>direct-uploads:start</code></td><td><code>&lt;form&gt;</code></td><td>None</td><td>A form containing files for direct upload fields was submitted.</td></tr>
+<tr><td><code>direct-upload:initialize</code></td><td><code>&lt;input&gt;</code></td><td><code>{id, file}</code></td><td>Dispatched for every file after form submission.</td></tr>
+<tr><td><code>direct-upload:start</code></td><td><code>&lt;input&gt;</code></td><td><code>{id, file}</code></td><td>A direct upload is starting.</td></tr>
+<tr><td><code>direct-upload:before-blob-request</code></td><td><code>&lt;input&gt;</code></td><td><code>{id, file, xhr}</code></td><td>Before making a request to your application for direct upload metadata.</td></tr>
+<tr><td><code>direct-upload:before-storage-request</code></td><td><code>&lt;input&gt;</code></td><td><code>{id, file, xhr}</code></td><td>Before making a request to store a file.</td></tr>
+<tr><td><code>direct-upload:progress</code></td><td><code>&lt;input&gt;</code></td><td><code>{id, file, progress}</code></td><td>As requests to store files progress.</td></tr>
+<tr><td><code>direct-upload:error</code></td><td><code>&lt;input&gt;</code></td><td><code>{id, file, error}</code></td><td>An error occurred. An <code>alert</code> will display unless this event is canceled.</td></tr>
+<tr><td><code>direct-upload:end</code></td><td><code>&lt;input&gt;</code></td><td><code>{id, file}</code></td><td>A direct upload has ended.</td></tr>
+<tr><td><code>direct-uploads:end</code></td><td><code>&lt;form&gt;</code></td><td>None</td><td>All direct uploads have ended.</td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
+<p>You can use these events to show the progress of an upload.</p>
+<p><img src="https://user-images.githubusercontent.com/5355/28694528-16e69d0c-72f8-11e7-91a7-c0b8cfc90391.gif" alt="direct-uploads"></p>
+<p>To show the uploaded files in a form:</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// direct_uploads.js</span>
+
+addEventListener(<span class="hljs-string">"direct-upload:initialize"</span>, event =&gt; {
+  <span class="hljs-keyword">const</span> { target, detail } = event
+  <span class="hljs-keyword">const</span> { id, file } = detail
+  target.insertAdjacentHTML(<span class="hljs-string">"beforebegin"</span>, <span class="hljs-string">`
+    &lt;div id="direct-upload-<span class="hljs-subst">${id}</span>" class="direct-upload direct-upload--pending"&gt;
+      &lt;div id="direct-upload-progress-<span class="hljs-subst">${id}</span>" class="direct-upload__progress" style="width: 0%"&gt;&lt;/div&gt;
+      &lt;span class="direct-upload__filename"&gt;<span class="hljs-subst">${file.name}</span>&lt;/span&gt;
+    &lt;/div&gt;
+  `</span>)
+})
+
+addEventListener(<span class="hljs-string">"direct-upload:start"</span>, event =&gt; {
+  <span class="hljs-keyword">const</span> { id } = event.detail
+  <span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">`direct-upload-<span class="hljs-subst">${id}</span>`</span>)
+  element.classList.remove(<span class="hljs-string">"direct-upload--pending"</span>)
+})
+
+addEventListener(<span class="hljs-string">"direct-upload:progress"</span>, event =&gt; {
+  <span class="hljs-keyword">const</span> { id, progress } = event.detail
+  <span class="hljs-keyword">const</span> progressElement = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">`direct-upload-progress-<span class="hljs-subst">${id}</span>`</span>)
+  progressElement.style.width = <span class="hljs-string">`<span class="hljs-subst">${progress}</span>%`</span>
+})
+
+addEventListener(<span class="hljs-string">"direct-upload:error"</span>, event =&gt; {
+  event.preventDefault()
+  <span class="hljs-keyword">const</span> { id, error } = event.detail
+  <span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">`direct-upload-<span class="hljs-subst">${id}</span>`</span>)
+  element.classList.add(<span class="hljs-string">"direct-upload--error"</span>)
+  element.setAttribute(<span class="hljs-string">"title"</span>, error)
+})
+
+addEventListener(<span class="hljs-string">"direct-upload:end"</span>, event =&gt; {
+  <span class="hljs-keyword">const</span> { id } = event.detail
+  <span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">`direct-upload-<span class="hljs-subst">${id}</span>`</span>)
+  element.classList.add(<span class="hljs-string">"direct-upload--complete"</span>)
+})
+</code></pre>
+<p>Add styles:</p>
+<pre><code class="hljs css language-css"><span class="hljs-comment">/* direct_uploads.css */</span>
+
+<span class="hljs-selector-class">.direct-upload</span> {
+  <span class="hljs-attribute">display</span>: inline-block;
+  <span class="hljs-attribute">position</span>: relative;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">2px</span> <span class="hljs-number">4px</span>;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> <span class="hljs-number">3px</span> <span class="hljs-number">3px</span> <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">rgba</span>(0, 0, 0, 0.3);
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">3px</span>;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">11px</span>;
+  <span class="hljs-attribute">line-height</span>: <span class="hljs-number">13px</span>;
+}
+
+<span class="hljs-selector-class">.direct-upload--pending</span> {
+  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0.6</span>;
+}
+
+<span class="hljs-selector-class">.direct-upload__progress</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0.2</span>;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#0076ff</span>;
+  <span class="hljs-attribute">transition</span>: width <span class="hljs-number">120ms</span> ease-out, opacity <span class="hljs-number">60ms</span> <span class="hljs-number">60ms</span> ease-in;
+  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate3d</span>(0, 0, 0);
+}
+
+<span class="hljs-selector-class">.direct-upload--complete</span> <span class="hljs-selector-class">.direct-upload__progress</span> {
+  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0.4</span>;
+}
+
+<span class="hljs-selector-class">.direct-upload--error</span> {
+  <span class="hljs-attribute">border-color</span>: red;
+}
+
+<span class="hljs-selector-tag">input</span><span class="hljs-selector-attr">[type=file]</span><span class="hljs-selector-attr">[data-direct-upload-url]</span><span class="hljs-selector-attr">[disabled]</span> {
+  <span class="hljs-attribute">display</span>: none;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="integrating-with-libraries-or-frameworks"></a><a href="#integrating-with-libraries-or-frameworks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Integrating with Libraries or Frameworks</h3>
+<p>If you want to use the Direct Upload feature from a JavaScript framework, or
+you want to integrate custom drag and drop solutions, you can use the
+<code>DirectUpload</code> class for this purpose. Upon receiving a file from your library
+of choice, instantiate a DirectUpload and call its create method. Create takes
+a callback to invoke when the upload completes.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { DirectUpload } <span class="hljs-keyword">from</span> <span class="hljs-string">"@rails/activestorage"</span>
+
+<span class="hljs-keyword">const</span> input = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'input[type=file]'</span>)
+
+<span class="hljs-comment">// Bind to file drop - use the ondrop on a parent element or use a</span>
+<span class="hljs-comment">//  library like Dropzone</span>
+<span class="hljs-keyword">const</span> onDrop = <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> {
+  event.preventDefault()
+  <span class="hljs-keyword">const</span> files = event.dataTransfer.files;
+  <span class="hljs-built_in">Array</span>.from(files).forEach(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> uploadFile(file))
+}
+
+<span class="hljs-comment">// Bind to normal file selection</span>
+input.addEventListener(<span class="hljs-string">'change'</span>, (event) =&gt; {
+  <span class="hljs-built_in">Array</span>.from(input.files).forEach(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> uploadFile(file))
+  <span class="hljs-comment">// you might clear the selected files from the input</span>
+  input.value = <span class="hljs-literal">null</span>
+})
+
+<span class="hljs-keyword">const</span> uploadFile = <span class="hljs-function">(<span class="hljs-params">file</span>) =&gt;</span> {
+  <span class="hljs-comment">// your form needs the file_field direct_upload: true, which</span>
+  <span class="hljs-comment">//  provides data-direct-upload-url</span>
+  <span class="hljs-keyword">const</span> url = input.dataset.directUploadUrl
+  <span class="hljs-keyword">const</span> upload = <span class="hljs-keyword">new</span> DirectUpload(file, url)
+
+  upload.create(<span class="hljs-function">(<span class="hljs-params">error, blob</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (error) {
+      <span class="hljs-comment">// Handle the error</span>
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-comment">// Add an appropriately-named hidden input to the form with a</span>
+      <span class="hljs-comment">//  value of blob.signed_id so that the blob ids will be</span>
+      <span class="hljs-comment">//  transmitted in the normal upload flow</span>
+      <span class="hljs-keyword">const</span> hiddenField = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'input'</span>)
+      hiddenField.setAttribute(<span class="hljs-string">"type"</span>, <span class="hljs-string">"hidden"</span>);
+      hiddenField.setAttribute(<span class="hljs-string">"value"</span>, blob.signed_id);
+      hiddenField.name = input.name
+      <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'form'</span>).appendChild(hiddenField)
+    }
+  })
+}
+</code></pre>
+<p>If you need to track the progress of the file upload, you can pass a third
+parameter to the <code>DirectUpload</code> constructor. During the upload, DirectUpload
+will call the object's <code>directUploadWillStoreFileWithXHR</code> method. You can then
+bind your own progress handler on the XHR.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { DirectUpload } <span class="hljs-keyword">from</span> <span class="hljs-string">"@rails/activestorage"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Uploader</span> </span>{
+  <span class="hljs-keyword">constructor</span>(file, url) {
+    <span class="hljs-keyword">this</span>.upload = <span class="hljs-keyword">new</span> DirectUpload(<span class="hljs-keyword">this</span>.file, <span class="hljs-keyword">this</span>.url, <span class="hljs-keyword">this</span>)
+  }
+
+  upload(file) {
+    <span class="hljs-keyword">this</span>.upload.create(<span class="hljs-function">(<span class="hljs-params">error, blob</span>) =&gt;</span> {
+      <span class="hljs-keyword">if</span> (error) {
+        <span class="hljs-comment">// Handle the error</span>
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// Add an appropriately-named hidden input to the form</span>
+        <span class="hljs-comment">// with a value of blob.signed_id</span>
+      }
+    })
+  }
+
+  directUploadWillStoreFileWithXHR(request) {
+    request.upload.addEventListener(<span class="hljs-string">"progress"</span>,
+      event =&gt; <span class="hljs-keyword">this</span>.directUploadDidProgress(event))
+  }
+
+  directUploadDidProgress(event) {
+    <span class="hljs-comment">// Use event.loaded and event.total to update the progress bar</span>
+  }
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="discarding-files-stored-during-system-tests"></a><a href="#discarding-files-stored-during-system-tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Discarding Files Stored During System Tests</h2>
+<p>System tests clean up test data by rolling back a transaction. Because destroy
+is never called on an object, the attached files are never cleaned up. If you
+want to clear the files, you can do it in an <code>after_teardown</code> callback. Doing it
+here ensures that all connections created during the test are complete and
+you won't receive an error from Active Storage saying it can't find a file.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationSystemTestCase</span> &lt; ActionDispatch::SystemTestCase</span>
+  driven_by <span class="hljs-symbol">:selenium</span>, <span class="hljs-symbol">using:</span> <span class="hljs-symbol">:chrome</span>, <span class="hljs-symbol">screen_size:</span> [<span class="hljs-number">1400</span>, <span class="hljs-number">1400</span>]
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">remove_uploaded_files</span></span>
+    FileUtils.rm_rf(<span class="hljs-string">"<span class="hljs-subst">#{Rails.root}</span>/storage_test"</span>)
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">after_teardown</span></span>
+    <span class="hljs-keyword">super</span>
+    remove_uploaded_files
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If your system tests verify the deletion of a model with attachments and you're
+using Active Job, set your test environment to use the inline queue adapter so
+the purge job is executed immediately rather at an unknown time in the future.</p>
+<p>You may also want to use a separate service definition for the test environment
+so your tests don't delete the files you create during development.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Use inline job processing to make things happen immediately</span>
+config.active_job.queue_adapter = <span class="hljs-symbol">:inline</span>
+
+<span class="hljs-comment"># Separate file storage in the test environment</span>
+config.active_storage.service = <span class="hljs-symbol">:local_test</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="discarding-files-stored-during-integration-tests"></a><a href="#discarding-files-stored-during-integration-tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Discarding Files Stored During Integration Tests</h2>
+<p>Similarly to System Tests, files uploaded during Integration Tests will not be
+automatically cleaned up. If you want to clear the files, you can do it in an
+<code>after_teardown</code> callback. Doing it here ensures that all connections created
+during the test are complete and you won't receive an error from Active Storage
+saying it can't find a file.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">RemoveUploadedFiles</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">after_teardown</span></span>
+    <span class="hljs-keyword">super</span>
+    remove_uploaded_files
+  <span class="hljs-keyword">end</span>
+
+  private
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">remove_uploaded_files</span></span>
+    FileUtils.rm_rf(Rails.root.join(<span class="hljs-string">'tmp'</span>, <span class="hljs-string">'storage'</span>))
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">ActionDispatch</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IntegrationTest</span></span>
+    prepend RemoveUploadedFiles
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="implementing-support-for-other-cloud-services"></a><a href="#implementing-support-for-other-cloud-services" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Implementing Support for Other Cloud Services</h2>
+<p>If you need to support a cloud service other than these, you will need to
+implement the Service. Each service extends
+<a href="https://github.com/rails/rails/blob/master/activestorage/lib/active_storage/service.rb"><code>ActiveStorage::Service</code></a>
+by implementing the methods necessary to upload and download files to the cloud.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/action%20text"><span class="arrow-prev">← </span><span>Action Text Overview</span></a><a class="docs-next button" href="/rails-setup/docs/action%20cable"><span>Action Cable Overview</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#what-is-active-storage">What is Active Storage?</a></li><li><a href="#setup">Setup</a><ul class="toc-headings"><li><a href="#disk-service">Disk Service</a></li><li><a href="#amazon-s3-service">Amazon S3 Service</a></li><li><a href="#microsoft-azure-storage-service">Microsoft Azure Storage Service</a></li><li><a href="#google-cloud-storage-service">Google Cloud Storage Service</a></li><li><a href="#mirror-service">Mirror Service</a></li></ul></li><li><a href="#attaching-files-to-records">Attaching Files to Records</a><ul class="toc-headings"><li><a href="#has_one_attached"><code>has_one_attached</code></a></li><li><a href="#has_many_attached"><code>has_many_attached</code></a></li><li><a href="#attaching-file-io-objects">Attaching File/IO Objects</a></li></ul></li><li><a href="#removing-files">Removing Files</a></li><li><a href="#linking-to-files">Linking to Files</a></li><li><a href="#downloading-files">Downloading Files</a></li><li><a href="#transforming-images">Transforming Images</a></li><li><a href="#previewing-files">Previewing Files</a></li><li><a href="#direct-uploads">Direct Uploads</a><ul class="toc-headings"><li><a href="#direct-upload-installation">Direct upload installation</a></li><li><a href="#direct-upload-javascript-events">Direct upload JavaScript events</a></li><li><a href="#example">Example</a></li><li><a href="#integrating-with-libraries-or-frameworks">Integrating with Libraries or Frameworks</a></li></ul></li><li><a href="#discarding-files-stored-during-system-tests">Discarding Files Stored During System Tests</a></li><li><a href="#discarding-files-stored-during-integration-tests">Discarding Files Stored During Integration Tests</a></li><li><a href="#implementing-support-for-other-cloud-services">Implementing Support for Other Cloud Services</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Rails Setup</section></footer></div></body></html>

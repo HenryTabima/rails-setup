@@ -1,0 +1,1049 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Active Record Validations · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This guide teaches you how to validate the state of objects before they go into&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Active Record Validations · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;This guide teaches you how to validate the state of objects before they go into&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/getting started" target="_self">Rails Docs</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Models</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Start Here</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/getting started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/development dependencies install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Models</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record migrations">Active Record Migrations</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/active record validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/multiple databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active record postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Views</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/layouts and rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action view form helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Controllers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Other Components</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active support core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active support instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/active storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/action cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Digging Deeper</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/testing rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/securing rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/debugging rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/configuring rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails command line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/asset pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/working with javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/autoloading and reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/caching with rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/api only apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Extending Rails</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails on rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/generators &amp; templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/application templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/creating rails plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Contributions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/contributing to rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/api documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/guides guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Policies</h3><ul class=""><li class="navListItem"><a class="navItem" href="/rails-setup/docs/maintenance policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Active Record Validations</h1></header><article><div><span><p>This guide teaches you how to validate the state of objects before they go into
+the database using Active Record's validations feature.</p>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>How to use the built-in Active Record validation helpers.</li>
+<li>How to create your own custom validation methods.</li>
+<li>How to work with the error messages generated by the validation process.</li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="validations-overview"></a><a href="#validations-overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Validations Overview</h2>
+<p>Here's an example of a very simple validation:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+
+Person.create(<span class="hljs-symbol">name:</span> <span class="hljs-string">"John Doe"</span>).valid? <span class="hljs-comment"># =&gt; true</span>
+Person.create(<span class="hljs-symbol">name:</span> <span class="hljs-literal">nil</span>).valid? <span class="hljs-comment"># =&gt; false</span>
+</code></pre>
+<p>As you can see, our validation lets us know that our <code>Person</code> is not valid
+without a <code>name</code> attribute. The second <code>Person</code> will not be persisted to the
+database.</p>
+<p>Before we dig into more details, let's talk about how validations fit into the
+big picture of your application.</p>
+<h3><a class="anchor" aria-hidden="true" id="why-use-validations"></a><a href="#why-use-validations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why Use Validations?</h3>
+<p>Validations are used to ensure that only valid data is saved into your
+database. For example, it may be important to your application to ensure that
+every user provides a valid email address and mailing address. Model-level
+validations are the best way to ensure that only valid data is saved into your
+database. They are database agnostic, cannot be bypassed by end users, and are
+convenient to test and maintain. Rails makes them easy to use, provides
+built-in helpers for common needs, and allows you to create your own validation
+methods as well.</p>
+<p>There are several other ways to validate data before it is saved into your
+database, including native database constraints, client-side validations and
+controller-level validations. Here's a summary of the pros and cons:</p>
+<ul>
+<li>Database constraints and/or stored procedures make the validation mechanisms
+database-dependent and can make testing and maintenance more difficult.
+However, if your database is used by other applications, it may be a good
+idea to use some constraints at the database level. Additionally,
+database-level validations can safely handle some things (such as uniqueness
+in heavily-used tables) that can be difficult to implement otherwise.</li>
+<li>Client-side validations can be useful, but are generally unreliable if used
+alone. If they are implemented using JavaScript, they may be bypassed if
+JavaScript is turned off in the user's browser. However, if combined with
+other techniques, client-side validation can be a convenient way to provide
+users with immediate feedback as they use your site.</li>
+<li>Controller-level validations can be tempting to use, but often become
+unwieldy and difficult to test and maintain. Whenever possible, it's a good
+idea to keep your controllers skinny, as it will make your application a
+pleasure to work with in the long run.</li>
+</ul>
+<p>Choose these in certain, specific cases. It's the opinion of the Rails team
+that model-level validations are the most appropriate in most circumstances.</p>
+<h3><a class="anchor" aria-hidden="true" id="when-does-validation-happen"></a><a href="#when-does-validation-happen" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>When Does Validation Happen?</h3>
+<p>There are two kinds of Active Record objects: those that correspond to a row
+inside your database and those that do not. When you create a fresh object, for
+example using the <code>new</code> method, that object does not belong to the database
+yet. Once you call <code>save</code> upon that object it will be saved into the
+appropriate database table. Active Record uses the <code>new_record?</code> instance
+method to determine whether an object is already in the database or not.
+Consider the following simple Active Record class:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>We can see how it works by looking at some <code>rails console</code> output:</p>
+<pre><code class="hljs css language-ruby">$ rails console
+<span class="hljs-meta">&gt;&gt;</span> p = Person.new(<span class="hljs-symbol">name:</span> <span class="hljs-string">"John Doe"</span>)
+=&gt; #&lt;Person id: nil, name: "John Doe", created_at: nil, updated_at: nil&gt;
+<span class="hljs-meta">&gt;&gt;</span> p.new_record?
+=&gt; true
+<span class="hljs-meta">&gt;&gt;</span> p.save
+=&gt; true
+<span class="hljs-meta">&gt;&gt;</span> p.new_record?
+=&gt; false
+</code></pre>
+<p>Creating and saving a new record will send an SQL <code>INSERT</code> operation to the
+database. Updating an existing record will send an SQL <code>UPDATE</code> operation
+instead. Validations are typically run before these commands are sent to the
+database. If any validations fail, the object will be marked as invalid and
+Active Record will not perform the <code>INSERT</code> or <code>UPDATE</code> operation. This avoids
+storing an invalid object in the database. You can choose to have specific
+validations run when an object is created, saved, or updated.</p>
+<p>CAUTION: There are many ways to change the state of an object in the database.
+Some methods will trigger validations, but some will not. This means that it's
+possible to save an object in the database in an invalid state if you aren't
+careful.</p>
+<p>The following methods trigger validations, and will save the object to the
+database only if the object is valid:</p>
+<ul>
+<li><code>create</code></li>
+<li><code>create!</code></li>
+<li><code>save</code></li>
+<li><code>save!</code></li>
+<li><code>update</code></li>
+<li><code>update!</code></li>
+</ul>
+<p>The bang versions (e.g. <code>save!</code>) raise an exception if the record is invalid.
+The non-bang versions don't: <code>save</code> and <code>update</code> return <code>false</code>, and
+<code>create</code> just returns the object.</p>
+<h3><a class="anchor" aria-hidden="true" id="skipping-validations"></a><a href="#skipping-validations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Skipping Validations</h3>
+<p>The following methods skip validations, and will save the object to the
+database regardless of its validity. They should be used with caution.</p>
+<ul>
+<li><code>decrement!</code></li>
+<li><code>decrement_counter</code></li>
+<li><code>increment!</code></li>
+<li><code>increment_counter</code></li>
+<li><code>toggle!</code></li>
+<li><code>touch</code></li>
+<li><code>update_all</code></li>
+<li><code>update_attribute</code></li>
+<li><code>update_column</code></li>
+<li><code>update_columns</code></li>
+<li><code>update_counters</code></li>
+</ul>
+<p>Note that <code>save</code> also has the ability to skip validations if passed <code>validate: false</code> as an argument. This technique should be used with caution.</p>
+<ul>
+<li><code>save(validate: false)</code></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="valid-and-invalid"></a><a href="#valid-and-invalid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>valid?</code> and <code>invalid?</code></h3>
+<p>Before saving an Active Record object, Rails runs your validations.
+If these validations produce any errors, Rails does not save the object.</p>
+<p>You can also run these validations on your own. <code>valid?</code> triggers your validations
+and returns true if no errors were found in the object, and false otherwise.
+As you saw above:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+
+Person.create(<span class="hljs-symbol">name:</span> <span class="hljs-string">"John Doe"</span>).valid? <span class="hljs-comment"># =&gt; true</span>
+Person.create(<span class="hljs-symbol">name:</span> <span class="hljs-literal">nil</span>).valid? <span class="hljs-comment"># =&gt; false</span>
+</code></pre>
+<p>After Active Record has performed validations, any errors found can be accessed
+through the <code>errors.messages</code> instance method, which returns a collection of errors.
+By definition, an object is valid if this collection is empty after running
+validations.</p>
+<p>Note that an object instantiated with <code>new</code> will not report errors
+even if it's technically invalid, because validations are automatically run
+only when the object is saved, such as with the <code>create</code> or <code>save</code> methods.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-meta">&gt;&gt;</span> p = Person.new
+<span class="hljs-comment"># =&gt; #&lt;Person id: nil, name: nil&gt;</span>
+<span class="hljs-meta">&gt;&gt;</span> p.errors.messages
+<span class="hljs-comment"># =&gt; {}</span>
+
+<span class="hljs-meta">&gt;&gt;</span> p.valid?
+<span class="hljs-comment"># =&gt; false</span>
+<span class="hljs-meta">&gt;&gt;</span> p.errors.messages
+<span class="hljs-comment"># =&gt; {name:["can't be blank"]}</span>
+
+<span class="hljs-meta">&gt;&gt;</span> p = Person.create
+<span class="hljs-comment"># =&gt; #&lt;Person id: nil, name: nil&gt;</span>
+<span class="hljs-meta">&gt;&gt;</span> p.errors.messages
+<span class="hljs-comment"># =&gt; {name:["can't be blank"]}</span>
+
+<span class="hljs-meta">&gt;&gt;</span> p.save
+<span class="hljs-comment"># =&gt; false</span>
+
+<span class="hljs-meta">&gt;&gt;</span> p.save!
+<span class="hljs-comment"># =&gt; ActiveRecord::RecordInvalid: Validation failed: Name can't be blank</span>
+
+<span class="hljs-meta">&gt;&gt;</span> Person.create!
+<span class="hljs-comment"># =&gt; ActiveRecord::RecordInvalid: Validation failed: Name can't be blank</span>
+</code></pre>
+<p><code>invalid?</code> is simply the inverse of <code>valid?</code>. It triggers your validations,
+returning true if any errors were found in the object, and false otherwise.</p>
+<h3><a class="anchor" aria-hidden="true" id="errors"></a><a href="#errors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>errors[]</code></h3>
+<p>To verify whether or not a particular attribute of an object is valid, you can
+use <code>errors[:attribute]</code>. It returns an array of all the errors for
+<code>:attribute</code>. If there are no errors on the specified attribute, an empty array
+is returned.</p>
+<p>This method is only useful <em>after</em> validations have been run, because it only
+inspects the errors collection and does not trigger validations itself. It's
+different from the <code>ActiveRecord::Base#invalid?</code> method explained above because
+it doesn't verify the validity of the object as a whole. It only checks to see
+whether there are errors found on an individual attribute of the object.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-meta">&gt;&gt;</span> Person.new.errors[<span class="hljs-symbol">:name</span>].any? <span class="hljs-comment"># =&gt; false</span>
+<span class="hljs-meta">&gt;&gt;</span> Person.create.errors[<span class="hljs-symbol">:name</span>].any? <span class="hljs-comment"># =&gt; true</span>
+</code></pre>
+<p>We'll cover validation errors in greater depth in the <a href="#working-with-validation-errors">Working with Validation
+Errors</a> section.</p>
+<h3><a class="anchor" aria-hidden="true" id="errorsdetails"></a><a href="#errorsdetails" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>errors.details</code></h3>
+<p>To check which validations failed on an invalid attribute, you can use
+<code>errors.details[:attribute]</code>. It returns an array of hashes with an <code>:error</code>
+key to get the symbol of the validator:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-meta">&gt;&gt;</span> person = Person.new
+<span class="hljs-meta">&gt;&gt;</span> person.valid?
+&gt;&gt; person.errors.details[<span class="hljs-symbol">:name</span>] <span class="hljs-comment"># =&gt; [{error: :blank}]</span>
+</code></pre>
+<p>Using <code>details</code> with custom validators is covered in the <a href="#working-with-validation-errors">Working with
+Validation Errors</a> section.</p>
+<h2><a class="anchor" aria-hidden="true" id="validation-helpers"></a><a href="#validation-helpers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Validation Helpers</h2>
+<p>Active Record offers many pre-defined validation helpers that you can use
+directly inside your class definitions. These helpers provide common validation
+rules. Every time a validation fails, an error message is added to the object's
+<code>errors</code> collection, and this message is associated with the attribute being
+validated.</p>
+<p>Each helper accepts an arbitrary number of attribute names, so with a single
+line of code you can add the same kind of validation to several attributes.</p>
+<p>All of them accept the <code>:on</code> and <code>:message</code> options, which define when the
+validation should be run and what message should be added to the <code>errors</code>
+collection if it fails, respectively. The <code>:on</code> option takes one of the values
+<code>:create</code> or <code>:update</code>. There is a default error
+message for each one of the validation helpers. These messages are used when
+the <code>:message</code> option isn't specified. Let's take a look at each one of the
+available helpers.</p>
+<h3><a class="anchor" aria-hidden="true" id="acceptance"></a><a href="#acceptance" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>acceptance</code></h3>
+<p>This method validates that a checkbox on the user interface was checked when a
+form was submitted. This is typically used when the user needs to agree to your
+application's terms of service, confirm that some text is read, or any similar
+concept.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:terms_of_service</span>, <span class="hljs-symbol">acceptance:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This check is performed only if <code>terms_of_service</code> is not <code>nil</code>.
+The default error message for this helper is <em>&quot;must be accepted&quot;</em>.
+You can also pass custom message via the <code>message</code> option.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:terms_of_service</span>, <span class="hljs-symbol">acceptance:</span> { <span class="hljs-symbol">message:</span> <span class="hljs-string">'must be abided'</span> }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>It can also receive an <code>:accept</code> option, which determines the allowed values
+that will be considered as accepted. It defaults to <code>['1', true]</code> and can be
+easily changed.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:terms_of_service</span>, <span class="hljs-symbol">acceptance:</span> { <span class="hljs-symbol">accept:</span> <span class="hljs-string">'yes'</span> }
+  validates <span class="hljs-symbol">:eula</span>, <span class="hljs-symbol">acceptance:</span> { <span class="hljs-symbol">accept:</span> [<span class="hljs-string">'TRUE'</span>, <span class="hljs-string">'accepted'</span>] }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This validation is very specific to web applications and this
+'acceptance' does not need to be recorded anywhere in your database. If you
+don't have a field for it, the helper will just create a virtual attribute. If
+the field does exist in your database, the <code>accept</code> option must be set to
+or include <code>true</code> or else the validation will not run.</p>
+<h3><a class="anchor" aria-hidden="true" id="validates_associated"></a><a href="#validates_associated" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>validates_associated</code></h3>
+<p>You should use this helper when your model has associations with other models
+and they also need to be validated. When you try to save your object, <code>valid?</code>
+will be called upon each one of the associated objects.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Library</span> &lt; ApplicationRecord</span>
+  has_many <span class="hljs-symbol">:books</span>
+  validates_associated <span class="hljs-symbol">:books</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This validation will work with all of the association types.</p>
+<p>CAUTION: Don't use <code>validates_associated</code> on both ends of your associations.
+They would call each other in an infinite loop.</p>
+<p>The default error message for <code>validates_associated</code> is <em>&quot;is invalid&quot;</em>. Note
+that each associated object will contain its own <code>errors</code> collection; errors do
+not bubble up to the calling model.</p>
+<h3><a class="anchor" aria-hidden="true" id="confirmation"></a><a href="#confirmation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>confirmation</code></h3>
+<p>You should use this helper when you have two text fields that should receive
+exactly the same content. For example, you may want to confirm an email address
+or a password. This validation creates a virtual attribute whose name is the
+name of the field that has to be confirmed with &quot;_confirmation&quot; appended.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:email</span>, <span class="hljs-symbol">confirmation:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>In your view template you could use something like</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> text_field <span class="hljs-symbol">:person</span>, <span class="hljs-symbol">:email</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> text_field <span class="hljs-symbol">:person</span>, <span class="hljs-symbol">:email_confirmation</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>This check is performed only if <code>email_confirmation</code> is not <code>nil</code>. To require
+confirmation, make sure to add a presence check for the confirmation attribute
+(we'll take a look at <code>presence</code> later on in this guide):</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:email</span>, <span class="hljs-symbol">confirmation:</span> <span class="hljs-literal">true</span>
+  validates <span class="hljs-symbol">:email_confirmation</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>There is also a <code>:case_sensitive</code> option that you can use to define whether the
+confirmation constraint will be case sensitive or not. This option defaults to
+true.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:email</span>, <span class="hljs-symbol">confirmation:</span> { <span class="hljs-symbol">case_sensitive:</span> <span class="hljs-literal">false</span> }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The default error message for this helper is <em>&quot;doesn't match confirmation&quot;</em>.</p>
+<h3><a class="anchor" aria-hidden="true" id="exclusion"></a><a href="#exclusion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>exclusion</code></h3>
+<p>This helper validates that the attributes' values are not included in a given
+set. In fact, this set can be any enumerable object.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Account</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:subdomain</span>, <span class="hljs-symbol">exclusion:</span> { <span class="hljs-symbol">in:</span> <span class="hljs-string">%w(www us ca jp)</span>,
+    <span class="hljs-symbol">message:</span> <span class="hljs-string">"%{value} is reserved."</span> }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The <code>exclusion</code> helper has an option <code>:in</code> that receives the set of values that
+will not be accepted for the validated attributes. The <code>:in</code> option has an
+alias called <code>:within</code> that you can use for the same purpose, if you'd like to.
+This example uses the <code>:message</code> option to show how you can include the
+attribute's value. For full options to the message argument please see the
+<a href="#message">message documentation</a>.</p>
+<p>The default error message is <em>&quot;is reserved&quot;</em>.</p>
+<h3><a class="anchor" aria-hidden="true" id="format"></a><a href="#format" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>format</code></h3>
+<p>This helper validates the attributes' values by testing whether they match a
+given regular expression, which is specified using the <code>:with</code> option.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Product</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:legacy_code</span>, <span class="hljs-symbol">format:</span> { <span class="hljs-symbol">with:</span> /\A[a-zA-Z]+\z/,
+    <span class="hljs-symbol">message:</span> <span class="hljs-string">"only allows letters"</span> }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Alternatively, you can require that the specified attribute does <em>not</em> match the regular expression by using the <code>:without</code> option.</p>
+<p>The default error message is <em>&quot;is invalid&quot;</em>.</p>
+<h3><a class="anchor" aria-hidden="true" id="inclusion"></a><a href="#inclusion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>inclusion</code></h3>
+<p>This helper validates that the attributes' values are included in a given set.
+In fact, this set can be any enumerable object.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Coffee</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:size</span>, <span class="hljs-symbol">inclusion:</span> { <span class="hljs-symbol">in:</span> <span class="hljs-string">%w(small medium large)</span>,
+    <span class="hljs-symbol">message:</span> <span class="hljs-string">"%{value} is not a valid size"</span> }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The <code>inclusion</code> helper has an option <code>:in</code> that receives the set of values that
+will be accepted. The <code>:in</code> option has an alias called <code>:within</code> that you can
+use for the same purpose, if you'd like to. The previous example uses the
+<code>:message</code> option to show how you can include the attribute's value. For full
+options please see the <a href="#message">message documentation</a>.</p>
+<p>The default error message for this helper is <em>&quot;is not included in the list&quot;</em>.</p>
+<h3><a class="anchor" aria-hidden="true" id="length"></a><a href="#length" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>length</code></h3>
+<p>This helper validates the length of the attributes' values. It provides a
+variety of options, so you can specify length constraints in different ways:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">length:</span> { <span class="hljs-symbol">minimum:</span> <span class="hljs-number">2</span> }
+  validates <span class="hljs-symbol">:bio</span>, <span class="hljs-symbol">length:</span> { <span class="hljs-symbol">maximum:</span> <span class="hljs-number">500</span> }
+  validates <span class="hljs-symbol">:password</span>, <span class="hljs-symbol">length:</span> { <span class="hljs-symbol">in:</span> <span class="hljs-number">6</span>..<span class="hljs-number">20</span> }
+  validates <span class="hljs-symbol">:registration_number</span>, <span class="hljs-symbol">length:</span> { <span class="hljs-symbol">is:</span> <span class="hljs-number">6</span> }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The possible length constraint options are:</p>
+<ul>
+<li><code>:minimum</code> - The attribute cannot have less than the specified length.</li>
+<li><code>:maximum</code> - The attribute cannot have more than the specified length.</li>
+<li><code>:in</code> (or <code>:within</code>) - The attribute length must be included in a given
+interval. The value for this option must be a range.</li>
+<li><code>:is</code> - The attribute length must be equal to the given value.</li>
+</ul>
+<p>The default error messages depend on the type of length validation being
+performed. You can personalize these messages using the <code>:wrong_length</code>,
+<code>:too_long</code>, and <code>:too_short</code> options and <code>%{count}</code> as a placeholder for the
+number corresponding to the length constraint being used. You can still use the
+<code>:message</code> option to specify an error message.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:bio</span>, <span class="hljs-symbol">length:</span> { <span class="hljs-symbol">maximum:</span> <span class="hljs-number">1000</span>,
+    <span class="hljs-symbol">too_long:</span> <span class="hljs-string">"%{count} characters is the maximum allowed"</span> }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Note that the default error messages are plural (e.g., &quot;is too short (minimum
+is %{count} characters)&quot;). For this reason, when <code>:minimum</code> is 1 you should
+provide a personalized message or use <code>presence: true</code> instead. When
+<code>:in</code> or <code>:within</code> have a lower limit of 1, you should either provide a
+personalized message or call <code>presence</code> prior to <code>length</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="numericality"></a><a href="#numericality" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>numericality</code></h3>
+<p>This helper validates that your attributes have only numeric values. By
+default, it will match an optional sign followed by an integral or floating
+point number. To specify that only integral numbers are allowed set
+<code>:only_integer</code> to true.</p>
+<p>If you set <code>:only_integer</code> to <code>true</code>, then it will use the</p>
+<pre><code class="hljs css language-ruby">/\A[+-]<span class="hljs-string">?\d</span>+\z/
+</code></pre>
+<p>regular expression to validate the attribute's value. Otherwise, it will try to
+convert the value to a number using <code>Float</code>.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:points</span>, <span class="hljs-symbol">numericality:</span> <span class="hljs-literal">true</span>
+  validates <span class="hljs-symbol">:games_played</span>, <span class="hljs-symbol">numericality:</span> { <span class="hljs-symbol">only_integer:</span> <span class="hljs-literal">true</span> }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Besides <code>:only_integer</code>, this helper also accepts the following options to add
+constraints to acceptable values:</p>
+<ul>
+<li><code>:greater_than</code> - Specifies the value must be greater than the supplied
+value. The default error message for this option is <em>&quot;must be greater than
+%{count}&quot;</em>.</li>
+<li><code>:greater_than_or_equal_to</code> - Specifies the value must be greater than or
+equal to the supplied value. The default error message for this option is
+<em>&quot;must be greater than or equal to %{count}&quot;</em>.</li>
+<li><code>:equal_to</code> - Specifies the value must be equal to the supplied value. The
+default error message for this option is <em>&quot;must be equal to %{count}&quot;</em>.</li>
+<li><code>:less_than</code> - Specifies the value must be less than the supplied value. The
+default error message for this option is <em>&quot;must be less than %{count}&quot;</em>.</li>
+<li><code>:less_than_or_equal_to</code> - Specifies the value must be less than or equal to
+the supplied value. The default error message for this option is <em>&quot;must be
+less than or equal to %{count}&quot;</em>.</li>
+<li><code>:other_than</code> - Specifies the value must be other than the supplied value.
+The default error message for this option is <em>&quot;must be other than %{count}&quot;</em>.</li>
+<li><code>:odd</code> - Specifies the value must be an odd number if set to true. The
+default error message for this option is <em>&quot;must be odd&quot;</em>.</li>
+<li><code>:even</code> - Specifies the value must be an even number if set to true. The
+default error message for this option is <em>&quot;must be even&quot;</em>.</li>
+</ul>
+<p>NOTE: By default, <code>numericality</code> doesn't allow <code>nil</code> values. You can use <code>allow_nil: true</code> option to permit it.</p>
+<p>The default error message is <em>&quot;is not a number&quot;</em>.</p>
+<h3><a class="anchor" aria-hidden="true" id="presence"></a><a href="#presence" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>presence</code></h3>
+<p>This helper validates that the specified attributes are not empty. It uses the
+<code>blank?</code> method to check if the value is either <code>nil</code> or a blank string, that
+is, a string that is either empty or consists of whitespace.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">:login</span>, <span class="hljs-symbol">:email</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If you want to be sure that an association is present, you'll need to test
+whether the associated object itself is present, and not the foreign key used
+to map the association. This way, it is not only checked that the foreign key
+is not empty but also that the referenced object exists.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LineItem</span> &lt; ApplicationRecord</span>
+  belongs_to <span class="hljs-symbol">:order</span>
+  validates <span class="hljs-symbol">:order</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>In order to validate associated records whose presence is required, you must
+specify the <code>:inverse_of</code> option for the association:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Order</span> &lt; ApplicationRecord</span>
+  has_many <span class="hljs-symbol">:line_items</span>, <span class="hljs-symbol">inverse_of:</span> <span class="hljs-symbol">:order</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If you validate the presence of an object associated via a <code>has_one</code> or
+<code>has_many</code> relationship, it will check that the object is neither <code>blank?</code> nor
+<code>marked_for_destruction?</code>.</p>
+<p>Since <code>false.blank?</code> is true, if you want to validate the presence of a boolean
+field you should use one of the following validations:</p>
+<pre><code class="hljs css language-ruby">validates <span class="hljs-symbol">:boolean_field_name</span>, <span class="hljs-symbol">inclusion:</span> { <span class="hljs-symbol">in:</span> [<span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>] }
+validates <span class="hljs-symbol">:boolean_field_name</span>, <span class="hljs-symbol">exclusion:</span> { <span class="hljs-symbol">in:</span> [<span class="hljs-literal">nil</span>] }
+</code></pre>
+<p>By using one of these validations, you will ensure the value will NOT be <code>nil</code>
+which would result in a <code>NULL</code> value in most cases.</p>
+<h3><a class="anchor" aria-hidden="true" id="absence"></a><a href="#absence" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>absence</code></h3>
+<p>This helper validates that the specified attributes are absent. It uses the
+<code>present?</code> method to check if the value is not either nil or a blank string, that
+is, a string that is either empty or consists of whitespace.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">:login</span>, <span class="hljs-symbol">:email</span>, <span class="hljs-symbol">absence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If you want to be sure that an association is absent, you'll need to test
+whether the associated object itself is absent, and not the foreign key used
+to map the association.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LineItem</span> &lt; ApplicationRecord</span>
+  belongs_to <span class="hljs-symbol">:order</span>
+  validates <span class="hljs-symbol">:order</span>, <span class="hljs-symbol">absence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>In order to validate associated records whose absence is required, you must
+specify the <code>:inverse_of</code> option for the association:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Order</span> &lt; ApplicationRecord</span>
+  has_many <span class="hljs-symbol">:line_items</span>, <span class="hljs-symbol">inverse_of:</span> <span class="hljs-symbol">:order</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If you validate the absence of an object associated via a <code>has_one</code> or
+<code>has_many</code> relationship, it will check that the object is neither <code>present?</code> nor
+<code>marked_for_destruction?</code>.</p>
+<p>Since <code>false.present?</code> is false, if you want to validate the absence of a boolean
+field you should use <code>validates :field_name, exclusion: { in: [true, false] }</code>.</p>
+<p>The default error message is <em>&quot;must be blank&quot;</em>.</p>
+<h3><a class="anchor" aria-hidden="true" id="uniqueness"></a><a href="#uniqueness" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>uniqueness</code></h3>
+<p>This helper validates that the attribute's value is unique right before the
+object gets saved. It does not create a uniqueness constraint in the database,
+so it may happen that two different database connections create two records
+with the same value for a column that you intend to be unique. To avoid that,
+you must create a unique index on that column in your database.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Account</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:email</span>, <span class="hljs-symbol">uniqueness:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The validation happens by performing an SQL query into the model's table,
+searching for an existing record with the same value in that attribute.</p>
+<p>There is a <code>:scope</code> option that you can use to specify one or more attributes that
+are used to limit the uniqueness check:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Holiday</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">uniqueness:</span> { <span class="hljs-symbol">scope:</span> <span class="hljs-symbol">:year</span>,
+    <span class="hljs-symbol">message:</span> <span class="hljs-string">"should happen once per year"</span> }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Should you wish to create a database constraint to prevent possible violations of a uniqueness validation using the <code>:scope</code> option, you must create a unique index on both columns in your database. See <a href="https://dev.mysql.com/doc/refman/5.7/en/multiple-column-indexes.html">the MySQL manual</a> for more details about multiple column indexes or <a href="https://www.postgresql.org/docs/current/static/ddl-constraints.html">the PostgreSQL manual</a> for examples of unique constraints that refer to a group of columns.</p>
+<p>There is also a <code>:case_sensitive</code> option that you can use to define whether the
+uniqueness constraint will be case sensitive or not. This option defaults to
+true.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">uniqueness:</span> { <span class="hljs-symbol">case_sensitive:</span> <span class="hljs-literal">false</span> }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>WARNING. Note that some databases are configured to perform case-insensitive
+searches anyway.</p>
+<p>The default error message is <em>&quot;has already been taken&quot;</em>.</p>
+<h3><a class="anchor" aria-hidden="true" id="validates_with"></a><a href="#validates_with" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>validates_with</code></h3>
+<p>This helper passes the record to a separate class for validation.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GoodnessValidator</span> &lt; ActiveModel::Validator</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">validate</span><span class="hljs-params">(record)</span></span>
+    <span class="hljs-keyword">if</span> record.first_name == <span class="hljs-string">"Evil"</span>
+      record.errors.add <span class="hljs-symbol">:base</span>, <span class="hljs-string">"This person is evil"</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates_with GoodnessValidator
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>NOTE: Errors added to <code>record.errors[:base]</code> relate to the state of the record
+as a whole, and not to a specific attribute.</p>
+<p>The <code>validates_with</code> helper takes a class, or a list of classes to use for
+validation. There is no default error message for <code>validates_with</code>. You must
+manually add errors to the record's errors collection in the validator class.</p>
+<p>To implement the validate method, you must have a <code>record</code> parameter defined,
+which is the record to be validated.</p>
+<p>Like all other validations, <code>validates_with</code> takes the <code>:if</code>, <code>:unless</code> and
+<code>:on</code> options. If you pass any other options, it will send those options to the
+validator class as <code>options</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GoodnessValidator</span> &lt; ActiveModel::Validator</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">validate</span><span class="hljs-params">(record)</span></span>
+    <span class="hljs-keyword">if</span> options[<span class="hljs-symbol">:fields</span>].any?{<span class="hljs-params">|field|</span> record.send(field) == <span class="hljs-string">"Evil"</span> }
+      record.errors.add <span class="hljs-symbol">:base</span>, <span class="hljs-string">"This person is evil"</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates_with GoodnessValidator, <span class="hljs-symbol">fields:</span> [<span class="hljs-symbol">:first_name</span>, <span class="hljs-symbol">:last_name</span>]
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Note that the validator will be initialized <em>only once</em> for the whole application
+life cycle, and not on each validation run, so be careful about using instance
+variables inside it.</p>
+<p>If your validator is complex enough that you want instance variables, you can
+easily use a plain old Ruby object instead:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validate <span class="hljs-keyword">do</span> <span class="hljs-params">|person|</span>
+    GoodnessValidator.new(person).validate
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GoodnessValidator</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span><span class="hljs-params">(person)</span></span>
+    @person = person
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">validate</span></span>
+    <span class="hljs-keyword">if</span> some_complex_condition_involving_ivars_and_private_methods?
+      @person.errors.add <span class="hljs-symbol">:base</span>, <span class="hljs-string">"This person is evil"</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-comment"># ...</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="validates_each"></a><a href="#validates_each" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>validates_each</code></h3>
+<p>This helper validates attributes against a block. It doesn't have a predefined
+validation function. You should create one using a block, and every attribute
+passed to <code>validates_each</code> will be tested against it. In the following example,
+we don't want names and surnames to begin with lower case.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates_each <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">:surname</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|record, attr, value|</span>
+    record.errors.add(attr, <span class="hljs-string">'must start with upper case'</span>) <span class="hljs-keyword">if</span> value =~ <span class="hljs-regexp">/\A[[:lower:]]/</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The block receives the record, the attribute's name, and the attribute's value.
+You can do anything you like to check for valid data within the block. If your
+validation fails, you should add an error message to the model, therefore
+making it invalid.</p>
+<h2><a class="anchor" aria-hidden="true" id="common-validation-options"></a><a href="#common-validation-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Common Validation Options</h2>
+<p>These are common validation options:</p>
+<h3><a class="anchor" aria-hidden="true" id="allow_nil"></a><a href="#allow_nil" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>:allow_nil</code></h3>
+<p>The <code>:allow_nil</code> option skips the validation when the value being validated is
+<code>nil</code>.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Coffee</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:size</span>, <span class="hljs-symbol">inclusion:</span> { <span class="hljs-symbol">in:</span> <span class="hljs-string">%w(small medium large)</span>,
+    <span class="hljs-symbol">message:</span> <span class="hljs-string">"%{value} is not a valid size"</span> }, <span class="hljs-symbol">allow_nil:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>For full options to the message argument please see the
+<a href="#message">message documentation</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="allow_blank"></a><a href="#allow_blank" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>:allow_blank</code></h3>
+<p>The <code>:allow_blank</code> option is similar to the <code>:allow_nil</code> option. This option
+will let validation pass if the attribute's value is <code>blank?</code>, like <code>nil</code> or an
+empty string for example.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Topic</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:title</span>, <span class="hljs-symbol">length:</span> { <span class="hljs-symbol">is:</span> <span class="hljs-number">5</span> }, <span class="hljs-symbol">allow_blank:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+
+Topic.create(<span class="hljs-symbol">title:</span> <span class="hljs-string">""</span>).valid?  <span class="hljs-comment"># =&gt; true</span>
+Topic.create(<span class="hljs-symbol">title:</span> <span class="hljs-literal">nil</span>).valid? <span class="hljs-comment"># =&gt; true</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="message"></a><a href="#message" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>:message</code></h3>
+<p>As you've already seen, the <code>:message</code> option lets you specify the message that
+will be added to the <code>errors</code> collection when validation fails. When this
+option is not used, Active Record will use the respective default error message
+for each validation helper. The <code>:message</code> option accepts a <code>String</code> or <code>Proc</code>.</p>
+<p>A <code>String</code> <code>:message</code> value can optionally contain any/all of <code>%{value}</code>,
+<code>%{attribute}</code>, and <code>%{model}</code> which will be dynamically replaced when
+validation fails. This replacement is done using the I18n gem, and the
+placeholders must match exactly, no spaces are allowed.</p>
+<p>A <code>Proc</code> <code>:message</code> value is given two arguments: the object being validated, and
+a hash with <code>:model</code>, <code>:attribute</code>, and <code>:value</code> key-value pairs.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  <span class="hljs-comment"># Hard-coded message</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> { <span class="hljs-symbol">message:</span> <span class="hljs-string">"must be given please"</span> }
+
+  <span class="hljs-comment"># Message with dynamic attribute value. %{value} will be replaced with</span>
+  <span class="hljs-comment"># the actual value of the attribute. %{attribute} and %{model} also</span>
+  <span class="hljs-comment"># available.</span>
+  validates <span class="hljs-symbol">:age</span>, <span class="hljs-symbol">numericality:</span> { <span class="hljs-symbol">message:</span> <span class="hljs-string">"%{value} seems wrong"</span> }
+
+  <span class="hljs-comment"># Proc</span>
+  validates <span class="hljs-symbol">:username</span>,
+    <span class="hljs-symbol">uniqueness:</span> {
+      <span class="hljs-comment"># object = person object being validated</span>
+      <span class="hljs-comment"># data = { model: "Person", attribute: "Username", value: &lt;username&gt; }</span>
+      <span class="hljs-symbol">message:</span> -&gt;(object, data) <span class="hljs-keyword">do</span>
+        <span class="hljs-string">"Hey <span class="hljs-subst">#{object.name}</span>!, <span class="hljs-subst">#{data[<span class="hljs-symbol">:value</span>]}</span> is taken already! Try again <span class="hljs-subst">#{Time.zone.tomorrow}</span>"</span>
+      <span class="hljs-keyword">end</span>
+    }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="on"></a><a href="#on" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>:on</code></h3>
+<p>The <code>:on</code> option lets you specify when the validation should happen. The
+default behavior for all the built-in validation helpers is to be run on save
+(both when you're creating a new record and when you're updating it). If you
+want to change it, you can use <code>on: :create</code> to run the validation only when a
+new record is created or <code>on: :update</code> to run the validation only when a record
+is updated.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  <span class="hljs-comment"># it will be possible to update email with a duplicated value</span>
+  validates <span class="hljs-symbol">:email</span>, <span class="hljs-symbol">uniqueness:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">on:</span> <span class="hljs-symbol">:create</span>
+
+  <span class="hljs-comment"># it will be possible to create the record with a non-numerical age</span>
+  validates <span class="hljs-symbol">:age</span>, <span class="hljs-symbol">numericality:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">on:</span> <span class="hljs-symbol">:update</span>
+
+  <span class="hljs-comment"># the default (validates on both create and update)</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>You can also use <code>on:</code> to define custom contexts. Custom contexts need to be
+triggered explicitly by passing the name of the context to <code>valid?</code>,
+<code>invalid?</code>, or <code>save</code>.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:email</span>, <span class="hljs-symbol">uniqueness:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">on:</span> <span class="hljs-symbol">:account_setup</span>
+  validates <span class="hljs-symbol">:age</span>, <span class="hljs-symbol">numericality:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">on:</span> <span class="hljs-symbol">:account_setup</span>
+<span class="hljs-keyword">end</span>
+
+person = Person.new(<span class="hljs-symbol">age:</span> <span class="hljs-string">'thirty-three'</span>)
+person.valid? <span class="hljs-comment"># =&gt; true</span>
+person.valid?(<span class="hljs-symbol">:account_setup</span>) <span class="hljs-comment"># =&gt; false</span>
+person.errors.messages
+ <span class="hljs-comment"># =&gt; {:email=&gt;["has already been taken"], :age=&gt;["is not a number"]}</span>
+</code></pre>
+<p><code>person.valid?(:account_setup)</code> executes both the validations without saving
+the model. <code>person.save(context: :account_setup)</code> validates <code>person</code> in the
+<code>account_setup</code> context before saving.</p>
+<p>When triggered by an explicit context, validations are run for that context,
+as well as any validations <em>without</em> a context.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:email</span>, <span class="hljs-symbol">uniqueness:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">on:</span> <span class="hljs-symbol">:account_setup</span>
+  validates <span class="hljs-symbol">:age</span>, <span class="hljs-symbol">numericality:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">on:</span> <span class="hljs-symbol">:account_setup</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+
+person = Person.new
+person.valid?(<span class="hljs-symbol">:account_setup</span>) <span class="hljs-comment"># =&gt; false</span>
+person.errors.messages
+ <span class="hljs-comment"># =&gt; {:email=&gt;["has already been taken"], :age=&gt;["is not a number"], :name=&gt;["can't be blank"]}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="strict-validations"></a><a href="#strict-validations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Strict Validations</h2>
+<p>You can also specify validations to be strict and raise
+<code>ActiveModel::StrictValidationFailed</code> when the object is invalid.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> { <span class="hljs-symbol">strict:</span> <span class="hljs-literal">true</span> }
+<span class="hljs-keyword">end</span>
+
+Person.new.valid?  <span class="hljs-comment"># =&gt; ActiveModel::StrictValidationFailed: Name can't be blank</span>
+</code></pre>
+<p>There is also the ability to pass a custom exception to the <code>:strict</code> option.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:token</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">uniqueness:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">strict:</span> TokenGenerationException
+<span class="hljs-keyword">end</span>
+
+Person.new.valid?  <span class="hljs-comment"># =&gt; TokenGenerationException: Token can't be blank</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="conditional-validation"></a><a href="#conditional-validation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conditional Validation</h2>
+<p>Sometimes it will make sense to validate an object only when a given predicate
+is satisfied. You can do that by using the <code>:if</code> and <code>:unless</code> options, which
+can take a symbol, a <code>Proc</code> or an <code>Array</code>. You may use the <code>:if</code>
+option when you want to specify when the validation <strong>should</strong> happen. If you
+want to specify when the validation <strong>should not</strong> happen, then you may use the
+<code>:unless</code> option.</p>
+<h3><a class="anchor" aria-hidden="true" id="using-a-symbol-with-if-and-unless"></a><a href="#using-a-symbol-with-if-and-unless" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using a Symbol with <code>:if</code> and <code>:unless</code></h3>
+<p>You can associate the <code>:if</code> and <code>:unless</code> options with a symbol corresponding
+to the name of a method that will get called right before validation happens.
+This is the most commonly used option.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Order</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:card_number</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">if:</span> <span class="hljs-symbol">:paid_with_card?</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">paid_with_card?</span></span>
+    payment_type == <span class="hljs-string">"card"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="using-a-proc-with-if-and-unless"></a><a href="#using-a-proc-with-if-and-unless" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using a Proc with <code>:if</code> and <code>:unless</code></h3>
+<p>It is possible to associate <code>:if</code> and <code>:unless</code> with a <code>Proc</code> object
+which will be called. Using a <code>Proc</code> object gives you the ability to write an
+inline condition instead of a separate method. This option is best suited for
+one-liners.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Account</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:password</span>, <span class="hljs-symbol">confirmation:</span> <span class="hljs-literal">true</span>,
+    <span class="hljs-symbol">unless:</span> Proc.new { <span class="hljs-params">|a|</span> a.password.blank? }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>As <code>Lambdas</code> are a type of <code>Proc</code>, they can also be used to write inline
+conditions in a shorter way.</p>
+<pre><code class="hljs css language-ruby">validates <span class="hljs-symbol">:password</span>, <span class="hljs-symbol">confirmation:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">unless:</span> -&gt; { password.blank? }
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="grouping-conditional-validations"></a><a href="#grouping-conditional-validations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Grouping Conditional validations</h3>
+<p>Sometimes it is useful to have multiple validations use one condition. It can
+be easily achieved using <code>with_options</code>.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> &lt; ApplicationRecord</span>
+  with_options <span class="hljs-symbol">if:</span> <span class="hljs-symbol">:is_admin?</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|admin|</span>
+    admin.validates <span class="hljs-symbol">:password</span>, <span class="hljs-symbol">length:</span> { <span class="hljs-symbol">minimum:</span> <span class="hljs-number">10</span> }
+    admin.validates <span class="hljs-symbol">:email</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>All validations inside of the <code>with_options</code> block will have automatically
+passed the condition <code>if: :is_admin?</code></p>
+<h3><a class="anchor" aria-hidden="true" id="combining-validation-conditions"></a><a href="#combining-validation-conditions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Combining Validation Conditions</h3>
+<p>On the other hand, when multiple conditions define whether or not a validation
+should happen, an <code>Array</code> can be used. Moreover, you can apply both <code>:if</code> and
+<code>:unless</code> to the same validation.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Computer</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:mouse</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>,
+                    <span class="hljs-symbol">if:</span> [Proc.new { <span class="hljs-params">|c|</span> c.market.retail? }, <span class="hljs-symbol">:desktop?</span>],
+                    <span class="hljs-symbol">unless:</span> Proc.new { <span class="hljs-params">|c|</span> c.trackpad.present? }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The validation only runs when all the <code>:if</code> conditions and none of the
+<code>:unless</code> conditions are evaluated to <code>true</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="performing-custom-validations"></a><a href="#performing-custom-validations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Performing Custom Validations</h2>
+<p>When the built-in validation helpers are not enough for your needs, you can
+write your own validators or validation methods as you prefer.</p>
+<h3><a class="anchor" aria-hidden="true" id="custom-validators"></a><a href="#custom-validators" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Validators</h3>
+<p>Custom validators are classes that inherit from <code>ActiveModel::Validator</code>. These
+classes must implement the <code>validate</code> method which takes a record as an argument
+and performs the validation on it. The custom validator is called using the
+<code>validates_with</code> method.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyValidator</span> &lt; ActiveModel::Validator</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">validate</span><span class="hljs-params">(record)</span></span>
+    <span class="hljs-keyword">unless</span> record.name.starts_with? <span class="hljs-string">'X'</span>
+      record.errors.add <span class="hljs-symbol">:name</span>, <span class="hljs-string">"Need a name starting with X please!"</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
+  <span class="hljs-keyword">include</span> ActiveModel::Validations
+  validates_with MyValidator
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The easiest way to add custom validators for validating individual attributes
+is with the convenient <code>ActiveModel::EachValidator</code>. In this case, the custom
+validator class must implement a <code>validate_each</code> method which takes three
+arguments: record, attribute, and value. These correspond to the instance, the
+attribute to be validated, and the value of the attribute in the passed
+instance.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EmailValidator</span> &lt; ActiveModel::EachValidator</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">validate_each</span><span class="hljs-params">(record, attribute, value)</span></span>
+    <span class="hljs-keyword">unless</span> value =~ <span class="hljs-regexp">/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i</span>
+      record.errors.add attribute, (options[<span class="hljs-symbol">:message</span>] <span class="hljs-params">||</span> <span class="hljs-string">"is not an email"</span>)
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:email</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">email:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>As shown in the example, you can also combine standard validations with your
+own custom validators.</p>
+<h3><a class="anchor" aria-hidden="true" id="custom-methods"></a><a href="#custom-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Methods</h3>
+<p>You can also create methods that verify the state of your models and add
+messages to the <code>errors</code> collection when they are invalid. You must then
+register these methods by using the <code>validate</code>
+(<a href="https://api.rubyonrails.org/classes/ActiveModel/Validations/ClassMethods.html#method-i-validate">API</a>)
+class method, passing in the symbols for the validation methods' names.</p>
+<p>You can pass more than one symbol for each class method and the respective
+validations will be run in the same order as they were registered.</p>
+<p>The <code>valid?</code> method will verify that the errors collection is empty,
+so your custom validation methods should add errors to it when you
+wish validation to fail:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Invoice</span> &lt; ApplicationRecord</span>
+  validate <span class="hljs-symbol">:expiration_date_cannot_be_in_the_past</span>,
+    <span class="hljs-symbol">:discount_cannot_be_greater_than_total_value</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">expiration_date_cannot_be_in_the_past</span></span>
+    <span class="hljs-keyword">if</span> expiration_date.present? &amp;&amp; expiration_date &lt; Date.today
+      errors.add(<span class="hljs-symbol">:expiration_date</span>, <span class="hljs-string">"can't be in the past"</span>)
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">discount_cannot_be_greater_than_total_value</span></span>
+    <span class="hljs-keyword">if</span> discount &gt; total_value
+      errors.add(<span class="hljs-symbol">:discount</span>, <span class="hljs-string">"can't be greater than total value"</span>)
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>By default, such validations will run every time you call <code>valid?</code>
+or save the object. But it is also possible to control when to run these
+custom validations by giving an <code>:on</code> option to the <code>validate</code> method,
+with either: <code>:create</code> or <code>:update</code>.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Invoice</span> &lt; ApplicationRecord</span>
+  validate <span class="hljs-symbol">:active_customer</span>, <span class="hljs-symbol">on:</span> <span class="hljs-symbol">:create</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">active_customer</span></span>
+    errors.add(<span class="hljs-symbol">:customer_id</span>, <span class="hljs-string">"is not active"</span>) <span class="hljs-keyword">unless</span> customer.active?
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="working-with-validation-errors"></a><a href="#working-with-validation-errors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Working with Validation Errors</h2>
+<p>In addition to the <code>valid?</code> and <code>invalid?</code> methods covered earlier, Rails provides a number of methods for working with the <code>errors</code> collection and inquiring about the validity of objects.</p>
+<p>The following is a list of the most commonly used methods. Please refer to the <code>ActiveModel::Errors</code> documentation for a list of all the available methods.</p>
+<h3><a class="anchor" aria-hidden="true" id="errors-1"></a><a href="#errors-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>errors</code></h3>
+<p>Returns an instance of the class <code>ActiveModel::Errors</code> containing all errors. Each key is the attribute name and the value is an array of strings with all errors.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">length:</span> { <span class="hljs-symbol">minimum:</span> <span class="hljs-number">3</span> }
+<span class="hljs-keyword">end</span>
+
+person = Person.new
+person.valid? <span class="hljs-comment"># =&gt; false</span>
+person.errors.messages
+ <span class="hljs-comment"># =&gt; {:name=&gt;["can't be blank", "is too short (minimum is 3 characters)"]}</span>
+
+person = Person.new(<span class="hljs-symbol">name:</span> <span class="hljs-string">"John Doe"</span>)
+person.valid? <span class="hljs-comment"># =&gt; true</span>
+person.errors.messages <span class="hljs-comment"># =&gt; {}</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="errors-2"></a><a href="#errors-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>errors[]</code></h3>
+<p><code>errors[]</code> is used when you want to check the error messages for a specific attribute. It returns an array of strings with all error messages for the given attribute, each string with one error message. If there are no errors related to the attribute, it returns an empty array.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">length:</span> { <span class="hljs-symbol">minimum:</span> <span class="hljs-number">3</span> }
+<span class="hljs-keyword">end</span>
+
+person = Person.new(<span class="hljs-symbol">name:</span> <span class="hljs-string">"John Doe"</span>)
+person.valid? <span class="hljs-comment"># =&gt; true</span>
+person.errors[<span class="hljs-symbol">:name</span>] <span class="hljs-comment"># =&gt; []</span>
+
+person = Person.new(<span class="hljs-symbol">name:</span> <span class="hljs-string">"JD"</span>)
+person.valid? <span class="hljs-comment"># =&gt; false</span>
+person.errors[<span class="hljs-symbol">:name</span>] <span class="hljs-comment"># =&gt; ["is too short (minimum is 3 characters)"]</span>
+
+person = Person.new
+person.valid? <span class="hljs-comment"># =&gt; false</span>
+person.errors[<span class="hljs-symbol">:name</span>]
+ <span class="hljs-comment"># =&gt; ["can't be blank", "is too short (minimum is 3 characters)"]</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="errorsadd"></a><a href="#errorsadd" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>errors.add</code></h3>
+<p>The <code>add</code> method lets you add an error message related to a particular attribute. It takes as arguments the attribute and the error message.</p>
+<p>The <code>errors.full_messages</code> method (or its equivalent, <code>errors.to_a</code>) returns the error messages in a user-friendly format, with the capitalized attribute name prepended to each message, as shown in the examples below.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">a_method_used_for_validation_purposes</span></span>
+    errors.add(<span class="hljs-symbol">:name</span>, <span class="hljs-string">"cannot contain the characters !@#%*()_-+="</span>)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+person = Person.create(<span class="hljs-symbol">name:</span> <span class="hljs-string">"!@#"</span>)
+
+person.errors[<span class="hljs-symbol">:name</span>]
+ <span class="hljs-comment"># =&gt; ["cannot contain the characters !@#%*()_-+="]</span>
+
+person.errors.full_messages
+ <span class="hljs-comment"># =&gt; ["Name cannot contain the characters !@#%*()_-+="]</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="errorsdetails-1"></a><a href="#errorsdetails-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>errors.details</code></h3>
+<p>You can specify a validator type to the returned error details hash using the
+<code>errors.add</code> method.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">a_method_used_for_validation_purposes</span></span>
+    errors.add(<span class="hljs-symbol">:name</span>, <span class="hljs-symbol">:invalid_characters</span>)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+person = Person.create(<span class="hljs-symbol">name:</span> <span class="hljs-string">"!@#"</span>)
+
+person.errors.details[<span class="hljs-symbol">:name</span>]
+<span class="hljs-comment"># =&gt; [{error: :invalid_characters}]</span>
+</code></pre>
+<p>To improve the error details to contain the unallowed characters set for instance,
+you can pass additional keys to <code>errors.add</code>.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">a_method_used_for_validation_purposes</span></span>
+    errors.add(<span class="hljs-symbol">:name</span>, <span class="hljs-symbol">:invalid_characters</span>, <span class="hljs-symbol">not_allowed:</span> <span class="hljs-string">"!@#%*()_-+="</span>)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+person = Person.create(<span class="hljs-symbol">name:</span> <span class="hljs-string">"!@#"</span>)
+
+person.errors.details[<span class="hljs-symbol">:name</span>]
+<span class="hljs-comment"># =&gt; [{error: :invalid_characters, not_allowed: "!@#%*()_-+="}]</span>
+</code></pre>
+<p>All built in Rails validators populate the details hash with the corresponding
+validator type.</p>
+<h3><a class="anchor" aria-hidden="true" id="errors-base"></a><a href="#errors-base" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>errors[:base]</code></h3>
+<p>You can add error messages that are related to the object's state as a whole, instead of being related to a specific attribute. You can use this method when you want to say that the object is invalid, no matter the values of its attributes. Since <code>errors[:base]</code> is an array, you can simply add a string to it and it will be used as an error message.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">a_method_used_for_validation_purposes</span></span>
+    errors.add <span class="hljs-symbol">:base</span>, <span class="hljs-string">"This person is invalid because ..."</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="errorsclear"></a><a href="#errorsclear" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>errors.clear</code></h3>
+<p>The <code>clear</code> method is used when you intentionally want to clear all the messages in the <code>errors</code> collection. Of course, calling <code>errors.clear</code> upon an invalid object won't actually make it valid: the <code>errors</code> collection will now be empty, but the next time you call <code>valid?</code> or any method that tries to save this object to the database, the validations will run again. If any of the validations fail, the <code>errors</code> collection will be filled again.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">length:</span> { <span class="hljs-symbol">minimum:</span> <span class="hljs-number">3</span> }
+<span class="hljs-keyword">end</span>
+
+person = Person.new
+person.valid? <span class="hljs-comment"># =&gt; false</span>
+person.errors[<span class="hljs-symbol">:name</span>]
+ <span class="hljs-comment"># =&gt; ["can't be blank", "is too short (minimum is 3 characters)"]</span>
+
+person.errors.clear
+person.errors.empty? <span class="hljs-comment"># =&gt; true</span>
+
+person.save <span class="hljs-comment"># =&gt; false</span>
+
+person.errors[<span class="hljs-symbol">:name</span>]
+<span class="hljs-comment"># =&gt; ["can't be blank", "is too short (minimum is 3 characters)"]</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="errorssize"></a><a href="#errorssize" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>errors.size</code></h3>
+<p>The <code>size</code> method returns the total number of error messages for the object.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">length:</span> { <span class="hljs-symbol">minimum:</span> <span class="hljs-number">3</span> }
+<span class="hljs-keyword">end</span>
+
+person = Person.new
+person.valid? <span class="hljs-comment"># =&gt; false</span>
+person.errors.size <span class="hljs-comment"># =&gt; 2</span>
+
+person = Person.new(<span class="hljs-symbol">name:</span> <span class="hljs-string">"Andrea"</span>, <span class="hljs-symbol">email:</span> <span class="hljs-string">"andrea@example.com"</span>)
+person.valid? <span class="hljs-comment"># =&gt; true</span>
+person.errors.size <span class="hljs-comment"># =&gt; 0</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="displaying-validation-errors-in-views"></a><a href="#displaying-validation-errors-in-views" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Displaying Validation Errors in Views</h2>
+<p>Once you've created a model and added validations, if that model is created via
+a web form, you probably want to display an error message when one of the
+validations fail.</p>
+<p>Because every application handles this kind of thing differently, Rails does
+not include any view helpers to help you generate these messages directly.
+However, due to the rich number of methods Rails gives you to interact with
+validations in general, it's fairly easy to build your own. In addition, when
+generating a scaffold, Rails will put some ERB into the <code>_form.html.erb</code> that
+it generates that displays the full list of errors on that model.</p>
+<p>Assuming we have a model that's been saved in an instance variable named
+<code>@article</code>, it looks like this:</p>
+<pre><code class="hljs css language-ruby">&lt;% if @article.errors.any? %&gt;
+  &lt;div id="error_explanation"&gt;
+    &lt;h2&gt;&lt;%= pluralize(@article.errors.count, "error") %&gt; prohibited this article from being saved:&lt;/h2&gt;
+
+    &lt;ul&gt;
+    &lt;% @article.errors.full_messages.each do |msg| %&gt;
+      &lt;li&gt;&lt;%= msg %&gt;&lt;/li&gt;
+    &lt;% end %&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;% end %&gt;
+</code></pre>
+<p>Furthermore, if you use the Rails form helpers to generate your forms, when
+a validation error occurs on a field, it will generate an extra <code>&lt;div&gt;</code> around
+the entry.</p>
+<pre><code class="hljs">&lt;div <span class="hljs-keyword">class</span>="<span class="hljs-symbol">field_with_errors</span>"&gt;
+ &lt;<span class="hljs-symbol">input</span> <span class="hljs-symbol">id</span>="<span class="hljs-symbol">article_title</span>" <span class="hljs-symbol">name</span>="<span class="hljs-symbol">article</span>[<span class="hljs-symbol">title</span>]" <span class="hljs-symbol">size</span>="<span class="hljs-symbol">30</span>" <span class="hljs-symbol">type</span>="<span class="hljs-symbol">text</span>" <span class="hljs-symbol">value</span>=""&gt;
+&lt;/<span class="hljs-symbol">div</span>&gt;
+</code></pre>
+<p>You can then style this div however you'd like. The default scaffold that
+Rails generates, for example, adds this CSS rule:</p>
+<pre><code class="hljs"><span class="hljs-selector-class">.field_with_errors</span> {
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">2px</span>;
+  <span class="hljs-attribute">background-color</span>: red;
+  <span class="hljs-attribute">display</span>: table;
+}
+</code></pre>
+<p>This means that any field with an error ends up with a 2 pixel red border.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/active%20record%20migrations"><span class="arrow-prev">← </span><span>Active Record Migrations</span></a><a class="docs-next button" href="/rails-setup/docs/active%20record%20callbacks"><span>Active Record Callbacks</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#validations-overview">Validations Overview</a><ul class="toc-headings"><li><a href="#why-use-validations">Why Use Validations?</a></li><li><a href="#when-does-validation-happen">When Does Validation Happen?</a></li><li><a href="#skipping-validations">Skipping Validations</a></li><li><a href="#valid-and-invalid"><code>valid?</code> and <code>invalid?</code></a></li><li><a href="#errors"><code>errors[]</code></a></li><li><a href="#errorsdetails"><code>errors.details</code></a></li></ul></li><li><a href="#validation-helpers">Validation Helpers</a><ul class="toc-headings"><li><a href="#acceptance"><code>acceptance</code></a></li><li><a href="#validates_associated"><code>validates_associated</code></a></li><li><a href="#confirmation"><code>confirmation</code></a></li><li><a href="#exclusion"><code>exclusion</code></a></li><li><a href="#format"><code>format</code></a></li><li><a href="#inclusion"><code>inclusion</code></a></li><li><a href="#length"><code>length</code></a></li><li><a href="#numericality"><code>numericality</code></a></li><li><a href="#presence"><code>presence</code></a></li><li><a href="#absence"><code>absence</code></a></li><li><a href="#uniqueness"><code>uniqueness</code></a></li><li><a href="#validates_with"><code>validates_with</code></a></li><li><a href="#validates_each"><code>validates_each</code></a></li></ul></li><li><a href="#common-validation-options">Common Validation Options</a><ul class="toc-headings"><li><a href="#allow_nil"><code>:allow_nil</code></a></li><li><a href="#allow_blank"><code>:allow_blank</code></a></li><li><a href="#message"><code>:message</code></a></li><li><a href="#on"><code>:on</code></a></li></ul></li><li><a href="#strict-validations">Strict Validations</a></li><li><a href="#conditional-validation">Conditional Validation</a><ul class="toc-headings"><li><a href="#using-a-symbol-with-if-and-unless">Using a Symbol with <code>:if</code> and <code>:unless</code></a></li><li><a href="#using-a-proc-with-if-and-unless">Using a Proc with <code>:if</code> and <code>:unless</code></a></li><li><a href="#grouping-conditional-validations">Grouping Conditional validations</a></li><li><a href="#combining-validation-conditions">Combining Validation Conditions</a></li></ul></li><li><a href="#performing-custom-validations">Performing Custom Validations</a><ul class="toc-headings"><li><a href="#custom-validators">Custom Validators</a></li><li><a href="#custom-methods">Custom Methods</a></li></ul></li><li><a href="#working-with-validation-errors">Working with Validation Errors</a><ul class="toc-headings"><li><a href="#errors-1"><code>errors</code></a></li><li><a href="#errors-2"><code>errors[]</code></a></li><li><a href="#errorsadd"><code>errors.add</code></a></li><li><a href="#errorsdetails-1"><code>errors.details</code></a></li><li><a href="#errors-base"><code>errors[:base]</code></a></li><li><a href="#errorsclear"><code>errors.clear</code></a></li><li><a href="#errorssize"><code>errors.size</code></a></li></ul></li><li><a href="#displaying-validation-errors-in-views">Displaying Validation Errors in Views</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Rails Setup</section></footer></div></body></html>
