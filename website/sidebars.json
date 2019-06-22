@@ -1,10 +1,66 @@
 {
   "docs": {
-    "Docusaurus": ["doc1"],
-    "First Category": ["doc2"],
-    "Second Category": ["doc3"]
-  },
-  "docs-other": {
-    "First Category": ["doc4", "doc5"]
+    "Start Here": [
+      "getting started",
+      "development dependencies install"
+    ],
+    "Models": [
+      "active record basics",
+      "active record migrations",
+      "active record validations",
+      "active record callbacks",
+      "active record associations",
+      "active record query",
+      "multiple databases",
+      "active record postgresql"
+    ],
+    "Views": [
+      "layouts and rendering",
+      "action view",
+      "action view form helpers"
+    ],
+    "Controllers": [
+      "action controller",
+      "rails routing"
+    ],
+    "Other Components": [
+      "active support core",
+      "active support instrumentation",
+      "action mailer",
+      "action mailbox",
+      "active model",
+      "active job",
+      "action text",
+      "active storage",
+      "action cable"
+    ],
+    "Digging Deeper": [
+      "rails i18n",
+      "testing rails",
+      "securing rails",
+      "debugging rails",
+      "configuring rails",
+      "rails command line",
+      "asset pipeline",
+      "working with javascript",
+      "autoloading and reloading",
+      "caching with rails",
+      "api only apps",
+      "threading",
+      "initialization",
+      "engines"
+    ],
+    "Extending Rails": [
+      "rails on rack",
+      "generators & templates",
+      "application templates",
+      "creating rails plugins"
+    ],
+    "Contributions": [
+      "contributing to rails",
+      "api documentation",
+      "guides guidelines"
+    ],
+    "Policies": ["maintenance policy"]
   }
 }
