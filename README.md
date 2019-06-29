@@ -26,6 +26,10 @@ List of posibles contributions that you can do to this project
 * fix the broken urls in the links of the rails documentations files (they are just as i copied form the source documentations site)
 * add documentation for other common project used with rails (like devise, factory bot and others)
 
+## Code of conduct
+
+Watch it in detail [here](CODE_OF_CONDUCT.md).
+
 ## License
 
 This project is under [MIT license](LICENSE.md)
