@@ -14,6 +14,7 @@ First off, thank you for considering contributing to Rails-Setup. It’s people 
 * [Misspelling fixes](#misspelling-fixes)
 * [Fix documentation issues](#fix-documentation-issues)
 * [Add documentation for common Rails related libraries](#add-documentation-for-common-rails-related-libraries)
+* [Enhancing the website](#enhancing-the-website)
 
 ### Misspelling fixes
 
@@ -26,6 +27,10 @@ Most of the documentation added is just copied from the original projects, somet
 ### Add documentation for common Rails related libraries
 
 You could bring here documentation from another project that usually dont have their own documentation website or maybe their website is not friendly enough.
+
+### Enhancing the website
+
+If you have cool ideas to imporve the look and feel of the index or any other page, please raise an issue explaining what do you have in mind.
 
 ## Roadmap
 
