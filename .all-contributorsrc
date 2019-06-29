@@ -1,0 +1,24 @@
+{
+  "projectName": "rails-setup",
+  "projectOwner": "HenryTabima",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 50,
+  "commit": true,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "HenryTabima",
+      "name": "Henry Tabima Giraldo",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/12721896?v=4",
+      "profile": "http://henrytabima.com",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

@@ -1,5 +1,5 @@
 # Rails Setup
-[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 [Visit Rails-Setup website](https://HenryTabima.github.io/rails-setup)
 
@@ -34,5 +34,11 @@ This project is under [MIT license](LICENSE.md)
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
+<table>
+  <tr>
+    <td align="center"><a href="http://henrytabima.com"><img src="https://avatars0.githubusercontent.com/u/12721896?v=4" width="50px;" alt="Henry Tabima Giraldo"/><br /><sub><b>Henry Tabima Giraldo</b></sub></a><br /><a href="https://github.com/HenryTabima/rails-setup/commits?author=HenryTabima" title="Documentation">📖</a></td>
+  </tr>
+</table>
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 * [Henry Tabima giraldo](https://github.com/HenryTabima) (Mantainer)
