@@ -1,0 +1,30 @@
+{
+  "name": "rails-setup",
+  "version": "0.0.1",
+  "description": "this is a Project to collect in one place and in a friendly way the documentation for rails and commonly used related libraries",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "all-contributors-cli": "^6.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HenryTabima/rails-setup.git"
+  },
+  "keywords": [
+    "ruby-on-rails",
+    "documentation"
+  ],
+  "author": "Henry Tabima Giraldo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HenryTabima/rails-setup/issues"
+  },
+  "homepage": "https://github.com/HenryTabima/rails-setup#readme"
+}

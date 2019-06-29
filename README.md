@@ -36,9 +36,8 @@ This project is under [MIT license](LICENSE.md)
 <!-- prettier-ignore -->
 <table>
   <tr>
-    <td align="center"><a href="http://henrytabima.com"><img src="https://avatars0.githubusercontent.com/u/12721896?v=4" width="50px;" alt="Henry Tabima Giraldo"/><br /><sub><b>Henry Tabima Giraldo</b></sub></a><br /><a href="https://github.com/HenryTabima/rails-setup/commits?author=HenryTabima" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://henrytabima.com"><img src="https://avatars0.githubusercontent.com/u/12721896?v=4" width="100px;" alt="Henry Tabima Giraldo"/><br /><sub><b>Henry Tabima Giraldo</b></sub></a><br /><a href="https://github.com/HenryTabima/rails-setup/commits?author=HenryTabima" title="Documentation">📖</a></td>
   </tr>
 </table>
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-* [Henry Tabima giraldo](https://github.com/HenryTabima) (Mantainer)
