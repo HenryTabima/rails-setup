@@ -50,3 +50,7 @@ the idea is to have documentatios by topic and library. like:
   * Factory bot
 
 The ultimate goal is to have all what you need to achieve whatever you want in your rails project. All in one place. all easy to navigate.
+
+## Getting in touch
+
+Feel free to get in touch. send me an email, or even better, tweet me [@HenryTabimaG](https://twitter.com/HenryTabimaG)
