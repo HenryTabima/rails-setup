@@ -25,7 +25,7 @@ const siteConfig = {
   tagline: 'Documentation for Rails and related libraries',
   url: 'https://HenryTabima.github.io', // Your website URL
   baseUrl: '/rails-setup/', // Base URL for your project */
-  projectName: 'Rails Setup',
+  projectName: 'rails-setup',
   organizationName: 'HenryTabima',
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...

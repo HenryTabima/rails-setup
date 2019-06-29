@@ -95,7 +95,7 @@ class Index extends React.Component {
         {[
           {
             content:
-              'This project meant to be a recopilation of documentations for rails and common realted projects as devise, rspec, factory bot and others.',
+              'This project meant to be a recompilation of documentations for rails and common realted projects as devise, rspec, factory bot and others.',
             image: `${baseUrl}img/undraw_code_review.svg`,
             imageAlign: 'right',
             title: 'Description',
