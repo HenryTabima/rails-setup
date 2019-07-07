@@ -1,66 +1,66 @@
 {
   "docs": {
     "Start Here": [
-      "getting-started",
-      "development-dependencies-install"
+      "rails/getting-started",
+      "rails/development-dependencies-install"
     ],
     "Models": [
-      "active-record-basics",
-      "active-record-migrations",
-      "active-record-validations",
-      "active-record-callbacks",
-      "active-record-associations",
-      "active-record-query",
-      "multiple-databases",
-      "active-record-postgresql"
+      "rails/active-record-basics",
+      "rails/active-record-migrations",
+      "rails/active-record-validations",
+      "rails/active-record-callbacks",
+      "rails/active-record-associations",
+      "rails/active-record-query",
+      "rails/multiple-databases",
+      "rails/active-record-postgresql"
     ],
     "Views": [
-      "layouts-and-rendering",
-      "action-view",
-      "action-view-form-helpers"
+      "rails/layouts-and-rendering",
+      "rails/action-view",
+      "rails/action-view-form-helpers"
     ],
     "Controllers": [
-      "action-controller",
-      "rails-routing"
+      "rails/action-controller",
+      "rails/rails-routing"
     ],
     "Other Components": [
-      "active-support-core",
-      "active-support-instrumentation",
-      "action-mailer",
-      "action-mailbox",
-      "active-model",
-      "active-job",
-      "action-text",
-      "active-storage",
-      "action-cable"
+      "rails/active-support-core",
+      "rails/active-support-instrumentation",
+      "rails/action-mailer",
+      "rails/action-mailbox",
+      "rails/active-model",
+      "rails/active-job",
+      "rails/action-text",
+      "rails/active-storage",
+      "rails/action-cable"
     ],
     "Digging Deeper": [
-      "rails-i18n",
-      "testing-rails",
-      "securing-rails",
-      "debugging-rails",
-      "configuring-rails",
-      "rails-command-line",
-      "asset-pipeline",
-      "working-with-javascript",
-      "autoloading-and-reloading",
-      "caching-with-rails",
-      "api-only-apps",
-      "threading",
-      "initialization",
-      "engines"
+      "rails/rails-i18n",
+      "rails/testing-rails",
+      "rails/securing-rails",
+      "rails/debugging-rails",
+      "rails/configuring-rails",
+      "rails/rails-command-line",
+      "rails/asset-pipeline",
+      "rails/working-with-javascript",
+      "rails/autoloading-and-reloading",
+      "rails/caching-with-rails",
+      "rails/api-only-apps",
+      "rails/threading",
+      "rails/initialization",
+      "rails/engines"
     ],
     "Extending Rails": [
-      "rails-on-rack",
-      "generators-&-templates",
-      "application-templates",
-      "creating-rails-plugins"
+      "rails/rails-on-rack",
+      "rails/generators-&-templates",
+      "rails/application-templates",
+      "rails/creating-rails-plugins"
     ],
     "Contributions": [
-      "contributing-to-rails",
-      "api-documentation",
-      "guides-guidelines"
+      "rails/contributing-to-rails",
+      "rails/api-documentation",
+      "rails/guides-guidelines"
     ],
-    "Policies": ["maintenance-policy"]
+    "Policies": ["rails/maintenance-policy"]
   }
 }

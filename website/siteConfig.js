@@ -33,7 +33,7 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'getting started', label: 'Rails Docs'},
+    {doc: 'rails/getting-started', label: 'Rails Docs'},
     {href: 'https://github.com/HenryTabima/rails-setup', label: 'GitHub'}
   ],
 
