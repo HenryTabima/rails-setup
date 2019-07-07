@@ -1,5 +1,5 @@
 ---
-id: development dependencies install
+id: development-dependencies-install
 title: Development Dependencies Install
 ---
 

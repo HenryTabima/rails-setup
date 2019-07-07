@@ -1,5 +1,5 @@
 ---
-id: action view form helpers
+id: action-view-form-helpers
 title: Action View Form Helpers
 ---
 

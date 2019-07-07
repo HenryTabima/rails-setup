@@ -1,5 +1,5 @@
 ---
-id: api documentation
+id: api-documentation
 title: API Documentation Guidelines
 ---
 

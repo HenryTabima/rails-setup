@@ -1,5 +1,5 @@
 ---
-id: autoloading and reloading
+id: autoloading-and-reloading
 title: Autoloading and Reloading Constants
 ---
 

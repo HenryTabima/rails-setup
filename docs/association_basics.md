@@ -1,5 +1,5 @@
 ---
-id: active record associations
+id: active-record-associations
 title: Active Record Associations
 ---
 

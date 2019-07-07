@@ -1,5 +1,5 @@
 ---
-id: active support instrumentation
+id: active-support-instrumentation
 title: Active Support Instrumentation
 ---
 

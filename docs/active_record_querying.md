@@ -1,5 +1,5 @@
 ---
-id: active record query
+id: active-record-query
 title: Active Record Query Interface
 ---
 

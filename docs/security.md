@@ -1,5 +1,5 @@
 ---
-id: securing rails
+id: securing-rails
 title: Securing Rails Applications
 ---
 

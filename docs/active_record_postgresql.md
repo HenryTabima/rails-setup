@@ -1,5 +1,5 @@
 ---
-id: active record postgresql
+id: active-record-postgresql
 title: Active Record and PostgreSQL
 ---
 

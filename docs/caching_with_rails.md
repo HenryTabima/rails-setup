@@ -1,5 +1,5 @@
 ---
-id: caching with rails
+id: caching-with-rails
 title: "Caching with Rails: An Overview"
 ---
 

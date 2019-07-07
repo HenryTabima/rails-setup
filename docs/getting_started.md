@@ -1,5 +1,5 @@
 ---
-id: getting started
+id: getting-started
 title: Getting Started with Rails
 ---
 

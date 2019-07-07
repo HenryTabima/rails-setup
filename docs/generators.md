@@ -1,5 +1,5 @@
 ---
-id: generators & templates
+id: generators-&-templates
 title: Creating and Customizing Rails Generators & Templates
 ---
 

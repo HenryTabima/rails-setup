@@ -1,5 +1,5 @@
 ---
-id: application templates
+id: application-templates
 title: Rails Application Templates
 ---
 

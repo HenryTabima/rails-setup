@@ -1,5 +1,5 @@
 ---
-id: action controller
+id: action-controller
 title: Action Controller Overview
 ---
 In this guide you will learn how controllers work and how they fit into the request cycle in your application.

@@ -1,5 +1,5 @@
 ---
-id: asset pipeline
+id: asset-pipeline
 title: The Asset Pipeline
 ---
 

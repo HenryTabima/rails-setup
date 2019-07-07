@@ -1,5 +1,5 @@
 ---
-id: action view
+id: action-view
 title: Action View Overview
 ---
 

@@ -1,5 +1,5 @@
 ---
-id: active record basics
+id: active-record-basics
 title: Active Record Basics
 ---
 This guide is an introduction to Active Record.

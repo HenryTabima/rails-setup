@@ -1,5 +1,5 @@
 ---
-id: rails on rack
+id: rails-on-rack
 title: Rails on Rack
 ---
 

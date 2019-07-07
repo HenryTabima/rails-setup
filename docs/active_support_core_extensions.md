@@ -1,5 +1,5 @@
 ---
-id: active support core
+id: active-support-core
 title: Active Support Core Extensions
 ---
 

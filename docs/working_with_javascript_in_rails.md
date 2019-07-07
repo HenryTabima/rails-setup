@@ -1,5 +1,5 @@
 ---
-id: working with javascript
+id: working-with-javascript
 title: Working with JavaScript in Rails
 ---
 

@@ -1,5 +1,5 @@
 ---
-id: active record callbacks
+id: active-record-callbacks
 title: Active Record Callbacks
 ---
 

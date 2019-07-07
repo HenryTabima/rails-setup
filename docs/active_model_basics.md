@@ -1,5 +1,5 @@
 ---
-id: active model
+id: active-model
 title: Active Model Basics
 ---
 

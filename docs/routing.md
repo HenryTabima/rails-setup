@@ -1,5 +1,5 @@
 ---
-id: rails routing
+id: rails-routing
 title: Rails Routing from the Outside In
 ---
 

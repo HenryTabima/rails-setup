@@ -1,5 +1,5 @@
 ---
-id: multiple databases
+id: multiple-databases
 title: Multiple Databases with Active Record
 ---
 

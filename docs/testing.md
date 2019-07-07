@@ -1,5 +1,5 @@
 ---
-id: testing rails
+id: testing-rails
 title: Testing Rails Applications
 ---
 

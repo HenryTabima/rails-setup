@@ -1,5 +1,5 @@
 ---
-id: creating rails plugins
+id: creating-rails-plugins
 title: The Basics of Creating Rails Plugins
 ---
 

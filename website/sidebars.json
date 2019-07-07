@@ -1,66 +1,66 @@
 {
   "docs": {
     "Start Here": [
-      "getting started",
-      "development dependencies install"
+      "getting-started",
+      "development-dependencies-install"
     ],
     "Models": [
-      "active record basics",
-      "active record migrations",
-      "active record validations",
-      "active record callbacks",
-      "active record associations",
-      "active record query",
-      "multiple databases",
-      "active record postgresql"
+      "active-record-basics",
+      "active-record-migrations",
+      "active-record-validations",
+      "active-record-callbacks",
+      "active-record-associations",
+      "active-record-query",
+      "multiple-databases",
+      "active-record-postgresql"
     ],
     "Views": [
-      "layouts and rendering",
-      "action view",
-      "action view form helpers"
+      "layouts-and-rendering",
+      "action-view",
+      "action-view-form-helpers"
     ],
     "Controllers": [
-      "action controller",
-      "rails routing"
+      "action-controller",
+      "rails-routing"
     ],
     "Other Components": [
-      "active support core",
-      "active support instrumentation",
-      "action mailer",
-      "action mailbox",
-      "active model",
-      "active job",
-      "action text",
-      "active storage",
-      "action cable"
+      "active-support-core",
+      "active-support-instrumentation",
+      "action-mailer",
+      "action-mailbox",
+      "active-model",
+      "active-job",
+      "action-text",
+      "active-storage",
+      "action-cable"
     ],
     "Digging Deeper": [
-      "rails i18n",
-      "testing rails",
-      "securing rails",
-      "debugging rails",
-      "configuring rails",
-      "rails command line",
-      "asset pipeline",
-      "working with javascript",
-      "autoloading and reloading",
-      "caching with rails",
-      "api only apps",
+      "rails-i18n",
+      "testing-rails",
+      "securing-rails",
+      "debugging-rails",
+      "configuring-rails",
+      "rails-command-line",
+      "asset-pipeline",
+      "working-with-javascript",
+      "autoloading-and-reloading",
+      "caching-with-rails",
+      "api-only-apps",
       "threading",
       "initialization",
       "engines"
     ],
     "Extending Rails": [
-      "rails on rack",
-      "generators & templates",
-      "application templates",
-      "creating rails plugins"
+      "rails-on-rack",
+      "generators-&-templates",
+      "application-templates",
+      "creating-rails-plugins"
     ],
     "Contributions": [
-      "contributing to rails",
-      "api documentation",
-      "guides guidelines"
+      "contributing-to-rails",
+      "api-documentation",
+      "guides-guidelines"
     ],
-    "Policies": ["maintenance policy"]
+    "Policies": ["maintenance-policy"]
   }
 }

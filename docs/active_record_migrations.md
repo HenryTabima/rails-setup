@@ -1,5 +1,5 @@
 ---
-id: active record migrations
+id: active-record-migrations
 title: Active Record Migrations
 ---
 

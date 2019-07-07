@@ -1,5 +1,5 @@
 ---
-id: action mailbox
+id: action-mailbox
 title: Action Mailbox Basics
 ---
 This guide provides you with all you need to get started in receiving

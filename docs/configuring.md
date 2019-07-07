@@ -1,5 +1,5 @@
 ---
-id: configuring rails
+id: configuring-rails
 title: Configuring Rails Applications
 ---
 

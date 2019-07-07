@@ -1,5 +1,5 @@
 ---
-id: api only apps
+id: api-only-apps
 title: Using Rails for API-only Applications
 ---
 

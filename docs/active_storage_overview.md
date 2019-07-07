@@ -1,5 +1,5 @@
 ---
-id: active storage
+id: active-storage
 title: Active Storage Overview
 ---
 

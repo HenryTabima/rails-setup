@@ -1,5 +1,5 @@
 ---
-id: action mailer
+id: action-mailer
 title: Action Mailer Basics
 ---
 

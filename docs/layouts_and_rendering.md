@@ -1,5 +1,5 @@
 ---
-id: layouts and rendering
+id: layouts-and-rendering
 title: Layouts and Rendering in Rails
 ---
 

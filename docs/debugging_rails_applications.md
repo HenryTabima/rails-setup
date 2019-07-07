@@ -1,5 +1,5 @@
 ---
-id: debugging rails
+id: debugging-rails
 title: Debugging Rails Applications
 ---
 

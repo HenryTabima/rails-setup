@@ -1,5 +1,5 @@
 ---
-id: action cable
+id: action-cable
 title: Action Cable Overview
 ---
 
@@ -799,4 +799,4 @@ Passenger.
 ## Testing
 
 You can find detailed instructions on how to test your Action Cable functionality in the
-[testing guide](testing.html#testing-action-cable).
+[testing guide](testing.md#testing-action-cable).

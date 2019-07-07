@@ -1,5 +1,5 @@
 ---
-id: rails command line
+id: rails-command-line
 title: The Rails Command Line
 ---
 

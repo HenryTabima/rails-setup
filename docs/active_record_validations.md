@@ -1,5 +1,5 @@
 ---
-id: active record validations
+id: active-record-validations
 title: Active Record Validations
 ---
 

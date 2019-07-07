@@ -1,5 +1,5 @@
 ---
-id: maintenance policy
+id: maintenance-policy
 title: Maintenance Policy for Ruby on Rails
 ---
 

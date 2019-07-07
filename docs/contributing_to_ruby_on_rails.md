@@ -1,5 +1,5 @@
 ---
-id: contributing to rails
+id: contributing-to-rails
 title: Contributing to Ruby on Rails
 ---
 This guide covers ways in which _you_ can become a part of the ongoing development of Ruby on Rails.

@@ -1,5 +1,5 @@
 ---
-id: active job
+id: active-job
 title: Active Job Basics
 ---
 

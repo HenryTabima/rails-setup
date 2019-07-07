@@ -1,5 +1,5 @@
 ---
-id: guides guidelines
+id: guides-guidelines
 title: Ruby on Rails Guides Guidelines
 ---
 

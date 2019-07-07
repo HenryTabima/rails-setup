@@ -1,5 +1,5 @@
 ---
-id: action text
+id: action-text
 title: Action Text Overview
 ---
 
