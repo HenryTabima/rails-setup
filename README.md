@@ -29,7 +29,7 @@ List of posibles contributions that you can do to this project
 
 ## Code of conduct
 
-Watch it in detail [here](CODE_OF_CONDUCT.md).
+Read it in detail [here](CODE_OF_CONDUCT.md).
 
 ## License
 
