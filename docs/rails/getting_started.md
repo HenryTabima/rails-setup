@@ -169,7 +169,7 @@ of the files and folders that Rails created by default:
 | ----------- | ------- |
 |app/|Contains the controllers, models, views, helpers, mailers, channels, jobs, and assets for your application. You'll focus on this folder for the remainder of this guide.|
 |bin/|Contains the rails script that starts your app and can contain other scripts you use to setup, update, deploy, or run your application.|
-|config/|Configure your application's routes, database, and more. This is covered in more detail in [Configuring Rails Applications](configuring.html).|
+|config/|Configure your application's routes, database, and more. This is covered in more detail in [Configuring Rails Applications](configuring.md).|
 |config.ru|Rack configuration for Rack based servers used to start the application. For more information about Rack, see the [Rack website](https://rack.github.io/).|
 |db/|Contains your current database schema, as well as the database migrations.|
 |Gemfile<br>Gemfile.lock|These files allow you to specify what gem dependencies are needed for your Rails application. These files are used by the Bundler gem. For more information about Bundler, see the [Bundler website](https://bundler.io).|
@@ -179,8 +179,8 @@ of the files and folders that Rails created by default:
 |public/|The only folder seen by the world as-is. Contains static files and compiled assets.|
 |Rakefile|This file locates and loads tasks that can be run from the command line. The task definitions are defined throughout the components of Rails. Rather than changing `Rakefile`, you should add your own tasks by adding files to the `lib/tasks` directory of your application.|
 |README.md|This is a brief instruction manual for your application. You should edit this file to tell others what your application does, how to set it up, and so on.|
-|storage/|Active Storage files for Disk Service. This is covered in [Active Storage Overview](active_storage_overview.html).|
-|test/|Unit tests, fixtures, and other test apparatus. These are covered in [Testing Rails Applications](testing.html).|
+|storage/|Active Storage files for Disk Service. This is covered in [Active Storage Overview](active_storage_overview.md).|
+|test/|Unit tests, fixtures, and other test apparatus. These are covered in [Testing Rails Applications](testing.md).|
 |tmp/|Temporary files (like cache and pid files).|
 |vendor/|A place for all third-party code. In a typical Rails application this includes vendored gems.|
 |.gitignore|This file tells git which files (or patterns) it should ignore. See [GitHub - Ignoring files](https://help.github.com/articles/ignoring-files) for more info about ignoring files.
@@ -217,7 +217,7 @@ This will fire up Puma, a web server distributed with Rails by default. To see
 your application in action, open a browser window and navigate to
 <http://localhost:3000>. You should see the Rails default information page:
 
-![Welcome aboard screenshot](images/getting_started/rails_welcome.png)
+![Welcome aboard screenshot](https://edgeguides.rubyonrails.org/images/getting_started/rails_welcome.png)
 
 TIP: To stop the web server, hit Ctrl+C in the terminal window where it's
 running. To verify the server has stopped you should see your command prompt
@@ -332,7 +332,7 @@ server`) and navigate to <http://localhost:3000> in your browser. You'll see the
 indicating that this new route is indeed going to `WelcomeController`'s `index`
 action and is rendering the view correctly.
 
-TIP: For more information about routing, refer to [Rails Routing from the Outside In](routing.html).
+TIP: For more information about routing, refer to [Rails Routing from the Outside In](routing.md).
 
 Getting Up and Running
 ----------------------
@@ -384,7 +384,7 @@ In the next section, you will add the ability to create new articles in your
 application and be able to view them. This is the "C" and the "R" from CRUD:
 create and read. The form for doing this will look like this:
 
-![The new article form](images/getting_started/new_article.png)
+![The new article form](https://edgeguides.rubyonrails.org/images/getting_started/new_article.png)
 
 It will look a little basic for now, but that's ok. We'll look at improving the
 styling for it afterwards.
@@ -397,7 +397,7 @@ defined, requests can now be made to `/articles/new` in the application.
 Navigate to <http://localhost:3000/articles/new> and you'll see a routing
 error:
 
-![Another routing error, uninitialized constant ArticlesController](images/getting_started/routing_error_no_controller.png)
+![Another routing error, uninitialized constant ArticlesController](https://edgeguides.rubyonrails.org/images/getting_started/routing_error_no_controller.png)
 
 This error occurs because the route needs to have a controller defined in order
 to serve the request. The solution to this particular problem is simple: create
@@ -428,7 +428,7 @@ For more details check out [Programming Ruby](http://www.ruby-doc.org/docs/Progr
 
 If you refresh <http://localhost:3000/articles/new> now, you'll get a new error:
 
-![Unknown action new for ArticlesController!](images/getting_started/unknown_action_new_for_articles.png)
+![Unknown action new for ArticlesController!](https://edgeguides.rubyonrails.org/images/getting_started/unknown_action_new_for_articles.png)
 
 This error indicates that Rails cannot find the `new` action inside the
 `ArticlesController` that you just generated. This is because when controllers
@@ -451,7 +451,7 @@ With the `new` method defined in `ArticlesController`, if you refresh
 <http://localhost:3000/articles/new> you'll see another error:
 
 ![Template is missing for articles/new]
-(images/getting_started/template_is_missing_articles_new.png)
+(https://edgeguides.rubyonrails.org/images/getting_started/template_is_missing_articles_new.png)
 
 You're getting this error now because Rails expects plain actions like this one
 to have views associated with them to display their information. With no view
@@ -582,7 +582,7 @@ article, so go ahead and do that. When you submit the form, you should see a
 familiar error:
 
 ![Unknown action create for ArticlesController]
-(images/getting_started/unknown_action_create_for_articles.png)
+(https://edgeguides.rubyonrails.org/images/getting_started/unknown_action_create_for_articles.png)
 
 You now need to create the `create` action within the `ArticlesController` for
 this to work.
@@ -701,7 +701,7 @@ an `articles` table with one string column and a text column. It also creates
 two timestamp fields to allow Rails to track article creation and update times.
 
 TIP: For more information about migrations, refer to [Active Record Migrations]
-(active_record_migrations.html).
+(active_record_migrations.md).
 
 At this point, you can use a rails command to run the migration:
 
@@ -757,10 +757,10 @@ If you now go to <http://localhost:3000/articles/new> you'll *almost* be able
 to create an article. Try it! You should get an error that looks like this:
 
 ![Forbidden attributes for new article]
-(images/getting_started/forbidden_attributes_for_new_article.png)
+(https://edgeguides.rubyonrails.org/images/getting_started/forbidden_attributes_for_new_article.png)
 
 Rails has several security features that help you write secure applications,
-and you're running into one of them now. This one is called [strong parameters](action_controller_overview.html#strong-parameters),
+and you're running into one of them now. This one is called [strong parameters](action_controller_overview.md#strong-parameters),
 which requires us to tell Rails exactly which parameters are allowed into our
 controller actions.
 
@@ -868,7 +868,7 @@ content:
 With this change, you should finally be able to create new articles.
 Visit <http://localhost:3000/articles/new> and give it a try!
 
-![Show action for articles](images/getting_started/show_action_for_articles.png)
+![Show action for articles](https://edgeguides.rubyonrails.org/images/getting_started/show_action_for_articles.png)
 
 ### Listing all articles
 
@@ -1019,7 +1019,7 @@ These changes will ensure that all articles have a title that is at least five
 characters long. Rails can validate a variety of conditions in a model,
 including the presence or uniqueness of columns, their format, and the
 existence of associated objects. Validations are covered in detail in [Active
-Record Validations](active_record_validations.html).
+Record Validations](active_record_validations.md).
 
 With the validation now in place, when you call `@article.save` on an invalid
 article, it will return `false`. If you open
@@ -1122,7 +1122,7 @@ Now you'll get a nice error message when saving an article without a title when
 you attempt to do just that on the new article form
 <http://localhost:3000/articles/new>:
 
-![Form With Errors](images/getting_started/form_with_errors.png)
+![Form With Errors](https://edgeguides.rubyonrails.org/images/getting_started/form_with_errors.png)
 
 ### Updating Articles
 
@@ -1288,7 +1288,7 @@ bottom of the template:
 
 And here's how our app looks so far:
 
-![Index action with edit link](images/getting_started/index_action_with_edit_link.png)
+![Index action with edit link](https://edgeguides.rubyonrails.org/images/getting_started/index_action_with_edit_link.png)
 
 ### Using partials to clean up duplication in views
 
@@ -1298,7 +1298,7 @@ duplication by using a view partial. By convention, partial files are
 prefixed with an underscore.
 
 TIP: You can read more about partials in the
-[Layouts and Rendering in Rails](layouts_and_rendering.html) guide.
+[Layouts and Rendering in Rails](layouts_and_rendering.md) guide.
 
 Create a new file `app/views/articles/_form.html.erb` with the following
 content:
@@ -1495,17 +1495,17 @@ application's layout (`app/views/layouts/application.html.erb`) when you
 generated the application. Without this file, the confirmation dialog box won't
 appear.
 
-![Confirm Dialog](images/getting_started/confirm_dialog.png)
+![Confirm Dialog](https://edgeguides.rubyonrails.org/images/getting_started/confirm_dialog.png)
 
 TIP: Learn more about Unobtrusive JavaScript on
-[Working With JavaScript in Rails](working_with_javascript_in_rails.html) guide.
+[Working With JavaScript in Rails](working_with_javascript_in_rails.md) guide.
 
 Congratulations, you can now create, show, list, update, and destroy
 articles.
 
 TIP: In general, Rails encourages using resources objects instead of
 declaring routes manually. For more information about routing, see
-[Rails Routing from the Outside In](routing.html).
+[Rails Routing from the Outside In](routing.md).
 
 Adding a Second Model
 ---------------------
@@ -1620,7 +1620,7 @@ all the comments belonging to that article as an array using
 `@article.comments`.
 
 TIP: For more information on Active Record associations, see the [Active Record
-Associations](association_basics.html) guide.
+Associations](association_basics.md) guide.
 
 ### Adding a Route for Comments
 
@@ -1638,7 +1638,7 @@ This creates `comments` as a _nested resource_ within `articles`. This is
 another part of capturing the hierarchical relationship that exists between
 articles and comments.
 
-TIP: For more information on routing, see the [Rails Routing](routing.html)
+TIP: For more information on routing, see the [Rails Routing](routing.md)
 guide.
 
 ### Generating a Controller
@@ -1783,7 +1783,7 @@ add that to the `app/views/articles/show.html.erb`.
 Now you can add articles and comments to your blog and have them show up in the
 right places.
 
-![Article with Comments](images/getting_started/article_with_comments.png)
+![Article with Comments](https://edgeguides.rubyonrails.org/images/getting_started/article_with_comments.png)
 
 Refactoring
 -----------
@@ -2031,7 +2031,7 @@ class CommentsController < ApplicationController
 Now if you try to create a new article, you will be greeted with a basic HTTP
 Authentication challenge:
 
-![Basic HTTP Authentication Challenge](images/getting_started/challenge.png)
+![Basic HTTP Authentication Challenge](https://edgeguides.rubyonrails.org/images/getting_started/challenge.png)
 
 Other authentication methods are available for Rails applications. Two popular
 authentication add-ons for Rails are the
@@ -2044,7 +2044,7 @@ along with a number of others.
 
 Security, especially in web applications, is a broad and detailed area. Security
 in your Rails application is covered in more depth in
-the [Ruby on Rails Security Guide](security.html).
+the [Ruby on Rails Security Guide](security.md).
 
 
 What's Next?
@@ -2057,7 +2057,7 @@ Remember, you don't have to do everything without help. As you need assistance
 getting up and running with Rails, feel free to consult these support
 resources:
 
-* The [Ruby on Rails Guides](index.html)
+* The [Ruby on Rails Guides](index.md)
 * The [Ruby on Rails Tutorial](https://www.railstutorial.org/book)
 * The [Ruby on Rails mailing list](https://groups.google.com/group/rubyonrails-talk)
 * The [#rubyonrails](irc://irc.freenode.net/#rubyonrails) channel on irc.freenode.net
