@@ -105,7 +105,7 @@ depending on the purpose of these columns.
   your models.
 * **Primary keys** - By default, Active Record will use an integer column named
   `id` as the table's primary key (`bigint` for PostgreSQL and MySQL, `integer`
-  for SQLite). When using [Active Record Migrations](active_record_migrations.html)
+  for SQLite). When using [Active Record Migrations](active_record_migrations.md)
   to create your tables, this column will be automatically created.
 
 There are also some optional column names that will add additional features
@@ -269,7 +269,7 @@ users = User.where(name: 'David', occupation: 'Code Artist').order(created_at: :
 ```
 
 You can learn more about querying an Active Record model in the [Active Record
-Query Interface](active_record_querying.html) guide.
+Query Interface](active_record_querying.md) guide.
 
 ### Update
 
@@ -346,7 +346,7 @@ user.save! # => ActiveRecord::RecordInvalid: Validation failed: Name can't be bl
 ```
 
 You can learn more about validations in the [Active Record Validations
-guide](active_record_validations.html).
+guide](active_record_validations.md).
 
 Callbacks
 ---------
@@ -355,7 +355,7 @@ Active Record callbacks allow you to attach code to certain events in the
 life-cycle of your models. This enables you to add behavior to your models by
 transparently executing code when those events occur, like when you create a new
 record, update it, destroy it, and so on. You can learn more about callbacks in
-the [Active Record Callbacks guide](active_record_callbacks.html).
+the [Active Record Callbacks guide](active_record_callbacks.md).
 
 Migrations
 ----------
@@ -389,4 +389,4 @@ and to roll it back, `rails db:rollback`.
 
 Note that the above code is database-agnostic: it will run in MySQL,
 PostgreSQL, Oracle, and others. You can learn more about migrations in the
-[Active Record Migrations guide](active_record_migrations.html).
+[Active Record Migrations guide](active_record_migrations.md).

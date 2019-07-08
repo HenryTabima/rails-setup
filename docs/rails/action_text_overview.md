@@ -47,7 +47,7 @@ happens after every keystroke, and avoids the need to use execCommand at all.
 
 Run `rails action_text:install` to add the Yarn package and copy over the necessary migration.
 Also, you need to set up Active Storage for embedded images and other attachments.
-Please refer to the [Active Storage Overview](active_storage_overview.html) guide.
+Please refer to the [Active Storage Overview](active_storage_overview.md) guide.
 
 ## Examples
 

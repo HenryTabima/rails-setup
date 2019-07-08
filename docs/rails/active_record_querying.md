@@ -1068,7 +1068,7 @@ SELECT authors.* FROM authors INNER JOIN posts ON posts.author_id = authors.id A
 
 #### Using Array/Hash of Named Associations
 
-Active Record lets you use the names of the [associations](association_basics.html) defined on the model as a shortcut for specifying `JOIN` clauses for those associations when using the `joins` method.
+Active Record lets you use the names of the [associations](association_basics.md) defined on the model as a shortcut for specifying `JOIN` clauses for those associations when using the `joins` method.
 
 For example, consider the following `Category`, `Article`, `Comment`, `Guest` and `Tag` models:
 

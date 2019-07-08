@@ -20,7 +20,7 @@ Guides are written in [GitHub Flavored Markdown](https://help.github.com/article
 Prologue
 --------
 
-Each guide should start with motivational text at the top (that's the little introduction in the blue area). The prologue should tell the reader what the guide is about, and what they will learn. As an example, see the [Routing Guide](routing.html).
+Each guide should start with motivational text at the top (that's the little introduction in the blue area). The prologue should tell the reader what the guide is about, and what they will learn. As an example, see the [Routing Guide](routing.md).
 
 Headings
 ------
@@ -95,13 +95,13 @@ Please don't link to `edgeapi.rubyonrails.org` manually.
 API Documentation Guidelines
 ----------------------------
 
-The guides and the API should be coherent and consistent where appropriate. In particular, these sections of the [API Documentation Guidelines](api_documentation_guidelines.html) also apply to the guides:
+The guides and the API should be coherent and consistent where appropriate. In particular, these sections of the [API Documentation Guidelines](api_documentation_guidelines.md) also apply to the guides:
 
-* [Wording](api_documentation_guidelines.html#wording)
-* [English](api_documentation_guidelines.html#english)
-* [Example Code](api_documentation_guidelines.html#example-code)
-* [Filenames](api_documentation_guidelines.html#file-names)
-* [Fonts](api_documentation_guidelines.html#fonts)
+* [Wording](api_documentation_guidelines.md#wording)
+* [English](api_documentation_guidelines.md#english)
+* [Example Code](api_documentation_guidelines.md#example-code)
+* [Filenames](api_documentation_guidelines.md#file-names)
+* [Fonts](api_documentation_guidelines.md#fonts)
 
 HTML Guides
 -----------

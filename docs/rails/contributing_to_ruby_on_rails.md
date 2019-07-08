@@ -136,7 +136,7 @@ You can help improve the Rails guides by making them more coherent, consistent, 
 To do so, make changes to Rails guides source files (located [here](https://github.com/rails/rails/tree/master/guides/source) on GitHub). Then open a pull request to apply your
 changes to the master branch.
 
-When working with documentation, please take into account the [API Documentation Guidelines](api_documentation_guidelines.html) and the [Ruby on Rails Guides Guidelines](ruby_on_rails_guides_guidelines.html).
+When working with documentation, please take into account the [API Documentation Guidelines](api_documentation_guidelines.md) and the [Ruby on Rails Guides Guidelines](ruby_on_rails_guides_guidelines.md).
 
 NOTE: To help our CI servers you should add [ci skip] to your documentation commit message to skip build on that commit. Please remember to use it for commits containing only documentation changes.
 
@@ -190,7 +190,7 @@ The easiest and recommended way to get a development environment ready to hack i
 
 #### The Hard Way
 
-In case you can't use the Rails development box, see [this other guide](development_dependencies_install.html).
+In case you can't use the Rails development box, see [this other guide](development_dependencies_install.md).
 
 ### Clone the Rails Repository
 

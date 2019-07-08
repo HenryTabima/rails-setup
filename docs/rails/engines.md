@@ -240,7 +240,7 @@ applications into engines.
 
 NOTE: Because of the way that Ruby does constant lookup you may run into a situation
 where your engine controller is inheriting from the main application controller and
-not your engine's application controller. Ruby is able to resolve the `ApplicationController` constant, and therefore the autoloading mechanism is not triggered. See the section [When Constants Aren't Missed](autoloading_and_reloading_constants.html#when-constants-aren-t-missed) of the [Autoloading and Reloading Constants](autoloading_and_reloading_constants.html) guide for further details. The best way to prevent this from
+not your engine's application controller. Ruby is able to resolve the `ApplicationController` constant, and therefore the autoloading mechanism is not triggered. See the section [When Constants Aren't Missed](autoloading_and_reloading_constants.md#when-constants-aren-t-missed) of the [Autoloading and Reloading Constants](autoloading_and_reloading_constants.md) guide for further details. The best way to prevent this from
 happening is to use `require_dependency` to ensure that the engine's application
 controller is loaded. For example:
 
@@ -333,7 +333,7 @@ Providing engine functionality
 
 The engine that this guide covers provides submitting articles and commenting
 functionality and follows a similar thread to the [Getting Started
-Guide](getting_started.html), with some new twists.
+Guide](getting_started.md), with some new twists.
 
 NOTE: For this section, make sure to run the commands in the root of the
 `blorgh` engine's directory.
@@ -1024,7 +1024,7 @@ engines!
 If you wish to use an initializer - code that should run before the engine is
 loaded - the place for it is the `config/initializers` folder. This directory's
 functionality is explained in the [Initializers
-section](configuring.html#initializers) of the Configuring guide, and works
+section](configuring.md#initializers) of the Configuring guide, and works
 precisely the same way as the `config/initializers` directory inside an
 application. The same thing goes if you want to use a standard initializer.
 
@@ -1391,7 +1391,7 @@ initializer "blorgh.assets.precompile" do |app|
 end
 ```
 
-For more information, read the [Asset Pipeline guide](asset_pipeline.html).
+For more information, read the [Asset Pipeline guide](asset_pipeline.md).
 
 ### Other Gem Dependencies
 

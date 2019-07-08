@@ -194,7 +194,7 @@ There is definitely [no shortage of solutions for this](https://github.com/Moder
 [Modernizr](https://modernizr.com/), which provides a simple way to add functionality based on the presence of
 detected HTML5 features.
 
-TIP: If you're using password input fields (for any purpose), you might want to configure your application to prevent those parameters from being logged. You can learn about this in the [Securing Rails Applications](security.html#logging) guide.
+TIP: If you're using password input fields (for any purpose), you might want to configure your application to prevent those parameters from being logged. You can learn about this in the [Securing Rails Applications](security.md#logging) guide.
 
 Dealing with Model Objects
 --------------------------
@@ -335,7 +335,7 @@ will create a form that submits to the `ArticlesController` inside the admin nam
 form_with model: [:admin, :management, @article]
 ```
 
-For more information on Rails' routing system and the associated conventions, please see [Rails Routing from the Outside In](routing.html) guide.
+For more information on Rails' routing system and the associated conventions, please see [Rails Routing from the Outside In](routing.md) guide.
 
 ### How do forms with PATCH, PUT, or DELETE methods work?
 
@@ -653,7 +653,7 @@ def upload
 end
 ```
 
-Once a file has been uploaded, there are a multitude of potential tasks, ranging from where to store the files (on Disk, Amazon S3, etc), associating them with models, resizing image files, and generating thumbnails, etc. [Active Storage](active_storage_overview.html) is designed to assist with these tasks.
+Once a file has been uploaded, there are a multitude of potential tasks, ranging from where to store the files (on Disk, Amazon S3, etc), associating them with models, resizing image files, and generating thumbnails, etc. [Active Storage](active_storage_overview.md) is designed to assist with these tasks.
 
 Customizing Form Builders
 -------------------------

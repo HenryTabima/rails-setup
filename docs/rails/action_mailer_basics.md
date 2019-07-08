@@ -454,7 +454,7 @@ And in order to use this feature, you need to configure your application with th
 ```
 
 Fragment caching is also supported in multipart emails.
-Read more about caching in the [Rails caching guide](caching_with_rails.html).
+Read more about caching in the [Rails caching guide](caching_with_rails.md).
 
 ### Action Mailer Layouts
 

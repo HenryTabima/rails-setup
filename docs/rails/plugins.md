@@ -440,7 +440,7 @@ Generators
 ----------
 
 Generators can be included in your gem simply by creating them in a `lib/generators` directory of your plugin. More information about
-the creation of generators can be found in the [Generators Guide](generators.html).
+the creation of generators can be found in the [Generators Guide](generators.md).
 
 Publishing Your Gem
 -------------------

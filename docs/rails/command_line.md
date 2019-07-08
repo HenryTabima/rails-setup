@@ -12,7 +12,7 @@ After reading this guide, you will know:
 
 --------------------------------------------------------------------------------
 
-NOTE: This tutorial assumes you have basic Rails knowledge from reading the [Getting Started with Rails Guide](getting_started.html).
+NOTE: This tutorial assumes you have basic Rails knowledge from reading the [Getting Started with Rails Guide](getting_started.md).
 
 Command Line Basics
 -------------------
@@ -471,7 +471,7 @@ If you want to clear `public/assets` completely, you can use `rails assets:clobb
 
 The most common commands of the `db:` rails namespace are `migrate` and `create`, and it will pay off to try out all of the migration rails commands (`up`, `down`, `redo`, `reset`). `rails db:version` is useful when troubleshooting, telling you the current version of the database.
 
-More information about migrations can be found in the [Migrations](active_record_migrations.html) guide.
+More information about migrations can be found in the [Migrations](active_record_migrations.md) guide.
 
 ### `rails notes`
 
@@ -583,7 +583,7 @@ vendor/tools.rb:
 
 ### `rails test`
 
-INFO: A good description of unit testing in Rails is given in [A Guide to Testing Rails Applications](testing.html)
+INFO: A good description of unit testing in Rails is given in [A Guide to Testing Rails Applications](testing.md)
 
 Rails comes with a test framework called minitest. Rails owes its stability to the use of tests. The commands available in the `test:` namespace helps in running the different tests you will hopefully write.
 

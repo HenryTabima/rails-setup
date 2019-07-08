@@ -1052,7 +1052,7 @@ class Book < ApplicationRecord
 end
 ```
 
-You can use any of the standard [querying methods](active_record_querying.html) inside the scope block. The following ones are discussed below:
+You can use any of the standard [querying methods](active_record_querying.md) inside the scope block. The following ones are discussed below:
 
 * `where`
 * `includes`
@@ -1361,7 +1361,7 @@ class Supplier < ApplicationRecord
 end
 ```
 
-You can use any of the standard [querying methods](active_record_querying.html) inside the scope block. The following ones are discussed below:
+You can use any of the standard [querying methods](active_record_querying.md) inside the scope block. The following ones are discussed below:
 
 * `where`
 * `includes`
@@ -1787,7 +1787,7 @@ class Author < ApplicationRecord
 end
 ```
 
-You can use any of the standard [querying methods](active_record_querying.html) inside the scope block. The following ones are discussed below:
+You can use any of the standard [querying methods](active_record_querying.md) inside the scope block. The following ones are discussed below:
 
 * `where`
 * `extending`
@@ -2257,7 +2257,7 @@ class Parts < ApplicationRecord
 end
 ```
 
-You can use any of the standard [querying methods](active_record_querying.html) inside the scope block. The following ones are discussed below:
+You can use any of the standard [querying methods](active_record_querying.md) inside the scope block. The following ones are discussed below:
 
 * `where`
 * `extending`

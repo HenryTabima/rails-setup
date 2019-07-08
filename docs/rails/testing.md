@@ -66,7 +66,7 @@ NOTE: Your tests are run under `RAILS_ENV=test`.
 ### Rails meets Minitest
 
 If you remember, we used the `rails generate model` command in the
-[Getting Started with Rails](getting_started.html) guide. We created our first
+[Getting Started with Rails](getting_started.md) guide. We created our first
 model, and among other things it created test stubs in the `test` directory:
 
 ```bash

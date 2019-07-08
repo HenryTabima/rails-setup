@@ -42,7 +42,7 @@ Most applications need to keep track of state for users that interact with the a
 
 Rails provides a session object for each user that accesses the application. If the user already has an active session, Rails uses the existing session. Otherwise a new session is created.
 
-NOTE: Read more about sessions and how to use them in [Action Controller Overview Guide](action_controller_overview.html#session).
+NOTE: Read more about sessions and how to use them in [Action Controller Overview Guide](action_controller_overview.md#session).
 
 ### Session Hijacking
 
@@ -70,7 +70,7 @@ The main objective of most attackers is to make money. The underground prices fo
 
 NOTE: Rails uses `ActionDispatch::Session::CookieStore` as the default session storage.
 
-TIP: Learn more about other session storages in [Action Controller Overview Guide](action_controller_overview.html#session).
+TIP: Learn more about other session storages in [Action Controller Overview Guide](action_controller_overview.md#session).
 
 Rails `CookieStore` saves the session hash in a cookie on the client-side.
 The server retrieves the session hash from the cookie and
