@@ -1,6 +1,6 @@
 ---
 id: guides-list
-title: Guide's list
+title: Guides list
 ---
 
 > Todo: move the guides to this site
