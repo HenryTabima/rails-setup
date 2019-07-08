@@ -64,7 +64,8 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
           <PromoSection>
-            <Button href={docUrl('getting started.html')}>Rails Docs</Button>
+            <Button href={docUrl('rails/getting-started.html')}>Rails Docs</Button>
+            <Button href={docUrl('devise/overview.html')}>Devise Docs</Button>
           </PromoSection>
         </div>
       </SplashContainer>
