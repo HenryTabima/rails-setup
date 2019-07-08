@@ -33,7 +33,8 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'getting started', label: 'Rails Docs'},
+    {doc: 'rails/getting-started', label: 'Rails'},
+    {doc: 'devise/overview', label: 'Devise'},
     {href: 'https://github.com/HenryTabima/rails-setup', label: 'GitHub'}
   ],
 
@@ -66,12 +67,14 @@ const siteConfig = {
   */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} Rails Setup`,
+  copyright: `Rails Setup ${new Date().getFullYear()}`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
     theme: 'default',
   },
+
+  docsSideNavCollapsible: true,
 
   // Add custom scripts here that would be placed in <script> tags.
   scripts: ['https://buttons.github.io/buttons.js'],
@@ -89,7 +92,7 @@ const siteConfig = {
   // enableUpdateBy: true,
 
   // Show documentation's last update time.
-  // enableUpdateTime: true,
+  enableUpdateTime: true,
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
