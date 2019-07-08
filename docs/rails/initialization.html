@@ -1,0 +1,612 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>The Rails Initialization Process · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This guide explains the internals of the initialization process in Rails.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="The Rails Initialization Process · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;This guide explains the internals of the initialization process in Rails.&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/rails/getting-started" target="_self">Rails</a></li><li class=""><a href="/rails-setup/docs/devise/overview" target="_self">Devise</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Digging Deeper</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start Here<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/getting-started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/development-dependencies-install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Models<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/multiple-databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Views<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/layouts-and-rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view-form-helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Controllers<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Other Components<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Digging Deeper<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/testing-rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/securing-rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/debugging-rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/configuring-rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-command-line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/asset-pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/working-with-javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/autoloading-and-reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/caching-with-rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-only-apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/threading">Threading and Code Execution in Rails</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/rails/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Extending Rails<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-on-rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/generators-&amp;-templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/application-templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/creating-rails-plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contributions<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/contributing-to-rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/guides-guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Policies<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/maintenance-policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">The Rails Initialization Process</h1></header><article><div><span><p>This guide explains the internals of the initialization process in Rails.
+It is an extremely in-depth guide and recommended for advanced Rails developers.</p>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>How to use <code>rails server</code>.</li>
+<li>The timeline of Rails' initialization sequence.</li>
+<li>Where different files are required by the boot sequence.</li>
+<li>How the Rails::Server interface is defined and used.</li>
+</ul>
+<hr>
+<p>This guide goes through every method call that is
+required to boot up the Ruby on Rails stack for a default Rails
+application, explaining each part in detail along the way. For this
+guide, we will be focusing on what happens when you execute <code>rails server</code>
+to boot your app.</p>
+<p>NOTE: Paths in this guide are relative to Rails or a Rails application unless otherwise specified.</p>
+<p>TIP: If you want to follow along while browsing the Rails <a href="https://github.com/rails/rails">source
+code</a>, we recommend that you use the <code>t</code>
+key binding to open the file finder inside GitHub and find files
+quickly.</p>
+<h2><a class="anchor" aria-hidden="true" id="launch"></a><a href="#launch" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Launch!</h2>
+<p>Let's start to boot and initialize the app. A Rails application is usually
+started by running <code>rails console</code> or <code>rails server</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="railties-exe-rails"></a><a href="#railties-exe-rails" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>railties/exe/rails</code></h3>
+<p>The <code>rails</code> in the command <code>rails server</code> is a ruby executable in your load
+path. This executable contains the following lines:</p>
+<pre><code class="hljs css language-ruby">version = <span class="hljs-string">"&gt;= 0"</span>
+load Gem.bin_path(<span class="hljs-string">'railties'</span>, <span class="hljs-string">'rails'</span>, version)
+</code></pre>
+<p>If you try out this command in a Rails console, you would see that this loads
+<code>railties/exe/rails</code>. A part of the file <code>railties/exe/rails</code> has the
+following code:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">"rails/cli"</span>
+</code></pre>
+<p>The file <code>railties/lib/rails/cli</code> in turn calls
+<code>Rails::AppLoader.exec_app</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="railties-lib-rails-app_loaderrb"></a><a href="#railties-lib-rails-app_loaderrb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>railties/lib/rails/app_loader.rb</code></h3>
+<p>The primary goal of the function <code>exec_app</code> is to execute your app's
+<code>bin/rails</code>. If the current directory does not have a <code>bin/rails</code>, it will
+navigate upwards until it finds a <code>bin/rails</code> executable. Thus one can invoke a
+<code>rails</code> command from anywhere inside a rails application.</p>
+<p>For <code>rails server</code> the equivalent of the following command is executed:</p>
+<pre><code class="hljs css language-bash">$ <span class="hljs-built_in">exec</span> ruby bin/rails server
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="bin-rails"></a><a href="#bin-rails" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>bin/rails</code></h3>
+<p>This file is as follows:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment">#!/usr/bin/env ruby</span>
+APP_PATH = File.expand_path(<span class="hljs-string">'../config/application'</span>, __dir_<span class="hljs-number">_</span>)
+require_relative <span class="hljs-string">'../config/boot'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'rails/commands'</span>
+</code></pre>
+<p>The <code>APP_PATH</code> constant will be used later in <code>rails/commands</code>. The <code>config/boot</code> file referenced here is the <code>config/boot.rb</code> file in our application which is responsible for loading Bundler and setting it up.</p>
+<h3><a class="anchor" aria-hidden="true" id="config-bootrb"></a><a href="#config-bootrb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>config/boot.rb</code></h3>
+<p><code>config/boot.rb</code> contains:</p>
+<pre><code class="hljs css language-ruby">ENV[<span class="hljs-string">'BUNDLE_GEMFILE'</span>] <span class="hljs-params">||</span>= File.expand_path(<span class="hljs-string">'../Gemfile'</span>, __dir_<span class="hljs-number">_</span>)
+
+<span class="hljs-keyword">require</span> <span class="hljs-string">'bundler/setup'</span> <span class="hljs-comment"># Set up gems listed in the Gemfile.</span>
+</code></pre>
+<p>In a standard Rails application, there's a <code>Gemfile</code> which declares all
+dependencies of the application. <code>config/boot.rb</code> sets
+<code>ENV['BUNDLE_GEMFILE']</code> to the location of this file. If the <code>Gemfile</code>
+exists, then <code>bundler/setup</code> is required. The require is used by Bundler to
+configure the load path for your Gemfile's dependencies.</p>
+<p>A standard Rails application depends on several gems, specifically:</p>
+<ul>
+<li>actioncable</li>
+<li>actionmailer</li>
+<li>actionpack</li>
+<li>actionview</li>
+<li>activejob</li>
+<li>activemodel</li>
+<li>activerecord</li>
+<li>activestorage</li>
+<li>activesupport</li>
+<li>arel</li>
+<li>builder</li>
+<li>bundler</li>
+<li>erubi</li>
+<li>i18n</li>
+<li>mail</li>
+<li>mime-types</li>
+<li>rack</li>
+<li>rack-test</li>
+<li>rails</li>
+<li>railties</li>
+<li>rake</li>
+<li>sqlite3</li>
+<li>thor</li>
+<li>tzinfo</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="rails-commandsrb"></a><a href="#rails-commandsrb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>rails/commands.rb</code></h3>
+<p>Once <code>config/boot.rb</code> has finished, the next file that is required is
+<code>rails/commands</code>, which helps in expanding aliases. In the current case, the
+<code>ARGV</code> array simply contains <code>server</code> which will be passed over:</p>
+<pre><code class="hljs css language-ruby">require_relative <span class="hljs-string">"command"</span>
+
+aliases = {
+  <span class="hljs-string">"g"</span>  =&gt; <span class="hljs-string">"generate"</span>,
+  <span class="hljs-string">"d"</span>  =&gt; <span class="hljs-string">"destroy"</span>,
+  <span class="hljs-string">"c"</span>  =&gt; <span class="hljs-string">"console"</span>,
+  <span class="hljs-string">"s"</span>  =&gt; <span class="hljs-string">"server"</span>,
+  <span class="hljs-string">"db"</span> =&gt; <span class="hljs-string">"dbconsole"</span>,
+  <span class="hljs-string">"r"</span>  =&gt; <span class="hljs-string">"runner"</span>,
+  <span class="hljs-string">"t"</span>  =&gt; <span class="hljs-string">"test"</span>
+}
+
+command = ARGV.shift
+command = aliases[command] <span class="hljs-params">||</span> command
+
+Rails::Command.invoke command, ARGV
+</code></pre>
+<p>If we had used <code>s</code> rather than <code>server</code>, Rails would have used the <code>aliases</code>
+defined here to find the matching command.</p>
+<h3><a class="anchor" aria-hidden="true" id="rails-commandrb"></a><a href="#rails-commandrb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>rails/command.rb</code></h3>
+<p>When one types a Rails command, <code>invoke</code> tries to lookup a command for the given
+namespace and executes the command if found.</p>
+<p>If Rails doesn't recognize the command, it hands the reins over to Rake
+to run a task of the same name.</p>
+<p>As shown, <code>Rails::Command</code> displays the help output automatically if the <code>namespace</code>
+is empty.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Rails::Command</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> &lt;&lt; self</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">invoke</span><span class="hljs-params">(namespace, args = [], **config)</span></span>
+      namespace = namespace.to_s
+      namespace = <span class="hljs-string">"help"</span> <span class="hljs-keyword">if</span> namespace.blank? <span class="hljs-params">||</span> HELP_MAPPINGS.<span class="hljs-keyword">include</span>?(namespace)
+      namespace = <span class="hljs-string">"version"</span> <span class="hljs-keyword">if</span> <span class="hljs-string">%w( -v --version )</span>.<span class="hljs-keyword">include</span>? namespace
+
+      <span class="hljs-keyword">if</span> command = find_by_namespace(namespace)
+        command.perform(namespace, args, config)
+      <span class="hljs-keyword">else</span>
+        find_by_namespace(<span class="hljs-string">"rake"</span>).perform(namespace, args, config)
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>With the <code>server</code> command, Rails will further run the following code:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Rails</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Command</span></span>
+    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServerCommand</span> &lt; Base <span class="hljs-comment"># :nodoc:</span></span>
+      <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">perform</span></span>
+        set_application_directory!
+
+        Rails::Server.new.tap <span class="hljs-keyword">do</span> <span class="hljs-params">|server|</span>
+          <span class="hljs-comment"># Require application after server sets environment to propagate</span>
+          <span class="hljs-comment"># the --environment option.</span>
+          <span class="hljs-keyword">require</span> APP_PATH
+          Dir.chdir(Rails.application.root)
+          server.start
+        <span class="hljs-keyword">end</span>
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This file will change into the Rails root directory (a path two directories up
+from <code>APP_PATH</code> which points at <code>config/application.rb</code>), but only if the
+<code>config.ru</code> file isn't found. This then starts up the <code>Rails::Server</code> class.</p>
+<h3><a class="anchor" aria-hidden="true" id="actionpack-lib-action_dispatchrb"></a><a href="#actionpack-lib-action_dispatchrb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>actionpack/lib/action_dispatch.rb</code></h3>
+<p>Action Dispatch is the routing component of the Rails framework.
+It adds functionality like routing, session, and common middlewares.</p>
+<h3><a class="anchor" aria-hidden="true" id="rails-commands-server-server_commandrb"></a><a href="#rails-commands-server-server_commandrb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>rails/commands/server/server_command.rb</code></h3>
+<p>The <code>Rails::Server</code> class is defined in this file by inheriting from
+<code>Rack::Server</code>. When <code>Rails::Server.new</code> is called, this calls the <code>initialize</code>
+method in <code>rails/commands/server/server_command.rb</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span><span class="hljs-params">(*)</span></span>
+  <span class="hljs-keyword">super</span>
+  set_environment
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Firstly, <code>super</code> is called which calls the <code>initialize</code> method on <code>Rack::Server</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="rack-lib-rack-serverrb"></a><a href="#rack-lib-rack-serverrb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rack: <code>lib/rack/server.rb</code></h3>
+<p><code>Rack::Server</code> is responsible for providing a common server interface for all Rack-based applications, which Rails is now a part of.</p>
+<p>The <code>initialize</code> method in <code>Rack::Server</code> simply sets a couple of variables:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span><span class="hljs-params">(options = <span class="hljs-literal">nil</span>)</span></span>
+  @options = options
+  @app = options[<span class="hljs-symbol">:app</span>] <span class="hljs-keyword">if</span> options &amp;&amp; options[<span class="hljs-symbol">:app</span>]
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>In this case, <code>options</code> will be <code>nil</code> so nothing happens in this method.</p>
+<p>After <code>super</code> has finished in <code>Rack::Server</code>, we jump back to
+<code>rails/commands/server/server_command.rb</code>. At this point, <code>set_environment</code>
+is called within the context of the <code>Rails::Server</code> object and this method
+doesn't appear to do much at first glance:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_environment</span></span>
+  ENV[<span class="hljs-string">"RAILS_ENV"</span>] <span class="hljs-params">||</span>= options[<span class="hljs-symbol">:environment</span>]
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>In fact, the <code>options</code> method here does quite a lot. This method is defined in <code>Rack::Server</code> like this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">options</span></span>
+  @options <span class="hljs-params">||</span>= parse_options(ARGV)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Then <code>parse_options</code> is defined like this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">parse_options</span><span class="hljs-params">(args)</span></span>
+  options = default_options
+
+  <span class="hljs-comment"># Don't evaluate CGI ISINDEX parameters.</span>
+  <span class="hljs-comment"># http://www.meb.uni-bonn.de/docs/cgi/cl.html</span>
+  args.clear <span class="hljs-keyword">if</span> ENV.<span class="hljs-keyword">include</span>?(<span class="hljs-string">"REQUEST_METHOD"</span>)
+
+  options.merge! opt_parser.parse!(args)
+  options[<span class="hljs-symbol">:config</span>] = <span class="hljs-symbol">:</span><span class="hljs-symbol">:File</span>.expand_path(options[<span class="hljs-symbol">:config</span>])
+  ENV[<span class="hljs-string">"RACK_ENV"</span>] = options[<span class="hljs-symbol">:environment</span>]
+  options
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>With the <code>default_options</code> set to this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">default_options</span></span>
+  <span class="hljs-keyword">super</span>.merge(
+    <span class="hljs-symbol">Port:</span>               ENV.fetch(<span class="hljs-string">"PORT"</span>, <span class="hljs-number">3000</span>).to_i,
+    <span class="hljs-symbol">Host:</span>               ENV.fetch(<span class="hljs-string">"HOST"</span>, <span class="hljs-string">"localhost"</span>).dup,
+    <span class="hljs-symbol">DoNotReverseLookup:</span> <span class="hljs-literal">true</span>,
+    <span class="hljs-symbol">environment:</span>        (ENV[<span class="hljs-string">"RAILS_ENV"</span>] <span class="hljs-params">||</span> ENV[<span class="hljs-string">"RACK_ENV"</span>] <span class="hljs-params">||</span> <span class="hljs-string">"development"</span>).dup,
+    <span class="hljs-symbol">daemonize:</span>          <span class="hljs-literal">false</span>,
+    <span class="hljs-symbol">caching:</span>            <span class="hljs-literal">nil</span>,
+    <span class="hljs-symbol">pid:</span>                Options::DEFAULT_PID_PATH,
+    <span class="hljs-symbol">restart_cmd:</span>        restart_command)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>There is no <code>REQUEST_METHOD</code> key in <code>ENV</code> so we can skip over that line. The next line merges in the options from <code>opt_parser</code> which is defined plainly in <code>Rack::Server</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">opt_parser</span></span>
+  Options.new
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The class <strong>is</strong> defined in <code>Rack::Server</code>, but is overwritten in
+<code>Rails::Server</code> to take different arguments. Its <code>parse!</code> method looks
+like this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">parse!</span><span class="hljs-params">(args)</span></span>
+  args, options = args.dup, {}
+
+  option_parser(options).parse! args
+
+  options[<span class="hljs-symbol">:log_stdout</span>] = options[<span class="hljs-symbol">:daemonize</span>].blank? &amp;&amp; (options[<span class="hljs-symbol">:environment</span>] <span class="hljs-params">||</span> Rails.env) == <span class="hljs-string">"development"</span>
+  options[<span class="hljs-symbol">:server</span>]     = args.shift
+  options
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This method will set up keys for the <code>options</code> which Rails will then be
+able to use to determine how its server should run. After <code>initialize</code>
+has finished, we jump back into the server command where <code>APP_PATH</code> (which was
+set earlier) is required.</p>
+<h3><a class="anchor" aria-hidden="true" id="config-application"></a><a href="#config-application" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>config/application</code></h3>
+<p>When <code>require APP_PATH</code> is executed, <code>config/application.rb</code> is loaded (recall
+that <code>APP_PATH</code> is defined in <code>bin/rails</code>). This file exists in your application
+and it's free for you to change based on your needs.</p>
+<h3><a class="anchor" aria-hidden="true" id="rails-server-start"></a><a href="#rails-server-start" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>Rails::Server#start</code></h3>
+<p>After <code>config/application</code> is loaded, <code>server.start</code> is called. This method is
+defined like this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">start</span></span>
+  print_boot_information
+  trap(<span class="hljs-symbol">:INT</span>) { exit }
+  create_tmp_directories
+  setup_dev_caching
+  log_to_stdout <span class="hljs-keyword">if</span> options[<span class="hljs-symbol">:log_stdout</span>]
+
+  <span class="hljs-keyword">super</span>
+  ...
+<span class="hljs-keyword">end</span>
+
+private
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">print_boot_information</span></span>
+    ...
+    puts <span class="hljs-string">"=&gt; Run `rails server -h` for more startup options"</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create_tmp_directories</span></span>
+    <span class="hljs-string">%w(cache pids sockets)</span>.each <span class="hljs-keyword">do</span> <span class="hljs-params">|dir_to_make|</span>
+      FileUtils.mkdir_p(File.join(Rails.root, <span class="hljs-string">'tmp'</span>, dir_to_make))
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">setup_dev_caching</span></span>
+    <span class="hljs-keyword">if</span> options[<span class="hljs-symbol">:environment</span>] == <span class="hljs-string">"development"</span>
+      Rails::DevCaching.enable_by_argument(options[<span class="hljs-symbol">:caching</span>])
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">log_to_stdout</span></span>
+    wrapped_app <span class="hljs-comment"># touch the app so the logger is set up</span>
+
+    console = ActiveSupport::Logger.new(STDOUT)
+    console.formatter = Rails.logger.formatter
+    console.level = Rails.logger.level
+
+    <span class="hljs-keyword">unless</span> ActiveSupport::Logger.logger_outputs_to?(Rails.logger, STDOUT)
+      Rails.logger.extend(ActiveSupport::Logger.broadcast(console))
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+</code></pre>
+<p>This is where the first output of the Rails initialization happens. This method
+creates a trap for <code>INT</code> signals, so if you <code>CTRL-C</code> the server, it will exit the
+process. As we can see from the code here, it will create the <code>tmp/cache</code>,
+<code>tmp/pids</code>, and <code>tmp/sockets</code> directories. It then enables caching in development
+if <code>rails server</code> is called with <code>--dev-caching</code>. Finally, it calls <code>wrapped_app</code> which is
+responsible for creating the Rack app, before creating and assigning an instance
+of <code>ActiveSupport::Logger</code>.</p>
+<p>The <code>super</code> method will call <code>Rack::Server.start</code> which begins its definition like this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">start</span> <span class="hljs-title">&amp;</span><span class="hljs-title">blk</span></span>
+  <span class="hljs-keyword">if</span> options[<span class="hljs-symbol">:warn</span>]
+    $-w = <span class="hljs-literal">true</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-keyword">if</span> includes = options[<span class="hljs-symbol">:include</span>]
+    $LOAD_PATH.unshift(*includes)
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-keyword">if</span> library = options[<span class="hljs-symbol">:require</span>]
+    <span class="hljs-keyword">require</span> library
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-keyword">if</span> options[<span class="hljs-symbol">:debug</span>]
+    $DEBUG = <span class="hljs-literal">true</span>
+    <span class="hljs-keyword">require</span> <span class="hljs-string">'pp'</span>
+    p options[<span class="hljs-symbol">:server</span>]
+    pp wrapped_app
+    pp app
+  <span class="hljs-keyword">end</span>
+
+  check_pid! <span class="hljs-keyword">if</span> options[<span class="hljs-symbol">:pid</span>]
+
+  <span class="hljs-comment"># Touch the wrapped app, so that the config.ru is loaded before</span>
+  <span class="hljs-comment"># daemonization (i.e. before chdir, etc).</span>
+  wrapped_app
+
+  daemonize_app <span class="hljs-keyword">if</span> options[<span class="hljs-symbol">:daemonize</span>]
+
+  write_pid <span class="hljs-keyword">if</span> options[<span class="hljs-symbol">:pid</span>]
+
+  trap(<span class="hljs-symbol">:INT</span>) <span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">if</span> server.respond_to?(<span class="hljs-symbol">:shutdown</span>)
+      server.shutdown
+    <span class="hljs-keyword">else</span>
+      exit
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  server.run wrapped_app, options, &amp;blk
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The interesting part for a Rails app is the last line, <code>server.run</code>. Here we encounter the <code>wrapped_app</code> method again, which this time
+we're going to explore more (even though it was executed before, and
+thus memoized by now).</p>
+<pre><code class="hljs css language-ruby">@wrapped_app <span class="hljs-params">||</span>= build_app app
+</code></pre>
+<p>The <code>app</code> method here is defined like so:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">app</span></span>
+  @app <span class="hljs-params">||</span>= options[<span class="hljs-symbol">:builder</span>] ? build_app_from_string : build_app_and_options_from_config
+<span class="hljs-keyword">end</span>
+...
+private
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">build_app_and_options_from_config</span></span>
+    <span class="hljs-keyword">if</span> !<span class="hljs-symbol">:</span><span class="hljs-symbol">:File</span>.exist? options[<span class="hljs-symbol">:config</span>]
+      abort <span class="hljs-string">"configuration <span class="hljs-subst">#{options[<span class="hljs-symbol">:config</span>]}</span> not found"</span>
+    <span class="hljs-keyword">end</span>
+
+    app, options = Rack::Builder.parse_file(<span class="hljs-keyword">self</span>.options[<span class="hljs-symbol">:config</span>], opt_parser)
+    <span class="hljs-keyword">self</span>.options.merge! options
+    app
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">build_app_from_string</span></span>
+    Rack::Builder.new_from_string(<span class="hljs-keyword">self</span>.options[<span class="hljs-symbol">:builder</span>])
+  <span class="hljs-keyword">end</span>
+</code></pre>
+<p>The <code>options[:config]</code> value defaults to <code>config.ru</code> which contains this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># This file is used by Rack-based servers to start the application.</span>
+
+require_relative <span class="hljs-string">'config/environment'</span>
+run &lt;%= app_const %&gt;
+</code></pre>
+<p>The <code>Rack::Builder.parse_file</code> method here takes the content from this <code>config.ru</code> file and parses it using this code:</p>
+<pre><code class="hljs css language-ruby">app = new_from_string cfgfile, config
+
+...
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">self</span>.<span class="hljs-title">new_from_string</span><span class="hljs-params">(builder_script, file=<span class="hljs-string">"(rackup)"</span>)</span></span>
+  eval <span class="hljs-string">"Rack::Builder.new {\n"</span> + builder_script + <span class="hljs-string">"\n}.to_app"</span>,
+    TOPLEVEL_BINDING, file, <span class="hljs-number">0</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The <code>initialize</code> method of <code>Rack::Builder</code> will take the block here and execute it within an instance of <code>Rack::Builder</code>. This is where the majority of the initialization process of Rails happens. The <code>require</code> line for <code>config/environment.rb</code> in <code>config.ru</code> is the first to run:</p>
+<pre><code class="hljs css language-ruby">require_relative <span class="hljs-string">'config/environment'</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="config-environmentrb"></a><a href="#config-environmentrb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>config/environment.rb</code></h3>
+<p>This file is the common file required by <code>config.ru</code> (<code>rails server</code>) and Passenger. This is where these two ways to run the server meet; everything before this point has been Rack and Rails setup.</p>
+<p>This file begins with requiring <code>config/application.rb</code>:</p>
+<pre><code class="hljs css language-ruby">require_relative <span class="hljs-string">'application'</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="config-applicationrb"></a><a href="#config-applicationrb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>config/application.rb</code></h3>
+<p>This file requires <code>config/boot.rb</code>:</p>
+<pre><code class="hljs css language-ruby">require_relative <span class="hljs-string">'boot'</span>
+</code></pre>
+<p>But only if it hasn't been required before, which would be the case in <code>rails server</code>
+but <strong>wouldn't</strong> be the case with Passenger.</p>
+<p>Then the fun begins!</p>
+<h2><a class="anchor" aria-hidden="true" id="loading-rails"></a><a href="#loading-rails" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Loading Rails</h2>
+<p>The next line in <code>config/application.rb</code> is:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'rails/all'</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="railties-lib-rails-allrb"></a><a href="#railties-lib-rails-allrb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>railties/lib/rails/all.rb</code></h3>
+<p>This file is responsible for requiring all the individual frameworks of Rails:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">"rails"</span>
+
+<span class="hljs-string">%w(
+  active_record/railtie
+  active_storage/engine
+  action_controller/railtie
+  action_view/railtie
+  action_mailer/railtie
+  active_job/railtie
+  action_cable/engine
+  rails/test_unit/railtie
+  sprockets/railtie
+)</span>.each <span class="hljs-keyword">do</span> <span class="hljs-params">|railtie|</span>
+  <span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">require</span> railtie
+  <span class="hljs-keyword">rescue</span> LoadError
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This is where all the Rails frameworks are loaded and thus made
+available to the application. We won't go into detail of what happens
+inside each of those frameworks, but you're encouraged to try and
+explore them on your own.</p>
+<p>For now, just keep in mind that common functionality like Rails engines,
+I18n and Rails configuration are all being defined here.</p>
+<h3><a class="anchor" aria-hidden="true" id="back-to-config-environmentrb"></a><a href="#back-to-config-environmentrb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Back to <code>config/environment.rb</code></h3>
+<p>The rest of <code>config/application.rb</code> defines the configuration for the
+<code>Rails::Application</code> which will be used once the application is fully
+initialized. When <code>config/application.rb</code> has finished loading Rails and defined
+the application namespace, we go back to <code>config/environment.rb</code>. Here, the
+application is initialized with <code>Rails.application.initialize!</code>, which is
+defined in <code>rails/application.rb</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="railties-lib-rails-applicationrb"></a><a href="#railties-lib-rails-applicationrb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>railties/lib/rails/application.rb</code></h3>
+<p>The <code>initialize!</code> method looks like this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize!</span><span class="hljs-params">(group=<span class="hljs-symbol">:default</span>)</span></span> <span class="hljs-comment">#:nodoc:</span>
+  raise <span class="hljs-string">"Application has been already initialized."</span> <span class="hljs-keyword">if</span> @initialized
+  run_initializers(group, <span class="hljs-keyword">self</span>)
+  @initialized = <span class="hljs-literal">true</span>
+  <span class="hljs-keyword">self</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>As you can see, you can only initialize an app once. The initializers are run through
+the <code>run_initializers</code> method which is defined in <code>railties/lib/rails/initializable.rb</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run_initializers</span><span class="hljs-params">(group=<span class="hljs-symbol">:default</span>, *args)</span></span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">if</span> instance_variable_defined?(<span class="hljs-symbol">:</span>@ran)
+  initializers.tsort_each <span class="hljs-keyword">do</span> <span class="hljs-params">|initializer|</span>
+    initializer.run(*args) <span class="hljs-keyword">if</span> initializer.belongs_to?(group)
+  <span class="hljs-keyword">end</span>
+  @ran = <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The <code>run_initializers</code> code itself is tricky. What Rails is doing here is
+traversing all the class ancestors looking for those that respond to an
+<code>initializers</code> method. It then sorts the ancestors by name, and runs them.
+For example, the <code>Engine</code> class will make all the engines available by
+providing an <code>initializers</code> method on them.</p>
+<p>The <code>Rails::Application</code> class, as defined in <code>railties/lib/rails/application.rb</code>
+defines <code>bootstrap</code>, <code>railtie</code>, and <code>finisher</code> initializers. The <code>bootstrap</code> initializers
+prepare the application (like initializing the logger) while the <code>finisher</code>
+initializers (like building the middleware stack) are run last. The <code>railtie</code>
+initializers are the initializers which have been defined on the <code>Rails::Application</code>
+itself and are run between the <code>bootstrap</code> and <code>finishers</code>.</p>
+<p>After this is done we go back to <code>Rack::Server</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="rack-lib-rack-serverrb-1"></a><a href="#rack-lib-rack-serverrb-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rack: lib/rack/server.rb</h3>
+<p>Last time we left when the <code>app</code> method was being defined:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">app</span></span>
+  @app <span class="hljs-params">||</span>= options[<span class="hljs-symbol">:builder</span>] ? build_app_from_string : build_app_and_options_from_config
+<span class="hljs-keyword">end</span>
+...
+private
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">build_app_and_options_from_config</span></span>
+    <span class="hljs-keyword">if</span> !<span class="hljs-symbol">:</span><span class="hljs-symbol">:File</span>.exist? options[<span class="hljs-symbol">:config</span>]
+      abort <span class="hljs-string">"configuration <span class="hljs-subst">#{options[<span class="hljs-symbol">:config</span>]}</span> not found"</span>
+    <span class="hljs-keyword">end</span>
+
+    app, options = Rack::Builder.parse_file(<span class="hljs-keyword">self</span>.options[<span class="hljs-symbol">:config</span>], opt_parser)
+    <span class="hljs-keyword">self</span>.options.merge! options
+    app
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">build_app_from_string</span></span>
+    Rack::Builder.new_from_string(<span class="hljs-keyword">self</span>.options[<span class="hljs-symbol">:builder</span>])
+  <span class="hljs-keyword">end</span>
+</code></pre>
+<p>At this point <code>app</code> is the Rails app itself (a middleware), and what
+happens next is Rack will call all the provided middlewares:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">build_app</span><span class="hljs-params">(app)</span></span>
+  middleware[options[<span class="hljs-symbol">:environment</span>]].reverse_each <span class="hljs-keyword">do</span> <span class="hljs-params">|middleware|</span>
+    middleware = middleware.call(<span class="hljs-keyword">self</span>) <span class="hljs-keyword">if</span> middleware.respond_to?(<span class="hljs-symbol">:call</span>)
+    <span class="hljs-keyword">next</span> <span class="hljs-keyword">unless</span> middleware
+    klass = middleware.shift
+    app = klass.new(app, *middleware)
+  <span class="hljs-keyword">end</span>
+  app
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Remember, <code>build_app</code> was called (by <code>wrapped_app</code>) in the last line of <code>Server#start</code>.
+Here's how it looked like when we left:</p>
+<pre><code class="hljs css language-ruby">server.run wrapped_app, options, &amp;blk
+</code></pre>
+<p>At this point, the implementation of <code>server.run</code> will depend on the
+server you're using. For example, if you were using Puma, here's what
+the <code>run</code> method would look like:</p>
+<pre><code class="hljs css language-ruby">...
+DEFAULT_OPTIONS = {
+  <span class="hljs-symbol">:Host</span> =&gt; <span class="hljs-string">'0.0.0.0'</span>,
+  <span class="hljs-symbol">:Port</span> =&gt; <span class="hljs-number">8080</span>,
+  <span class="hljs-symbol">:Threads</span> =&gt; <span class="hljs-string">'0:16'</span>,
+  <span class="hljs-symbol">:Verbose</span> =&gt; <span class="hljs-literal">false</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">self</span>.<span class="hljs-title">run</span><span class="hljs-params">(app, options = {})</span></span>
+  options = DEFAULT_OPTIONS.merge(options)
+
+  <span class="hljs-keyword">if</span> options[<span class="hljs-symbol">:Verbose</span>]
+    app = Rack::CommonLogger.new(app, STDOUT)
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-keyword">if</span> options[<span class="hljs-symbol">:environment</span>]
+    ENV[<span class="hljs-string">'RACK_ENV'</span>] = options[<span class="hljs-symbol">:environment</span>].to_s
+  <span class="hljs-keyword">end</span>
+
+  server   = <span class="hljs-symbol">:</span><span class="hljs-symbol">:Puma</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:Server</span>.new(app)
+  min, max = options[<span class="hljs-symbol">:Threads</span>].split(<span class="hljs-string">':'</span>, <span class="hljs-number">2</span>)
+
+  puts <span class="hljs-string">"Puma <span class="hljs-subst">#{<span class="hljs-symbol">:</span><span class="hljs-symbol">:Puma</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:Const</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:PUMA_VERSION</span>}</span> starting..."</span>
+  puts <span class="hljs-string">"* Min threads: <span class="hljs-subst">#{min}</span>, max threads: <span class="hljs-subst">#{max}</span>"</span>
+  puts <span class="hljs-string">"* Environment: <span class="hljs-subst">#{ENV[<span class="hljs-string">'RACK_ENV'</span>]}</span>"</span>
+  puts <span class="hljs-string">"* Listening on tcp://<span class="hljs-subst">#{options[<span class="hljs-symbol">:Host</span>]}</span>:<span class="hljs-subst">#{options[<span class="hljs-symbol">:Port</span>]}</span>"</span>
+
+  server.add_tcp_listener options[<span class="hljs-symbol">:Host</span>], options[<span class="hljs-symbol">:Port</span>]
+  server.min_threads = min
+  server.max_threads = max
+  <span class="hljs-keyword">yield</span> server <span class="hljs-keyword">if</span> block_given?
+
+  <span class="hljs-keyword">begin</span>
+    server.run.join
+  <span class="hljs-keyword">rescue</span> Interrupt
+    puts <span class="hljs-string">"* Gracefully stopping, waiting for requests to finish"</span>
+    server.stop(<span class="hljs-literal">true</span>)
+    puts <span class="hljs-string">"* Goodbye!"</span>
+  <span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>We won't dig into the server configuration itself, but this is
+the last piece of our journey in the Rails initialization process.</p>
+<p>This high level overview will help you understand when your code is
+executed and how, and overall become a better Rails developer. If you
+still want to know more, the Rails source code itself is probably the
+best place to go next.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-6-22</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/rails/threading"><span class="arrow-prev">← </span><span>Threading and Code Execution in Rails</span></a><a class="docs-next button" href="/rails-setup/docs/rails/engines"><span>Getting Started with Engines</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#launch">Launch!</a><ul class="toc-headings"><li><a href="#railties-exe-rails"><code>railties/exe/rails</code></a></li><li><a href="#railties-lib-rails-app_loaderrb"><code>railties/lib/rails/app_loader.rb</code></a></li><li><a href="#bin-rails"><code>bin/rails</code></a></li><li><a href="#config-bootrb"><code>config/boot.rb</code></a></li><li><a href="#rails-commandsrb"><code>rails/commands.rb</code></a></li><li><a href="#rails-commandrb"><code>rails/command.rb</code></a></li><li><a href="#actionpack-lib-action_dispatchrb"><code>actionpack/lib/action_dispatch.rb</code></a></li><li><a href="#rails-commands-server-server_commandrb"><code>rails/commands/server/server_command.rb</code></a></li><li><a href="#rack-lib-rack-serverrb">Rack: <code>lib/rack/server.rb</code></a></li><li><a href="#config-application"><code>config/application</code></a></li><li><a href="#rails-server-start"><code>Rails::Server#start</code></a></li><li><a href="#config-environmentrb"><code>config/environment.rb</code></a></li><li><a href="#config-applicationrb"><code>config/application.rb</code></a></li></ul></li><li><a href="#loading-rails">Loading Rails</a><ul class="toc-headings"><li><a href="#railties-lib-rails-allrb"><code>railties/lib/rails/all.rb</code></a></li><li><a href="#back-to-config-environmentrb">Back to <code>config/environment.rb</code></a></li><li><a href="#railties-lib-rails-applicationrb"><code>railties/lib/rails/application.rb</code></a></li><li><a href="#rack-lib-rack-serverrb-1">Rack: lib/rack/server.rb</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Rails Setup 2019</section></footer></div></body></html>

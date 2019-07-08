@@ -1,0 +1,518 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Creating and Customizing Rails Generators &amp; Templates · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Rails generators are an essential tool if you plan to improve your workflow. With this guide you will learn how to create generators and customize existing ones.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Creating and Customizing Rails Generators &amp; Templates · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;Rails generators are an essential tool if you plan to improve your workflow. With this guide you will learn how to create generators and customize existing ones.&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/rails/getting-started" target="_self">Rails</a></li><li class=""><a href="/rails-setup/docs/devise/overview" target="_self">Devise</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Extending Rails</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start Here<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/getting-started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/development-dependencies-install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Models<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/multiple-databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Views<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/layouts-and-rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view-form-helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Controllers<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Other Components<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Digging Deeper<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/testing-rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/securing-rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/debugging-rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/configuring-rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-command-line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/asset-pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/working-with-javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/autoloading-and-reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/caching-with-rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-only-apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Extending Rails<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-on-rack">Rails on Rack</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/rails/generators-&amp;-templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/application-templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/creating-rails-plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contributions<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/contributing-to-rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/guides-guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Policies<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/maintenance-policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Creating and Customizing Rails Generators &amp; Templates</h1></header><article><div><span><p>Rails generators are an essential tool if you plan to improve your workflow. With this guide you will learn how to create generators and customize existing ones.</p>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>How to see which generators are available in your application.</li>
+<li>How to create a generator using templates.</li>
+<li>How Rails searches for generators before invoking them.</li>
+<li>How Rails internally generates Rails code from the templates.</li>
+<li>How to customize your scaffold by creating new generators.</li>
+<li>How to customize your scaffold by changing generator templates.</li>
+<li>How to use fallbacks to avoid overwriting a huge set of generators.</li>
+<li>How to create an application template.</li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="first-contact"></a><a href="#first-contact" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>First Contact</h2>
+<p>When you create an application using the <code>rails</code> command, you are in fact using a Rails generator. After that, you can get a list of all available generators by just invoking <code>rails generate</code>:</p>
+<pre><code class="hljs css language-bash">$ rails new myapp
+$ <span class="hljs-built_in">cd</span> myapp
+$ rails generate
+</code></pre>
+<p>You will get a list of all generators that comes with Rails. If you need a detailed description of the helper generator, for example, you can simply do:</p>
+<pre><code class="hljs css language-bash">$ rails generate helper --<span class="hljs-built_in">help</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="creating-your-first-generator"></a><a href="#creating-your-first-generator" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating Your First Generator</h2>
+<p>Since Rails 3.0, generators are built on top of <a href="https://github.com/erikhuda/thor">Thor</a>. Thor provides powerful options for parsing and a great API for manipulating files. For instance, let's build a generator that creates an initializer file named <code>initializer.rb</code> inside <code>config/initializers</code>.</p>
+<p>The first step is to create a file at <code>lib/generators/initializer_generator.rb</code> with the following content:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InitializerGenerator</span> &lt; Rails::Generators::<span class="hljs-title">Base</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create_initializer_file</span></span>
+    create_file <span class="hljs-string">"config/initializers/initializer.rb"</span>, <span class="hljs-string">"# Add initialization content here"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>NOTE: <code>create_file</code> is a method provided by <code>Thor::Actions</code>. Documentation for <code>create_file</code> and other Thor methods can be found in <a href="http://rdoc.info/github/erikhuda/thor/master/Thor/Actions.html">Thor's documentation</a></p>
+<p>Our new generator is quite simple: it inherits from <code>Rails::Generators::Base</code> and has one method definition. When a generator is invoked, each public method in the generator is executed sequentially in the order that it is defined. Finally, we invoke the <code>create_file</code> method that will create a file at the given destination with the given content. If you are familiar with the Rails Application Templates API, you'll feel right at home with the new generators API.</p>
+<p>To invoke our new generator, we just need to do:</p>
+<pre><code class="hljs css language-bash">$ rails generate initializer
+</code></pre>
+<p>Before we go on, let's see our brand new generator description:</p>
+<pre><code class="hljs css language-bash">$ rails generate initializer --<span class="hljs-built_in">help</span>
+</code></pre>
+<p>Rails is usually able to generate good descriptions if a generator is namespaced, as <code>ActiveRecord::Generators::ModelGenerator</code>, but not in this particular case. We can solve this problem in two ways. The first one is calling <code>desc</code> inside our generator:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InitializerGenerator</span> &lt; Rails::Generators::<span class="hljs-title">Base</span></span>
+  desc <span class="hljs-string">"This generator creates an initializer file at config/initializers"</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create_initializer_file</span></span>
+    create_file <span class="hljs-string">"config/initializers/initializer.rb"</span>, <span class="hljs-string">"# Add initialization content here"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Now we can see the new description by invoking <code>--help</code> on the new generator. The second way to add a description is by creating a file named <code>USAGE</code> in the same directory as our generator. We are going to do that in the next step.</p>
+<h2><a class="anchor" aria-hidden="true" id="creating-generators-with-generators"></a><a href="#creating-generators-with-generators" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating Generators with Generators</h2>
+<p>Generators themselves have a generator:</p>
+<pre><code class="hljs css language-bash">$ rails generate generator initializer
+      create  lib/generators/initializer
+      create  lib/generators/initializer/initializer_generator.rb
+      create  lib/generators/initializer/USAGE
+      create  lib/generators/initializer/templates
+      invoke  test_unit
+      create    <span class="hljs-built_in">test</span>/lib/generators/initializer_generator_test.rb
+</code></pre>
+<p>This is the generator just created:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InitializerGenerator</span> &lt; Rails::Generators::<span class="hljs-title">NamedBase</span></span>
+  source_root File.expand_path(<span class="hljs-string">'templates'</span>, __dir_<span class="hljs-number">_</span>)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>First, notice that we are inheriting from <code>Rails::Generators::NamedBase</code> instead of <code>Rails::Generators::Base</code>. This means that our generator expects at least one argument, which will be the name of the initializer, and will be available in our code in the variable <code>name</code>.</p>
+<p>We can see that by invoking the description of this new generator (don't forget to delete the old generator file):</p>
+<pre><code class="hljs css language-bash">$ rails generate initializer --<span class="hljs-built_in">help</span>
+Usage:
+  rails generate initializer NAME [options]
+</code></pre>
+<p>We can also see that our new generator has a class method called <code>source_root</code>. This method points to where our generator templates will be placed, if any, and by default it points to the created directory <code>lib/generators/initializer/templates</code>.</p>
+<p>In order to understand what a generator template means, let's create the file <code>lib/generators/initializer/templates/initializer.rb</code> with the following content:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Add initialization content here</span>
+</code></pre>
+<p>And now let's change the generator to copy this template when invoked:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InitializerGenerator</span> &lt; Rails::Generators::<span class="hljs-title">NamedBase</span></span>
+  source_root File.expand_path(<span class="hljs-string">'templates'</span>, __dir_<span class="hljs-number">_</span>)
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">copy_initializer_file</span></span>
+    copy_file <span class="hljs-string">"initializer.rb"</span>, <span class="hljs-string">"config/initializers/<span class="hljs-subst">#{file_name}</span>.rb"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>And let's execute our generator:</p>
+<pre><code class="hljs css language-bash">$ rails generate initializer core_extensions
+</code></pre>
+<p>We can see that now an initializer named core_extensions was created at <code>config/initializers/core_extensions.rb</code> with the contents of our template. That means that <code>copy_file</code> copied a file in our source root to the destination path we gave. The method <code>file_name</code> is automatically created when we inherit from <code>Rails::Generators::NamedBase</code>.</p>
+<p>The methods that are available for generators are covered in the <a href="#generator-methods">final section</a> of this guide.</p>
+<h2><a class="anchor" aria-hidden="true" id="generators-lookup"></a><a href="#generators-lookup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generators Lookup</h2>
+<p>When you run <code>rails generate initializer core_extensions</code> Rails requires these files in turn until one is found:</p>
+<pre><code class="hljs css language-bash">rails/generators/initializer/initializer_generator.rb
+generators/initializer/initializer_generator.rb
+rails/generators/initializer_generator.rb
+generators/initializer_generator.rb
+</code></pre>
+<p>If none is found you get an error message.</p>
+<p>INFO: The examples above put files under the application's <code>lib</code> because said directory belongs to <code>$LOAD_PATH</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="customizing-your-workflow"></a><a href="#customizing-your-workflow" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customizing Your Workflow</h2>
+<p>Rails own generators are flexible enough to let you customize scaffolding. They can be configured in <code>config/application.rb</code>, these are some defaults:</p>
+<pre><code class="hljs css language-ruby">config.generators <span class="hljs-keyword">do</span> <span class="hljs-params">|g|</span>
+  g.orm             <span class="hljs-symbol">:active_record</span>
+  g.template_engine <span class="hljs-symbol">:erb</span>
+  g.test_framework  <span class="hljs-symbol">:test_unit</span>, <span class="hljs-symbol">fixture:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Before we customize our workflow, let's first see what our scaffold looks like:</p>
+<pre><code class="hljs css language-bash">$ rails generate scaffold User name:string
+      invoke  active_record
+      create    db/migrate/20130924151154_create_users.rb
+      create    app/models/user.rb
+      invoke    test_unit
+      create      <span class="hljs-built_in">test</span>/models/user_test.rb
+      create      <span class="hljs-built_in">test</span>/fixtures/users.yml
+      invoke  resource_route
+       route    resources :users
+      invoke  scaffold_controller
+      create    app/controllers/users_controller.rb
+      invoke    erb
+      create      app/views/users
+      create      app/views/users/index.html.erb
+      create      app/views/users/edit.html.erb
+      create      app/views/users/show.html.erb
+      create      app/views/users/new.html.erb
+      create      app/views/users/_form.html.erb
+      invoke    test_unit
+      create      <span class="hljs-built_in">test</span>/controllers/users_controller_test.rb
+      invoke    helper
+      create      app/helpers/users_helper.rb
+      invoke    jbuilder
+      create      app/views/users/index.json.jbuilder
+      create      app/views/users/show.json.jbuilder
+      invoke  test_unit
+      create    <span class="hljs-built_in">test</span>/application_system_test_case.rb
+      create    <span class="hljs-built_in">test</span>/system/users_test.rb
+      invoke  assets
+      invoke    scss
+      create      app/assets/stylesheets/users.scss
+      invoke  scss
+      create    app/assets/stylesheets/scaffolds.scss
+</code></pre>
+<p>Looking at this output, it's easy to understand how generators work in Rails 3.0 and above. The scaffold generator doesn't actually generate anything, it just invokes others to do the work. This allows us to add/replace/remove any of those invocations. For instance, the scaffold generator invokes the scaffold_controller generator, which invokes erb, test_unit and helper generators. Since each generator has a single responsibility, they are easy to reuse, avoiding code duplication.</p>
+<p>If we want to avoid generating the default <code>app/assets/stylesheets/scaffolds.scss</code> file when scaffolding a new resource we can disable <code>scaffold_stylesheet</code>:</p>
+<pre><code class="hljs css language-ruby">  config.generators <span class="hljs-keyword">do</span> <span class="hljs-params">|g|</span>
+    g.scaffold_stylesheet <span class="hljs-literal">false</span>
+  <span class="hljs-keyword">end</span>
+</code></pre>
+<p>The next customization on the workflow will be to stop generating stylesheet and test fixture files for scaffolds altogether. We can achieve that by changing our configuration to the following:</p>
+<pre><code class="hljs css language-ruby">config.generators <span class="hljs-keyword">do</span> <span class="hljs-params">|g|</span>
+  g.orm             <span class="hljs-symbol">:active_record</span>
+  g.template_engine <span class="hljs-symbol">:erb</span>
+  g.test_framework  <span class="hljs-symbol">:test_unit</span>, <span class="hljs-symbol">fixture:</span> <span class="hljs-literal">false</span>
+  g.stylesheets     <span class="hljs-literal">false</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If we generate another resource with the scaffold generator, we can see that stylesheet, JavaScript, and fixture files are not created anymore. If you want to customize it further, for example to use DataMapper and RSpec instead of Active Record and TestUnit, it's just a matter of adding their gems to your application and configuring your generators.</p>
+<p>To demonstrate this, we are going to create a new helper generator that simply adds some instance variable readers. First, we create a generator within the rails namespace, as this is where rails searches for generators used as hooks:</p>
+<pre><code class="hljs css language-bash">$ rails generate generator rails/my_helper
+      create  lib/generators/rails/my_helper
+      create  lib/generators/rails/my_helper/my_helper_generator.rb
+      create  lib/generators/rails/my_helper/USAGE
+      create  lib/generators/rails/my_helper/templates
+      invoke  test_unit
+      create    <span class="hljs-built_in">test</span>/lib/generators/rails/my_helper_generator_test.rb
+</code></pre>
+<p>After that, we can delete both the <code>templates</code> directory and the <code>source_root</code>
+class method call from our new generator, because we are not going to need them.
+Add the method below, so our generator looks like the following:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># lib/generators/rails/my_helper/my_helper_generator.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Rails::MyHelperGenerator</span> &lt; Rails::Generators::<span class="hljs-title">NamedBase</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create_helper_file</span></span>
+    create_file <span class="hljs-string">"app/helpers/<span class="hljs-subst">#{file_name}</span>_helper.rb"</span>, <span class="hljs-string">&lt;&lt;-FILE
+module <span class="hljs-subst">#{class_name}</span>Helper
+  attr_reader :<span class="hljs-subst">#{plural_name}</span>, :<span class="hljs-subst">#{plural_name.singularize}</span>
+end</span>
+    FILE
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>We can try out our new generator by creating a helper for products:</p>
+<pre><code class="hljs css language-bash">$ rails generate my_helper products
+      create  app/helpers/products_helper.rb
+</code></pre>
+<p>And it will generate the following helper file in <code>app/helpers</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">ProductsHelper</span></span>
+  <span class="hljs-keyword">attr_reader</span> <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:product</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Which is what we expected. We can now tell scaffold to use our new helper generator by editing <code>config/application.rb</code> once again:</p>
+<pre><code class="hljs css language-ruby">config.generators <span class="hljs-keyword">do</span> <span class="hljs-params">|g|</span>
+  g.orm             <span class="hljs-symbol">:active_record</span>
+  g.template_engine <span class="hljs-symbol">:erb</span>
+  g.test_framework  <span class="hljs-symbol">:test_unit</span>, <span class="hljs-symbol">fixture:</span> <span class="hljs-literal">false</span>
+  g.stylesheets     <span class="hljs-literal">false</span>
+  g.helper          <span class="hljs-symbol">:my_helper</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>and see it in action when invoking the generator:</p>
+<pre><code class="hljs css language-bash">$ rails generate scaffold Article body:text
+      [...]
+      invoke    my_helper
+      create      app/helpers/articles_helper.rb
+</code></pre>
+<p>We can notice on the output that our new helper was invoked instead of the Rails default. However one thing is missing, which is tests for our new generator and to do that, we are going to reuse old helpers test generators.</p>
+<p>Since Rails 3.0, this is easy to do due to the hooks concept. Our new helper does not need to be focused in one specific test framework, it can simply provide a hook and a test framework just needs to implement this hook in order to be compatible.</p>
+<p>To do that, we can change the generator this way:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># lib/generators/rails/my_helper/my_helper_generator.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Rails::MyHelperGenerator</span> &lt; Rails::Generators::<span class="hljs-title">NamedBase</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create_helper_file</span></span>
+    create_file <span class="hljs-string">"app/helpers/<span class="hljs-subst">#{file_name}</span>_helper.rb"</span>, <span class="hljs-string">&lt;&lt;-FILE
+module <span class="hljs-subst">#{class_name}</span>Helper
+  attr_reader :<span class="hljs-subst">#{plural_name}</span>, :<span class="hljs-subst">#{plural_name.singularize}</span>
+end</span>
+    FILE
+  <span class="hljs-keyword">end</span>
+
+  hook_for <span class="hljs-symbol">:test_framework</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Now, when the helper generator is invoked and TestUnit is configured as the test framework, it will try to invoke both <code>Rails::TestUnitGenerator</code> and <code>TestUnit::MyHelperGenerator</code>. Since none of those are defined, we can tell our generator to invoke <code>TestUnit::Generators::HelperGenerator</code> instead, which is defined since it's a Rails generator. To do that, we just need to add:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Search for :helper instead of :my_helper</span>
+hook_for <span class="hljs-symbol">:test_framework</span>, <span class="hljs-symbol">as:</span> <span class="hljs-symbol">:helper</span>
+</code></pre>
+<p>And now you can re-run scaffold for another resource and see it generating tests as well!</p>
+<h2><a class="anchor" aria-hidden="true" id="customizing-your-workflow-by-changing-generators-templates"></a><a href="#customizing-your-workflow-by-changing-generators-templates" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customizing Your Workflow by Changing Generators Templates</h2>
+<p>In the step above we simply wanted to add a line to the generated helper, without adding any extra functionality. There is a simpler way to do that, and it's by replacing the templates of already existing generators, in that case <code>Rails::Generators::HelperGenerator</code>.</p>
+<p>In Rails 3.0 and above, generators don't just look in the source root for templates, they also search for templates in other paths. And one of them is <code>lib/templates</code>. Since we want to customize <code>Rails::Generators::HelperGenerator</code>, we can do that by simply making a template copy inside <code>lib/templates/rails/helper</code> with the name <code>helper.rb</code>. So let's create that file with the following content:</p>
+<pre><code class="hljs css language-erb"><span class="xml">module <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> class_name </span><span class="xml"><span class="hljs-tag">%&gt;</span>Helper
+  attr_reader :<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> plural_name </span><span class="xml"><span class="hljs-tag">%&gt;</span>, :<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> plural_name.singularize </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+end
+</span></code></pre>
+<p>and revert the last change in <code>config/application.rb</code>:</p>
+<pre><code class="hljs css language-ruby">config.generators <span class="hljs-keyword">do</span> <span class="hljs-params">|g|</span>
+  g.orm             <span class="hljs-symbol">:active_record</span>
+  g.template_engine <span class="hljs-symbol">:erb</span>
+  g.test_framework  <span class="hljs-symbol">:test_unit</span>, <span class="hljs-symbol">fixture:</span> <span class="hljs-literal">false</span>
+  g.stylesheets     <span class="hljs-literal">false</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If you generate another resource, you can see that we get exactly the same result! This is useful if you want to customize your scaffold templates and/or layout by just creating <code>edit.html.erb</code>, <code>index.html.erb</code> and so on inside <code>lib/templates/erb/scaffold</code>.</p>
+<p>Scaffold templates in Rails frequently use ERB tags; these tags need to be
+escaped so that the generated output is valid ERB code.</p>
+<p>For example, the following escaped ERB tag would be needed in the template
+(note the extra <code>%</code>)...</p>
+<pre><code class="hljs css language-ruby">&lt;<span class="hljs-string">%%= stylesheet_include_tag :application %</span>&gt;
+</code></pre>
+<p>...to generate the following output:</p>
+<pre><code class="hljs css language-ruby">&lt;%= stylesheet_include_tag <span class="hljs-symbol">:application</span> %&gt;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="adding-generators-fallbacks"></a><a href="#adding-generators-fallbacks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding Generators Fallbacks</h2>
+<p>One last feature about generators which is quite useful for plugin generators is fallbacks. For example, imagine that you want to add a feature on top of TestUnit like <a href="https://github.com/thoughtbot/shoulda">shoulda</a> does. Since TestUnit already implements all generators required by Rails and shoulda just wants to overwrite part of it, there is no need for shoulda to reimplement some generators again, it can simply tell Rails to use a <code>TestUnit</code> generator if none was found under the <code>Shoulda</code> namespace.</p>
+<p>We can easily simulate this behavior by changing our <code>config/application.rb</code> once again:</p>
+<pre><code class="hljs css language-ruby">config.generators <span class="hljs-keyword">do</span> <span class="hljs-params">|g|</span>
+  g.orm             <span class="hljs-symbol">:active_record</span>
+  g.template_engine <span class="hljs-symbol">:erb</span>
+  g.test_framework  <span class="hljs-symbol">:shoulda</span>, <span class="hljs-symbol">fixture:</span> <span class="hljs-literal">false</span>
+  g.stylesheets     <span class="hljs-literal">false</span>
+
+  <span class="hljs-comment"># Add a fallback!</span>
+  g.fallbacks[<span class="hljs-symbol">:shoulda</span>] = <span class="hljs-symbol">:test_unit</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Now, if you create a Comment scaffold, you will see that the shoulda generators are being invoked, and at the end, they are just falling back to TestUnit generators:</p>
+<pre><code class="hljs css language-bash">$ rails generate scaffold Comment body:text
+      invoke  active_record
+      create    db/migrate/20130924143118_create_comments.rb
+      create    app/models/comment.rb
+      invoke    shoulda
+      create      <span class="hljs-built_in">test</span>/models/comment_test.rb
+      create      <span class="hljs-built_in">test</span>/fixtures/comments.yml
+      invoke  resource_route
+       route    resources :comments
+      invoke  scaffold_controller
+      create    app/controllers/comments_controller.rb
+      invoke    erb
+      create      app/views/comments
+      create      app/views/comments/index.html.erb
+      create      app/views/comments/edit.html.erb
+      create      app/views/comments/show.html.erb
+      create      app/views/comments/new.html.erb
+      create      app/views/comments/_form.html.erb
+      invoke    shoulda
+      create      <span class="hljs-built_in">test</span>/controllers/comments_controller_test.rb
+      invoke    my_helper
+      create      app/helpers/comments_helper.rb
+      invoke    jbuilder
+      create      app/views/comments/index.json.jbuilder
+      create      app/views/comments/show.json.jbuilder
+      invoke  test_unit
+      create    <span class="hljs-built_in">test</span>/application_system_test_case.rb
+      create    <span class="hljs-built_in">test</span>/system/comments_test.rb
+      invoke  assets
+      invoke    scss
+      create    app/assets/stylesheets/scaffolds.scss
+</code></pre>
+<p>Fallbacks allow your generators to have a single responsibility, increasing code reuse and reducing the amount of duplication.</p>
+<h2><a class="anchor" aria-hidden="true" id="application-templates"></a><a href="#application-templates" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Application Templates</h2>
+<p>Now that you've seen how generators can be used <em>inside</em> an application, did you know they can also be used to <em>generate</em> applications too? This kind of generator is referred to as a &quot;template&quot;. This is a brief overview of the Templates API. For detailed documentation see the <a href="/rails-setup/docs/rails/application-templates">Rails Application Templates guide</a>.</p>
+<pre><code class="hljs css language-ruby">gem <span class="hljs-string">"rspec-rails"</span>, <span class="hljs-symbol">group:</span> <span class="hljs-string">"test"</span>
+gem <span class="hljs-string">"cucumber-rails"</span>, <span class="hljs-symbol">group:</span> <span class="hljs-string">"test"</span>
+
+<span class="hljs-keyword">if</span> yes?(<span class="hljs-string">"Would you like to install Devise?"</span>)
+  gem <span class="hljs-string">"devise"</span>
+  generate <span class="hljs-string">"devise:install"</span>
+  model_name = ask(<span class="hljs-string">"What would you like the user model to be called? [user]"</span>)
+  model_name = <span class="hljs-string">"user"</span> <span class="hljs-keyword">if</span> model_name.blank?
+  generate <span class="hljs-string">"devise"</span>, model_name
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>In the above template we specify that the application relies on the <code>rspec-rails</code> and <code>cucumber-rails</code> gem so these two will be added to the <code>test</code> group in the <code>Gemfile</code>. Then we pose a question to the user about whether or not they would like to install Devise. If the user replies &quot;y&quot; or &quot;yes&quot; to this question, then the template will add Devise to the <code>Gemfile</code> outside of any group and then runs the <code>devise:install</code> generator. This template then takes the users input and runs the <code>devise</code> generator, with the user's answer from the last question being passed to this generator.</p>
+<p>Imagine that this template was in a file called <code>template.rb</code>. We can use it to modify the outcome of the <code>rails new</code> command by using the <code>-m</code> option and passing in the filename:</p>
+<pre><code class="hljs css language-bash">$ rails new thud -m template.rb
+</code></pre>
+<p>This command will generate the <code>Thud</code> application, and then apply the template to the generated output.</p>
+<p>Templates don't have to be stored on the local system, the <code>-m</code> option also supports online templates:</p>
+<pre><code class="hljs css language-bash">$ rails new thud -m https://gist.github.com/radar/722911/raw/
+</code></pre>
+<p>Whilst the final section of this guide doesn't cover how to generate the most awesome template known to man, it will take you through the methods available at your disposal so that you can develop it yourself. These same methods are also available for generators.</p>
+<h2><a class="anchor" aria-hidden="true" id="adding-command-line-arguments"></a><a href="#adding-command-line-arguments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding Command Line Arguments</h2>
+<p>Rails generators can be easily modified to accept custom command line arguments. This functionality comes from <a href="http://www.rubydoc.info/github/erikhuda/thor/master/Thor/Base/ClassMethods#class_option-instance_method">Thor</a>:</p>
+<pre><code class="hljs">class_option :scope, <span class="hljs-keyword">type</span>: :<span class="hljs-keyword">string</span>, <span class="hljs-keyword">default</span>: <span class="hljs-string">'read_products'</span>
+</code></pre>
+<p>Now our generator can be invoked as follows:</p>
+<pre><code class="hljs css language-bash">rails generate initializer --scope write_products
+</code></pre>
+<p>The command line arguments are accessed through the <code>options</code> method inside the generator class. e.g:</p>
+<pre><code class="hljs css language-ruby">@scope = options[<span class="hljs-string">'scope'</span>]
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="generator-methods"></a><a href="#generator-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generator methods</h2>
+<p>The following are methods available for both generators and templates for Rails.</p>
+<p>NOTE: Methods provided by Thor are not covered this guide and can be found in <a href="http://rdoc.info/github/erikhuda/thor/master/Thor/Actions.html">Thor's documentation</a></p>
+<h3><a class="anchor" aria-hidden="true" id="gem"></a><a href="#gem" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>gem</code></h3>
+<p>Specifies a gem dependency of the application.</p>
+<pre><code class="hljs css language-ruby">gem <span class="hljs-string">"rspec"</span>, <span class="hljs-symbol">group:</span> <span class="hljs-string">"test"</span>, <span class="hljs-symbol">version:</span> <span class="hljs-string">"2.1.0"</span>
+gem <span class="hljs-string">"devise"</span>, <span class="hljs-string">"1.1.5"</span>
+</code></pre>
+<p>Available options are:</p>
+<ul>
+<li><code>:group</code> - The group in the <code>Gemfile</code> where this gem should go.</li>
+<li><code>:version</code> - The version string of the gem you want to use. Can also be specified as the second argument to the method.</li>
+<li><code>:git</code> - The URL to the git repository for this gem.</li>
+</ul>
+<p>Any additional options passed to this method are put on the end of the line:</p>
+<pre><code class="hljs css language-ruby">gem <span class="hljs-string">"devise"</span>, <span class="hljs-symbol">git:</span> <span class="hljs-string">"https://github.com/plataformatec/devise.git"</span>, <span class="hljs-symbol">branch:</span> <span class="hljs-string">"master"</span>
+</code></pre>
+<p>The above code will put the following line into <code>Gemfile</code>:</p>
+<pre><code class="hljs css language-ruby">gem <span class="hljs-string">"devise"</span>, <span class="hljs-symbol">git:</span> <span class="hljs-string">"https://github.com/plataformatec/devise.git"</span>, <span class="hljs-symbol">branch:</span> <span class="hljs-string">"master"</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="gem_group"></a><a href="#gem_group" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>gem_group</code></h3>
+<p>Wraps gem entries inside a group:</p>
+<pre><code class="hljs css language-ruby">gem_group <span class="hljs-symbol">:development</span>, <span class="hljs-symbol">:test</span> <span class="hljs-keyword">do</span>
+  gem <span class="hljs-string">"rspec-rails"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="add_source"></a><a href="#add_source" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>add_source</code></h3>
+<p>Adds a specified source to <code>Gemfile</code>:</p>
+<pre><code class="hljs css language-ruby">add_source <span class="hljs-string">"http://gems.github.com"</span>
+</code></pre>
+<p>This method also takes a block:</p>
+<pre><code class="hljs css language-ruby">add_source <span class="hljs-string">"http://gems.github.com"</span> <span class="hljs-keyword">do</span>
+  gem <span class="hljs-string">"rspec-rails"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="inject_into_file"></a><a href="#inject_into_file" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>inject_into_file</code></h3>
+<p>Injects a block of code into a defined position in your file.</p>
+<pre><code class="hljs css language-ruby">inject_into_file <span class="hljs-string">'name_of_file.rb'</span>, <span class="hljs-symbol">after:</span> <span class="hljs-string">"#The code goes below this line. Don't forget the Line break at the end\n"</span> <span class="hljs-keyword">do</span> &lt;&lt;-<span class="hljs-string">'RUBY'</span>
+  puts <span class="hljs-string">"Hello World"</span>
+RUBY
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="gsub_file"></a><a href="#gsub_file" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>gsub_file</code></h3>
+<p>Replaces text inside a file.</p>
+<pre><code class="hljs css language-ruby">gsub_file <span class="hljs-string">'name_of_file.rb'</span>, <span class="hljs-string">'method.to_be_replaced'</span>, <span class="hljs-string">'method.the_replacing_code'</span>
+</code></pre>
+<p>Regular Expressions can be used to make this method more precise. You can also use <code>append_file</code> and <code>prepend_file</code> in the same way to place code at the beginning and end of a file respectively.</p>
+<h3><a class="anchor" aria-hidden="true" id="application"></a><a href="#application" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>application</code></h3>
+<p>Adds a line to <code>config/application.rb</code> directly after the application class definition.</p>
+<pre><code class="hljs css language-ruby">application <span class="hljs-string">"config.asset_host = 'http://example.com'"</span>
+</code></pre>
+<p>This method can also take a block:</p>
+<pre><code class="hljs css language-ruby">application <span class="hljs-keyword">do</span>
+  <span class="hljs-string">"config.asset_host = 'http://example.com'"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Available options are:</p>
+<ul>
+<li><code>:env</code> - Specify an environment for this configuration option. If you wish to use this option with the block syntax the recommended syntax is as follows:</li>
+</ul>
+<pre><code class="hljs css language-ruby">application(<span class="hljs-literal">nil</span>, <span class="hljs-symbol">env:</span> <span class="hljs-string">"development"</span>) <span class="hljs-keyword">do</span>
+  <span class="hljs-string">"config.asset_host = 'http://localhost:3000'"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="git"></a><a href="#git" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>git</code></h3>
+<p>Runs the specified git command:</p>
+<pre><code class="hljs css language-ruby">git <span class="hljs-symbol">:init</span>
+git <span class="hljs-symbol">add:</span> <span class="hljs-string">"."</span>
+git <span class="hljs-symbol">commit:</span> <span class="hljs-string">"-m First commit!"</span>
+git <span class="hljs-symbol">add:</span> <span class="hljs-string">"onefile.rb"</span>, <span class="hljs-symbol">rm:</span> <span class="hljs-string">"badfile.cxx"</span>
+</code></pre>
+<p>The values of the hash here being the arguments or options passed to the specific git command. As per the final example shown here, multiple git commands can be specified at a time, but the order of their running is not guaranteed to be the same as the order that they were specified in.</p>
+<h3><a class="anchor" aria-hidden="true" id="vendor"></a><a href="#vendor" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>vendor</code></h3>
+<p>Places a file into <code>vendor</code> which contains the specified code.</p>
+<pre><code class="hljs css language-ruby">vendor <span class="hljs-string">"sekrit.rb"</span>, <span class="hljs-string">'#top secret stuff'</span>
+</code></pre>
+<p>This method also takes a block:</p>
+<pre><code class="hljs css language-ruby">vendor <span class="hljs-string">"seeds.rb"</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-string">"puts 'in your app, seeding your database'"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="lib"></a><a href="#lib" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>lib</code></h3>
+<p>Places a file into <code>lib</code> which contains the specified code.</p>
+<pre><code class="hljs css language-ruby">lib <span class="hljs-string">"special.rb"</span>, <span class="hljs-string">"p Rails.root"</span>
+</code></pre>
+<p>This method also takes a block:</p>
+<pre><code class="hljs css language-ruby">lib <span class="hljs-string">"super_special.rb"</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-string">"puts 'Super special!'"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="rakefile"></a><a href="#rakefile" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>rakefile</code></h3>
+<p>Creates a Rake file in the <code>lib/tasks</code> directory of the application.</p>
+<pre><code class="hljs css language-ruby">rakefile <span class="hljs-string">"test.rake"</span>, <span class="hljs-string">'task(:hello) { puts "Hello, there" }'</span>
+</code></pre>
+<p>This method also takes a block:</p>
+<pre><code class="hljs css language-ruby">rakefile <span class="hljs-string">"test.rake"</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-string">%Q{
+    task rock: :environment do
+      puts "Rockin'"
+    end
+  }</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="initializer"></a><a href="#initializer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>initializer</code></h3>
+<p>Creates an initializer in the <code>config/initializers</code> directory of the application:</p>
+<pre><code class="hljs css language-ruby">initializer <span class="hljs-string">"begin.rb"</span>, <span class="hljs-string">"puts 'this is the beginning'"</span>
+</code></pre>
+<p>This method also takes a block, expected to return a string:</p>
+<pre><code class="hljs css language-ruby">initializer <span class="hljs-string">"begin.rb"</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-string">"puts 'this is the beginning'"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="generate"></a><a href="#generate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>generate</code></h3>
+<p>Runs the specified generator where the first argument is the generator name and the remaining arguments are passed directly to the generator.</p>
+<pre><code class="hljs css language-ruby">generate <span class="hljs-string">"scaffold"</span>, <span class="hljs-string">"forums title:string description:text"</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="rake"></a><a href="#rake" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>rake</code></h3>
+<p>Runs the specified Rake task.</p>
+<pre><code class="hljs css language-ruby">rake <span class="hljs-string">"db:migrate"</span>
+</code></pre>
+<p>Available options are:</p>
+<ul>
+<li><code>:env</code> - Specifies the environment in which to run this rake task.</li>
+<li><code>:sudo</code> - Whether or not to run this task using <code>sudo</code>. Defaults to <code>false</code>.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="route"></a><a href="#route" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>route</code></h3>
+<p>Adds text to the <code>config/routes.rb</code> file:</p>
+<pre><code class="hljs css language-ruby">route <span class="hljs-string">"resources :people"</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="readme"></a><a href="#readme" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>readme</code></h3>
+<p>Output the contents of a file in the template's <code>source_path</code>, usually a README.</p>
+<pre><code class="hljs css language-ruby">readme <span class="hljs-string">"README"</span>
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-7</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/rails/rails-on-rack"><span class="arrow-prev">← </span><span>Rails on Rack</span></a><a class="docs-next button" href="/rails-setup/docs/rails/application-templates"><span>Rails Application Templates</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#first-contact">First Contact</a></li><li><a href="#creating-your-first-generator">Creating Your First Generator</a></li><li><a href="#creating-generators-with-generators">Creating Generators with Generators</a></li><li><a href="#generators-lookup">Generators Lookup</a></li><li><a href="#customizing-your-workflow">Customizing Your Workflow</a></li><li><a href="#customizing-your-workflow-by-changing-generators-templates">Customizing Your Workflow by Changing Generators Templates</a></li><li><a href="#adding-generators-fallbacks">Adding Generators Fallbacks</a></li><li><a href="#application-templates">Application Templates</a></li><li><a href="#adding-command-line-arguments">Adding Command Line Arguments</a></li><li><a href="#generator-methods">Generator methods</a><ul class="toc-headings"><li><a href="#gem"><code>gem</code></a></li><li><a href="#gem_group"><code>gem_group</code></a></li><li><a href="#add_source"><code>add_source</code></a></li><li><a href="#inject_into_file"><code>inject_into_file</code></a></li><li><a href="#gsub_file"><code>gsub_file</code></a></li><li><a href="#application"><code>application</code></a></li><li><a href="#git"><code>git</code></a></li><li><a href="#vendor"><code>vendor</code></a></li><li><a href="#lib"><code>lib</code></a></li><li><a href="#rakefile"><code>rakefile</code></a></li><li><a href="#initializer"><code>initializer</code></a></li><li><a href="#generate"><code>generate</code></a></li><li><a href="#rake"><code>rake</code></a></li><li><a href="#route"><code>route</code></a></li><li><a href="#readme"><code>readme</code></a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Rails Setup 2019</section></footer></div></body></html>

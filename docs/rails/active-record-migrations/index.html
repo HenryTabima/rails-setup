@@ -1,0 +1,860 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Active Record Migrations · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Migrations are a feature of Active Record that allows you to evolve your&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Active Record Migrations · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;Migrations are a feature of Active Record that allows you to evolve your&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/rails/getting-started" target="_self">Rails</a></li><li class=""><a href="/rails-setup/docs/devise/overview" target="_self">Devise</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Models</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start Here<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/getting-started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/development-dependencies-install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Models<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-basics">Active Record Basics</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/rails/active-record-migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/multiple-databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Views<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/layouts-and-rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view-form-helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Controllers<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Other Components<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Digging Deeper<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/testing-rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/securing-rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/debugging-rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/configuring-rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-command-line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/asset-pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/working-with-javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/autoloading-and-reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/caching-with-rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-only-apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Extending Rails<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-on-rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/generators-&amp;-templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/application-templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/creating-rails-plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contributions<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/contributing-to-rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/guides-guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Policies<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/maintenance-policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Active Record Migrations</h1></header><article><div><span><p>Migrations are a feature of Active Record that allows you to evolve your
+database schema over time. Rather than write schema modifications in pure SQL,
+migrations allow you to use an easy Ruby DSL to describe changes to your
+tables.</p>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>The generators you can use to create them.</li>
+<li>The methods Active Record provides to manipulate your database.</li>
+<li>The rails commands that manipulate migrations and your schema.</li>
+<li>How migrations relate to <code>schema.rb</code>.</li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="migration-overview"></a><a href="#migration-overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Migration Overview</h2>
+<p>Migrations are a convenient way to
+<a href="https://en.wikipedia.org/wiki/Schema_migration">alter your database schema over time</a>
+in a consistent and easy way. They use a Ruby DSL so that you don't have to
+write SQL by hand, allowing your schema and changes to be database independent.</p>
+<p>You can think of each migration as being a new 'version' of the database. A
+schema starts off with nothing in it, and each migration modifies it to add or
+remove tables, columns, or entries. Active Record knows how to update your
+schema along this timeline, bringing it from whatever point it is in the
+history to the latest version. Active Record will also update your
+<code>db/schema.rb</code> file to match the up-to-date structure of your database.</p>
+<p>Here's an example of a migration:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateProducts</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    create_table <span class="hljs-symbol">:products</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+      t.string <span class="hljs-symbol">:name</span>
+      t.text <span class="hljs-symbol">:description</span>
+
+      t.timestamps
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This migration adds a table called <code>products</code> with a string column called
+<code>name</code> and a text column called <code>description</code>. A primary key column called <code>id</code>
+will also be added implicitly, as it's the default primary key for all Active
+Record models. The <code>timestamps</code> macro adds two columns, <code>created_at</code> and
+<code>updated_at</code>. These special columns are automatically managed by Active Record
+if they exist.</p>
+<p>Note that we define the change that we want to happen moving forward in time.
+Before this migration is run, there will be no table. After, the table will
+exist. Active Record knows how to reverse this migration as well: if we roll
+this migration back, it will remove the table.</p>
+<p>On databases that support transactions with statements that change the schema,
+migrations are wrapped in a transaction. If the database does not support this
+then when a migration fails the parts of it that succeeded will not be rolled
+back. You will have to rollback the changes that were made by hand.</p>
+<p>NOTE: There are certain queries that can't run inside a transaction. If your
+adapter supports DDL transactions you can use <code>disable_ddl_transaction!</code> to
+disable them for a single migration.</p>
+<p>If you wish for a migration to do something that Active Record doesn't know how
+to reverse, you can use <code>reversible</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChangeProductsPrice</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    reversible <span class="hljs-keyword">do</span> <span class="hljs-params">|dir|</span>
+      change_table <span class="hljs-symbol">:products</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+        dir.up   { t.change <span class="hljs-symbol">:price</span>, <span class="hljs-symbol">:string</span> }
+        dir.down { t.change <span class="hljs-symbol">:price</span>, <span class="hljs-symbol">:integer</span> }
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Alternatively, you can use <code>up</code> and <code>down</code> instead of <code>change</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChangeProductsPrice</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">up</span></span>
+    change_table <span class="hljs-symbol">:products</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+      t.change <span class="hljs-symbol">:price</span>, <span class="hljs-symbol">:string</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">down</span></span>
+    change_table <span class="hljs-symbol">:products</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+      t.change <span class="hljs-symbol">:price</span>, <span class="hljs-symbol">:integer</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="creating-a-migration"></a><a href="#creating-a-migration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating a Migration</h2>
+<h3><a class="anchor" aria-hidden="true" id="creating-a-standalone-migration"></a><a href="#creating-a-standalone-migration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating a Standalone Migration</h3>
+<p>Migrations are stored as files in the <code>db/migrate</code> directory, one for each
+migration class. The name of the file is of the form
+<code>YYYYMMDDHHMMSS_create_products.rb</code>, that is to say a UTC timestamp
+identifying the migration followed by an underscore followed by the name
+of the migration. The name of the migration class (CamelCased version)
+should match the latter part of the file name. For example
+<code>20080906120000_create_products.rb</code> should define class <code>CreateProducts</code> and
+<code>20080906120001_add_details_to_products.rb</code> should define
+<code>AddDetailsToProducts</code>. Rails uses this timestamp to determine which migration
+should be run and in what order, so if you're copying a migration from another
+application or generate a file yourself, be aware of its position in the order.</p>
+<p>Of course, calculating timestamps is no fun, so Active Record provides a
+generator to handle making it for you:</p>
+<pre><code class="hljs css language-bash">$ rails generate migration AddPartNumberToProducts
+</code></pre>
+<p>This will create an appropriately named empty migration:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddPartNumberToProducts</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This generator can do much more than append a timestamp to the file name.
+Based on naming conventions and additional (optional) arguments it can
+also start fleshing out the migration.</p>
+<p>If the migration name is of the form &quot;AddColumnToTable&quot; or
+&quot;RemoveColumnFromTable&quot; and is followed by a list of column names and
+types then a migration containing the appropriate <code>add_column</code> and
+<code>remove_column</code> statements will be created.</p>
+<pre><code class="hljs css language-bash">$ rails generate migration AddPartNumberToProducts part_number:string
+</code></pre>
+<p>will generate</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddPartNumberToProducts</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    add_column <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:part_number</span>, <span class="hljs-symbol">:string</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If you'd like to add an index on the new column, you can do that as well:</p>
+<pre><code class="hljs css language-bash">$ rails generate migration AddPartNumberToProducts part_number:string:index
+</code></pre>
+<p>will generate</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddPartNumberToProducts</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    add_column <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:part_number</span>, <span class="hljs-symbol">:string</span>
+    add_index <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:part_number</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Similarly, you can generate a migration to remove a column from the command line:</p>
+<pre><code class="hljs css language-bash">$ rails generate migration RemovePartNumberFromProducts part_number:string
+</code></pre>
+<p>generates</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RemovePartNumberFromProducts</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    remove_column <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:part_number</span>, <span class="hljs-symbol">:string</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>You are not limited to one magically generated column. For example:</p>
+<pre><code class="hljs css language-bash">$ rails generate migration AddDetailsToProducts part_number:string price:decimal
+</code></pre>
+<p>generates</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddDetailsToProducts</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    add_column <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:part_number</span>, <span class="hljs-symbol">:string</span>
+    add_column <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:price</span>, <span class="hljs-symbol">:decimal</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If the migration name is of the form &quot;CreateXXX&quot; and is
+followed by a list of column names and types then a migration creating the table
+XXX with the columns listed will be generated. For example:</p>
+<pre><code class="hljs css language-bash">$ rails generate migration CreateProducts name:string part_number:string
+</code></pre>
+<p>generates</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateProducts</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    create_table <span class="hljs-symbol">:products</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+      t.string <span class="hljs-symbol">:name</span>
+      t.string <span class="hljs-symbol">:part_number</span>
+
+      t.timestamps
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>As always, what has been generated for you is just a starting point. You can add
+or remove from it as you see fit by editing the
+<code>db/migrate/YYYYMMDDHHMMSS_add_details_to_products.rb</code> file.</p>
+<p>Also, the generator accepts column type as <code>references</code> (also available as
+<code>belongs_to</code>). For instance:</p>
+<pre><code class="hljs css language-bash">$ rails generate migration AddUserRefToProducts user:references
+</code></pre>
+<p>generates</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddUserRefToProducts</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    add_reference <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:user</span>, <span class="hljs-symbol">foreign_key:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This migration will create a <code>user_id</code> column and appropriate index.
+For more <code>add_reference</code> options, visit the <a href="https://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-add_reference">API documentation</a>.</p>
+<p>There is also a generator which will produce join tables if <code>JoinTable</code> is part of the name:</p>
+<pre><code class="hljs css language-bash">$ rails g migration CreateJoinTableCustomerProduct customer product
+</code></pre>
+<p>will produce the following migration:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateJoinTableCustomerProduct</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    create_join_table <span class="hljs-symbol">:customers</span>, <span class="hljs-symbol">:products</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+      <span class="hljs-comment"># t.index [:customer_id, :product_id]</span>
+      <span class="hljs-comment"># t.index [:product_id, :customer_id]</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="model-generators"></a><a href="#model-generators" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Model Generators</h3>
+<p>The model and scaffold generators will create migrations appropriate for adding
+a new model. This migration will already contain instructions for creating the
+relevant table. If you tell Rails what columns you want, then statements for
+adding these columns will also be created. For example, running:</p>
+<pre><code class="hljs css language-bash">$ rails generate model Product name:string description:text
+</code></pre>
+<p>will create a migration that looks like this</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateProducts</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    create_table <span class="hljs-symbol">:products</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+      t.string <span class="hljs-symbol">:name</span>
+      t.text <span class="hljs-symbol">:description</span>
+
+      t.timestamps
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>You can append as many column name/type pairs as you want.</p>
+<h3><a class="anchor" aria-hidden="true" id="passing-modifiers"></a><a href="#passing-modifiers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Passing Modifiers</h3>
+<p>Some commonly used <a href="#column-modifiers">type modifiers</a> can be passed directly on
+the command line. They are enclosed by curly braces and follow the field type:</p>
+<p>For instance, running:</p>
+<pre><code class="hljs css language-bash">$ rails generate migration AddDetailsToProducts <span class="hljs-string">'price:decimal{5,2}'</span> supplier:references{polymorphic}
+</code></pre>
+<p>will produce a migration that looks like this</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddDetailsToProducts</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    add_column <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:price</span>, <span class="hljs-symbol">:decimal</span>, <span class="hljs-symbol">precision:</span> <span class="hljs-number">5</span>, <span class="hljs-symbol">scale:</span> <span class="hljs-number">2</span>
+    add_reference <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:supplier</span>, <span class="hljs-symbol">polymorphic:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>TIP: Have a look at the generators help output for further details.</p>
+<h2><a class="anchor" aria-hidden="true" id="writing-a-migration"></a><a href="#writing-a-migration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Writing a Migration</h2>
+<p>Once you have created your migration using one of the generators it's time to
+get to work!</p>
+<h3><a class="anchor" aria-hidden="true" id="creating-a-table"></a><a href="#creating-a-table" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating a Table</h3>
+<p>The <code>create_table</code> method is one of the most fundamental, but most of the time,
+will be generated for you from using a model or scaffold generator. A typical
+use would be</p>
+<pre><code class="hljs css language-ruby">create_table <span class="hljs-symbol">:products</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  t.string <span class="hljs-symbol">:name</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>which creates a <code>products</code> table with a column called <code>name</code> (and as discussed
+below, an implicit <code>id</code> column).</p>
+<p>By default, <code>create_table</code> will create a primary key called <code>id</code>. You can change
+the name of the primary key with the <code>:primary_key</code> option (don't forget to
+update the corresponding model) or, if you don't want a primary key at all, you
+can pass the option <code>id: false</code>. If you need to pass database specific options
+you can place an SQL fragment in the <code>:options</code> option. For example:</p>
+<pre><code class="hljs css language-ruby">create_table <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">options:</span> <span class="hljs-string">"ENGINE=BLACKHOLE"</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  t.string <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">null:</span> <span class="hljs-literal">false</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>will append <code>ENGINE=BLACKHOLE</code> to the SQL statement used to create the table.</p>
+<p>Also you can pass the <code>:comment</code> option with any description for the table
+that will be stored in database itself and can be viewed with database administration
+tools, such as MySQL Workbench or PgAdmin III. It's highly recommended to specify
+comments in migrations for applications with large databases as it helps people
+to understand data model and generate documentation.
+Currently only the MySQL and PostgreSQL adapters support comments.</p>
+<h3><a class="anchor" aria-hidden="true" id="creating-a-join-table"></a><a href="#creating-a-join-table" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating a Join Table</h3>
+<p>The migration method <code>create_join_table</code> creates an HABTM (has and belongs to
+many) join table. A typical use would be:</p>
+<pre><code class="hljs css language-ruby">create_join_table <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:categories</span>
+</code></pre>
+<p>which creates a <code>categories_products</code> table with two columns called
+<code>category_id</code> and <code>product_id</code>. These columns have the option <code>:null</code> set to
+<code>false</code> by default. This can be overridden by specifying the <code>:column_options</code>
+option:</p>
+<pre><code class="hljs css language-ruby">create_join_table <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:categories</span>, <span class="hljs-symbol">column_options:</span> { <span class="hljs-symbol">null:</span> <span class="hljs-literal">true</span> }
+</code></pre>
+<p>By default, the name of the join table comes from the union of the first two
+arguments provided to create_join_table, in alphabetical order.
+To customize the name of the table, provide a <code>:table_name</code> option:</p>
+<pre><code class="hljs css language-ruby">create_join_table <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:categories</span>, <span class="hljs-symbol">table_name:</span> <span class="hljs-symbol">:categorization</span>
+</code></pre>
+<p>creates a <code>categorization</code> table.</p>
+<p><code>create_join_table</code> also accepts a block, which you can use to add indices
+(which are not created by default) or additional columns:</p>
+<pre><code class="hljs css language-ruby">create_join_table <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:categories</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  t.index <span class="hljs-symbol">:product_id</span>
+  t.index <span class="hljs-symbol">:category_id</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="changing-tables"></a><a href="#changing-tables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Changing Tables</h3>
+<p>A close cousin of <code>create_table</code> is <code>change_table</code>, used for changing existing
+tables. It is used in a similar fashion to <code>create_table</code> but the object
+yielded to the block knows more tricks. For example:</p>
+<pre><code class="hljs css language-ruby">change_table <span class="hljs-symbol">:products</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  t.remove <span class="hljs-symbol">:description</span>, <span class="hljs-symbol">:name</span>
+  t.string <span class="hljs-symbol">:part_number</span>
+  t.index <span class="hljs-symbol">:part_number</span>
+  t.rename <span class="hljs-symbol">:upccode</span>, <span class="hljs-symbol">:upc_code</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>removes the <code>description</code> and <code>name</code> columns, creates a <code>part_number</code> string
+column and adds an index on it. Finally it renames the <code>upccode</code> column.</p>
+<h3><a class="anchor" aria-hidden="true" id="changing-columns"></a><a href="#changing-columns" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Changing Columns</h3>
+<p>Like the <code>remove_column</code> and <code>add_column</code> Rails provides the <code>change_column</code>
+migration method.</p>
+<pre><code class="hljs css language-ruby">change_column <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:part_number</span>, <span class="hljs-symbol">:text</span>
+</code></pre>
+<p>This changes the column <code>part_number</code> on products table to be a <code>:text</code> field.
+Note that <code>change_column</code> command is irreversible.</p>
+<p>Besides <code>change_column</code>, the <code>change_column_null</code> and <code>change_column_default</code>
+methods are used specifically to change a not null constraint and default
+values of a column.</p>
+<pre><code class="hljs css language-ruby">change_column_null <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:name</span>, <span class="hljs-literal">false</span>
+change_column_default <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:approved</span>, <span class="hljs-symbol">from:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">to:</span> <span class="hljs-literal">false</span>
+</code></pre>
+<p>This sets <code>:name</code> field on products to a <code>NOT NULL</code> column and the default
+value of the <code>:approved</code> field from true to false.</p>
+<p>NOTE: You could also write the above <code>change_column_default</code> migration as
+<code>change_column_default :products, :approved, false</code>, but unlike the previous
+example, this would make your migration irreversible.</p>
+<h3><a class="anchor" aria-hidden="true" id="column-modifiers"></a><a href="#column-modifiers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Column Modifiers</h3>
+<p>Column modifiers can be applied when creating or changing a column:</p>
+<ul>
+<li><code>limit</code>        Sets the maximum size of the <code>string/text/binary/integer</code> fields.</li>
+<li><code>precision</code>    Defines the precision for the <code>decimal</code> fields, representing the
+total number of digits in the number.</li>
+<li><code>scale</code>        Defines the scale for the <code>decimal</code> fields, representing the
+number of digits after the decimal point.</li>
+<li><code>polymorphic</code>  Adds a <code>type</code> column for <code>belongs_to</code> associations.</li>
+<li><code>null</code>         Allows or disallows <code>NULL</code> values in the column.</li>
+<li><code>default</code>      Allows to set a default value on the column. Note that if you
+are using a dynamic value (such as a date), the default will only be calculated
+the first time (i.e. on the date the migration is applied).</li>
+<li><code>comment</code>      Adds a comment for the column.</li>
+</ul>
+<p>Some adapters may support additional options; see the adapter specific API docs
+for further information.</p>
+<p>NOTE: <code>null</code> and <code>default</code> cannot be specified via command line.</p>
+<h3><a class="anchor" aria-hidden="true" id="foreign-keys"></a><a href="#foreign-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Foreign Keys</h3>
+<p>While it's not required you might want to add foreign key constraints to
+<a href="#active-record-and-referential-integrity">guarantee referential integrity</a>.</p>
+<pre><code class="hljs css language-ruby">add_foreign_key <span class="hljs-symbol">:articles</span>, <span class="hljs-symbol">:authors</span>
+</code></pre>
+<p>This adds a new foreign key to the <code>author_id</code> column of the <code>articles</code>
+table. The key references the <code>id</code> column of the <code>authors</code> table. If the
+column names cannot be derived from the table names, you can use the
+<code>:column</code> and <code>:primary_key</code> options.</p>
+<p>Rails will generate a name for every foreign key starting with
+<code>fk_rails_</code> followed by 10 characters which are deterministically
+generated from the <code>from_table</code> and <code>column</code>.
+There is a <code>:name</code> option to specify a different name if needed.</p>
+<p>NOTE: Active Record only supports single column foreign keys. <code>execute</code> and
+<code>structure.sql</code> are required to use composite foreign keys. See
+<a href="#schema-dumping-and-you">Schema Dumping and You</a>.</p>
+<p>Removing a foreign key is easy as well:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># let Active Record figure out the column name</span>
+remove_foreign_key <span class="hljs-symbol">:accounts</span>, <span class="hljs-symbol">:branches</span>
+
+<span class="hljs-comment"># remove foreign key for a specific column</span>
+remove_foreign_key <span class="hljs-symbol">:accounts</span>, <span class="hljs-symbol">column:</span> <span class="hljs-symbol">:owner_id</span>
+
+<span class="hljs-comment"># remove foreign key by name</span>
+remove_foreign_key <span class="hljs-symbol">:accounts</span>, <span class="hljs-symbol">name:</span> <span class="hljs-symbol">:special_fk_name</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="when-helpers-aren-t-enough"></a><a href="#when-helpers-aren-t-enough" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>When Helpers aren't Enough</h3>
+<p>If the helpers provided by Active Record aren't enough you can use the <code>execute</code>
+method to execute arbitrary SQL:</p>
+<pre><code class="hljs css language-ruby">Product.connection.execute(<span class="hljs-string">"UPDATE products SET price = 'free' WHERE 1=1"</span>)
+</code></pre>
+<p>For more details and examples of individual methods, check the API documentation.
+In particular the documentation for
+<a href="https://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html"><code>ActiveRecord::ConnectionAdapters::SchemaStatements</code></a>
+(which provides the methods available in the <code>change</code>, <code>up</code> and <code>down</code> methods),
+<a href="https://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/TableDefinition.html"><code>ActiveRecord::ConnectionAdapters::TableDefinition</code></a>
+(which provides the methods available on the object yielded by <code>create_table</code>)
+and
+<a href="https://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/Table.html"><code>ActiveRecord::ConnectionAdapters::Table</code></a>
+(which provides the methods available on the object yielded by <code>change_table</code>).</p>
+<h3><a class="anchor" aria-hidden="true" id="using-the-change-method"></a><a href="#using-the-change-method" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using the <code>change</code> Method</h3>
+<p>The <code>change</code> method is the primary way of writing migrations. It works for the
+majority of cases, where Active Record knows how to reverse the migration
+automatically. Currently, the <code>change</code> method supports only these migration
+definitions:</p>
+<ul>
+<li>add_column</li>
+<li>add_foreign_key</li>
+<li>add_index</li>
+<li>add_reference</li>
+<li>add_timestamps</li>
+<li>change_column_default (must supply a :from and :to option)</li>
+<li>change_column_null</li>
+<li>create_join_table</li>
+<li>create_table</li>
+<li>disable_extension</li>
+<li>drop_join_table</li>
+<li>drop_table (must supply a block)</li>
+<li>enable_extension</li>
+<li>remove_column (must supply a type)</li>
+<li>remove_foreign_key (must supply a second table)</li>
+<li>remove_index</li>
+<li>remove_reference</li>
+<li>remove_timestamps</li>
+<li>rename_column</li>
+<li>rename_index</li>
+<li>rename_table</li>
+</ul>
+<p><code>change_table</code> is also reversible, as long as the block does not call <code>change</code>,
+<code>change_default</code> or <code>remove</code>.</p>
+<p><code>remove_column</code> is reversible if you supply the column type as the third
+argument. Provide the original column options too, otherwise Rails can't
+recreate the column exactly when rolling back:</p>
+<pre><code class="hljs css language-ruby">remove_column <span class="hljs-symbol">:posts</span>, <span class="hljs-symbol">:slug</span>, <span class="hljs-symbol">:string</span>, <span class="hljs-symbol">null:</span> <span class="hljs-literal">false</span>, <span class="hljs-symbol">default:</span> <span class="hljs-string">''</span>
+</code></pre>
+<p>If you're going to need to use any other methods, you should use <code>reversible</code>
+or write the <code>up</code> and <code>down</code> methods instead of using the <code>change</code> method.</p>
+<h3><a class="anchor" aria-hidden="true" id="using-reversible"></a><a href="#using-reversible" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using <code>reversible</code></h3>
+<p>Complex migrations may require processing that Active Record doesn't know how
+to reverse. You can use <code>reversible</code> to specify what to do when running a
+migration and what else to do when reverting it. For example:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExampleMigration</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    create_table <span class="hljs-symbol">:distributors</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+      t.string <span class="hljs-symbol">:zipcode</span>
+    <span class="hljs-keyword">end</span>
+
+    reversible <span class="hljs-keyword">do</span> <span class="hljs-params">|dir|</span>
+      dir.up <span class="hljs-keyword">do</span>
+        <span class="hljs-comment"># add a CHECK constraint</span>
+        execute <span class="hljs-string">&lt;&lt;-SQL
+          ALTER TABLE distributors
+            ADD CONSTRAINT zipchk
+              CHECK (char_length(zipcode) = 5) NO INHERIT;
+        SQL</span>
+      <span class="hljs-keyword">end</span>
+      dir.down <span class="hljs-keyword">do</span>
+        execute <span class="hljs-string">&lt;&lt;-SQL
+          ALTER TABLE distributors
+            DROP CONSTRAINT zipchk
+        SQL</span>
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+
+    add_column <span class="hljs-symbol">:users</span>, <span class="hljs-symbol">:home_page_url</span>, <span class="hljs-symbol">:string</span>
+    rename_column <span class="hljs-symbol">:users</span>, <span class="hljs-symbol">:email</span>, <span class="hljs-symbol">:email_address</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Using <code>reversible</code> will ensure that the instructions are executed in the
+right order too. If the previous example migration is reverted,
+the <code>down</code> block will be run after the <code>home_page_url</code> column is removed and
+right before the table <code>distributors</code> is dropped.</p>
+<p>Sometimes your migration will do something which is just plain irreversible; for
+example, it might destroy some data. In such cases, you can raise
+<code>ActiveRecord::IrreversibleMigration</code> in your <code>down</code> block. If someone tries
+to revert your migration, an error message will be displayed saying that it
+can't be done.</p>
+<h3><a class="anchor" aria-hidden="true" id="using-the-up-down-methods"></a><a href="#using-the-up-down-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using the <code>up</code>/<code>down</code> Methods</h3>
+<p>You can also use the old style of migration using <code>up</code> and <code>down</code> methods
+instead of the <code>change</code> method.
+The <code>up</code> method should describe the transformation you'd like to make to your
+schema, and the <code>down</code> method of your migration should revert the
+transformations done by the <code>up</code> method. In other words, the database schema
+should be unchanged if you do an <code>up</code> followed by a <code>down</code>. For example, if you
+create a table in the <code>up</code> method, you should drop it in the <code>down</code> method. It
+is wise to perform the transformations in precisely the reverse order they were
+made in the <code>up</code> method. The example in the <code>reversible</code> section is equivalent to:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExampleMigration</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">up</span></span>
+    create_table <span class="hljs-symbol">:distributors</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+      t.string <span class="hljs-symbol">:zipcode</span>
+    <span class="hljs-keyword">end</span>
+
+    <span class="hljs-comment"># add a CHECK constraint</span>
+    execute <span class="hljs-string">&lt;&lt;-SQL
+      ALTER TABLE distributors
+        ADD CONSTRAINT zipchk
+        CHECK (char_length(zipcode) = 5);
+    SQL</span>
+
+    add_column <span class="hljs-symbol">:users</span>, <span class="hljs-symbol">:home_page_url</span>, <span class="hljs-symbol">:string</span>
+    rename_column <span class="hljs-symbol">:users</span>, <span class="hljs-symbol">:email</span>, <span class="hljs-symbol">:email_address</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">down</span></span>
+    rename_column <span class="hljs-symbol">:users</span>, <span class="hljs-symbol">:email_address</span>, <span class="hljs-symbol">:email</span>
+    remove_column <span class="hljs-symbol">:users</span>, <span class="hljs-symbol">:home_page_url</span>
+
+    execute <span class="hljs-string">&lt;&lt;-SQL
+      ALTER TABLE distributors
+        DROP CONSTRAINT zipchk
+    SQL</span>
+
+    drop_table <span class="hljs-symbol">:distributors</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If your migration is irreversible, you should raise
+<code>ActiveRecord::IrreversibleMigration</code> from your <code>down</code> method. If someone tries
+to revert your migration, an error message will be displayed saying that it
+can't be done.</p>
+<h3><a class="anchor" aria-hidden="true" id="reverting-previous-migrations"></a><a href="#reverting-previous-migrations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reverting Previous Migrations</h3>
+<p>You can use Active Record's ability to rollback migrations using the <code>revert</code> method:</p>
+<pre><code class="hljs css language-ruby">require_relative <span class="hljs-string">'20121212123456_example_migration'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FixupExampleMigration</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    revert ExampleMigration
+
+    create_table(<span class="hljs-symbol">:apples</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+      t.string <span class="hljs-symbol">:variety</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The <code>revert</code> method also accepts a block of instructions to reverse.
+This could be useful to revert selected parts of previous migrations.
+For example, let's imagine that <code>ExampleMigration</code> is committed and it
+is later decided it would be best to use Active Record validations,
+in place of the <code>CHECK</code> constraint, to verify the zipcode.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DontUseConstraintForZipcodeValidationMigration</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    revert <span class="hljs-keyword">do</span>
+      <span class="hljs-comment"># copy-pasted code from ExampleMigration</span>
+      reversible <span class="hljs-keyword">do</span> <span class="hljs-params">|dir|</span>
+        dir.up <span class="hljs-keyword">do</span>
+          <span class="hljs-comment"># add a CHECK constraint</span>
+          execute <span class="hljs-string">&lt;&lt;-SQL
+            ALTER TABLE distributors
+              ADD CONSTRAINT zipchk
+                CHECK (char_length(zipcode) = 5);
+          SQL</span>
+        <span class="hljs-keyword">end</span>
+        dir.down <span class="hljs-keyword">do</span>
+          execute <span class="hljs-string">&lt;&lt;-SQL
+            ALTER TABLE distributors
+              DROP CONSTRAINT zipchk
+          SQL</span>
+        <span class="hljs-keyword">end</span>
+      <span class="hljs-keyword">end</span>
+
+      <span class="hljs-comment"># The rest of the migration was ok</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The same migration could also have been written without using <code>revert</code>
+but this would have involved a few more steps: reversing the order
+of <code>create_table</code> and <code>reversible</code>, replacing <code>create_table</code>
+by <code>drop_table</code>, and finally replacing <code>up</code> by <code>down</code> and vice-versa.
+This is all taken care of by <code>revert</code>.</p>
+<p>NOTE: If you want to add check constraints like in the examples above,
+you will have to use <code>structure.sql</code> as dump method. See
+<a href="#schema-dumping-and-you">Schema Dumping and You</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="running-migrations"></a><a href="#running-migrations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Running Migrations</h2>
+<p>Rails provides a set of rails commands to run certain sets of migrations.</p>
+<p>The very first migration related rails command you will use will probably be
+<code>rails db:migrate</code>. In its most basic form it just runs the <code>change</code> or <code>up</code>
+method for all the migrations that have not yet been run. If there are
+no such migrations, it exits. It will run these migrations in order based
+on the date of the migration.</p>
+<p>Note that running the <code>db:migrate</code> command also invokes the <code>db:schema:dump</code> command, which
+will update your <code>db/schema.rb</code> file to match the structure of your database.</p>
+<p>If you specify a target version, Active Record will run the required migrations
+(change, up, down) until it has reached the specified version. The version
+is the numerical prefix on the migration's filename. For example, to migrate
+to version 20080906120000 run:</p>
+<pre><code class="hljs css language-bash">$ rails db:migrate VERSION=20080906120000
+</code></pre>
+<p>If version 20080906120000 is greater than the current version (i.e., it is
+migrating upwards), this will run the <code>change</code> (or <code>up</code>) method
+on all migrations up to and
+including 20080906120000, and will not execute any later migrations. If
+migrating downwards, this will run the <code>down</code> method on all the migrations
+down to, but not including, 20080906120000.</p>
+<h3><a class="anchor" aria-hidden="true" id="rolling-back"></a><a href="#rolling-back" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rolling Back</h3>
+<p>A common task is to rollback the last migration. For example, if you made a
+mistake in it and wish to correct it. Rather than tracking down the version
+number associated with the previous migration you can run:</p>
+<pre><code class="hljs css language-bash">$ rails db:rollback
+</code></pre>
+<p>This will rollback the latest migration, either by reverting the <code>change</code>
+method or by running the <code>down</code> method. If you need to undo
+several migrations you can provide a <code>STEP</code> parameter:</p>
+<pre><code class="hljs css language-bash">$ rails db:rollback STEP=3
+</code></pre>
+<p>will revert the last 3 migrations.</p>
+<p>The <code>db:migrate:redo</code> command is a shortcut for doing a rollback and then migrating
+back up again. As with the <code>db:rollback</code> command, you can use the <code>STEP</code> parameter
+if you need to go more than one version back, for example:</p>
+<pre><code class="hljs css language-bash">$ rails db:migrate:redo STEP=3
+</code></pre>
+<p>Neither of these rails commands do anything you could not do with <code>db:migrate</code>. They
+are simply more convenient, since you do not need to explicitly specify the
+version to migrate to.</p>
+<h3><a class="anchor" aria-hidden="true" id="setup-the-database"></a><a href="#setup-the-database" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup the Database</h3>
+<p>The <code>rails db:setup</code> command will create the database, load the schema, and initialize
+it with the seed data.</p>
+<h3><a class="anchor" aria-hidden="true" id="resetting-the-database"></a><a href="#resetting-the-database" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Resetting the Database</h3>
+<p>The <code>rails db:reset</code> command will drop the database and set it up again. This is
+functionally equivalent to <code>rails db:drop db:setup</code>.</p>
+<p>NOTE: This is not the same as running all the migrations. It will only use the
+contents of the current <code>db/schema.rb</code> or <code>db/structure.sql</code> file. If a migration can't be rolled back,
+<code>rails db:reset</code> may not help you. To find out more about dumping the schema see
+<a href="#schema-dumping-and-you">Schema Dumping and You</a> section.</p>
+<h3><a class="anchor" aria-hidden="true" id="running-specific-migrations"></a><a href="#running-specific-migrations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Running Specific Migrations</h3>
+<p>If you need to run a specific migration up or down, the <code>db:migrate:up</code> and
+<code>db:migrate:down</code> commands will do that. Just specify the appropriate version and
+the corresponding migration will have its <code>change</code>, <code>up</code> or <code>down</code> method
+invoked, for example:</p>
+<pre><code class="hljs css language-bash">$ rails db:migrate:up VERSION=20080906120000
+</code></pre>
+<p>will run the 20080906120000 migration by running the <code>change</code> method (or the
+<code>up</code> method). This command will
+first check whether the migration is already performed and will do nothing if
+Active Record believes that it has already been run.</p>
+<h3><a class="anchor" aria-hidden="true" id="running-migrations-in-different-environments"></a><a href="#running-migrations-in-different-environments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Running Migrations in Different Environments</h3>
+<p>By default running <code>rails db:migrate</code> will run in the <code>development</code> environment.
+To run migrations against another environment you can specify it using the
+<code>RAILS_ENV</code> environment variable while running the command. For example to run
+migrations against the <code>test</code> environment you could run:</p>
+<pre><code class="hljs css language-bash">$ rails db:migrate RAILS_ENV=<span class="hljs-built_in">test</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="changing-the-output-of-running-migrations"></a><a href="#changing-the-output-of-running-migrations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Changing the Output of Running Migrations</h3>
+<p>By default migrations tell you exactly what they're doing and how long it took.
+A migration creating a table and adding an index might produce output like this</p>
+<pre><code class="hljs css language-bash">==  CreateProducts: migrating =================================================
+-- create_table(:products)
+   -&gt; 0.0028s
+==  CreateProducts: migrated (0.0028s) ========================================
+</code></pre>
+<p>Several methods are provided in migrations that allow you to control all this:</p>
+<table>
+<thead>
+<tr><th>Method</th><th>Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td>suppress_messages</td><td>Takes a block as an argument and suppresses any output generated by the block.</td></tr>
+<tr><td>say</td><td>Takes a message argument and outputs it as is. A second boolean argument can be passed to specify whether to indent or not.</td></tr>
+<tr><td>say_with_time</td><td>Outputs text along with how long it took to run its block. If the block returns an integer it assumes it is the number of rows affected.</td></tr>
+</tbody>
+</table>
+<p>For example, this migration:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateProducts</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    suppress_messages <span class="hljs-keyword">do</span>
+      create_table <span class="hljs-symbol">:products</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+        t.string <span class="hljs-symbol">:name</span>
+        t.text <span class="hljs-symbol">:description</span>
+        t.timestamps
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+
+    say <span class="hljs-string">"Created a table"</span>
+
+    suppress_messages {add_index <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">:name</span>}
+    say <span class="hljs-string">"and an index!"</span>, <span class="hljs-literal">true</span>
+
+    say_with_time <span class="hljs-string">'Waiting for a while'</span> <span class="hljs-keyword">do</span>
+      sleep <span class="hljs-number">10</span>
+      <span class="hljs-number">250</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>generates the following output</p>
+<pre><code class="hljs css language-bash">==  CreateProducts: migrating =================================================
+-- Created a table
+   -&gt; and an index!
+-- Waiting <span class="hljs-keyword">for</span> a <span class="hljs-keyword">while</span>
+   -&gt; 10.0013s
+   -&gt; 250 rows
+==  CreateProducts: migrated (10.0054s) =======================================
+</code></pre>
+<p>If you want Active Record to not output anything, then running <code>rails db:migrate VERBOSE=false</code> will suppress all output.</p>
+<h2><a class="anchor" aria-hidden="true" id="changing-existing-migrations"></a><a href="#changing-existing-migrations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Changing Existing Migrations</h2>
+<p>Occasionally you will make a mistake when writing a migration. If you have
+already run the migration, then you cannot just edit the migration and run the
+migration again: Rails thinks it has already run the migration and so will do
+nothing when you run <code>rails db:migrate</code>. You must rollback the migration (for
+example with <code>rails db:rollback</code>), edit your migration, and then run
+<code>rails db:migrate</code> to run the corrected version.</p>
+<p>In general, editing existing migrations is not a good idea. You will be
+creating extra work for yourself and your co-workers and cause major headaches
+if the existing version of the migration has already been run on production
+machines. Instead, you should write a new migration that performs the changes
+you require. Editing a freshly generated migration that has not yet been
+committed to source control (or, more generally, which has not been propagated
+beyond your development machine) is relatively harmless.</p>
+<p>The <code>revert</code> method can be helpful when writing a new migration to undo
+previous migrations in whole or in part
+(see <a href="#reverting-previous-migrations">Reverting Previous Migrations</a> above).</p>
+<h2><a class="anchor" aria-hidden="true" id="schema-dumping-and-you"></a><a href="#schema-dumping-and-you" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Schema Dumping and You</h2>
+<h3><a class="anchor" aria-hidden="true" id="what-are-schema-files-for"></a><a href="#what-are-schema-files-for" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What are Schema Files for?</h3>
+<p>Migrations, mighty as they may be, are not the authoritative source for your
+database schema. Your database remains the authoritative source. By default,
+Rails generates <code>db/schema.rb</code> which attempts to capture the current state of
+your database schema.</p>
+<p>It tends to be faster and less error prone to create a new instance of your
+application's database by loading the schema file via <code>rails db:schema:load</code>
+than it is to replay the entire migration history.
+<a href="#old-migrations">Old migrations</a> may fail to apply correctly if those
+migrations use changing external dependencies or rely on application code which
+evolves separately from your migrations.</p>
+<p>Schema files are also useful if you want a quick look at what attributes an
+Active Record object has. This information is not in the model's code and is
+frequently spread across several migrations, but the information is nicely
+summed up in the schema file.</p>
+<h3><a class="anchor" aria-hidden="true" id="types-of-schema-dumps"></a><a href="#types-of-schema-dumps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Types of Schema Dumps</h3>
+<p>The format of the schema dump generated by Rails is controlled by the
+<code>config.active_record.schema_format</code> setting in <code>config/application.rb</code>. By
+default, the format is <code>:ruby</code>, but can also be set to <code>:sql</code>.</p>
+<p>If <code>:ruby</code> is selected, then the schema is stored in <code>db/schema.rb</code>. If you look
+at this file you'll find that it looks an awful lot like one very big migration:</p>
+<pre><code class="hljs css language-ruby">ActiveRecord::Schema.define(<span class="hljs-symbol">version:</span> <span class="hljs-number">2008_09_06_171750</span>) <span class="hljs-keyword">do</span>
+  create_table <span class="hljs-string">"authors"</span>, <span class="hljs-symbol">force:</span> <span class="hljs-literal">true</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+    t.string   <span class="hljs-string">"name"</span>
+    t.datetime <span class="hljs-string">"created_at"</span>
+    t.datetime <span class="hljs-string">"updated_at"</span>
+  <span class="hljs-keyword">end</span>
+
+  create_table <span class="hljs-string">"products"</span>, <span class="hljs-symbol">force:</span> <span class="hljs-literal">true</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+    t.string   <span class="hljs-string">"name"</span>
+    t.text     <span class="hljs-string">"description"</span>
+    t.datetime <span class="hljs-string">"created_at"</span>
+    t.datetime <span class="hljs-string">"updated_at"</span>
+    t.string   <span class="hljs-string">"part_number"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>In many ways this is exactly what it is. This file is created by inspecting the
+database and expressing its structure using <code>create_table</code>, <code>add_index</code>, and so
+on.</p>
+<p><code>db/schema.rb</code> cannot express everything your database may support such as
+triggers, sequences, stored procedures, check constraints, etc. While migrations
+may use <code>execute</code> to create database constructs that are not supported by the
+Ruby migration DSL, these constructs may not be able to be reconstituted by the
+schema dumper. If you are using features like these, you should set the schema
+format to <code>:sql</code> in order to get an accurate schema file that is useful to
+create new database instances.</p>
+<p>When the schema format is set to <code>:sql</code>, the database structure will be dumped
+using a tool specific to the database into <code>db/structure.sql</code>. For example, for
+PostgreSQL, the <code>pg_dump</code> utility is used. For MySQL and MariaDB, this file will
+contain the output of <code>SHOW CREATE TABLE</code> for the various tables.</p>
+<p>To load the schema from <code>db/structure.sql</code>, run <code>rails db:structure:load</code>.
+Loading this file is done by executing the SQL statements it contains. By
+definition, this will create a perfect copy of the database's structure.</p>
+<h3><a class="anchor" aria-hidden="true" id="schema-dumps-and-source-control"></a><a href="#schema-dumps-and-source-control" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Schema Dumps and Source Control</h3>
+<p>Because schema files are commonly used to create new databases, it is strongly
+recommended that you check your schema file into source control.</p>
+<p>Merge conflicts can occur in your schema file when two branches modify schema.
+To resolve these conflicts run <code>rails db:migrate</code> to regenerate the schema file.</p>
+<h2><a class="anchor" aria-hidden="true" id="active-record-and-referential-integrity"></a><a href="#active-record-and-referential-integrity" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Active Record and Referential Integrity</h2>
+<p>The Active Record way claims that intelligence belongs in your models, not in
+the database. As such, features such as triggers or constraints,
+which push some of that intelligence back into the database, are not heavily
+used.</p>
+<p>Validations such as <code>validates :foreign_key, uniqueness: true</code> are one way in
+which models can enforce data integrity. The <code>:dependent</code> option on
+associations allows models to automatically destroy child objects when the
+parent is destroyed. Like anything which operates at the application level,
+these cannot guarantee referential integrity and so some people augment them
+with <a href="#foreign-keys">foreign key constraints</a> in the database.</p>
+<p>Although Active Record does not provide all the tools for working directly with
+such features, the <code>execute</code> method can be used to execute arbitrary SQL.</p>
+<h2><a class="anchor" aria-hidden="true" id="migrations-and-seed-data"></a><a href="#migrations-and-seed-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Migrations and Seed Data</h2>
+<p>The main purpose of Rails' migration feature is to issue commands that modify the
+schema using a consistent process. Migrations can also be used
+to add or modify data. This is useful in an existing database that can't be destroyed
+and recreated, such as a production database.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddInitialProducts</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">up</span></span>
+    <span class="hljs-number">5</span>.times <span class="hljs-keyword">do</span> <span class="hljs-params">|i|</span>
+      Product.create(<span class="hljs-symbol">name:</span> <span class="hljs-string">"Product #<span class="hljs-subst">#{i}</span>"</span>, <span class="hljs-symbol">description:</span> <span class="hljs-string">"A product."</span>)
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">down</span></span>
+    Product.delete_all
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>To add initial data after a database is created, Rails has a built-in
+'seeds' feature that makes the process quick and easy. This is especially
+useful when reloading the database frequently in development and test environments.
+It's easy to get started with this feature: just fill up <code>db/seeds.rb</code> with some
+Ruby code, and run <code>rails db:seed</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-number">5</span>.times <span class="hljs-keyword">do</span> <span class="hljs-params">|i|</span>
+  Product.create(<span class="hljs-symbol">name:</span> <span class="hljs-string">"Product #<span class="hljs-subst">#{i}</span>"</span>, <span class="hljs-symbol">description:</span> <span class="hljs-string">"A product."</span>)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This is generally a much cleaner way to set up the database of a blank
+application.</p>
+<h2><a class="anchor" aria-hidden="true" id="old-migrations"></a><a href="#old-migrations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Old Migrations</h2>
+<p>The <code>db/schema.rb</code> or <code>db/structure.sql</code> is a snapshot of the current state of your
+database and is the authoritative source for rebuilding that database. This
+makes it possible to delete old migration files.</p>
+<p>When you delete migration files in the <code>db/migrate/</code> directory, any environment
+where <code>rails db:migrate</code> was run when those files still existed will hold a reference
+to the migration timestamp specific to them inside an internal Rails database
+table named <code>schema_migrations</code>. This table is used to keep track of whether
+migrations have been executed in a specific environment.</p>
+<p>If you run the <code>rails db:migrate:status</code> command, which displays the status
+(up or down) of each migration, you should see <code>********** NO FILE **********</code>
+displayed next to any deleted migration file which was once executed on a
+specific environment but can no longer be found in the <code>db/migrate/</code> directory.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-7</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/rails/active-record-basics"><span class="arrow-prev">← </span><span>Active Record Basics</span></a><a class="docs-next button" href="/rails-setup/docs/rails/active-record-validations"><span>Active Record Validations</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#migration-overview">Migration Overview</a></li><li><a href="#creating-a-migration">Creating a Migration</a><ul class="toc-headings"><li><a href="#creating-a-standalone-migration">Creating a Standalone Migration</a></li><li><a href="#model-generators">Model Generators</a></li><li><a href="#passing-modifiers">Passing Modifiers</a></li></ul></li><li><a href="#writing-a-migration">Writing a Migration</a><ul class="toc-headings"><li><a href="#creating-a-table">Creating a Table</a></li><li><a href="#creating-a-join-table">Creating a Join Table</a></li><li><a href="#changing-tables">Changing Tables</a></li><li><a href="#changing-columns">Changing Columns</a></li><li><a href="#column-modifiers">Column Modifiers</a></li><li><a href="#foreign-keys">Foreign Keys</a></li><li><a href="#when-helpers-aren-t-enough">When Helpers aren't Enough</a></li><li><a href="#using-the-change-method">Using the <code>change</code> Method</a></li><li><a href="#using-reversible">Using <code>reversible</code></a></li><li><a href="#using-the-up-down-methods">Using the <code>up</code>/<code>down</code> Methods</a></li><li><a href="#reverting-previous-migrations">Reverting Previous Migrations</a></li></ul></li><li><a href="#running-migrations">Running Migrations</a><ul class="toc-headings"><li><a href="#rolling-back">Rolling Back</a></li><li><a href="#setup-the-database">Setup the Database</a></li><li><a href="#resetting-the-database">Resetting the Database</a></li><li><a href="#running-specific-migrations">Running Specific Migrations</a></li><li><a href="#running-migrations-in-different-environments">Running Migrations in Different Environments</a></li><li><a href="#changing-the-output-of-running-migrations">Changing the Output of Running Migrations</a></li></ul></li><li><a href="#changing-existing-migrations">Changing Existing Migrations</a></li><li><a href="#schema-dumping-and-you">Schema Dumping and You</a><ul class="toc-headings"><li><a href="#what-are-schema-files-for">What are Schema Files for?</a></li><li><a href="#types-of-schema-dumps">Types of Schema Dumps</a></li><li><a href="#schema-dumps-and-source-control">Schema Dumps and Source Control</a></li></ul></li><li><a href="#active-record-and-referential-integrity">Active Record and Referential Integrity</a></li><li><a href="#migrations-and-seed-data">Migrations and Seed Data</a></li><li><a href="#old-migrations">Old Migrations</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Rails Setup 2019</section></footer></div></body></html>

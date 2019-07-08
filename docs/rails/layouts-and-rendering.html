@@ -1,0 +1,985 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Layouts and Rendering in Rails · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This guide covers the basic layout features of Action Controller and Action View.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Layouts and Rendering in Rails · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;This guide covers the basic layout features of Action Controller and Action View.&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/rails/getting-started" target="_self">Rails</a></li><li class=""><a href="/rails-setup/docs/devise/overview" target="_self">Devise</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Views</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start Here<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/getting-started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/development-dependencies-install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Models<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/multiple-databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Views<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/rails/layouts-and-rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view-form-helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Controllers<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Other Components<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Digging Deeper<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/testing-rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/securing-rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/debugging-rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/configuring-rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-command-line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/asset-pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/working-with-javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/autoloading-and-reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/caching-with-rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-only-apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Extending Rails<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-on-rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/generators-&amp;-templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/application-templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/creating-rails-plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contributions<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/contributing-to-rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/guides-guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Policies<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/maintenance-policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Layouts and Rendering in Rails</h1></header><article><div><span><p>This guide covers the basic layout features of Action Controller and Action View.</p>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>How to use the various rendering methods built into Rails.</li>
+<li>How to create layouts with multiple content sections.</li>
+<li>How to use partials to DRY up your views.</li>
+<li>How to use nested layouts (sub-templates).</li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="overview-how-the-pieces-fit-together"></a><a href="#overview-how-the-pieces-fit-together" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview: How the Pieces Fit Together</h2>
+<p>This guide focuses on the interaction between Controller and View in the Model-View-Controller triangle. As you know, the Controller is responsible for orchestrating the whole process of handling a request in Rails, though it normally hands off any heavy code to the Model. But then, when it's time to send a response back to the user, the Controller hands things off to the View. It's that handoff that is the subject of this guide.</p>
+<p>In broad strokes, this involves deciding what should be sent as the response and calling an appropriate method to create that response. If the response is a full-blown view, Rails also does some extra work to wrap the view in a layout and possibly to pull in partial views. You'll see all of those paths later in this guide.</p>
+<h2><a class="anchor" aria-hidden="true" id="creating-responses"></a><a href="#creating-responses" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating Responses</h2>
+<p>From the controller's point of view, there are three ways to create an HTTP response:</p>
+<ul>
+<li>Call <code>render</code> to create a full response to send back to the browser</li>
+<li>Call <code>redirect_to</code> to send an HTTP redirect status code to the browser</li>
+<li>Call <code>head</code> to create a response consisting solely of HTTP headers to send back to the browser</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="rendering-by-default-convention-over-configuration-in-action"></a><a href="#rendering-by-default-convention-over-configuration-in-action" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rendering by Default: Convention Over Configuration in Action</h3>
+<p>You've heard that Rails promotes &quot;convention over configuration&quot;. Default rendering is an excellent example of this. By default, controllers in Rails automatically render views with names that correspond to valid routes. For example, if you have this code in your <code>BooksController</code> class:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BooksController</span> &lt; ApplicationController</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>And the following in your routes file:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:books</span>
+</code></pre>
+<p>And you have a view file <code>app/views/books/index.html.erb</code>:</p>
+<pre><code class="hljs css language-html+erb"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Books are coming soon!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+</code></pre>
+<p>Rails will automatically render <code>app/views/books/index.html.erb</code> when you navigate to <code>/books</code> and you will see &quot;Books are coming soon!&quot; on your screen.</p>
+<p>However a coming soon screen is only minimally useful, so you will soon create your <code>Book</code> model and add the index action to <code>BooksController</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BooksController</span> &lt; ApplicationController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+    @books = Book.all
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Note that we don't have explicit render at the end of the index action in accordance with &quot;convention over configuration&quot; principle. The rule is that if you do not explicitly render something at the end of a controller action, Rails will automatically look for the <code>action_name.html.erb</code> template in the controller's view path and render it. So in this case, Rails will render the <code>app/views/books/index.html.erb</code> file.</p>
+<p>If we want to display the properties of all the books in our view, we can do so with an ERB template like this:</p>
+<pre><code class="hljs css language-html+erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Listing Books<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Content<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> @books.each <span class="hljs-keyword">do</span> <span class="hljs-params">|book|</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> book.title </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> book.content </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> link_to <span class="hljs-string">"Show"</span>, book </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> link_to <span class="hljs-string">"Edit"</span>, edit_book_path(book) </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> link_to <span class="hljs-string">"Destroy"</span>, book, <span class="hljs-symbol">method:</span> <span class="hljs-symbol">:delete</span>, <span class="hljs-symbol">data:</span> { <span class="hljs-symbol">confirm:</span> <span class="hljs-string">"Are you sure?"</span> } </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">end</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> link_to <span class="hljs-string">"New book"</span>, new_book_path </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>NOTE: The actual rendering is done by nested classes of the module <a href="https://api.rubyonrails.org/classes/ActionView/Template/Handlers.html"><code>ActionView::Template::Handlers</code></a>. This guide does not dig into that process, but it's important to know that the file extension on your view controls the choice of template handler.</p>
+<h3><a class="anchor" aria-hidden="true" id="using-render"></a><a href="#using-render" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using <code>render</code></h3>
+<p>In most cases, the <code>ActionController::Base#render</code> method does the heavy lifting of rendering your application's content for use by a browser. There are a variety of ways to customize the behavior of <code>render</code>. You can render the default view for a Rails template, or a specific template, or a file, or inline code, or nothing at all. You can render text, JSON, or XML. You can specify the content type or HTTP status of the rendered response as well.</p>
+<p>TIP: If you want to see the exact results of a call to <code>render</code> without needing to inspect it in a browser, you can call <code>render_to_string</code>. This method takes exactly the same options as <code>render</code>, but it returns a string instead of sending a response back to the browser.</p>
+<h4><a class="anchor" aria-hidden="true" id="rendering-an-action-s-view"></a><a href="#rendering-an-action-s-view" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rendering an Action's View</h4>
+<p>If you want to render the view that corresponds to a different template within the same controller, you can use <code>render</code> with the name of the view:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update</span></span>
+  @book = Book.find(params[<span class="hljs-symbol">:id</span>])
+  <span class="hljs-keyword">if</span> @book.update(book_params)
+    redirect_to(@book)
+  <span class="hljs-keyword">else</span>
+    render <span class="hljs-string">"edit"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If the call to <code>update</code> fails, calling the <code>update</code> action in this controller will render the <code>edit.html.erb</code> template belonging to the same controller.</p>
+<p>If you prefer, you can use a symbol instead of a string to specify the action to render:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update</span></span>
+  @book = Book.find(params[<span class="hljs-symbol">:id</span>])
+  <span class="hljs-keyword">if</span> @book.update(book_params)
+    redirect_to(@book)
+  <span class="hljs-keyword">else</span>
+    render <span class="hljs-symbol">:edit</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="rendering-an-action-s-template-from-another-controller"></a><a href="#rendering-an-action-s-template-from-another-controller" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rendering an Action's Template from Another Controller</h4>
+<p>What if you want to render a template from an entirely different controller from the one that contains the action code? You can also do that with <code>render</code>, which accepts the full path (relative to <code>app/views</code>) of the template to render. For example, if you're running code in an <code>AdminProductsController</code> that lives in <code>app/controllers/admin</code>, you can render the results of an action to a template in <code>app/views/products</code> this way:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-string">"products/show"</span>
+</code></pre>
+<p>Rails knows that this view belongs to a different controller because of the embedded slash character in the string. If you want to be explicit, you can use the <code>:template</code> option (which was required on Rails 2.2 and earlier):</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">template:</span> <span class="hljs-string">"products/show"</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="rendering-an-arbitrary-file"></a><a href="#rendering-an-arbitrary-file" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rendering an Arbitrary File</h4>
+<p>The <code>render</code> method can also use a view that's entirely outside of your application:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">file:</span> <span class="hljs-string">"/u/apps/warehouse_app/current/app/views/products/show"</span>
+</code></pre>
+<p>The <code>:file</code> option takes an absolute file-system path. Of course, you need to have rights
+to the view that you're using to render the content.</p>
+<p>NOTE: Using the <code>:file</code> option in combination with users input can lead to security problems
+since an attacker could use this action to access security sensitive files in your file system.</p>
+<p>NOTE: By default, the file is rendered using the current layout.</p>
+<p>TIP: If you're running Rails on Microsoft Windows, you should use the <code>:file</code> option to
+render a file, because Windows filenames do not have the same format as Unix filenames.</p>
+<h4><a class="anchor" aria-hidden="true" id="wrapping-it-up"></a><a href="#wrapping-it-up" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Wrapping it up</h4>
+<p>The above three ways of rendering (rendering another template within the controller, rendering a template within another controller, and rendering an arbitrary file on the file system) are actually variants of the same action.</p>
+<p>In fact, in the BooksController class, inside of the update action where we want to render the edit template if the book does not update successfully, all of the following render calls would all render the <code>edit.html.erb</code> template in the <code>views/books</code> directory:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">:edit</span>
+render <span class="hljs-symbol">action:</span> <span class="hljs-symbol">:edit</span>
+render <span class="hljs-string">"edit"</span>
+render <span class="hljs-string">"edit.html.erb"</span>
+render <span class="hljs-symbol">action:</span> <span class="hljs-string">"edit"</span>
+render <span class="hljs-symbol">action:</span> <span class="hljs-string">"edit.html.erb"</span>
+render <span class="hljs-string">"books/edit"</span>
+render <span class="hljs-string">"books/edit.html.erb"</span>
+render <span class="hljs-symbol">template:</span> <span class="hljs-string">"books/edit"</span>
+render <span class="hljs-symbol">template:</span> <span class="hljs-string">"books/edit.html.erb"</span>
+render <span class="hljs-string">"/path/to/rails/app/views/books/edit"</span>
+render <span class="hljs-string">"/path/to/rails/app/views/books/edit.html.erb"</span>
+render <span class="hljs-symbol">file:</span> <span class="hljs-string">"/path/to/rails/app/views/books/edit"</span>
+render <span class="hljs-symbol">file:</span> <span class="hljs-string">"/path/to/rails/app/views/books/edit.html.erb"</span>
+</code></pre>
+<p>Which one you use is really a matter of style and convention, but the rule of thumb is to use the simplest one that makes sense for the code you are writing.</p>
+<h4><a class="anchor" aria-hidden="true" id="using-render-with-inline"></a><a href="#using-render-with-inline" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using <code>render</code> with <code>:inline</code></h4>
+<p>The <code>render</code> method can do without a view completely, if you're willing to use the <code>:inline</code> option to supply ERB as part of the method call. This is perfectly valid:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">inline:</span> <span class="hljs-string">"&lt;% products.each do |p| %&gt;&lt;p&gt;&lt;%= p.name %&gt;&lt;/p&gt;&lt;% end %&gt;"</span>
+</code></pre>
+<p>WARNING: There is seldom any good reason to use this option. Mixing ERB into your controllers defeats the MVC orientation of Rails and will make it harder for other developers to follow the logic of your project. Use a separate erb view instead.</p>
+<p>By default, inline rendering uses ERB. You can force it to use Builder instead with the <code>:type</code> option:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">inline:</span> <span class="hljs-string">"xml.p {'Horrid coding practice!'}"</span>, <span class="hljs-symbol">type:</span> <span class="hljs-symbol">:builder</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="rendering-text"></a><a href="#rendering-text" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rendering Text</h4>
+<p>You can send plain text - with no markup at all - back to the browser by using
+the <code>:plain</code> option to <code>render</code>:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">plain:</span> <span class="hljs-string">"OK"</span>
+</code></pre>
+<p>TIP: Rendering pure text is most useful when you're responding to Ajax or web
+service requests that are expecting something other than proper HTML.</p>
+<p>NOTE: By default, if you use the <code>:plain</code> option, the text is rendered without
+using the current layout. If you want Rails to put the text into the current
+layout, you need to add the <code>layout: true</code> option and use the <code>.text.erb</code>
+extension for the layout file.</p>
+<h4><a class="anchor" aria-hidden="true" id="rendering-html"></a><a href="#rendering-html" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rendering HTML</h4>
+<p>You can send an HTML string back to the browser by using the <code>:html</code> option to
+<code>render</code>:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">html:</span> helpers.tag.strong(<span class="hljs-string">'Not Found'</span>)
+</code></pre>
+<p>TIP: This is useful when you're rendering a small snippet of HTML code.
+However, you might want to consider moving it to a template file if the markup
+is complex.</p>
+<p>NOTE: When using <code>html:</code> option, HTML entities will be escaped if the string is not composed with <code>html_safe</code>-aware APIs.</p>
+<h4><a class="anchor" aria-hidden="true" id="rendering-json"></a><a href="#rendering-json" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rendering JSON</h4>
+<p>JSON is a JavaScript data format used by many Ajax libraries. Rails has built-in support for converting objects to JSON and rendering that JSON back to the browser:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">json:</span> @product
+</code></pre>
+<p>TIP: You don't need to call <code>to_json</code> on the object that you want to render. If you use the <code>:json</code> option, <code>render</code> will automatically call <code>to_json</code> for you.</p>
+<h4><a class="anchor" aria-hidden="true" id="rendering-xml"></a><a href="#rendering-xml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rendering XML</h4>
+<p>Rails also has built-in support for converting objects to XML and rendering that XML back to the caller:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">xml:</span> @product
+</code></pre>
+<p>TIP: You don't need to call <code>to_xml</code> on the object that you want to render. If you use the <code>:xml</code> option, <code>render</code> will automatically call <code>to_xml</code> for you.</p>
+<h4><a class="anchor" aria-hidden="true" id="rendering-vanilla-javascript"></a><a href="#rendering-vanilla-javascript" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rendering Vanilla JavaScript</h4>
+<p>Rails can render vanilla JavaScript:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">js:</span> <span class="hljs-string">"alert('Hello Rails');"</span>
+</code></pre>
+<p>This will send the supplied string to the browser with a MIME type of <code>text/javascript</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="rendering-raw-body"></a><a href="#rendering-raw-body" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rendering raw body</h4>
+<p>You can send a raw content back to the browser, without setting any content
+type, by using the <code>:body</code> option to <code>render</code>:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">body:</span> <span class="hljs-string">"raw"</span>
+</code></pre>
+<p>TIP: This option should be used only if you don't care about the content type of
+the response. Using <code>:plain</code> or <code>:html</code> might be more appropriate most of the
+time.</p>
+<p>NOTE: Unless overridden, your response returned from this render option will be
+<code>text/plain</code>, as that is the default content type of Action Dispatch response.</p>
+<h4><a class="anchor" aria-hidden="true" id="options-for-render"></a><a href="#options-for-render" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Options for <code>render</code></h4>
+<p>Calls to the <code>render</code> method generally accept five options:</p>
+<ul>
+<li><code>:content_type</code></li>
+<li><code>:layout</code></li>
+<li><code>:location</code></li>
+<li><code>:status</code></li>
+<li><code>:formats</code></li>
+<li><code>:variants</code></li>
+</ul>
+<h5><a class="anchor" aria-hidden="true" id="the-content_type-option"></a><a href="#the-content_type-option" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The <code>:content_type</code> Option</h5>
+<p>By default, Rails will serve the results of a rendering operation with the MIME content-type of <code>text/html</code> (or <code>application/json</code> if you use the <code>:json</code> option, or <code>application/xml</code> for the <code>:xml</code> option.). There are times when you might like to change this, and you can do so by setting the <code>:content_type</code> option:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">file:</span> filename, <span class="hljs-symbol">content_type:</span> <span class="hljs-string">"application/rss"</span>
+</code></pre>
+<h5><a class="anchor" aria-hidden="true" id="the-layout-option"></a><a href="#the-layout-option" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The <code>:layout</code> Option</h5>
+<p>With most of the options to <code>render</code>, the rendered content is displayed as part of the current layout. You'll learn more about layouts and how to use them later in this guide.</p>
+<p>You can use the <code>:layout</code> option to tell Rails to use a specific file as the layout for the current action:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">layout:</span> <span class="hljs-string">"special_layout"</span>
+</code></pre>
+<p>You can also tell Rails to render with no layout at all:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">layout:</span> <span class="hljs-literal">false</span>
+</code></pre>
+<h5><a class="anchor" aria-hidden="true" id="the-location-option"></a><a href="#the-location-option" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The <code>:location</code> Option</h5>
+<p>You can use the <code>:location</code> option to set the HTTP <code>Location</code> header:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">xml:</span> photo, <span class="hljs-symbol">location:</span> photo_url(photo)
+</code></pre>
+<h5><a class="anchor" aria-hidden="true" id="the-status-option"></a><a href="#the-status-option" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The <code>:status</code> Option</h5>
+<p>Rails will automatically generate a response with the correct HTTP status code (in most cases, this is <code>200 OK</code>). You can use the <code>:status</code> option to change this:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">status:</span> <span class="hljs-number">500</span>
+render <span class="hljs-symbol">status:</span> <span class="hljs-symbol">:forbidden</span>
+</code></pre>
+<p>Rails understands both numeric status codes and the corresponding symbols shown below.</p>
+<table>
+<thead>
+<tr><th>Response Class</th><th>HTTP Status Code</th><th>Symbol</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Informational</strong></td><td>100</td><td>:continue</td></tr>
+<tr><td></td><td>101</td><td>:switching_protocols</td></tr>
+<tr><td></td><td>102</td><td>:processing</td></tr>
+<tr><td><strong>Success</strong></td><td>200</td><td>:ok</td></tr>
+<tr><td></td><td>201</td><td>:created</td></tr>
+<tr><td></td><td>202</td><td>:accepted</td></tr>
+<tr><td></td><td>203</td><td>:non_authoritative_information</td></tr>
+<tr><td></td><td>204</td><td>:no_content</td></tr>
+<tr><td></td><td>205</td><td>:reset_content</td></tr>
+<tr><td></td><td>206</td><td>:partial_content</td></tr>
+<tr><td></td><td>207</td><td>:multi_status</td></tr>
+<tr><td></td><td>208</td><td>:already_reported</td></tr>
+<tr><td></td><td>226</td><td>:im_used</td></tr>
+<tr><td><strong>Redirection</strong></td><td>300</td><td>:multiple_choices</td></tr>
+<tr><td></td><td>301</td><td>:moved_permanently</td></tr>
+<tr><td></td><td>302</td><td>:found</td></tr>
+<tr><td></td><td>303</td><td>:see_other</td></tr>
+<tr><td></td><td>304</td><td>:not_modified</td></tr>
+<tr><td></td><td>305</td><td>:use_proxy</td></tr>
+<tr><td></td><td>307</td><td>:temporary_redirect</td></tr>
+<tr><td></td><td>308</td><td>:permanent_redirect</td></tr>
+<tr><td><strong>Client Error</strong></td><td>400</td><td>:bad_request</td></tr>
+<tr><td></td><td>401</td><td>:unauthorized</td></tr>
+<tr><td></td><td>402</td><td>:payment_required</td></tr>
+<tr><td></td><td>403</td><td>:forbidden</td></tr>
+<tr><td></td><td>404</td><td>:not_found</td></tr>
+<tr><td></td><td>405</td><td>:method_not_allowed</td></tr>
+<tr><td></td><td>406</td><td>:not_acceptable</td></tr>
+<tr><td></td><td>407</td><td>:proxy_authentication_required</td></tr>
+<tr><td></td><td>408</td><td>:request_timeout</td></tr>
+<tr><td></td><td>409</td><td>:conflict</td></tr>
+<tr><td></td><td>410</td><td>:gone</td></tr>
+<tr><td></td><td>411</td><td>:length_required</td></tr>
+<tr><td></td><td>412</td><td>:precondition_failed</td></tr>
+<tr><td></td><td>413</td><td>:payload_too_large</td></tr>
+<tr><td></td><td>414</td><td>:uri_too_long</td></tr>
+<tr><td></td><td>415</td><td>:unsupported_media_type</td></tr>
+<tr><td></td><td>416</td><td>:range_not_satisfiable</td></tr>
+<tr><td></td><td>417</td><td>:expectation_failed</td></tr>
+<tr><td></td><td>421</td><td>:misdirected_request</td></tr>
+<tr><td></td><td>422</td><td>:unprocessable_entity</td></tr>
+<tr><td></td><td>423</td><td>:locked</td></tr>
+<tr><td></td><td>424</td><td>:failed_dependency</td></tr>
+<tr><td></td><td>426</td><td>:upgrade_required</td></tr>
+<tr><td></td><td>428</td><td>:precondition_required</td></tr>
+<tr><td></td><td>429</td><td>:too_many_requests</td></tr>
+<tr><td></td><td>431</td><td>:request_header_fields_too_large</td></tr>
+<tr><td></td><td>451</td><td>:unavailable_for_legal_reasons</td></tr>
+<tr><td><strong>Server Error</strong></td><td>500</td><td>:internal_server_error</td></tr>
+<tr><td></td><td>501</td><td>:not_implemented</td></tr>
+<tr><td></td><td>502</td><td>:bad_gateway</td></tr>
+<tr><td></td><td>503</td><td>:service_unavailable</td></tr>
+<tr><td></td><td>504</td><td>:gateway_timeout</td></tr>
+<tr><td></td><td>505</td><td>:http_version_not_supported</td></tr>
+<tr><td></td><td>506</td><td>:variant_also_negotiates</td></tr>
+<tr><td></td><td>507</td><td>:insufficient_storage</td></tr>
+<tr><td></td><td>508</td><td>:loop_detected</td></tr>
+<tr><td></td><td>510</td><td>:not_extended</td></tr>
+<tr><td></td><td>511</td><td>:network_authentication_required</td></tr>
+</tbody>
+</table>
+<p>NOTE:  If you try to render content along with a non-content status code
+(100-199, 204, 205, or 304), it will be dropped from the response.</p>
+<h5><a class="anchor" aria-hidden="true" id="the-formats-option"></a><a href="#the-formats-option" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The <code>:formats</code> Option</h5>
+<p>Rails uses the format specified in the request (or <code>:html</code> by default). You can
+change this passing the <code>:formats</code> option with a symbol or an array:</p>
+<pre><code class="hljs css language-ruby">render <span class="hljs-symbol">formats:</span> <span class="hljs-symbol">:xml</span>
+render <span class="hljs-symbol">formats:</span> [<span class="hljs-symbol">:json</span>, <span class="hljs-symbol">:xml</span>]
+</code></pre>
+<p>If a template with the specified format does not exist an <code>ActionView::MissingTemplate</code> error is raised.</p>
+<h5><a class="anchor" aria-hidden="true" id="the-variants-option"></a><a href="#the-variants-option" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The <code>:variants</code> Option</h5>
+<p>This tells Rails to look for template variations of the same format.
+You can specify a list of variants by passing the <code>:variants</code> option with a symbol or an array.</p>
+<p>An example of use would be this.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># called in HomeController#index</span>
+render <span class="hljs-symbol">variants:</span> [<span class="hljs-symbol">:mobile</span>, <span class="hljs-symbol">:desktop</span>]
+</code></pre>
+<p>With this set of variants Rails will look for the following set of templates and use the first that exists.</p>
+<ul>
+<li><code>app/views/home/index.html+mobile.erb</code></li>
+<li><code>app/views/home/index.html+desktop.erb</code></li>
+<li><code>app/views/home/index.html.erb</code></li>
+</ul>
+<p>If a template with the specified format does not exist an <code>ActionView::MissingTemplate</code> error is raised.</p>
+<p>Instead of setting the variant on the render call you may also set it on the request object in your controller action.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+  request.variant = determine_variant
+<span class="hljs-keyword">end</span>
+
+private
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">determine_variant</span></span>
+  variant = <span class="hljs-literal">nil</span>
+  <span class="hljs-comment"># some code to determine the variant(s) to use</span>
+  variant = <span class="hljs-symbol">:mobile</span> <span class="hljs-keyword">if</span> session[<span class="hljs-symbol">:use_mobile</span>]
+
+  variant
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="finding-layouts"></a><a href="#finding-layouts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Finding Layouts</h4>
+<p>To find the current layout, Rails first looks for a file in <code>app/views/layouts</code> with the same base name as the controller. For example, rendering actions from the <code>PhotosController</code> class will use <code>app/views/layouts/photos.html.erb</code> (or <code>app/views/layouts/photos.builder</code>). If there is no such controller-specific layout, Rails will use <code>app/views/layouts/application.html.erb</code> or <code>app/views/layouts/application.builder</code>. If there is no <code>.erb</code> layout, Rails will use a <code>.builder</code> layout if one exists. Rails also provides several ways to more precisely assign specific layouts to individual controllers and actions.</p>
+<h5><a class="anchor" aria-hidden="true" id="specifying-layouts-for-controllers"></a><a href="#specifying-layouts-for-controllers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Specifying Layouts for Controllers</h5>
+<p>You can override the default layout conventions in your controllers by using the <code>layout</code> declaration. For example:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductsController</span> &lt; ApplicationController</span>
+  layout <span class="hljs-string">"inventory"</span>
+  <span class="hljs-comment">#...</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>With this declaration, all of the views rendered by the <code>ProductsController</code> will use <code>app/views/layouts/inventory.html.erb</code> as their layout.</p>
+<p>To assign a specific layout for the entire application, use a <code>layout</code> declaration in your <code>ApplicationController</code> class:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> &lt; ActionController::Base</span>
+  layout <span class="hljs-string">"main"</span>
+  <span class="hljs-comment">#...</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>With this declaration, all of the views in the entire application will use <code>app/views/layouts/main.html.erb</code> for their layout.</p>
+<h5><a class="anchor" aria-hidden="true" id="choosing-layouts-at-runtime"></a><a href="#choosing-layouts-at-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Choosing Layouts at Runtime</h5>
+<p>You can use a symbol to defer the choice of layout until a request is processed:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductsController</span> &lt; ApplicationController</span>
+  layout <span class="hljs-symbol">:products_layout</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span></span>
+    @product = Product.find(params[<span class="hljs-symbol">:id</span>])
+  <span class="hljs-keyword">end</span>
+
+  private
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">products_layout</span></span>
+      @current_user.special? ? <span class="hljs-string">"special"</span> : <span class="hljs-string">"products"</span>
+    <span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Now, if the current user is a special user, they'll get a special layout when viewing a product.</p>
+<p>You can even use an inline method, such as a Proc, to determine the layout. For example, if you pass a Proc object, the block you give the Proc will be given the <code>controller</code> instance, so the layout can be determined based on the current request:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductsController</span> &lt; ApplicationController</span>
+  layout Proc.new { <span class="hljs-params">|controller|</span> controller.request.xhr? ? <span class="hljs-string">"popup"</span> : <span class="hljs-string">"application"</span> }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h5><a class="anchor" aria-hidden="true" id="conditional-layouts"></a><a href="#conditional-layouts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conditional Layouts</h5>
+<p>Layouts specified at the controller level support the <code>:only</code> and <code>:except</code> options. These options take either a method name, or an array of method names, corresponding to method names within the controller:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductsController</span> &lt; ApplicationController</span>
+  layout <span class="hljs-string">"product"</span>, <span class="hljs-symbol">except:</span> [<span class="hljs-symbol">:index</span>, <span class="hljs-symbol">:rss</span>]
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>With this declaration, the <code>product</code> layout would be used for everything but the <code>rss</code> and <code>index</code> methods.</p>
+<h5><a class="anchor" aria-hidden="true" id="layout-inheritance"></a><a href="#layout-inheritance" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Layout Inheritance</h5>
+<p>Layout declarations cascade downward in the hierarchy, and more specific layout declarations always override more general ones. For example:</p>
+<ul>
+<li><p><code>application_controller.rb</code></p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> &lt; ActionController::Base</span>
+  layout <span class="hljs-string">"main"</span>
+<span class="hljs-keyword">end</span>
+</code></pre></li>
+<li><p><code>articles_controller.rb</code></p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArticlesController</span> &lt; ApplicationController</span>
+<span class="hljs-keyword">end</span>
+</code></pre></li>
+<li><p><code>special_articles_controller.rb</code></p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpecialArticlesController</span> &lt; ArticlesController</span>
+  layout <span class="hljs-string">"special"</span>
+<span class="hljs-keyword">end</span>
+</code></pre></li>
+<li><p><code>old_articles_controller.rb</code></p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OldArticlesController</span> &lt; SpecialArticlesController</span>
+  layout <span class="hljs-literal">false</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span></span>
+    @article = Article.find(params[<span class="hljs-symbol">:id</span>])
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+    @old_articles = Article.older
+    render <span class="hljs-symbol">layout:</span> <span class="hljs-string">"old"</span>
+  <span class="hljs-keyword">end</span>
+  <span class="hljs-comment"># ...</span>
+<span class="hljs-keyword">end</span>
+</code></pre></li>
+</ul>
+<p>In this application:</p>
+<ul>
+<li>In general, views will be rendered in the <code>main</code> layout</li>
+<li><code>ArticlesController#index</code> will use the <code>main</code> layout</li>
+<li><code>SpecialArticlesController#index</code> will use the <code>special</code> layout</li>
+<li><code>OldArticlesController#show</code> will use no layout at all</li>
+<li><code>OldArticlesController#index</code> will use the <code>old</code> layout</li>
+</ul>
+<h5><a class="anchor" aria-hidden="true" id="template-inheritance"></a><a href="#template-inheritance" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Template Inheritance</h5>
+<p>Similar to the Layout Inheritance logic, if a template or partial is not found in the conventional path, the controller will look for a template or partial to render in its inheritance chain. For example:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># in app/controllers/application_controller</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> &lt; ActionController::Base</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># in app/controllers/admin_controller</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AdminController</span> &lt; ApplicationController</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># in app/controllers/admin/products_controller</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Admin::ProductsController</span> &lt; AdminController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The lookup order for an <code>admin/products#index</code> action will be:</p>
+<ul>
+<li><code>app/views/admin/products/</code></li>
+<li><code>app/views/admin/</code></li>
+<li><code>app/views/application/</code></li>
+</ul>
+<p>This makes <code>app/views/application/</code> a great place for your shared partials, which can then be rendered in your ERB as such:</p>
+<pre><code class="hljs css language-erb"><span class="xml"></span><span class="hljs-comment">&lt;%# app/views/admin/products/index.html.erb %&gt;</span><span class="xml">
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render @products <span class="hljs-params">||</span> <span class="hljs-string">"empty_list"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+
+</span><span class="hljs-comment">&lt;%# app/views/application/_empty_list.html.erb %&gt;</span><span class="xml">
+There are no items in this list <span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>yet<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>.
+</span></code></pre>
+<h4><a class="anchor" aria-hidden="true" id="avoiding-double-render-errors"></a><a href="#avoiding-double-render-errors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Avoiding Double Render Errors</h4>
+<p>Sooner or later, most Rails developers will see the error message &quot;Can only render or redirect once per action&quot;. While this is annoying, it's relatively easy to fix. Usually it happens because of a fundamental misunderstanding of the way that <code>render</code> works.</p>
+<p>For example, here's some code that will trigger this error:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span></span>
+  @book = Book.find(params[<span class="hljs-symbol">:id</span>])
+  <span class="hljs-keyword">if</span> @book.special?
+    render <span class="hljs-symbol">action:</span> <span class="hljs-string">"special_show"</span>
+  <span class="hljs-keyword">end</span>
+  render <span class="hljs-symbol">action:</span> <span class="hljs-string">"regular_show"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If <code>@book.special?</code> evaluates to <code>true</code>, Rails will start the rendering process to dump the <code>@book</code> variable into the <code>special_show</code> view. But this will <em>not</em> stop the rest of the code in the <code>show</code> action from running, and when Rails hits the end of the action, it will start to render the <code>regular_show</code> view - and throw an error. The solution is simple: make sure that you have only one call to <code>render</code> or <code>redirect</code> in a single code path. One thing that can help is <code>and return</code>. Here's a patched version of the method:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span></span>
+  @book = Book.find(params[<span class="hljs-symbol">:id</span>])
+  <span class="hljs-keyword">if</span> @book.special?
+    render <span class="hljs-symbol">action:</span> <span class="hljs-string">"special_show"</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">return</span>
+  <span class="hljs-keyword">end</span>
+  render <span class="hljs-symbol">action:</span> <span class="hljs-string">"regular_show"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Make sure to use <code>and return</code> instead of <code>&amp;&amp; return</code> because <code>&amp;&amp; return</code> will not work due to the operator precedence in the Ruby Language.</p>
+<p>Note that the implicit render done by ActionController detects if <code>render</code> has been called, so the following will work without errors:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span></span>
+  @book = Book.find(params[<span class="hljs-symbol">:id</span>])
+  <span class="hljs-keyword">if</span> @book.special?
+    render <span class="hljs-symbol">action:</span> <span class="hljs-string">"special_show"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This will render a book with <code>special?</code> set with the <code>special_show</code> template, while other books will render with the default <code>show</code> template.</p>
+<h3><a class="anchor" aria-hidden="true" id="using-redirect_to"></a><a href="#using-redirect_to" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using <code>redirect_to</code></h3>
+<p>Another way to handle returning responses to an HTTP request is with <code>redirect_to</code>. As you've seen, <code>render</code> tells Rails which view (or other asset) to use in constructing a response. The <code>redirect_to</code> method does something completely different: it tells the browser to send a new request for a different URL. For example, you could redirect from wherever you are in your code to the index of photos in your application with this call:</p>
+<pre><code class="hljs css language-ruby">redirect_to photos_url
+</code></pre>
+<p>You can use <code>redirect_back</code> to return the user to the page they just came from.
+This location is pulled from the <code>HTTP_REFERER</code> header which is not guaranteed
+to be set by the browser, so you must provide the <code>fallback_location</code>
+to use in this case.</p>
+<pre><code class="hljs css language-ruby">redirect_back(<span class="hljs-symbol">fallback_location:</span> root_path)
+</code></pre>
+<p>NOTE: <code>redirect_to</code> and <code>redirect_back</code> do not halt and return immediately from method execution, but simply set HTTP responses. Statements occurring after them in a method will be executed. You can halt by an explicit <code>return</code> or some other halting mechanism, if needed.</p>
+<h4><a class="anchor" aria-hidden="true" id="getting-a-different-redirect-status-code"></a><a href="#getting-a-different-redirect-status-code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Getting a Different Redirect Status Code</h4>
+<p>Rails uses HTTP status code 302, a temporary redirect, when you call <code>redirect_to</code>. If you'd like to use a different status code, perhaps 301, a permanent redirect, you can use the <code>:status</code> option:</p>
+<pre><code class="hljs css language-ruby">redirect_to photos_path, <span class="hljs-symbol">status:</span> <span class="hljs-number">301</span>
+</code></pre>
+<p>Just like the <code>:status</code> option for <code>render</code>, <code>:status</code> for <code>redirect_to</code> accepts both numeric and symbolic header designations.</p>
+<h4><a class="anchor" aria-hidden="true" id="the-difference-between-render-and-redirect_to"></a><a href="#the-difference-between-render-and-redirect_to" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Difference Between <code>render</code> and <code>redirect_to</code></h4>
+<p>Sometimes inexperienced developers think of <code>redirect_to</code> as a sort of <code>goto</code> command, moving execution from one place to another in your Rails code. This is <em>not</em> correct. Your code stops running and waits for a new request from the browser. It just happens that you've told the browser what request it should make next, by sending back an HTTP 302 status code.</p>
+<p>Consider these actions to see the difference:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+  @books = Book.all
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span></span>
+  @book = Book.find_by(<span class="hljs-symbol">id:</span> params[<span class="hljs-symbol">:id</span>])
+  <span class="hljs-keyword">if</span> @book.<span class="hljs-literal">nil</span>?
+    render <span class="hljs-symbol">action:</span> <span class="hljs-string">"index"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>With the code in this form, there will likely be a problem if the <code>@book</code> variable is <code>nil</code>. Remember, a <code>render :action</code> doesn't run any code in the target action, so nothing will set up the <code>@books</code> variable that the <code>index</code> view will probably require. One way to fix this is to redirect instead of rendering:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+  @books = Book.all
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span></span>
+  @book = Book.find_by(<span class="hljs-symbol">id:</span> params[<span class="hljs-symbol">:id</span>])
+  <span class="hljs-keyword">if</span> @book.<span class="hljs-literal">nil</span>?
+    redirect_to <span class="hljs-symbol">action:</span> <span class="hljs-symbol">:index</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>With this code, the browser will make a fresh request for the index page, the code in the <code>index</code> method will run, and all will be well.</p>
+<p>The only downside to this code is that it requires a round trip to the browser: the browser requested the show action with <code>/books/1</code> and the controller finds that there are no books, so the controller sends out a 302 redirect response to the browser telling it to go to <code>/books/</code>, the browser complies and sends a new request back to the controller asking now for the <code>index</code> action, the controller then gets all the books in the database and renders the index template, sending it back down to the browser which then shows it on your screen.</p>
+<p>While in a small application, this added latency might not be a problem, it is something to think about if response time is a concern. We can demonstrate one way to handle this with a contrived example:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+  @books = Book.all
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span></span>
+  @book = Book.find_by(<span class="hljs-symbol">id:</span> params[<span class="hljs-symbol">:id</span>])
+  <span class="hljs-keyword">if</span> @book.<span class="hljs-literal">nil</span>?
+    @books = Book.all
+    flash.now[<span class="hljs-symbol">:alert</span>] = <span class="hljs-string">"Your book was not found"</span>
+    render <span class="hljs-string">"index"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This would detect that there are no books with the specified ID, populate the <code>@books</code> instance variable with all the books in the model, and then directly render the <code>index.html.erb</code> template, returning it to the browser with a flash alert message to tell the user what happened.</p>
+<h3><a class="anchor" aria-hidden="true" id="using-head-to-build-header-only-responses"></a><a href="#using-head-to-build-header-only-responses" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using <code>head</code> To Build Header-Only Responses</h3>
+<p>The <code>head</code> method can be used to send responses with only headers to the browser. The <code>head</code> method accepts a number or symbol (see <a href="#the-status-option">reference table</a>) representing an HTTP status code. The options argument is interpreted as a hash of header names and values. For example, you can return only an error header:</p>
+<pre><code class="hljs css language-ruby">head <span class="hljs-symbol">:bad_request</span>
+</code></pre>
+<p>This would produce the following header:</p>
+<pre><code class="hljs">HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">400</span> Bad Request
+Connection: close
+Date: Sun, <span class="hljs-number">24</span> Jan <span class="hljs-number">2010</span> <span class="hljs-number">12</span>:<span class="hljs-number">15</span>:<span class="hljs-number">53</span> GMT
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=utf<span class="hljs-number">-8</span>
+X-Runtime: <span class="hljs-number">0.013483</span>
+Set-Cookie: _blog_session=...snip...; path=/; HttpOnly
+Cache-Control: no-cache
+</code></pre>
+<p>Or you can use other HTTP headers to convey other information:</p>
+<pre><code class="hljs css language-ruby">head <span class="hljs-symbol">:created</span>, <span class="hljs-symbol">location:</span> photo_path(@photo)
+</code></pre>
+<p>Which would produce:</p>
+<pre><code class="hljs">HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+Connection: close
+Date: Sun, <span class="hljs-number">24</span> Jan <span class="hljs-number">2010</span> <span class="hljs-number">12</span>:<span class="hljs-number">16</span>:<span class="hljs-number">44</span> GMT
+Transfer-Encoding: chunked
+Location: /photos/<span class="hljs-number">1</span>
+Content-Type: text/html; charset=utf<span class="hljs-number">-8</span>
+X-Runtime: <span class="hljs-number">0.083496</span>
+Set-Cookie: _blog_session=...snip...; path=/; HttpOnly
+Cache-Control: no-cache
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="structuring-layouts"></a><a href="#structuring-layouts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Structuring Layouts</h2>
+<p>When Rails renders a view as a response, it does so by combining the view with the current layout, using the rules for finding the current layout that were covered earlier in this guide. Within a layout, you have access to three tools for combining different bits of output to form the overall response:</p>
+<ul>
+<li>Asset tags</li>
+<li><code>yield</code> and <code>content_for</code></li>
+<li>Partials</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="asset-tag-helpers"></a><a href="#asset-tag-helpers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Asset Tag Helpers</h3>
+<p>Asset tag helpers provide methods for generating HTML that link views to feeds, JavaScript, stylesheets, images, videos, and audios. There are six asset tag helpers available in Rails:</p>
+<ul>
+<li><code>auto_discovery_link_tag</code></li>
+<li><code>javascript_include_tag</code></li>
+<li><code>stylesheet_link_tag</code></li>
+<li><code>image_tag</code></li>
+<li><code>video_tag</code></li>
+<li><code>audio_tag</code></li>
+</ul>
+<p>You can use these tags in layouts or other views, although the <code>auto_discovery_link_tag</code>, <code>javascript_include_tag</code>, and <code>stylesheet_link_tag</code>, are most commonly used in the <code>&lt;head&gt;</code> section of a layout.</p>
+<p>WARNING: The asset tag helpers do <em>not</em> verify the existence of the assets at the specified locations; they simply assume that you know what you're doing and generate the link.</p>
+<h4><a class="anchor" aria-hidden="true" id="linking-to-feeds-with-the-auto_discovery_link_tag"></a><a href="#linking-to-feeds-with-the-auto_discovery_link_tag" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Linking to Feeds with the <code>auto_discovery_link_tag</code></h4>
+<p>The <code>auto_discovery_link_tag</code> helper builds HTML that most browsers and feed readers can use to detect the presence of RSS, Atom, or JSON feeds. It takes the type of the link (<code>:rss</code>, <code>:atom</code>, or <code>:json</code>), a hash of options that are passed through to url_for, and a hash of options for the tag:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> auto_discovery_link_tag(<span class="hljs-symbol">:rss</span>, {<span class="hljs-symbol">action:</span> <span class="hljs-string">"feed"</span>},
+  {<span class="hljs-symbol">title:</span> <span class="hljs-string">"RSS Feed"</span>}) </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>There are three tag options available for the <code>auto_discovery_link_tag</code>:</p>
+<ul>
+<li><code>:rel</code> specifies the <code>rel</code> value in the link. The default value is &quot;alternate&quot;.</li>
+<li><code>:type</code> specifies an explicit MIME type. Rails will generate an appropriate MIME type automatically.</li>
+<li><code>:title</code> specifies the title of the link. The default value is the uppercase <code>:type</code> value, for example, &quot;ATOM&quot; or &quot;RSS&quot;.</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="linking-to-javascript-files-with-the-javascript_include_tag"></a><a href="#linking-to-javascript-files-with-the-javascript_include_tag" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Linking to JavaScript Files with the <code>javascript_include_tag</code></h4>
+<p>The <code>javascript_include_tag</code> helper returns an HTML <code>script</code> tag for each source provided.</p>
+<p>If you are using Rails with the <a href="/rails-setup/docs/rails/asset-pipeline">Asset Pipeline</a> enabled, this helper will generate a link to <code>/assets/javascripts/</code> rather than <code>public/javascripts</code> which was used in earlier versions of Rails. This link is then served by the asset pipeline.</p>
+<p>A JavaScript file within a Rails application or Rails engine goes in one of three locations: <code>app/assets</code>, <code>lib/assets</code> or <code>vendor/assets</code>. These locations are explained in detail in the <a href="asset_pipeline.html#asset-organization">Asset Organization section in the Asset Pipeline Guide</a>.</p>
+<p>You can specify a full path relative to the document root, or a URL, if you prefer. For example, to link to a JavaScript file that is inside a directory called <code>javascripts</code> inside of one of <code>app/assets</code>, <code>lib/assets</code> or <code>vendor/assets</code>, you would do this:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> javascript_include_tag <span class="hljs-string">"main"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>Rails will then output a <code>script</code> tag such as this:</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">'/assets/main.js'</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>The request to this asset is then served by the Sprockets gem.</p>
+<p>To include multiple files such as <code>app/assets/javascripts/main.js</code> and <code>app/assets/javascripts/columns.js</code> at the same time:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> javascript_include_tag <span class="hljs-string">"main"</span>, <span class="hljs-string">"columns"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>To include <code>app/assets/javascripts/main.js</code> and <code>app/assets/javascripts/photos/columns.js</code>:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> javascript_include_tag <span class="hljs-string">"main"</span>, <span class="hljs-string">"/photos/columns"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>To include <code>http://example.com/main.js</code>:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> javascript_include_tag <span class="hljs-string">"http://example.com/main.js"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<h4><a class="anchor" aria-hidden="true" id="linking-to-css-files-with-the-stylesheet_link_tag"></a><a href="#linking-to-css-files-with-the-stylesheet_link_tag" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Linking to CSS Files with the <code>stylesheet_link_tag</code></h4>
+<p>The <code>stylesheet_link_tag</code> helper returns an HTML <code>&lt;link&gt;</code> tag for each source provided.</p>
+<p>If you are using Rails with the &quot;Asset Pipeline&quot; enabled, this helper will generate a link to <code>/assets/stylesheets/</code>. This link is then processed by the Sprockets gem. A stylesheet file can be stored in one of three locations: <code>app/assets</code>, <code>lib/assets</code> or <code>vendor/assets</code>.</p>
+<p>You can specify a full path relative to the document root, or a URL. For example, to link to a stylesheet file that is inside a directory called <code>stylesheets</code> inside of one of <code>app/assets</code>, <code>lib/assets</code> or <code>vendor/assets</code>, you would do this:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> stylesheet_link_tag <span class="hljs-string">"main"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>To include <code>app/assets/stylesheets/main.css</code> and <code>app/assets/stylesheets/columns.css</code>:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> stylesheet_link_tag <span class="hljs-string">"main"</span>, <span class="hljs-string">"columns"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>To include <code>app/assets/stylesheets/main.css</code> and <code>app/assets/stylesheets/photos/columns.css</code>:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> stylesheet_link_tag <span class="hljs-string">"main"</span>, <span class="hljs-string">"photos/columns"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>To include <code>http://example.com/main.css</code>:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> stylesheet_link_tag <span class="hljs-string">"http://example.com/main.css"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>By default, the <code>stylesheet_link_tag</code> creates links with <code>media=&quot;screen&quot; rel=&quot;stylesheet&quot;</code>. You can override any of these defaults by specifying an appropriate option (<code>:media</code>, <code>:rel</code>):</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> stylesheet_link_tag <span class="hljs-string">"main_print"</span>, <span class="hljs-symbol">media:</span> <span class="hljs-string">"print"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<h4><a class="anchor" aria-hidden="true" id="linking-to-images-with-the-image_tag"></a><a href="#linking-to-images-with-the-image_tag" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Linking to Images with the <code>image_tag</code></h4>
+<p>The <code>image_tag</code> helper builds an HTML <code>&lt;img /&gt;</code> tag to the specified file. By default, files are loaded from <code>public/images</code>.</p>
+<p>WARNING: Note that you must specify the extension of the image.</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> image_tag <span class="hljs-string">"header.png"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>You can supply a path to the image if you like:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> image_tag <span class="hljs-string">"icons/delete.gif"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>You can supply a hash of additional HTML options:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> image_tag <span class="hljs-string">"icons/delete.gif"</span>, {<span class="hljs-symbol">height:</span> <span class="hljs-number">45</span>} </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>You can supply alternate text for the image which will be used if the user has images turned off in their browser. If you do not specify an alt text explicitly, it defaults to the file name of the file, capitalized and with no extension. For example, these two image tags would return the same code:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> image_tag <span class="hljs-string">"home.gif"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> image_tag <span class="hljs-string">"home.gif"</span>, <span class="hljs-symbol">alt:</span> <span class="hljs-string">"Home"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>You can also specify a special size tag, in the format &quot;{width}x{height}&quot;:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> image_tag <span class="hljs-string">"home.gif"</span>, <span class="hljs-symbol">size:</span> <span class="hljs-string">"50x20"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>In addition to the above special tags, you can supply a final hash of standard HTML options, such as <code>:class</code>, <code>:id</code> or <code>:name</code>:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> image_tag <span class="hljs-string">"home.gif"</span>, <span class="hljs-symbol">alt:</span> <span class="hljs-string">"Go Home"</span>,
+                          <span class="hljs-symbol">id:</span> <span class="hljs-string">"HomeImage"</span>,
+                          <span class="hljs-class"><span class="hljs-keyword">class</span>: "<span class="hljs-title">nav_bar</span>" </span></span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<h4><a class="anchor" aria-hidden="true" id="linking-to-videos-with-the-video_tag"></a><a href="#linking-to-videos-with-the-video_tag" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Linking to Videos with the <code>video_tag</code></h4>
+<p>The <code>video_tag</code> helper builds an HTML 5 <code>&lt;video&gt;</code> tag to the specified file. By default, files are loaded from <code>public/videos</code>.</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> video_tag <span class="hljs-string">"movie.ogg"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>Produces</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">video</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/videos/movie.ogg"</span> /&gt;</span>
+</span></code></pre>
+<p>Like an <code>image_tag</code> you can supply a path, either absolute, or relative to the <code>public/videos</code> directory. Additionally you can specify the <code>size: &quot;#{width}x#{height}&quot;</code> option just like an <code>image_tag</code>. Video tags can also have any of the HTML options specified at the end (<code>id</code>, <code>class</code> et al).</p>
+<p>The video tag also supports all of the <code>&lt;video&gt;</code> HTML options through the HTML options hash, including:</p>
+<ul>
+<li><code>poster: &quot;image_name.png&quot;</code>, provides an image to put in place of the video before it starts playing.</li>
+<li><code>autoplay: true</code>, starts playing the video on page load.</li>
+<li><code>loop: true</code>, loops the video once it gets to the end.</li>
+<li><code>controls: true</code>, provides browser supplied controls for the user to interact with the video.</li>
+<li><code>autobuffer: true</code>, the video will pre load the file for the user on page load.</li>
+</ul>
+<p>You can also specify multiple videos to play by passing an array of videos to the <code>video_tag</code>:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> video_tag [<span class="hljs-string">"trailer.ogg"</span>, <span class="hljs-string">"movie.ogg"</span>] </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>This will produce:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">video</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/videos/trailer.ogg"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/videos/movie.ogg"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">video</span>&gt;</span>
+</span></code></pre>
+<h4><a class="anchor" aria-hidden="true" id="linking-to-audio-files-with-the-audio_tag"></a><a href="#linking-to-audio-files-with-the-audio_tag" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Linking to Audio Files with the <code>audio_tag</code></h4>
+<p>The <code>audio_tag</code> helper builds an HTML 5 <code>&lt;audio&gt;</code> tag to the specified file. By default, files are loaded from <code>public/audios</code>.</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> audio_tag <span class="hljs-string">"music.mp3"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>You can supply a path to the audio file if you like:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> audio_tag <span class="hljs-string">"music/first_song.mp3"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>You can also supply a hash of additional options, such as <code>:id</code>, <code>:class</code> etc.</p>
+<p>Like the <code>video_tag</code>, the <code>audio_tag</code> has special options:</p>
+<ul>
+<li><code>autoplay: true</code>, starts playing the audio on page load</li>
+<li><code>controls: true</code>, provides browser supplied controls for the user to interact with the audio.</li>
+<li><code>autobuffer: true</code>, the audio will pre load the file for the user on page load.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="understanding-yield"></a><a href="#understanding-yield" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Understanding <code>yield</code></h3>
+<p>Within the context of a layout, <code>yield</code> identifies a section where content from the view should be inserted. The simplest way to use this is to have a single <code>yield</code>, into which the entire contents of the view currently being rendered is inserted:</p>
+<pre><code class="hljs css language-html+erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> <span class="hljs-keyword">yield</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</span></code></pre>
+<p>You can also create a layout with multiple yielding regions:</p>
+<pre><code class="hljs css language-html+erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> <span class="hljs-keyword">yield</span> <span class="hljs-symbol">:head</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> <span class="hljs-keyword">yield</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</span></code></pre>
+<p>The main body of the view will always render into the unnamed <code>yield</code>. To render content into a named <code>yield</code>, you use the <code>content_for</code> method.</p>
+<h3><a class="anchor" aria-hidden="true" id="using-the-content_for-method"></a><a href="#using-the-content_for-method" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using the <code>content_for</code> Method</h3>
+<p>The <code>content_for</code> method allows you to insert content into a named <code>yield</code> block in your layout. For example, this view would work with the layout that you just saw:</p>
+<pre><code class="hljs css language-html+erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> content_for <span class="hljs-symbol">:head</span> <span class="hljs-keyword">do</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>A simple page<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">end</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello, Rails!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</span></code></pre>
+<p>The result of rendering this page into the supplied layout would be this HTML:</p>
+<pre><code class="hljs css language-html+erb"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>A simple page<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello, Rails!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>The <code>content_for</code> method is very helpful when your layout contains distinct regions such as sidebars and footers that should get their own blocks of content inserted. It's also useful for inserting tags that load page-specific JavaScript or css files into the header of an otherwise generic layout.</p>
+<h3><a class="anchor" aria-hidden="true" id="using-partials"></a><a href="#using-partials" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Partials</h3>
+<p>Partial templates - usually just called &quot;partials&quot; - are another device for breaking the rendering process into more manageable chunks. With a partial, you can move the code for rendering a particular piece of a response to its own file.</p>
+<h4><a class="anchor" aria-hidden="true" id="naming-partials"></a><a href="#naming-partials" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Naming Partials</h4>
+<p>To render a partial as part of a view, you use the <code>render</code> method within the view:</p>
+<pre><code class="hljs css language-ruby">&lt;%= render <span class="hljs-string">"menu"</span> %&gt;
+</code></pre>
+<p>This will render a file named <code>_menu.html.erb</code> at that point within the view being rendered. Note the leading underscore character: partials are named with a leading underscore to distinguish them from regular views, even though they are referred to without the underscore. This holds true even when you're pulling in a partial from another folder:</p>
+<pre><code class="hljs css language-ruby">&lt;%= render <span class="hljs-string">"shared/menu"</span> %&gt;
+</code></pre>
+<p>That code will pull in the partial from <code>app/views/shared/_menu.html.erb</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="using-partials-to-simplify-views"></a><a href="#using-partials-to-simplify-views" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Partials to Simplify Views</h4>
+<p>One way to use partials is to treat them as the equivalent of subroutines: as a way to move details out of a view so that you can grasp what's going on more easily. For example, you might have a view that looked like this:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render <span class="hljs-string">"shared/ad_banner"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Products<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Here are a few of our fine products:<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+...
+
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render <span class="hljs-string">"shared/footer"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>Here, the <code>_ad_banner.html.erb</code> and <code>_footer.html.erb</code> partials could contain
+content that is shared by many pages in your application. You don't need to see
+the details of these sections when you're concentrating on a particular page.</p>
+<p>As seen in the previous sections of this guide, <code>yield</code> is a very powerful tool
+for cleaning up your layouts. Keep in mind that it's pure Ruby, so you can use
+it almost everywhere. For example, we can use it to DRY up form layout
+definitions for several similar resources:</p>
+<ul>
+<li><p><code>users/index.html.erb</code></p>
+<pre><code class="hljs css language-html+erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render <span class="hljs-string">"shared/search_filters"</span>, <span class="hljs-symbol">search:</span> @q <span class="hljs-keyword">do</span> <span class="hljs-params">|f|</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+    Name contains: <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> f.text_field <span class="hljs-symbol">:name_contains</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">end</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre></li>
+<li><p><code>roles/index.html.erb</code></p>
+<pre><code class="hljs css language-html+erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render <span class="hljs-string">"shared/search_filters"</span>, <span class="hljs-symbol">search:</span> @q <span class="hljs-keyword">do</span> <span class="hljs-params">|f|</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+    Title contains: <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> f.text_field <span class="hljs-symbol">:title_contains</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">end</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre></li>
+<li><p><code>shared/_search_filters.html.erb</code></p>
+<pre><code class="hljs css language-html+erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> form_for(search) <span class="hljs-keyword">do</span> <span class="hljs-params">|f|</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Search form:<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">fieldset</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> <span class="hljs-keyword">yield</span> f </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">fieldset</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> f.submit <span class="hljs-string">"Search"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">end</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre></li>
+</ul>
+<p>TIP: For content that is shared among all pages in your application, you can use partials directly from layouts.</p>
+<h4><a class="anchor" aria-hidden="true" id="partial-layouts"></a><a href="#partial-layouts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Partial Layouts</h4>
+<p>A partial can use its own layout file, just as a view can use a layout. For example, you might call a partial like this:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render <span class="hljs-symbol">partial:</span> <span class="hljs-string">"link_area"</span>, <span class="hljs-symbol">layout:</span> <span class="hljs-string">"graybar"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>This would look for a partial named <code>_link_area.html.erb</code> and render it using the layout <code>_graybar.html.erb</code>. Note that layouts for partials follow the same leading-underscore naming as regular partials, and are placed in the same folder with the partial that they belong to (not in the master <code>layouts</code> folder).</p>
+<p>Also note that explicitly specifying <code>:partial</code> is required when passing additional options such as <code>:layout</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="passing-local-variables"></a><a href="#passing-local-variables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Passing Local Variables</h4>
+<p>You can also pass local variables into partials, making them even more powerful and flexible. For example, you can use this technique to reduce duplication between new and edit pages, while still keeping a bit of distinct content:</p>
+<ul>
+<li><p><code>new.html.erb</code></p>
+<pre><code class="hljs css language-html+erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>New zone<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render <span class="hljs-symbol">partial:</span> <span class="hljs-string">"form"</span>, <span class="hljs-symbol">locals:</span> {<span class="hljs-symbol">zone:</span> @zone} </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre></li>
+<li><p><code>edit.html.erb</code></p>
+<pre><code class="hljs css language-html+erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Editing zone<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render <span class="hljs-symbol">partial:</span> <span class="hljs-string">"form"</span>, <span class="hljs-symbol">locals:</span> {<span class="hljs-symbol">zone:</span> @zone} </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre></li>
+<li><p><code>_form.html.erb</code></p>
+<pre><code class="hljs css language-html+erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> form_for(zone) <span class="hljs-keyword">do</span> <span class="hljs-params">|f|</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Zone name<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> f.text_field <span class="hljs-symbol">:name</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> f.submit </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">end</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre></li>
+</ul>
+<p>Although the same partial will be rendered into both views, Action View's submit helper will return &quot;Create Zone&quot; for the new action and &quot;Update Zone&quot; for the edit action.</p>
+<p>To pass a local variable to a partial in only specific cases use the <code>local_assigns</code>.</p>
+<ul>
+<li><p><code>index.html.erb</code></p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render user.articles </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre></li>
+<li><p><code>show.html.erb</code></p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render article, <span class="hljs-symbol">full:</span> <span class="hljs-literal">true</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre></li>
+<li><p><code>_article.html.erb</code></p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> article.title </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">if</span> local_assigns[<span class="hljs-symbol">:full</span>] </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> simple_format article.body </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">else</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> truncate article.body </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">end</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre></li>
+</ul>
+<p>This way it is possible to use the partial without the need to declare all local variables.</p>
+<p>Every partial also has a local variable with the same name as the partial (minus the leading underscore). You can pass an object in to this local variable via the <code>:object</code> option:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render <span class="hljs-symbol">partial:</span> <span class="hljs-string">"customer"</span>, <span class="hljs-symbol">object:</span> @new_customer </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>Within the <code>customer</code> partial, the <code>customer</code> variable will refer to <code>@new_customer</code> from the parent view.</p>
+<p>If you have an instance of a model to render into a partial, you can use a shorthand syntax:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render @customer </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>Assuming that the <code>@customer</code> instance variable contains an instance of the <code>Customer</code> model, this will use <code>_customer.html.erb</code> to render it and will pass the local variable <code>customer</code> into the partial which will refer to the <code>@customer</code> instance variable in the parent view.</p>
+<h4><a class="anchor" aria-hidden="true" id="rendering-collections"></a><a href="#rendering-collections" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rendering Collections</h4>
+<p>Partials are very useful in rendering collections. When you pass a collection to a partial via the <code>:collection</code> option, the partial will be inserted once for each member in the collection:</p>
+<ul>
+<li><p><code>index.html.erb</code></p>
+<pre><code class="hljs css language-html+erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Products<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render <span class="hljs-symbol">partial:</span> <span class="hljs-string">"product"</span>, <span class="hljs-symbol">collection:</span> @products </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre></li>
+<li><p><code>_product.html.erb</code></p>
+<pre><code class="hljs css language-html+erb">&lt;p&gt;<span class="hljs-built_in">Product</span> <span class="hljs-keyword">Name</span>: &lt;%= <span class="hljs-built_in">product</span>.<span class="hljs-keyword">name</span> %&gt;&lt;/p&gt;
+</code></pre></li>
+</ul>
+<p>When a partial is called with a pluralized collection, then the individual instances of the partial have access to the member of the collection being rendered via a variable named after the partial. In this case, the partial is <code>_product</code>, and within the <code>_product</code> partial, you can refer to <code>product</code> to get the instance that is being rendered.</p>
+<p>There is also a shorthand for this. Assuming <code>@products</code> is a collection of <code>Product</code> instances, you can simply write this in the <code>index.html.erb</code> to produce the same result:</p>
+<pre><code class="hljs css language-html+erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Products<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render @products </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>Rails determines the name of the partial to use by looking at the model name in the collection. In fact, you can even create a heterogeneous collection and render it this way, and Rails will choose the proper partial for each member of the collection:</p>
+<ul>
+<li><p><code>index.html.erb</code></p>
+<pre><code class="hljs css language-html+erb"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Contacts<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span> <span class="hljs-attr">render</span> [<span class="hljs-attr">customer1</span>, <span class="hljs-attr">employee1</span>, <span class="hljs-attr">customer2</span>, <span class="hljs-attr">employee2</span>] %&gt;</span>
+</code></pre></li>
+<li><p><code>customers/_customer.html.erb</code></p>
+<pre><code class="hljs css language-html+erb"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Customer: <span class="hljs-tag">&lt;<span class="hljs-name">%=</span> <span class="hljs-attr">customer.name</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre></li>
+<li><p><code>employees/_employee.html.erb</code></p>
+<pre><code class="hljs css language-html+erb"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Employee: <span class="hljs-tag">&lt;<span class="hljs-name">%=</span> <span class="hljs-attr">employee.name</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre></li>
+</ul>
+<p>In this case, Rails will use the customer or employee partials as appropriate for each member of the collection.</p>
+<p>In the event that the collection is empty, <code>render</code> will return nil, so it should be fairly simple to provide alternative content.</p>
+<pre><code class="hljs css language-html+erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Products<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render(@products) <span class="hljs-params">||</span> <span class="hljs-string">"There are no products available."</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<h4><a class="anchor" aria-hidden="true" id="local-variables"></a><a href="#local-variables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Local Variables</h4>
+<p>To use a custom local variable name within the partial, specify the <code>:as</code> option in the call to the partial:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render <span class="hljs-symbol">partial:</span> <span class="hljs-string">"product"</span>, <span class="hljs-symbol">collection:</span> @products, <span class="hljs-symbol">as:</span> <span class="hljs-symbol">:item</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>With this change, you can access an instance of the <code>@products</code> collection as the <code>item</code> local variable within the partial.</p>
+<p>You can also pass in arbitrary local variables to any partial you are rendering with the <code>locals: {}</code> option:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render <span class="hljs-symbol">partial:</span> <span class="hljs-string">"product"</span>, <span class="hljs-symbol">collection:</span> @products,
+           <span class="hljs-symbol">as:</span> <span class="hljs-symbol">:item</span>, <span class="hljs-symbol">locals:</span> {<span class="hljs-symbol">title:</span> <span class="hljs-string">"Products Page"</span>} </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>In this case, the partial will have access to a local variable <code>title</code> with the value &quot;Products Page&quot;.</p>
+<p>TIP: Rails also makes a counter variable available within a partial called by the collection, named after the title of the partial followed by <code>_counter</code>. For example, when rendering a collection <code>@products</code> the partial <code>_product.html.erb</code> can access the variable <code>product_counter</code> which indexes the number of times it has been rendered within the enclosing view. Note that it also applies for when the partial name was changed by using the <code>as:</code> option. For example, the counter variable for the code above would be <code>item_counter</code>.</p>
+<p>You can also specify a second partial to be rendered between instances of the main partial by using the <code>:spacer_template</code> option:</p>
+<h4><a class="anchor" aria-hidden="true" id="spacer-templates"></a><a href="#spacer-templates" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Spacer Templates</h4>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render <span class="hljs-symbol">partial:</span> @products, <span class="hljs-symbol">spacer_template:</span> <span class="hljs-string">"product_ruler"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>Rails will render the <code>_product_ruler</code> partial (with no data passed in to it) between each pair of <code>_product</code> partials.</p>
+<h4><a class="anchor" aria-hidden="true" id="collection-partial-layouts"></a><a href="#collection-partial-layouts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Collection Partial Layouts</h4>
+<p>When rendering collections it is also possible to use the <code>:layout</code> option:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render <span class="hljs-symbol">partial:</span> <span class="hljs-string">"product"</span>, <span class="hljs-symbol">collection:</span> @products, <span class="hljs-symbol">layout:</span> <span class="hljs-string">"special_layout"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>The layout will be rendered together with the partial for each item in the collection. The current object and object_counter variables will be available in the layout as well, the same way they are within the partial.</p>
+<h3><a class="anchor" aria-hidden="true" id="using-nested-layouts"></a><a href="#using-nested-layouts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Nested Layouts</h3>
+<p>You may find that your application requires a layout that differs slightly from your regular application layout to support one particular controller. Rather than repeating the main layout and editing it, you can accomplish this by using nested layouts (sometimes called sub-templates). Here's an example:</p>
+<p>Suppose you have the following <code>ApplicationController</code> layout:</p>
+<ul>
+<li><p><code>app/views/layouts/application.html.erb</code></p>
+<pre><code class="hljs css language-html+erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> @page_title <span class="hljs-keyword">or</span> <span class="hljs-string">"Page Title"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> stylesheet_link_tag <span class="hljs-string">"layout"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>&lt;%=</span><span class="ruby"> <span class="hljs-keyword">yield</span> <span class="hljs-symbol">:stylesheets</span> </span><span class="xml">%&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"top_menu"</span>&gt;</span>Top menu items here<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"menu"</span>&gt;</span>Menu items here<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"content"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> content_for?(<span class="hljs-symbol">:content</span>) ? <span class="hljs-keyword">yield</span>(<span class="hljs-symbol">:content</span>) : <span class="hljs-keyword">yield</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</span></code></pre></li>
+</ul>
+<p>On pages generated by <code>NewsController</code>, you want to hide the top menu and add a right menu:</p>
+<ul>
+<li><p><code>app/views/layouts/news.html.erb</code></p>
+<pre><code class="hljs css language-html+erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> content_for <span class="hljs-symbol">:stylesheets</span> <span class="hljs-keyword">do</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  #top_menu {display: none}
+  #right_menu {float: right; background-color: yellow; color: black}
+<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">end</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> content_for <span class="hljs-symbol">:content</span> <span class="hljs-keyword">do</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"right_menu"</span>&gt;</span>Right menu items here<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> content_for?(<span class="hljs-symbol">:news_content</span>) ? <span class="hljs-keyword">yield</span>(<span class="hljs-symbol">:news_content</span>) : <span class="hljs-keyword">yield</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">end</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render <span class="hljs-symbol">template:</span> <span class="hljs-string">"layouts/application"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre></li>
+</ul>
+<p>That's it. The News views will use the new layout, hiding the top menu and adding a new right menu inside the &quot;content&quot; div.</p>
+<p>There are several ways of getting similar results with different sub-templating schemes using this technique. Note that there is no limit in nesting levels. One can use the <code>ActionView::render</code> method via <code>render template: 'layouts/news'</code> to base a new layout on the News layout. If you are sure you will not subtemplate the <code>News</code> layout, you can replace the <code>content_for?(:news_content) ? yield(:news_content) : yield</code> with simply <code>yield</code>.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-7</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/rails/active-record-postgresql"><span class="arrow-prev">← </span><span class="function-name-prevnext">Active Record and PostgreSQL</span></a><a class="docs-next button" href="/rails-setup/docs/rails/action-view"><span>Action View Overview</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#overview-how-the-pieces-fit-together">Overview: How the Pieces Fit Together</a></li><li><a href="#creating-responses">Creating Responses</a><ul class="toc-headings"><li><a href="#rendering-by-default-convention-over-configuration-in-action">Rendering by Default: Convention Over Configuration in Action</a></li><li><a href="#using-render">Using <code>render</code></a></li><li><a href="#using-redirect_to">Using <code>redirect_to</code></a></li><li><a href="#using-head-to-build-header-only-responses">Using <code>head</code> To Build Header-Only Responses</a></li></ul></li><li><a href="#structuring-layouts">Structuring Layouts</a><ul class="toc-headings"><li><a href="#asset-tag-helpers">Asset Tag Helpers</a></li><li><a href="#understanding-yield">Understanding <code>yield</code></a></li><li><a href="#using-the-content_for-method">Using the <code>content_for</code> Method</a></li><li><a href="#using-partials">Using Partials</a></li><li><a href="#using-nested-layouts">Using Nested Layouts</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Rails Setup 2019</section></footer></div></body></html>

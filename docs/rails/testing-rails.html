@@ -1,0 +1,1456 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Testing Rails Applications · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This guide covers built-in mechanisms in Rails for testing your application.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Testing Rails Applications · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;This guide covers built-in mechanisms in Rails for testing your application.&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/rails/getting-started" target="_self">Rails</a></li><li class=""><a href="/rails-setup/docs/devise/overview" target="_self">Devise</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Digging Deeper</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start Here<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/getting-started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/development-dependencies-install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Models<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/multiple-databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Views<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/layouts-and-rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view-form-helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Controllers<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Other Components<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Digging Deeper<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/rails/testing-rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/securing-rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/debugging-rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/configuring-rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-command-line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/asset-pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/working-with-javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/autoloading-and-reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/caching-with-rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-only-apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Extending Rails<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-on-rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/generators-&amp;-templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/application-templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/creating-rails-plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contributions<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/contributing-to-rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/guides-guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Policies<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/maintenance-policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Testing Rails Applications</h1></header><article><div><span><p>This guide covers built-in mechanisms in Rails for testing your application.</p>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>Rails testing terminology.</li>
+<li>How to write unit, functional, integration, and system tests for your application.</li>
+<li>Other popular testing approaches and plugins.</li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="why-write-tests-for-your-rails-applications"></a><a href="#why-write-tests-for-your-rails-applications" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why Write Tests for your Rails Applications?</h2>
+<p>Rails makes it super easy to write your tests. It starts by producing skeleton test code while you are creating your models and controllers.</p>
+<p>By running your Rails tests you can ensure your code adheres to the desired functionality even after some major code refactoring.</p>
+<p>Rails tests can also simulate browser requests and thus you can test your application's response without having to test it through your browser.</p>
+<h2><a class="anchor" aria-hidden="true" id="introduction-to-testing"></a><a href="#introduction-to-testing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Introduction to Testing</h2>
+<p>Testing support was woven into the Rails fabric from the beginning. It wasn't an &quot;oh! let's bolt on support for running tests because they're new and cool&quot; epiphany.</p>
+<h3><a class="anchor" aria-hidden="true" id="rails-sets-up-for-testing-from-the-word-go"></a><a href="#rails-sets-up-for-testing-from-the-word-go" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rails Sets up for Testing from the Word Go</h3>
+<p>Rails creates a <code>test</code> directory for you as soon as you create a Rails project using <code>rails new</code> <em>application_name</em>. If you list the contents of this directory then you shall see:</p>
+<pre><code class="hljs css language-bash">$ ls -F <span class="hljs-built_in">test</span>
+application_system_test_case.rb  controllers/                     helpers/                         mailers/                         system/
+channels/                        fixtures/                        integration/                     models/                          test_helper.rb
+</code></pre>
+<p>The <code>helpers</code>, <code>mailers</code>, and <code>models</code> directories are meant to hold tests for view helpers, mailers, and models, respectively. The <code>channels</code> directory is meant to hold tests for Action Cable connection and channels. The <code>controllers</code> directory is meant to hold tests for controllers, routes, and views. The <code>integration</code> directory is meant to hold tests for interactions between controllers.</p>
+<p>The system test directory holds system tests, which are used for full browser
+testing of your application. System tests allow you to test your application
+the way your users experience it and help you test your JavaScript as well.
+System tests inherit from Capybara and perform in browser tests for your
+application.</p>
+<p>Fixtures are a way of organizing test data; they reside in the <code>fixtures</code> directory.</p>
+<p>A <code>jobs</code> directory will also be created when an associated test is first generated.</p>
+<p>The <code>test_helper.rb</code> file holds the default configuration for your tests.</p>
+<p>The <code>application_system_test_case.rb</code> holds the default configuration for your system
+tests.</p>
+<h3><a class="anchor" aria-hidden="true" id="the-test-environment"></a><a href="#the-test-environment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Test Environment</h3>
+<p>By default, every Rails application has three environments: development, test, and production.</p>
+<p>Each environment's configuration can be modified similarly. In this case, we can modify our test environment by changing the options found in <code>config/environments/test.rb</code>.</p>
+<p>NOTE: Your tests are run under <code>RAILS_ENV=test</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="rails-meets-minitest"></a><a href="#rails-meets-minitest" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rails meets Minitest</h3>
+<p>If you remember, we used the <code>rails generate model</code> command in the
+<a href="/rails-setup/docs/rails/getting-started">Getting Started with Rails</a> guide. We created our first
+model, and among other things it created test stubs in the <code>test</code> directory:</p>
+<pre><code class="hljs css language-bash">$ rails generate model article title:string body:text
+...
+create  app/models/article.rb
+create  <span class="hljs-built_in">test</span>/models/article_test.rb
+create  <span class="hljs-built_in">test</span>/fixtures/articles.yml
+...
+</code></pre>
+<p>The default test stub in <code>test/models/article_test.rb</code> looks like this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'test_helper'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArticleTest</span> &lt; ActiveSupport::TestCase</span>
+  <span class="hljs-comment"># test "the truth" do</span>
+  <span class="hljs-comment">#   assert true</span>
+  <span class="hljs-comment"># end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>A line by line examination of this file will help get you oriented to Rails testing code and terminology.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'test_helper'</span>
+</code></pre>
+<p>By requiring this file, <code>test_helper.rb</code> the default configuration to run our tests is loaded. We will include this with all the tests we write, so any methods added to this file are available to all our tests.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArticleTest</span> &lt; ActiveSupport::TestCase</span>
+</code></pre>
+<p>The <code>ArticleTest</code> class defines a <em>test case</em> because it inherits from <code>ActiveSupport::TestCase</code>. <code>ArticleTest</code> thus has all the methods available from <code>ActiveSupport::TestCase</code>. Later in this guide, we'll see some of the methods it gives us.</p>
+<p>Any method defined within a class inherited from <code>Minitest::Test</code>
+(which is the superclass of <code>ActiveSupport::TestCase</code>) that begins with <code>test_</code> is simply called a test. So, methods defined as <code>test_password</code> and <code>test_valid_password</code> are legal test names and are run automatically when the test case is run.</p>
+<p>Rails also adds a <code>test</code> method that takes a test name and a block. It generates a normal <code>Minitest::Unit</code> test with method names prefixed with <code>test_</code>. So you don't have to worry about naming the methods, and you can write something like:</p>
+<pre><code class="hljs css language-ruby">test <span class="hljs-string">"the truth"</span> <span class="hljs-keyword">do</span>
+  assert <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Which is approximately the same as writing this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_the_truth</span></span>
+  assert <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Although you can still use regular method definitions, using the <code>test</code> macro allows for a more readable test name.</p>
+<p>NOTE: The method name is generated by replacing spaces with underscores. The result does not need to be a valid Ruby identifier though, the name may contain punctuation characters etc. That's because in Ruby technically any string may be a method name. This may require use of <code>define_method</code> and <code>send</code> calls to function properly, but formally there's little restriction on the name.</p>
+<p>Next, let's look at our first assertion:</p>
+<pre><code class="hljs css language-ruby">assert <span class="hljs-literal">true</span>
+</code></pre>
+<p>An assertion is a line of code that evaluates an object (or expression) for expected results. For example, an assertion can check:</p>
+<ul>
+<li>does this value = that value?</li>
+<li>is this object nil?</li>
+<li>does this line of code throw an exception?</li>
+<li>is the user's password greater than 5 characters?</li>
+</ul>
+<p>Every test may contain one or more assertions, with no restriction as to how many assertions are allowed. Only when all the assertions are successful will the test pass.</p>
+<h4><a class="anchor" aria-hidden="true" id="your-first-failing-test"></a><a href="#your-first-failing-test" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Your first failing test</h4>
+<p>To see how a test failure is reported, you can add a failing test to the <code>article_test.rb</code> test case.</p>
+<pre><code class="hljs css language-ruby">test <span class="hljs-string">"should not save article without title"</span> <span class="hljs-keyword">do</span>
+  article = Article.new
+  assert_not article.save
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Let us run this newly added test (where <code>6</code> is the number of line where the test is defined).</p>
+<pre><code class="hljs css language-bash">$ rails <span class="hljs-built_in">test</span> <span class="hljs-built_in">test</span>/models/article_test.rb:6
+Run options: --seed 44656
+
+<span class="hljs-comment"># Running:</span>
+
+F
+
+Failure:
+ArticleTest<span class="hljs-comment">#test_should_not_save_article_without_title [/path/to/blog/test/models/article_test.rb:6]:</span>
+Expected <span class="hljs-literal">true</span> to be nil or <span class="hljs-literal">false</span>
+
+
+rails <span class="hljs-built_in">test</span> <span class="hljs-built_in">test</span>/models/article_test.rb:6
+
+
+
+Finished <span class="hljs-keyword">in</span> 0.023918s, 41.8090 runs/s, 41.8090 assertions/s.
+
+1 runs, 1 assertions, 1 failures, 0 errors, 0 skips
+
+</code></pre>
+<p>In the output, <code>F</code> denotes a failure. You can see the corresponding trace shown under <code>Failure</code> along with the name of the failing test. The next few lines contain the stack trace followed by a message that mentions the actual value and the expected value by the assertion. The default assertion messages provide just enough information to help pinpoint the error. To make the assertion failure message more readable, every assertion provides an optional message parameter, as shown here:</p>
+<pre><code class="hljs css language-ruby">test <span class="hljs-string">"should not save article without title"</span> <span class="hljs-keyword">do</span>
+  article = Article.new
+  assert_not article.save, <span class="hljs-string">"Saved the article without a title"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Running this test shows the friendlier assertion message:</p>
+<pre><code class="hljs css language-bash">Failure:
+ArticleTest<span class="hljs-comment">#test_should_not_save_article_without_title [/path/to/blog/test/models/article_test.rb:6]:</span>
+Saved the article without a title
+</code></pre>
+<p>Now to get this test to pass we can add a model level validation for the <em>title</em> field.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Article</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:title</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Now the test should pass. Let us verify by running the test again:</p>
+<pre><code class="hljs css language-bash">$ rails <span class="hljs-built_in">test</span> <span class="hljs-built_in">test</span>/models/article_test.rb:6
+Run options: --seed 31252
+
+<span class="hljs-comment"># Running:</span>
+
+.
+
+Finished <span class="hljs-keyword">in</span> 0.027476s, 36.3952 runs/s, 36.3952 assertions/s.
+
+1 runs, 1 assertions, 0 failures, 0 errors, 0 skips
+</code></pre>
+<p>Now, if you noticed, we first wrote a test which fails for a desired
+functionality, then we wrote some code which adds the functionality and finally
+we ensured that our test passes. This approach to software development is
+referred to as
+<a href="http://c2.com/cgi/wiki?TestDrivenDevelopment"><em>Test-Driven Development</em> (TDD)</a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="what-an-error-looks-like"></a><a href="#what-an-error-looks-like" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What an error looks like</h4>
+<p>To see how an error gets reported, here's a test containing an error:</p>
+<pre><code class="hljs css language-ruby">test <span class="hljs-string">"should report error"</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-comment"># some_undefined_variable is not defined elsewhere in the test case</span>
+  some_undefined_variable
+  assert <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Now you can see even more output in the console from running the tests:</p>
+<pre><code class="hljs css language-bash">$ rails <span class="hljs-built_in">test</span> <span class="hljs-built_in">test</span>/models/article_test.rb
+Run options: --seed 1808
+
+<span class="hljs-comment"># Running:</span>
+
+.E
+
+Error:
+ArticleTest<span class="hljs-comment">#test_should_report_error:</span>
+NameError: undefined <span class="hljs-built_in">local</span> variable or method <span class="hljs-string">'some_undefined_variable'</span> <span class="hljs-keyword">for</span> <span class="hljs-comment">#&lt;ArticleTest:0x007fee3aa71798&gt;</span>
+    <span class="hljs-built_in">test</span>/models/article_test.rb:11:<span class="hljs-keyword">in</span> <span class="hljs-string">'block in &lt;class:ArticleTest&gt;'</span>
+
+
+rails <span class="hljs-built_in">test</span> <span class="hljs-built_in">test</span>/models/article_test.rb:9
+
+
+
+Finished <span class="hljs-keyword">in</span> 0.040609s, 49.2500 runs/s, 24.6250 assertions/s.
+
+2 runs, 1 assertions, 0 failures, 1 errors, 0 skips
+</code></pre>
+<p>Notice the 'E' in the output. It denotes a test with error.</p>
+<p>NOTE: The execution of each test method stops as soon as any error or an
+assertion failure is encountered, and the test suite continues with the next
+method. All test methods are executed in random order. The
+<a href="configuring.html#configuring-active-support"><code>config.active_support.test_order</code> option</a>
+can be used to configure test order.</p>
+<p>When a test fails you are presented with the corresponding backtrace. By default
+Rails filters that backtrace and will only print lines relevant to your
+application. This eliminates the framework noise and helps to focus on your
+code. However there are situations when you want to see the full
+backtrace. Set the <code>-b</code> (or <code>--backtrace</code>) argument to enable this behavior:</p>
+<pre><code class="hljs css language-bash">$ rails <span class="hljs-built_in">test</span> -b <span class="hljs-built_in">test</span>/models/article_test.rb
+</code></pre>
+<p>If we want this test to pass we can modify it to use <code>assert_raises</code> like so:</p>
+<pre><code class="hljs css language-ruby">test <span class="hljs-string">"should report error"</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-comment"># some_undefined_variable is not defined elsewhere in the test case</span>
+  assert_raises(NameError) <span class="hljs-keyword">do</span>
+    some_undefined_variable
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This test should now pass.</p>
+<h3><a class="anchor" aria-hidden="true" id="available-assertions"></a><a href="#available-assertions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Available Assertions</h3>
+<p>By now you've caught a glimpse of some of the assertions that are available. Assertions are the worker bees of testing. They are the ones that actually perform the checks to ensure that things are going as planned.</p>
+<p>Here's an extract of the assertions you can use with
+<a href="https://github.com/seattlerb/minitest"><code>Minitest</code></a>, the default testing library
+used by Rails. The <code>[msg]</code> parameter is an optional string message you can
+specify to make your test failure messages clearer.</p>
+<table>
+<thead>
+<tr><th>Assertion</th><th>Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td><code>assert( test, [msg] )</code></td><td>Ensures that <code>test</code> is true.</td></tr>
+<tr><td><code>assert_not( test, [msg] )</code></td><td>Ensures that <code>test</code> is false.</td></tr>
+<tr><td><code>assert_equal( expected, actual, [msg] )</code></td><td>Ensures that <code>expected == actual</code> is true.</td></tr>
+<tr><td><code>assert_not_equal( expected, actual, [msg] )</code></td><td>Ensures that <code>expected != actual</code> is true.</td></tr>
+<tr><td><code>assert_same( expected, actual, [msg] )</code></td><td>Ensures that <code>expected.equal?(actual)</code> is true.</td></tr>
+<tr><td><code>assert_not_same( expected, actual, [msg] )</code></td><td>Ensures that <code>expected.equal?(actual)</code> is false.</td></tr>
+<tr><td><code>assert_nil( obj, [msg] )</code></td><td>Ensures that <code>obj.nil?</code> is true.</td></tr>
+<tr><td><code>assert_not_nil( obj, [msg] )</code></td><td>Ensures that <code>obj.nil?</code> is false.</td></tr>
+<tr><td><code>assert_empty( obj, [msg] )</code></td><td>Ensures that <code>obj</code> is <code>empty?</code>.</td></tr>
+<tr><td><code>assert_not_empty( obj, [msg] )</code></td><td>Ensures that <code>obj</code> is not <code>empty?</code>.</td></tr>
+<tr><td><code>assert_match( regexp, string, [msg] )</code></td><td>Ensures that a string matches the regular expression.</td></tr>
+<tr><td><code>assert_no_match( regexp, string, [msg] )</code></td><td>Ensures that a string doesn't match the regular expression.</td></tr>
+<tr><td><code>assert_includes( collection, obj, [msg] )</code></td><td>Ensures that <code>obj</code> is in <code>collection</code>.</td></tr>
+<tr><td><code>assert_not_includes( collection, obj, [msg] )</code></td><td>Ensures that <code>obj</code> is not in <code>collection</code>.</td></tr>
+<tr><td><code>assert_in_delta( expected, actual, [delta], [msg] )</code></td><td>Ensures that the numbers <code>expected</code> and <code>actual</code> are within <code>delta</code> of each other.</td></tr>
+<tr><td><code>assert_not_in_delta( expected, actual, [delta], [msg] )</code></td><td>Ensures that the numbers <code>expected</code> and <code>actual</code> are not within <code>delta</code> of each other.</td></tr>
+<tr><td><code>assert_in_epsilon ( expected, actual, [epsilon], [msg] )</code></td><td>Ensures that the numbers <code>expected</code> and <code>actual</code> have a relative error less than <code>epsilon</code>.</td></tr>
+<tr><td><code>assert_not_in_epsilon ( expected, actual, [epsilon], [msg] )</code></td><td>Ensures that the numbers <code>expected</code> and <code>actual</code> don't have a relative error less than <code>epsilon</code>.</td></tr>
+<tr><td><code>assert_throws( symbol, [msg] ) { block }</code></td><td>Ensures that the given block throws the symbol.</td></tr>
+<tr><td><code>assert_raises( exception1, exception2, ... ) { block }</code></td><td>Ensures that the given block raises one of the given exceptions.</td></tr>
+<tr><td><code>assert_instance_of( class, obj, [msg] )</code></td><td>Ensures that <code>obj</code> is an instance of <code>class</code>.</td></tr>
+<tr><td><code>assert_not_instance_of( class, obj, [msg] )</code></td><td>Ensures that <code>obj</code> is not an instance of <code>class</code>.</td></tr>
+<tr><td><code>assert_kind_of( class, obj, [msg] )</code></td><td>Ensures that <code>obj</code> is an instance of <code>class</code> or is descending from it.</td></tr>
+<tr><td><code>assert_not_kind_of( class, obj, [msg] )</code></td><td>Ensures that <code>obj</code> is not an instance of <code>class</code> and is not descending from it.</td></tr>
+<tr><td><code>assert_respond_to( obj, symbol, [msg] )</code></td><td>Ensures that <code>obj</code> responds to <code>symbol</code>.</td></tr>
+<tr><td><code>assert_not_respond_to( obj, symbol, [msg] )</code></td><td>Ensures that <code>obj</code> does not respond to <code>symbol</code>.</td></tr>
+<tr><td><code>assert_operator( obj1, operator, [obj2], [msg] )</code></td><td>Ensures that <code>obj1.operator(obj2)</code> is true.</td></tr>
+<tr><td><code>assert_not_operator( obj1, operator, [obj2], [msg] )</code></td><td>Ensures that <code>obj1.operator(obj2)</code> is false.</td></tr>
+<tr><td><code>assert_predicate ( obj, predicate, [msg] )</code></td><td>Ensures that <code>obj.predicate</code> is true, e.g. <code>assert_predicate str, :empty?</code></td></tr>
+<tr><td><code>assert_not_predicate ( obj, predicate, [msg] )</code></td><td>Ensures that <code>obj.predicate</code> is false, e.g. <code>assert_not_predicate str, :empty?</code></td></tr>
+<tr><td><code>flunk( [msg] )</code></td><td>Ensures failure. This is useful to explicitly mark a test that isn't finished yet.</td></tr>
+</tbody>
+</table>
+<p>The above are a subset of assertions that minitest supports. For an exhaustive &amp;
+more up-to-date list, please check
+<a href="http://docs.seattlerb.org/minitest/">Minitest API documentation</a>, specifically
+<a href="http://docs.seattlerb.org/minitest/Minitest/Assertions.html"><code>Minitest::Assertions</code></a>.</p>
+<p>Because of the modular nature of the testing framework, it is possible to create your own assertions. In fact, that's exactly what Rails does. It includes some specialized assertions to make your life easier.</p>
+<p>NOTE: Creating your own assertions is an advanced topic that we won't cover in this tutorial.</p>
+<h3><a class="anchor" aria-hidden="true" id="rails-specific-assertions"></a><a href="#rails-specific-assertions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rails Specific Assertions</h3>
+<p>Rails adds some custom assertions of its own to the <code>minitest</code> framework:</p>
+<table>
+<thead>
+<tr><th>Assertion</th><th>Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://api.rubyonrails.org/classes/ActiveSupport/Testing/Assertions.html#method-i-assert_difference"><code>assert_difference(expressions, difference = 1, message = nil) {...}</code></a></td><td>Test numeric difference between the return value of an expression as a result of what is evaluated in the yielded block.</td></tr>
+<tr><td><a href="https://api.rubyonrails.org/classes/ActiveSupport/Testing/Assertions.html#method-i-assert_no_difference"><code>assert_no_difference(expressions, message = nil, &amp;block)</code></a></td><td>Asserts that the numeric result of evaluating an expression is not changed before and after invoking the passed in block.</td></tr>
+<tr><td><a href="https://api.rubyonrails.org/classes/ActiveSupport/Testing/Assertions.html#method-i-assert_changes"><code>assert_changes(expressions, message = nil, from:, to:, &amp;block)</code></a></td><td>Test that the result of evaluating an expression is changed after invoking the passed in block.</td></tr>
+<tr><td><a href="https://api.rubyonrails.org/classes/ActiveSupport/Testing/Assertions.html#method-i-assert_no_changes"><code>assert_no_changes(expressions, message = nil, &amp;block)</code></a></td><td>Test the result of evaluating an expression is not changed after invoking the passed in block.</td></tr>
+<tr><td><a href="https://api.rubyonrails.org/classes/ActiveSupport/Testing/Assertions.html#method-i-assert_nothing_raised"><code>assert_nothing_raised { block }</code></a></td><td>Ensures that the given block doesn't raise any exceptions.</td></tr>
+<tr><td><a href="https://api.rubyonrails.org/classes/ActionDispatch/Assertions/RoutingAssertions.html#method-i-assert_recognizes"><code>assert_recognizes(expected_options, path, extras={}, message=nil)</code></a></td><td>Asserts that the routing of the given path was handled correctly and that the parsed options (given in the expected_options hash) match path. Basically, it asserts that Rails recognizes the route given by expected_options.</td></tr>
+<tr><td><a href="https://api.rubyonrails.org/classes/ActionDispatch/Assertions/RoutingAssertions.html#method-i-assert_generates"><code>assert_generates(expected_path, options, defaults={}, extras = {}, message=nil)</code></a></td><td>Asserts that the provided options can be used to generate the provided path. This is the inverse of assert_recognizes. The extras parameter is used to tell the request the names and values of additional request parameters that would be in a query string. The message parameter allows you to specify a custom error message for assertion failures.</td></tr>
+<tr><td><a href="https://api.rubyonrails.org/classes/ActionDispatch/Assertions/ResponseAssertions.html#method-i-assert_response"><code>assert_response(type, message = nil)</code></a></td><td>Asserts that the response comes with a specific status code. You can specify <code>:success</code> to indicate 200-299, <code>:redirect</code> to indicate 300-399, <code>:missing</code> to indicate 404, or <code>:error</code> to match the 500-599 range. You can also pass an explicit status number or its symbolic equivalent. For more information, see <a href="http://rubydoc.info/github/rack/rack/master/Rack/Utils#HTTP_STATUS_CODES-constant">full list of status codes</a> and how their <a href="https://rubydoc.info/github/rack/rack/master/Rack/Utils#SYMBOL_TO_STATUS_CODE-constant">mapping</a> works.</td></tr>
+<tr><td><a href="https://api.rubyonrails.org/classes/ActionDispatch/Assertions/ResponseAssertions.html#method-i-assert_redirected_to"><code>assert_redirected_to(options = {}, message=nil)</code></a></td><td>Asserts that the redirection options passed in match those of the redirect called in the latest action. This match can be partial, such that <code>assert_redirected_to(controller: &quot;weblog&quot;)</code> will also match the redirection of <code>redirect_to(controller: &quot;weblog&quot;, action: &quot;show&quot;)</code> and so on. You can also pass named routes such as <code>assert_redirected_to root_path</code> and Active Record objects such as <code>assert_redirected_to @article</code>.</td></tr>
+</tbody>
+</table>
+<p>You'll see the usage of some of these assertions in the next chapter.</p>
+<h3><a class="anchor" aria-hidden="true" id="a-brief-note-about-test-cases"></a><a href="#a-brief-note-about-test-cases" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>A Brief Note About Test Cases</h3>
+<p>All the basic assertions such as <code>assert_equal</code> defined in <code>Minitest::Assertions</code> are also available in the classes we use in our own test cases. In fact, Rails provides the following classes for you to inherit from:</p>
+<ul>
+<li><a href="https://api.rubyonrails.org/classes/ActiveSupport/TestCase.html"><code>ActiveSupport::TestCase</code></a></li>
+<li><a href="https://api.rubyonrails.org/classes/ActionMailer/TestCase.html"><code>ActionMailer::TestCase</code></a></li>
+<li><a href="https://api.rubyonrails.org/classes/ActionView/TestCase.html"><code>ActionView::TestCase</code></a></li>
+<li><a href="https://api.rubyonrails.org/classes/ActiveJob/TestCase.html"><code>ActiveJob::TestCase</code></a></li>
+<li><a href="https://api.rubyonrails.org/classes/ActionDispatch/IntegrationTest.html"><code>ActionDispatch::IntegrationTest</code></a></li>
+<li><a href="https://api.rubyonrails.org/classes/ActionDispatch/SystemTestCase.html"><code>ActionDispatch::SystemTestCase</code></a></li>
+<li><a href="https://api.rubyonrails.org/classes/Rails/Generators/TestCase.html"><code>Rails::Generators::TestCase</code></a></li>
+</ul>
+<p>Each of these classes include <code>Minitest::Assertions</code>, allowing us to use all of the basic assertions in our tests.</p>
+<p>NOTE: For more information on <code>Minitest</code>, refer to <a href="http://docs.seattlerb.org/minitest">its
+documentation</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="the-rails-test-runner"></a><a href="#the-rails-test-runner" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Rails Test Runner</h3>
+<p>We can run all of our tests at once by using the <code>rails test</code> command.</p>
+<p>Or we can run a single test file by passing the <code>rails test</code> command the filename containing the test cases.</p>
+<pre><code class="hljs css language-bash">$ rails <span class="hljs-built_in">test</span> <span class="hljs-built_in">test</span>/models/article_test.rb
+Run options: --seed 1559
+
+<span class="hljs-comment"># Running:</span>
+
+..
+
+Finished <span class="hljs-keyword">in</span> 0.027034s, 73.9810 runs/s, 110.9715 assertions/s.
+
+2 runs, 3 assertions, 0 failures, 0 errors, 0 skips
+</code></pre>
+<p>This will run all test methods from the test case.</p>
+<p>You can also run a particular test method from the test case by providing the
+<code>-n</code> or <code>--name</code> flag and the test's method name.</p>
+<pre><code class="hljs css language-bash">$ rails <span class="hljs-built_in">test</span> <span class="hljs-built_in">test</span>/models/article_test.rb -n test_the_truth
+Run options: -n test_the_truth --seed 43583
+
+<span class="hljs-comment"># Running:</span>
+
+.
+
+Finished tests <span class="hljs-keyword">in</span> 0.009064s, 110.3266 tests/s, 110.3266 assertions/s.
+
+1 tests, 1 assertions, 0 failures, 0 errors, 0 skips
+</code></pre>
+<p>You can also run a test at a specific line by providing the line number.</p>
+<pre><code class="hljs css language-bash">$ rails <span class="hljs-built_in">test</span> <span class="hljs-built_in">test</span>/models/article_test.rb:6 <span class="hljs-comment"># run specific test and line</span>
+</code></pre>
+<p>You can also run an entire directory of tests by providing the path to the directory.</p>
+<pre><code class="hljs css language-bash">$ rails <span class="hljs-built_in">test</span> <span class="hljs-built_in">test</span>/controllers <span class="hljs-comment"># run all tests from specific directory</span>
+</code></pre>
+<p>The test runner also provides a lot of other features like failing fast, deferring test output
+at the end of test run and so on. Check the documentation of the test runner as follows:</p>
+<pre><code class="hljs css language-bash">$ rails <span class="hljs-built_in">test</span> -h
+Usage: rails <span class="hljs-built_in">test</span> [options] [files or directories]
+
+You can run a single <span class="hljs-built_in">test</span> by appending a line number to a filename:
+
+    rails <span class="hljs-built_in">test</span> <span class="hljs-built_in">test</span>/models/user_test.rb:27
+
+You can run multiple files and directories at the same time:
+
+    rails <span class="hljs-built_in">test</span> <span class="hljs-built_in">test</span>/controllers <span class="hljs-built_in">test</span>/integration/login_test.rb
+
+By default <span class="hljs-built_in">test</span> failures and errors are reported inline during a run.
+
+minitest options:
+    -h, --<span class="hljs-built_in">help</span>                       Display this <span class="hljs-built_in">help</span>.
+        --no-plugins                 Bypass minitest plugin auto-loading (or <span class="hljs-built_in">set</span> <span class="hljs-variable">$MT_NO_PLUGINS</span>).
+    -s, --seed SEED                  Sets random seed. Also via env. Eg: SEED=n rake
+    -v, --verbose                    Verbose. Show progress processing files.
+    -n, --name PATTERN               Filter run on /regexp/ or string.
+        --exclude PATTERN            Exclude /regexp/ or string from run.
+
+Known extensions: rails, pride
+    -w, --warnings                   Run with Ruby warnings enabled
+    -e, --environment ENV            Run tests <span class="hljs-keyword">in</span> the ENV environment
+    -b, --backtrace                  Show the complete backtrace
+    -d, --defer-output               Output <span class="hljs-built_in">test</span> failures and errors after the <span class="hljs-built_in">test</span> run
+    -f, --fail-fast                  Abort <span class="hljs-built_in">test</span> run on first failure or error
+    -c, --[no-]color                 Enable color <span class="hljs-keyword">in</span> the output
+    -p, --pride                      Pride. Show your testing pride!
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="parallel-testing"></a><a href="#parallel-testing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parallel Testing</h2>
+<p>Parallel testing allows you to parallelize your test suite. While forking processes is the
+default method, threading is supported as well. Running tests in parallel reduces the time it
+takes your entire test suite to run.</p>
+<h3><a class="anchor" aria-hidden="true" id="parallel-testing-with-processes"></a><a href="#parallel-testing-with-processes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parallel testing with processes</h3>
+<p>The default parallelization method is to fork processes using Ruby's DRb system. The processes
+are forked based on the number of workers provided. The default number is the actual core count
+on the machine you are on, but can be changed by the number passed to the parallelize method.</p>
+<p>To enable parallelization add the following to your <code>test_helper.rb</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ActiveSupport::TestCase</span></span>
+  parallelize(<span class="hljs-symbol">workers:</span> <span class="hljs-number">2</span>)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The number of workers passed is the number of times the process will be forked. You may want to
+parallelize your local test suite differently from your CI, so an environment variable is provided
+to be able to easily change the number of workers a test run should use:</p>
+<pre><code class="hljs css language-bash">PARALLEL_WORKERS=15 rails <span class="hljs-built_in">test</span>
+</code></pre>
+<p>When parallelizing tests, Active Record automatically handles creating a database and loading the schema into the database for each
+process. The databases will be suffixed with the number corresponding to the worker. For example, if you
+have 2 workers the tests will create <code>test-database-0</code> and <code>test-database-1</code> respectively.</p>
+<p>If the number of workers passed is 1 or fewer the processes will not be forked and the tests will not
+be parallelized and the tests will use the original <code>test-database</code> database.</p>
+<p>Two hooks are provided, one runs when the process is forked, and one runs before the forked process is closed.
+These can be useful if your app uses multiple databases or perform other tasks that depend on the number of
+workers.</p>
+<p>The <code>parallelize_setup</code> method is called right after the processes are forked. The <code>parallelize_teardown</code> method
+is called right before the processes are closed.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ActiveSupport::TestCase</span></span>
+  parallelize_setup <span class="hljs-keyword">do</span> <span class="hljs-params">|worker|</span>
+    <span class="hljs-comment"># setup databases</span>
+  <span class="hljs-keyword">end</span>
+
+  parallelize_teardown <span class="hljs-keyword">do</span> <span class="hljs-params">|worker|</span>
+    <span class="hljs-comment"># cleanup databases</span>
+  <span class="hljs-keyword">end</span>
+
+  parallelize(<span class="hljs-symbol">workers:</span> <span class="hljs-symbol">:number_of_processors</span>)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>These methods are not needed or available when using parallel testing with threads.</p>
+<h3><a class="anchor" aria-hidden="true" id="parallel-testing-with-threads"></a><a href="#parallel-testing-with-threads" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parallel testing with threads</h3>
+<p>If you prefer using threads or are using JRuby, a threaded parallelization option is provided. The threaded
+parallelizer is backed by Minitest's <code>Parallel::Executor</code>.</p>
+<p>To change the parallelization method to use threads over forks put the following in your <code>test_helper.rb</code></p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ActiveSupport::TestCase</span></span>
+  parallelize(<span class="hljs-symbol">workers:</span> <span class="hljs-symbol">:number_of_processors</span>, <span class="hljs-symbol">with:</span> <span class="hljs-symbol">:threads</span>)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Rails applications generated from JRuby will automatically include the <code>with: :threads</code> option.</p>
+<p>The number of workers passed to <code>parallelize</code> determines the number of threads the tests will use. You may
+want to parallelize your local test suite differently from your CI, so an environment variable is provided
+to be able to easily change the number of workers a test run should use:</p>
+<pre><code class="hljs css language-bash">PARALLEL_WORKERS=15 rails <span class="hljs-built_in">test</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="the-test-database"></a><a href="#the-test-database" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Test Database</h2>
+<p>Just about every Rails application interacts heavily with a database and, as a result, your tests will need a database to interact with as well. To write efficient tests, you'll need to understand how to set up this database and populate it with sample data.</p>
+<p>By default, every Rails application has three environments: development, test, and production. The database for each one of them is configured in <code>config/database.yml</code>.</p>
+<p>A dedicated test database allows you to set up and interact with test data in isolation. This way your tests can mangle test data with confidence, without worrying about the data in the development or production databases.</p>
+<h3><a class="anchor" aria-hidden="true" id="maintaining-the-test-database-schema"></a><a href="#maintaining-the-test-database-schema" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Maintaining the test database schema</h3>
+<p>In order to run your tests, your test database will need to have the current
+structure. The test helper checks whether your test database has any pending
+migrations. It will try to load your <code>db/schema.rb</code> or <code>db/structure.sql</code>
+into the test database. If migrations are still pending, an error will be
+raised. Usually this indicates that your schema is not fully migrated. Running
+the migrations against the development database (<code>rails db:migrate</code>) will
+bring the schema up to date.</p>
+<p>NOTE: If there were modifications to existing migrations, the test database needs to
+be rebuilt. This can be done by executing <code>rails db:test:prepare</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="the-low-down-on-fixtures"></a><a href="#the-low-down-on-fixtures" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Low-Down on Fixtures</h3>
+<p>For good tests, you'll need to give some thought to setting up test data.
+In Rails, you can handle this by defining and customizing fixtures.
+You can find comprehensive documentation in the <a href="https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html">Fixtures API documentation</a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="what-are-fixtures"></a><a href="#what-are-fixtures" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What Are Fixtures?</h4>
+<p><em>Fixtures</em> is a fancy word for sample data. Fixtures allow you to populate your testing database with predefined data before your tests run. Fixtures are database independent and written in YAML. There is one file per model.</p>
+<p>NOTE: Fixtures are not designed to create every object that your tests need, and are best managed when only used for default data that can be applied to the common case.</p>
+<p>You'll find fixtures under your <code>test/fixtures</code> directory. When you run <code>rails generate model</code> to create a new model, Rails automatically creates fixture stubs in this directory.</p>
+<h4><a class="anchor" aria-hidden="true" id="yaml"></a><a href="#yaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>YAML</h4>
+<p>YAML-formatted fixtures are a human-friendly way to describe your sample data. These types of fixtures have the <strong>.yml</strong> file extension (as in <code>users.yml</code>).</p>
+<p>Here's a sample YAML fixture file:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-comment"># lo &amp; behold! I am a YAML comment!</span>
+<span class="hljs-attr">david:</span>
+<span class="hljs-attr">  name:</span> <span class="hljs-string">David</span> <span class="hljs-string">Heinemeier</span> <span class="hljs-string">Hansson</span>
+<span class="hljs-attr">  birthday:</span> <span class="hljs-number">1979</span><span class="hljs-bullet">-10</span><span class="hljs-bullet">-15</span>
+<span class="hljs-attr">  profession:</span> <span class="hljs-string">Systems</span> <span class="hljs-string">development</span>
+
+<span class="hljs-attr">steve:</span>
+<span class="hljs-attr">  name:</span> <span class="hljs-string">Steve</span> <span class="hljs-string">Ross</span> <span class="hljs-string">Kellock</span>
+<span class="hljs-attr">  birthday:</span> <span class="hljs-number">1974</span><span class="hljs-bullet">-09</span><span class="hljs-bullet">-27</span>
+<span class="hljs-attr">  profession:</span> <span class="hljs-string">guy</span> <span class="hljs-string">with</span> <span class="hljs-string">keyboard</span>
+</code></pre>
+<p>Each fixture is given a name followed by an indented list of colon-separated key/value pairs. Records are typically separated by a blank line. You can place comments in a fixture file by using the # character in the first column.</p>
+<p>If you are working with <a href="/association_basics.html">associations</a>, you can
+define a reference node between two different fixtures. Here's an example with
+a <code>belongs_to</code>/<code>has_many</code> association:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-comment"># In fixtures/categories.yml</span>
+<span class="hljs-attr">about:</span>
+<span class="hljs-attr">  name:</span> <span class="hljs-string">About</span>
+
+<span class="hljs-comment"># In fixtures/articles.yml</span>
+<span class="hljs-attr">first:</span>
+<span class="hljs-attr">  title:</span> <span class="hljs-string">Welcome</span> <span class="hljs-string">to</span> <span class="hljs-string">Rails!</span>
+<span class="hljs-attr">  body:</span> <span class="hljs-string">Hello</span> <span class="hljs-string">world!</span>
+<span class="hljs-attr">  category:</span> <span class="hljs-string">about</span>
+</code></pre>
+<p>Notice the <code>category</code> key of the <code>first</code> article found in <code>fixtures/articles.yml</code> has a value of <code>about</code>. This tells Rails to load the category <code>about</code> found in <code>fixtures/categories.yml</code>.</p>
+<p>NOTE: For associations to reference one another by name, you can use the fixture name instead of specifying the <code>id:</code> attribute on the associated fixtures. Rails will auto assign a primary key to be consistent between runs. For more information on this association behavior please read the <a href="https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html">Fixtures API documentation</a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="erb-in-it-up"></a><a href="#erb-in-it-up" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ERB'in It Up</h4>
+<p>ERB allows you to embed Ruby code within templates. The YAML fixture format is pre-processed with ERB when Rails loads fixtures. This allows you to use Ruby to help you generate some sample data. For example, the following code generates a thousand users:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-number">1000</span>.times <span class="hljs-keyword">do</span> <span class="hljs-params">|n|</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+user_<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> n </span><span class="xml"><span class="hljs-tag">%&gt;</span>:
+  username: <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> <span class="hljs-string">"user<span class="hljs-subst">#{n}</span>"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  email: <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> <span class="hljs-string">"user<span class="hljs-subst">#{n}</span>@example.com"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">end</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<h4><a class="anchor" aria-hidden="true" id="fixtures-in-action"></a><a href="#fixtures-in-action" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fixtures in Action</h4>
+<p>Rails automatically loads all fixtures from the <code>test/fixtures</code> directory by
+default. Loading involves three steps:</p>
+<ol>
+<li>Remove any existing data from the table corresponding to the fixture</li>
+<li>Load the fixture data into the table</li>
+<li>Dump the fixture data into a method in case you want to access it directly</li>
+</ol>
+<p>TIP: In order to remove existing data from the database, Rails tries to disable referential integrity triggers (like foreign keys and check constraints). If you are getting annoying permission errors on running tests, make sure the database user has privilege to disable these triggers in testing environment. (In PostgreSQL, only superusers can disable all triggers. Read more about PostgreSQL permissions <a href="http://blog.endpoint.com/2012/10/postgres-system-triggers-error.html">here</a>).</p>
+<h4><a class="anchor" aria-hidden="true" id="fixtures-are-active-record-objects"></a><a href="#fixtures-are-active-record-objects" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fixtures are Active Record objects</h4>
+<p>Fixtures are instances of Active Record. As mentioned in point #3 above, you can access the object directly because it is automatically available as a method whose scope is local of the test case. For example:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># this will return the User object for the fixture named david</span>
+users(<span class="hljs-symbol">:david</span>)
+
+<span class="hljs-comment"># this will return the property for david called id</span>
+users(<span class="hljs-symbol">:david</span>).id
+
+<span class="hljs-comment"># one can also access methods available on the User class</span>
+david = users(<span class="hljs-symbol">:david</span>)
+david.call(david.partner)
+</code></pre>
+<p>To get multiple fixtures at once, you can pass in a list of fixture names. For example:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># this will return an array containing the fixtures david and steve</span>
+users(<span class="hljs-symbol">:david</span>, <span class="hljs-symbol">:steve</span>)
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="model-testing"></a><a href="#model-testing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Model Testing</h2>
+<p>Model tests are used to test the various models of your application.</p>
+<p>Rails model tests are stored under the <code>test/models</code> directory. Rails provides
+a generator to create a model test skeleton for you.</p>
+<pre><code class="hljs css language-bash">$ rails generate test_unit:model article title:string body:text
+create  <span class="hljs-built_in">test</span>/models/article_test.rb
+create  <span class="hljs-built_in">test</span>/fixtures/articles.yml
+</code></pre>
+<p>Model tests don't have their own superclass like <code>ActionMailer::TestCase</code> instead they inherit from <a href="https://api.rubyonrails.org/classes/ActiveSupport/TestCase.html"><code>ActiveSupport::TestCase</code></a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="system-testing"></a><a href="#system-testing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>System Testing</h2>
+<p>System tests allow you to test user interactions with your application, running tests
+in either a real or a headless browser. System tests use Capybara under the hood.</p>
+<p>For creating Rails system tests, you use the <code>test/system</code> directory in your
+application. Rails provides a generator to create a system test skeleton for you.</p>
+<pre><code class="hljs css language-bash">$ rails generate system_test users
+      invoke test_unit
+      create <span class="hljs-built_in">test</span>/system/users_test.rb
+</code></pre>
+<p>Here's what a freshly generated system test looks like:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">"application_system_test_case"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsersTest</span> &lt; ApplicationSystemTestCase</span>
+  <span class="hljs-comment"># test "visiting the index" do</span>
+  <span class="hljs-comment">#   visit users_url</span>
+  <span class="hljs-comment">#</span>
+  <span class="hljs-comment">#   assert_selector "h1", text: "Users"</span>
+  <span class="hljs-comment"># end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>By default, system tests are run with the Selenium driver, using the Chrome
+browser, and a screen size of 1400x1400. The next section explains how to
+change the default settings.</p>
+<h3><a class="anchor" aria-hidden="true" id="changing-the-default-settings"></a><a href="#changing-the-default-settings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Changing the default settings</h3>
+<p>Rails makes changing the default settings for system tests very simple. All
+the setup is abstracted away so you can focus on writing your tests.</p>
+<p>When you generate a new application or scaffold, an <code>application_system_test_case.rb</code> file
+is created in the test directory. This is where all the configuration for your
+system tests should live.</p>
+<p>If you want to change the default settings you can change what the system
+tests are &quot;driven by&quot;. Say you want to change the driver from Selenium to
+Poltergeist. First add the <code>poltergeist</code> gem to your <code>Gemfile</code>. Then in your
+<code>application_system_test_case.rb</code> file do the following:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">"test_helper"</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">"capybara/poltergeist"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationSystemTestCase</span> &lt; ActionDispatch::SystemTestCase</span>
+  driven_by <span class="hljs-symbol">:poltergeist</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The driver name is a required argument for <code>driven_by</code>. The optional arguments
+that can be passed to <code>driven_by</code> are <code>:using</code> for the browser (this will only
+be used by Selenium), <code>:screen_size</code> to change the size of the screen for
+screenshots, and <code>:options</code> which can be used to set options supported by the
+driver.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">"test_helper"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationSystemTestCase</span> &lt; ActionDispatch::SystemTestCase</span>
+  driven_by <span class="hljs-symbol">:selenium</span>, <span class="hljs-symbol">using:</span> <span class="hljs-symbol">:firefox</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If you want to use a headless browser, you could use Headless Chrome or Headless Firefox by adding
+<code>headless_chrome</code> or <code>headless_firefox</code> in the <code>:using</code> argument.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">"test_helper"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationSystemTestCase</span> &lt; ActionDispatch::SystemTestCase</span>
+  driven_by <span class="hljs-symbol">:selenium</span>, <span class="hljs-symbol">using:</span> <span class="hljs-symbol">:headless_chrome</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If your Capybara configuration requires more setup than provided by Rails, this
+additional configuration could be added into the <code>application_system_test_case.rb</code>
+file.</p>
+<p>Please see <a href="https://github.com/teamcapybara/capybara#setup">Capybara's documentation</a>
+for additional settings.</p>
+<h3><a class="anchor" aria-hidden="true" id="screenshot-helper"></a><a href="#screenshot-helper" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Screenshot Helper</h3>
+<p>The <code>ScreenshotHelper</code> is a helper designed to capture screenshots of your tests.
+This can be helpful for viewing the browser at the point a test failed, or
+to view screenshots later for debugging.</p>
+<p>Two methods are provided: <code>take_screenshot</code> and <code>take_failed_screenshot</code>.
+<code>take_failed_screenshot</code> is automatically included in <code>before_teardown</code> inside
+Rails.</p>
+<p>The <code>take_screenshot</code> helper method can be included anywhere in your tests to
+take a screenshot of the browser.</p>
+<h3><a class="anchor" aria-hidden="true" id="implementing-a-system-test"></a><a href="#implementing-a-system-test" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Implementing a system test</h3>
+<p>Now we're going to add a system test to our blog application. We'll demonstrate
+writing a system test by visiting the index page and creating a new blog article.</p>
+<p>If you used the scaffold generator, a system test skeleton was automatically
+created for you. If you didn't use the scaffold generator, start by creating a
+system test skeleton.</p>
+<pre><code class="hljs css language-bash">$ rails generate system_test articles
+</code></pre>
+<p>It should have created a test file placeholder for us. With the output of the
+previous command you should see:</p>
+<pre><code class="hljs css language-bash">      invoke  test_unit
+      create    <span class="hljs-built_in">test</span>/system/articles_test.rb
+</code></pre>
+<p>Now let's open that file and write our first assertion:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">"application_system_test_case"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArticlesTest</span> &lt; ApplicationSystemTestCase</span>
+  test <span class="hljs-string">"viewing the index"</span> <span class="hljs-keyword">do</span>
+    visit articles_path
+    assert_selector <span class="hljs-string">"h1"</span>, <span class="hljs-symbol">text:</span> <span class="hljs-string">"Articles"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The test should see that there is an <code>h1</code> on the articles index page and pass.</p>
+<p>Run the system tests.</p>
+<pre><code class="hljs css language-bash">rails <span class="hljs-built_in">test</span>:system
+</code></pre>
+<p>NOTE: By default, running <code>rails test</code> won't run your system tests.
+Make sure to run <code>rails test:system</code> to actually run them.</p>
+<h4><a class="anchor" aria-hidden="true" id="creating-articles-system-test"></a><a href="#creating-articles-system-test" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating articles system test</h4>
+<p>Now let's test the flow for creating a new article in our blog.</p>
+<pre><code class="hljs css language-ruby">test <span class="hljs-string">"creating an article"</span> <span class="hljs-keyword">do</span>
+  visit articles_path
+
+  click_on <span class="hljs-string">"New Article"</span>
+
+  fill_in <span class="hljs-string">"Title"</span>, <span class="hljs-symbol">with:</span> <span class="hljs-string">"Creating an Article"</span>
+  fill_in <span class="hljs-string">"Body"</span>, <span class="hljs-symbol">with:</span> <span class="hljs-string">"Created this article successfully!"</span>
+
+  click_on <span class="hljs-string">"Create Article"</span>
+
+  assert_text <span class="hljs-string">"Creating an Article"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The first step is to call <code>visit articles_path</code>. This will take the test to the
+articles index page.</p>
+<p>Then the <code>click_on &quot;New Article&quot;</code> will find the &quot;New Article&quot; button on the
+index page. This will redirect the browser to <code>/articles/new</code>.</p>
+<p>Then the test will fill in the title and body of the article with the specified
+text. Once the fields are filled in, &quot;Create Article&quot; is clicked on which will
+send a POST request to create the new article in the database.</p>
+<p>We will be redirected back to the articles index page and there we assert
+that the text from the new article's title is on the articles index page.</p>
+<h4><a class="anchor" aria-hidden="true" id="testing-for-multiple-screen-sizes"></a><a href="#testing-for-multiple-screen-sizes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Testing for multiple screen sizes</h4>
+<p>If you want to test for mobile sizes on top of testing for desktop,
+you can create another class that inherits from SystemTestCase and use in your
+test suite. In this example a file called <code>mobile_system_test_case.rb</code> is created
+in the <code>/test</code> directory with the following configuration.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">"test_helper"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MobileSystemTestCase</span> &lt; ActionDispatch::SystemTestCase</span>
+  driven_by <span class="hljs-symbol">:selenium</span>, <span class="hljs-symbol">using:</span> <span class="hljs-symbol">:chrome</span>, <span class="hljs-symbol">screen_size:</span> [<span class="hljs-number">375</span>, <span class="hljs-number">667</span>]
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>To use this configuration, create a test inside <code>test/system</code> that inherits from <code>MobileSystemTestCase</code>.
+Now you can test your app using multiple different configurations.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">"mobile_system_test_case"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostsTest</span> &lt; MobileSystemTestCase</span>
+
+  test <span class="hljs-string">"visiting the index"</span> <span class="hljs-keyword">do</span>
+    visit posts_url
+    assert_selector <span class="hljs-string">"h1"</span>, <span class="hljs-symbol">text:</span> <span class="hljs-string">"Posts"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="taking-it-further"></a><a href="#taking-it-further" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Taking it further</h4>
+<p>The beauty of system testing is that it is similar to integration testing in
+that it tests the user's interaction with your controller, model, and view, but
+system testing is much more robust and actually tests your application as if
+a real user were using it. Going forward, you can test anything that the user
+themselves would do in your application such as commenting, deleting articles,
+publishing draft articles, etc.</p>
+<h2><a class="anchor" aria-hidden="true" id="integration-testing"></a><a href="#integration-testing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Integration Testing</h2>
+<p>Integration tests are used to test how various parts of your application interact. They are generally used to test important workflows within our application.</p>
+<p>For creating Rails integration tests, we use the <code>test/integration</code> directory for our application. Rails provides a generator to create an integration test skeleton for us.</p>
+<pre><code class="hljs css language-bash">$ rails generate integration_test user_flows
+      exists  <span class="hljs-built_in">test</span>/integration/
+      create  <span class="hljs-built_in">test</span>/integration/user_flows_test.rb
+</code></pre>
+<p>Here's what a freshly generated integration test looks like:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'test_helper'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserFlowsTest</span> &lt; ActionDispatch::IntegrationTest</span>
+  <span class="hljs-comment"># test "the truth" do</span>
+  <span class="hljs-comment">#   assert true</span>
+  <span class="hljs-comment"># end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Here the test is inheriting from <code>ActionDispatch::IntegrationTest</code>. This makes some additional helpers available for us to use in our integration tests.</p>
+<h3><a class="anchor" aria-hidden="true" id="helpers-available-for-integration-tests"></a><a href="#helpers-available-for-integration-tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Helpers Available for Integration Tests</h3>
+<p>In addition to the standard testing helpers, inheriting from <code>ActionDispatch::IntegrationTest</code> comes with some additional helpers available when writing integration tests. Let's get briefly introduced to the three categories of helpers we get to choose from.</p>
+<p>For dealing with the integration test runner, see <a href="https://api.rubyonrails.org/classes/ActionDispatch/Integration/Runner.html"><code>ActionDispatch::Integration::Runner</code></a>.</p>
+<p>When performing requests, we will have <a href="https://api.rubyonrails.org/classes/ActionDispatch/Integration/RequestHelpers.html"><code>ActionDispatch::Integration::RequestHelpers</code></a> available for our use.</p>
+<p>If we need to modify the session, or state of our integration test, take a look at <a href="https://api.rubyonrails.org/classes/ActionDispatch/Integration/Session.html"><code>ActionDispatch::Integration::Session</code></a> to help.</p>
+<h3><a class="anchor" aria-hidden="true" id="implementing-an-integration-test"></a><a href="#implementing-an-integration-test" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Implementing an integration test</h3>
+<p>Let's add an integration test to our blog application. We'll start with a basic workflow of creating a new blog article, to verify that everything is working properly.</p>
+<p>We'll start by generating our integration test skeleton:</p>
+<pre><code class="hljs css language-bash">$ rails generate integration_test blog_flow
+</code></pre>
+<p>It should have created a test file placeholder for us. With the output of the
+previous command we should see:</p>
+<pre><code class="hljs css language-bash">      invoke  test_unit
+      create    <span class="hljs-built_in">test</span>/integration/blog_flow_test.rb
+</code></pre>
+<p>Now let's open that file and write our first assertion:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'test_helper'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BlogFlowTest</span> &lt; ActionDispatch::IntegrationTest</span>
+  test <span class="hljs-string">"can see the welcome page"</span> <span class="hljs-keyword">do</span>
+    get <span class="hljs-string">"/"</span>
+    assert_select <span class="hljs-string">"h1"</span>, <span class="hljs-string">"Welcome#index"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>We will take a look at <code>assert_select</code> to query the resulting HTML of a request in the &quot;Testing Views&quot; section below. It is used for testing the response of our request by asserting the presence of key HTML elements and their content.</p>
+<p>When we visit our root path, we should see <code>welcome/index.html.erb</code> rendered for the view. So this assertion should pass.</p>
+<h4><a class="anchor" aria-hidden="true" id="creating-articles-integration"></a><a href="#creating-articles-integration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating articles integration</h4>
+<p>How about testing our ability to create a new article in our blog and see the resulting article.</p>
+<pre><code class="hljs css language-ruby">test <span class="hljs-string">"can create an article"</span> <span class="hljs-keyword">do</span>
+  get <span class="hljs-string">"/articles/new"</span>
+  assert_response <span class="hljs-symbol">:success</span>
+
+  post <span class="hljs-string">"/articles"</span>,
+    <span class="hljs-symbol">params:</span> { <span class="hljs-symbol">article:</span> { <span class="hljs-symbol">title:</span> <span class="hljs-string">"can create"</span>, <span class="hljs-symbol">body:</span> <span class="hljs-string">"article successfully."</span> } }
+  assert_response <span class="hljs-symbol">:redirect</span>
+  follow_redirect!
+  assert_response <span class="hljs-symbol">:success</span>
+  assert_select <span class="hljs-string">"p"</span>, <span class="hljs-string">"Title:\n  can create"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Let's break this test down so we can understand it.</p>
+<p>We start by calling the <code>:new</code> action on our Articles controller. This response should be successful.</p>
+<p>After this we make a post request to the <code>:create</code> action of our Articles controller:</p>
+<pre><code class="hljs css language-ruby">post <span class="hljs-string">"/articles"</span>,
+  <span class="hljs-symbol">params:</span> { <span class="hljs-symbol">article:</span> { <span class="hljs-symbol">title:</span> <span class="hljs-string">"can create"</span>, <span class="hljs-symbol">body:</span> <span class="hljs-string">"article successfully."</span> } }
+assert_response <span class="hljs-symbol">:redirect</span>
+follow_redirect!
+</code></pre>
+<p>The two lines following the request are to handle the redirect we setup when creating a new article.</p>
+<p>NOTE: Don't forget to call <code>follow_redirect!</code> if you plan to make subsequent requests after a redirect is made.</p>
+<p>Finally we can assert that our response was successful and our new article is readable on the page.</p>
+<h4><a class="anchor" aria-hidden="true" id="taking-it-further-1"></a><a href="#taking-it-further-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Taking it further</h4>
+<p>We were able to successfully test a very small workflow for visiting our blog and creating a new article. If we wanted to take this further we could add tests for commenting, removing articles, or editing comments. Integration tests are a great place to experiment with all kinds of use cases for our applications.</p>
+<h2><a class="anchor" aria-hidden="true" id="functional-tests-for-your-controllers"></a><a href="#functional-tests-for-your-controllers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Functional Tests for Your Controllers</h2>
+<p>In Rails, testing the various actions of a controller is a form of writing functional tests. Remember your controllers handle the incoming web requests to your application and eventually respond with a rendered view. When writing functional tests, you are testing how your actions handle the requests and the expected result or response, in some cases an HTML view.</p>
+<h3><a class="anchor" aria-hidden="true" id="what-to-include-in-your-functional-tests"></a><a href="#what-to-include-in-your-functional-tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What to include in your Functional Tests</h3>
+<p>You should test for things such as:</p>
+<ul>
+<li>was the web request successful?</li>
+<li>was the user redirected to the right page?</li>
+<li>was the user successfully authenticated?</li>
+<li>was the appropriate message displayed to the user in the view?</li>
+<li>was the correct information displayed in the response?</li>
+</ul>
+<p>The easiest way to see functional tests in action is to generate a controller using the scaffold generator:</p>
+<pre><code class="hljs css language-bash">$ rails generate scaffold_controller article title:string body:text
+...
+create  app/controllers/articles_controller.rb
+...
+invoke  test_unit
+create    <span class="hljs-built_in">test</span>/controllers/articles_controller_test.rb
+...
+</code></pre>
+<p>This will generate the controller code and tests for an <code>Article</code> resource.
+You can take a look at the file <code>articles_controller_test.rb</code> in the <code>test/controllers</code> directory.</p>
+<p>If you already have a controller and just want to generate the test scaffold code for
+each of the seven default actions, you can use the following command:</p>
+<pre><code class="hljs css language-bash">$ rails generate test_unit:scaffold article
+...
+invoke  test_unit
+create    <span class="hljs-built_in">test</span>/controllers/articles_controller_test.rb
+...
+</code></pre>
+<p>Let's take a look at one such test, <code>test_should_get_index</code> from the file <code>articles_controller_test.rb</code>.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># articles_controller_test.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArticlesControllerTest</span> &lt; ActionDispatch::IntegrationTest</span>
+  test <span class="hljs-string">"should get index"</span> <span class="hljs-keyword">do</span>
+    get articles_url
+    assert_response <span class="hljs-symbol">:success</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>In the <code>test_should_get_index</code> test, Rails simulates a request on the action called <code>index</code>, making sure the request was successful
+and also ensuring that the right response body has been generated.</p>
+<p>The <code>get</code> method kicks off the web request and populates the results into the <code>@response</code>. It can accept up to 6 arguments:</p>
+<ul>
+<li>The URI of the controller action you are requesting.
+This can be in the form of a string or a route helper (e.g. <code>articles_url</code>).</li>
+<li><code>params</code>: option with a hash of request parameters to pass into the action
+(e.g. query string parameters or article variables).</li>
+<li><code>headers</code>: for setting the headers that will be passed with the request.</li>
+<li><code>env</code>: for customizing the request environment as needed.</li>
+<li><code>xhr</code>: whether the request is Ajax request or not. Can be set to true for marking the request as Ajax.</li>
+<li><code>as</code>: for encoding the request with different content type. Supports <code>:json</code> by default.</li>
+</ul>
+<p>All of these keyword arguments are optional.</p>
+<p>Example: Calling the <code>:show</code> action for the first <code>Article</code>, passing in an <code>HTTP_REFERER</code> header:</p>
+<pre><code class="hljs css language-ruby">get article_url(Article.first), <span class="hljs-symbol">headers:</span> { <span class="hljs-string">"HTTP_REFERER"</span> =&gt; <span class="hljs-string">"http://example.com/home"</span> }
+</code></pre>
+<p>Another example: Calling the <code>:update</code> action for the last <code>Article</code>, passing in new text for the <code>title</code> in <code>params</code>, as an Ajax request:</p>
+<pre><code class="hljs css language-ruby">patch article_url(Article.last), <span class="hljs-symbol">params:</span> { <span class="hljs-symbol">article:</span> { <span class="hljs-symbol">title:</span> <span class="hljs-string">"updated"</span> } }, <span class="hljs-symbol">xhr:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<p>NOTE: If you try running <code>test_should_create_article</code> test from <code>articles_controller_test.rb</code> it will fail on account of the newly added model level validation and rightly so.</p>
+<p>Let us modify <code>test_should_create_article</code> test in <code>articles_controller_test.rb</code> so that all our test pass:</p>
+<pre><code class="hljs css language-ruby">test <span class="hljs-string">"should create article"</span> <span class="hljs-keyword">do</span>
+  assert_difference(<span class="hljs-string">'Article.count'</span>) <span class="hljs-keyword">do</span>
+    post articles_url, <span class="hljs-symbol">params:</span> { <span class="hljs-symbol">article:</span> { <span class="hljs-symbol">body:</span> <span class="hljs-string">'Rails is awesome!'</span>, <span class="hljs-symbol">title:</span> <span class="hljs-string">'Hello Rails'</span> } }
+  <span class="hljs-keyword">end</span>
+
+  assert_redirected_to article_path(Article.last)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Now you can try running all the tests and they should pass.</p>
+<p>NOTE: If you followed the steps in the Basic Authentication section, you'll need to add authorization to every request header to get all the tests passing:</p>
+<pre><code class="hljs css language-ruby">post articles_url, <span class="hljs-symbol">params:</span> { <span class="hljs-symbol">article:</span> { <span class="hljs-symbol">body:</span> <span class="hljs-string">'Rails is awesome!'</span>, <span class="hljs-symbol">title:</span> <span class="hljs-string">'Hello Rails'</span> } }, <span class="hljs-symbol">headers:</span> { <span class="hljs-symbol">Authorization:</span> ActionController::HttpAuthentication::Basic.encode_credentials(<span class="hljs-string">'dhh'</span>, <span class="hljs-string">'secret'</span>) }
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="available-request-types-for-functional-tests"></a><a href="#available-request-types-for-functional-tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Available Request Types for Functional Tests</h3>
+<p>If you're familiar with the HTTP protocol, you'll know that <code>get</code> is a type of request. There are 6 request types supported in Rails functional tests:</p>
+<ul>
+<li><code>get</code></li>
+<li><code>post</code></li>
+<li><code>patch</code></li>
+<li><code>put</code></li>
+<li><code>head</code></li>
+<li><code>delete</code></li>
+</ul>
+<p>All of request types have equivalent methods that you can use. In a typical C.R.U.D. application you'll be using <code>get</code>, <code>post</code>, <code>put</code>, and <code>delete</code> more often.</p>
+<p>NOTE: Functional tests do not verify whether the specified request type is accepted by the action, we're more concerned with the result. Request tests exist for this use case to make your tests more purposeful.</p>
+<h3><a class="anchor" aria-hidden="true" id="testing-xhr-ajax-requests"></a><a href="#testing-xhr-ajax-requests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Testing XHR (AJAX) requests</h3>
+<p>To test AJAX requests, you can specify the <code>xhr: true</code> option to <code>get</code>, <code>post</code>,
+<code>patch</code>, <code>put</code>, and <code>delete</code> methods. For example:</p>
+<pre><code class="hljs css language-ruby">test <span class="hljs-string">"ajax request"</span> <span class="hljs-keyword">do</span>
+  article = articles(<span class="hljs-symbol">:one</span>)
+  get article_url(article), <span class="hljs-symbol">xhr:</span> <span class="hljs-literal">true</span>
+
+  assert_equal <span class="hljs-string">'hello world'</span>, @response.body
+  assert_equal <span class="hljs-string">"text/javascript"</span>, @response.media_type
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="the-three-hashes-of-the-apocalypse"></a><a href="#the-three-hashes-of-the-apocalypse" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Three Hashes of the Apocalypse</h3>
+<p>After a request has been made and processed, you will have 3 Hash objects ready for use:</p>
+<ul>
+<li><code>cookies</code> - Any cookies that are set</li>
+<li><code>flash</code> - Any objects living in the flash</li>
+<li><code>session</code> - Any object living in session variables</li>
+</ul>
+<p>As is the case with normal Hash objects, you can access the values by referencing the keys by string. You can also reference them by symbol name. For example:</p>
+<pre><code class="hljs css language-ruby">flash[<span class="hljs-string">"gordon"</span>]               flash[<span class="hljs-symbol">:gordon</span>]
+session[<span class="hljs-string">"shmession"</span>]          session[<span class="hljs-symbol">:shmession</span>]
+cookies[<span class="hljs-string">"are_good_for_u"</span>]     cookies[<span class="hljs-symbol">:are_good_for_u</span>]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="instance-variables-available"></a><a href="#instance-variables-available" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Instance Variables Available</h3>
+<p>You also have access to three instance variables in your functional tests, after a request is made:</p>
+<ul>
+<li><code>@controller</code> - The controller processing the request</li>
+<li><code>@request</code> - The request object</li>
+<li><code>@response</code> - The response object</li>
+</ul>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArticlesControllerTest</span> &lt; ActionDispatch::IntegrationTest</span>
+  test <span class="hljs-string">"should get index"</span> <span class="hljs-keyword">do</span>
+    get articles_url
+
+    assert_equal <span class="hljs-string">"index"</span>, @controller.action_name
+    assert_equal <span class="hljs-string">"application/x-www-form-urlencoded"</span>, @request.media_type
+    assert_match <span class="hljs-string">"Articles"</span>, @response.body
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setting-headers-and-cgi-variables"></a><a href="#setting-headers-and-cgi-variables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setting Headers and CGI variables</h3>
+<p><a href="https://tools.ietf.org/search/rfc2616#section-5.3">HTTP headers</a>
+and
+<a href="https://tools.ietf.org/search/rfc3875#section-4.1">CGI variables</a>
+can be passed as headers:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># setting an HTTP Header</span>
+get articles_url, <span class="hljs-symbol">headers:</span> { <span class="hljs-string">"Content-Type"</span>: <span class="hljs-string">"text/plain"</span> } <span class="hljs-comment"># simulate the request with custom header</span>
+
+<span class="hljs-comment"># setting a CGI variable</span>
+get articles_url, <span class="hljs-symbol">headers:</span> { <span class="hljs-string">"HTTP_REFERER"</span>: <span class="hljs-string">"http://example.com/home"</span> } <span class="hljs-comment"># simulate the request with custom env variable</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="testing-flash-notices"></a><a href="#testing-flash-notices" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Testing <code>flash</code> notices</h3>
+<p>If you remember from earlier, one of the Three Hashes of the Apocalypse was <code>flash</code>.</p>
+<p>We want to add a <code>flash</code> message to our blog application whenever someone
+successfully creates a new Article.</p>
+<p>Let's start by adding this assertion to our <code>test_should_create_article</code> test:</p>
+<pre><code class="hljs css language-ruby">test <span class="hljs-string">"should create article"</span> <span class="hljs-keyword">do</span>
+  assert_difference(<span class="hljs-string">'Article.count'</span>) <span class="hljs-keyword">do</span>
+    post articles_url, <span class="hljs-symbol">params:</span> { <span class="hljs-symbol">article:</span> { <span class="hljs-symbol">title:</span> <span class="hljs-string">'Some title'</span> } }
+  <span class="hljs-keyword">end</span>
+
+  assert_redirected_to article_path(Article.last)
+  assert_equal <span class="hljs-string">'Article was successfully created.'</span>, flash[<span class="hljs-symbol">:notice</span>]
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If we run our test now, we should see a failure:</p>
+<pre><code class="hljs css language-bash">$ rails <span class="hljs-built_in">test</span> <span class="hljs-built_in">test</span>/controllers/articles_controller_test.rb -n test_should_create_article
+Run options: -n test_should_create_article --seed 32266
+
+<span class="hljs-comment"># Running:</span>
+
+F
+
+Finished <span class="hljs-keyword">in</span> 0.114870s, 8.7055 runs/s, 34.8220 assertions/s.
+
+  1) Failure:
+ArticlesControllerTest<span class="hljs-comment">#test_should_create_article [/test/controllers/articles_controller_test.rb:16]:</span>
+--- expected
++++ actual
+@@ -1 +1 @@
+-<span class="hljs-string">"Article was successfully created."</span>
++nil
+
+1 runs, 4 assertions, 1 failures, 0 errors, 0 skips
+</code></pre>
+<p>Let's implement the flash message now in our controller. Our <code>:create</code> action should now look like this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
+  @article = Article.new(article_params)
+
+  <span class="hljs-keyword">if</span> @article.save
+    flash[<span class="hljs-symbol">:notice</span>] = <span class="hljs-string">'Article was successfully created.'</span>
+    redirect_to @article
+  <span class="hljs-keyword">else</span>
+    render <span class="hljs-string">'new'</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Now if we run our tests, we should see it pass:</p>
+<pre><code class="hljs css language-bash">$ rails <span class="hljs-built_in">test</span> <span class="hljs-built_in">test</span>/controllers/articles_controller_test.rb -n test_should_create_article
+Run options: -n test_should_create_article --seed 18981
+
+<span class="hljs-comment"># Running:</span>
+
+.
+
+Finished <span class="hljs-keyword">in</span> 0.081972s, 12.1993 runs/s, 48.7972 assertions/s.
+
+1 runs, 4 assertions, 0 failures, 0 errors, 0 skips
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="putting-it-together"></a><a href="#putting-it-together" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Putting it together</h3>
+<p>At this point our Articles controller tests the <code>:index</code> as well as <code>:new</code> and <code>:create</code> actions. What about dealing with existing data?</p>
+<p>Let's write a test for the <code>:show</code> action:</p>
+<pre><code class="hljs css language-ruby">test <span class="hljs-string">"should show article"</span> <span class="hljs-keyword">do</span>
+  article = articles(<span class="hljs-symbol">:one</span>)
+  get article_url(article)
+  assert_response <span class="hljs-symbol">:success</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Remember from our discussion earlier on fixtures, the <code>articles()</code> method will give us access to our Articles fixtures.</p>
+<p>How about deleting an existing Article?</p>
+<pre><code class="hljs css language-ruby">test <span class="hljs-string">"should destroy article"</span> <span class="hljs-keyword">do</span>
+  article = articles(<span class="hljs-symbol">:one</span>)
+  assert_difference(<span class="hljs-string">'Article.count'</span>, -<span class="hljs-number">1</span>) <span class="hljs-keyword">do</span>
+    delete article_url(article)
+  <span class="hljs-keyword">end</span>
+
+  assert_redirected_to articles_path
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>We can also add a test for updating an existing Article.</p>
+<pre><code class="hljs css language-ruby">test <span class="hljs-string">"should update article"</span> <span class="hljs-keyword">do</span>
+  article = articles(<span class="hljs-symbol">:one</span>)
+
+  patch article_url(article), <span class="hljs-symbol">params:</span> { <span class="hljs-symbol">article:</span> { <span class="hljs-symbol">title:</span> <span class="hljs-string">"updated"</span> } }
+
+  assert_redirected_to article_path(article)
+  <span class="hljs-comment"># Reload association to fetch updated data and assert that title is updated.</span>
+  article.reload
+  assert_equal <span class="hljs-string">"updated"</span>, article.title
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Notice we're starting to see some duplication in these three tests, they both access the same Article fixture data. We can D.R.Y. this up by using the <code>setup</code> and <code>teardown</code> methods provided by <code>ActiveSupport::Callbacks</code>.</p>
+<p>Our test should now look something as what follows. Disregard the other tests for now, we're leaving them out for brevity.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'test_helper'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArticlesControllerTest</span> &lt; ActionDispatch::IntegrationTest</span>
+  <span class="hljs-comment"># called before every single test</span>
+  setup <span class="hljs-keyword">do</span>
+    @article = articles(<span class="hljs-symbol">:one</span>)
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-comment"># called after every single test</span>
+  teardown <span class="hljs-keyword">do</span>
+    <span class="hljs-comment"># when controller is using cache it may be a good idea to reset it afterwards</span>
+    Rails.cache.clear
+  <span class="hljs-keyword">end</span>
+
+  test <span class="hljs-string">"should show article"</span> <span class="hljs-keyword">do</span>
+    <span class="hljs-comment"># Reuse the <span class="hljs-doctag">@article</span> instance variable from setup</span>
+    get article_url(@article)
+    assert_response <span class="hljs-symbol">:success</span>
+  <span class="hljs-keyword">end</span>
+
+  test <span class="hljs-string">"should destroy article"</span> <span class="hljs-keyword">do</span>
+    assert_difference(<span class="hljs-string">'Article.count'</span>, -<span class="hljs-number">1</span>) <span class="hljs-keyword">do</span>
+      delete article_url(@article)
+    <span class="hljs-keyword">end</span>
+
+    assert_redirected_to articles_path
+  <span class="hljs-keyword">end</span>
+
+  test <span class="hljs-string">"should update article"</span> <span class="hljs-keyword">do</span>
+    patch article_url(@article), <span class="hljs-symbol">params:</span> { <span class="hljs-symbol">article:</span> { <span class="hljs-symbol">title:</span> <span class="hljs-string">"updated"</span> } }
+
+    assert_redirected_to article_path(@article)
+    <span class="hljs-comment"># Reload association to fetch updated data and assert that title is updated.</span>
+    @article.reload
+    assert_equal <span class="hljs-string">"updated"</span>, @article.title
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Similar to other callbacks in Rails, the <code>setup</code> and <code>teardown</code> methods can also be used by passing a block, lambda, or method name as a symbol to call.</p>
+<h3><a class="anchor" aria-hidden="true" id="test-helpers"></a><a href="#test-helpers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test helpers</h3>
+<p>To avoid code duplication, you can add your own test helpers.
+Sign in helper can be a good example:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># test/test_helper.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">SignInHelper</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in_as</span><span class="hljs-params">(user)</span></span>
+    post sign_in_url(<span class="hljs-symbol">email:</span> user.email, <span class="hljs-symbol">password:</span> user.password)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ActionDispatch::IntegrationTest</span></span>
+  <span class="hljs-keyword">include</span> SignInHelper
+<span class="hljs-keyword">end</span>
+</code></pre>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'test_helper'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileControllerTest</span> &lt; ActionDispatch::IntegrationTest</span>
+
+  test <span class="hljs-string">"should show profile"</span> <span class="hljs-keyword">do</span>
+    <span class="hljs-comment"># helper is now reusable from any controller test case</span>
+    sign_in_as users(<span class="hljs-symbol">:david</span>)
+
+    get profile_url
+    assert_response <span class="hljs-symbol">:success</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="using-separate-files"></a><a href="#using-separate-files" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Separate Files</h4>
+<p>If you find your helpers are cluttering <code>test_helper.rb</code>, you can extract them into separate files. One good place to store them is <code>lib/test</code>.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># lib/test/multiple_assertions.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">MultipleAssertions</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">assert_multiple_of_forty_two</span><span class="hljs-params">(number)</span></span>
+    assert (number % <span class="hljs-number">42</span> == <span class="hljs-number">0</span>), <span class="hljs-string">'expected <span class="hljs-subst">#{number}</span> to be a multiple of 42'</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>These helpers can then be explicitly required as needed and included as needed</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'test_helper'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'test/multiple_assertions'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NumberTest</span> &lt; ActiveSupport::TestCase</span>
+  <span class="hljs-keyword">include</span> MultipleAssertions
+
+  test <span class="hljs-string">'420 is a multiple of forty two'</span> <span class="hljs-keyword">do</span>
+    assert_multiple_of_forty_two <span class="hljs-number">420</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>or they can continue to be included directly into the relevant parent classes</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># test/test_helper.rb</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'test/sign_in_helper'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ActionDispatch::IntegrationTest</span></span>
+  <span class="hljs-keyword">include</span> SignInHelper
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="eagerly-requiring-helpers"></a><a href="#eagerly-requiring-helpers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Eagerly Requiring Helpers</h4>
+<p>You may find it convenient to eagerly require helpers in <code>test_helper.rb</code> so your test files have implicit access to them. This can be accomplished using globbing, as follows</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># test/test_helper.rb</span>
+Dir[Rails.root.join(<span class="hljs-string">'lib'</span>, <span class="hljs-string">'test'</span>, <span class="hljs-string">'**'</span>, <span class="hljs-string">'*.rb'</span>)].each { <span class="hljs-params">|file|</span> <span class="hljs-keyword">require</span> file }
+</code></pre>
+<p>This has the downside of increasing the boot-up time, as opposed to manually requiring only the necessary files in your individual tests.</p>
+<h2><a class="anchor" aria-hidden="true" id="testing-routes"></a><a href="#testing-routes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Testing Routes</h2>
+<p>Like everything else in your Rails application, you can test your routes. Route tests reside in <code>test/controllers/</code> or are part of controller tests.</p>
+<p>NOTE: If your application has complex routes, Rails provides a number of useful helpers to test them.</p>
+<p>For more information on routing assertions available in Rails, see the API documentation for <a href="https://api.rubyonrails.org/classes/ActionDispatch/Assertions/RoutingAssertions.html"><code>ActionDispatch::Assertions::RoutingAssertions</code></a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="testing-views"></a><a href="#testing-views" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Testing Views</h2>
+<p>Testing the response to your request by asserting the presence of key HTML elements and their content is a common way to test the views of your application. Like route tests, view tests reside in <code>test/controllers/</code> or are part of controller tests. The <code>assert_select</code> method allows you to query HTML elements of the response by using a simple yet powerful syntax.</p>
+<p>There are two forms of <code>assert_select</code>:</p>
+<p><code>assert_select(selector, [equality], [message])</code> ensures that the equality condition is met on the selected elements through the selector. The selector may be a CSS selector expression (String) or an expression with substitution values.</p>
+<p><code>assert_select(element, selector, [equality], [message])</code> ensures that the equality condition is met on all the selected elements through the selector starting from the <em>element</em> (instance of <code>Nokogiri::XML::Node</code> or <code>Nokogiri::XML::NodeSet</code>) and its descendants.</p>
+<p>For example, you could verify the contents on the title element in your response with:</p>
+<pre><code class="hljs css language-ruby">assert_select <span class="hljs-string">'title'</span>, <span class="hljs-string">"Welcome to Rails Testing Guide"</span>
+</code></pre>
+<p>You can also use nested <code>assert_select</code> blocks for deeper investigation.</p>
+<p>In the following example, the inner <code>assert_select</code> for <code>li.menu_item</code> runs
+within the collection of elements selected by the outer block:</p>
+<pre><code class="hljs css language-ruby">assert_select <span class="hljs-string">'ul.navigation'</span> <span class="hljs-keyword">do</span>
+  assert_select <span class="hljs-string">'li.menu_item'</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>A collection of selected elements may be iterated through so that <code>assert_select</code> may be called separately for each element.</p>
+<p>For example if the response contains two ordered lists, each with four nested list elements then the following tests will both pass.</p>
+<pre><code class="hljs css language-ruby">assert_select <span class="hljs-string">"ol"</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|elements|</span>
+  elements.each <span class="hljs-keyword">do</span> <span class="hljs-params">|element|</span>
+    assert_select element, <span class="hljs-string">"li"</span>, <span class="hljs-number">4</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+assert_select <span class="hljs-string">"ol"</span> <span class="hljs-keyword">do</span>
+  assert_select <span class="hljs-string">"li"</span>, <span class="hljs-number">8</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This assertion is quite powerful. For more advanced usage, refer to its <a href="https://github.com/rails/rails-dom-testing/blob/master/lib/rails/dom/testing/assertions/selector_assertions.rb">documentation</a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="additional-view-based-assertions"></a><a href="#additional-view-based-assertions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Additional View-Based Assertions</h4>
+<p>There are more assertions that are primarily used in testing views:</p>
+<table>
+<thead>
+<tr><th>Assertion</th><th>Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td><code>assert_select_email</code></td><td>Allows you to make assertions on the body of an e-mail.</td></tr>
+<tr><td><code>assert_select_encoded</code></td><td>Allows you to make assertions on encoded HTML. It does this by un-encoding the contents of each element and then calling the block with all the un-encoded elements.</td></tr>
+<tr><td><code>css_select(selector)</code> or <code>css_select(element, selector)</code></td><td>Returns an array of all the elements selected by the <em>selector</em>. In the second variant it first matches the base <em>element</em> and tries to match the <em>selector</em> expression on any of its children. If there are no matches both variants return an empty array.</td></tr>
+</tbody>
+</table>
+<p>Here's an example of using <code>assert_select_email</code>:</p>
+<pre><code class="hljs css language-ruby">assert_select_email <span class="hljs-keyword">do</span>
+  assert_select <span class="hljs-string">'small'</span>, <span class="hljs-string">'Please click the "Unsubscribe" link if you want to opt-out.'</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="testing-helpers"></a><a href="#testing-helpers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Testing Helpers</h2>
+<p>A helper is just a simple module where you can define methods which are
+available in your views.</p>
+<p>In order to test helpers, all you need to do is check that the output of the
+helper method matches what you'd expect. Tests related to the helpers are
+located under the <code>test/helpers</code> directory.</p>
+<p>Given we have the following helper:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">UsersHelper</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">link_to_user</span><span class="hljs-params">(user)</span></span>
+    link_to <span class="hljs-string">"<span class="hljs-subst">#{user.first_name}</span> <span class="hljs-subst">#{user.last_name}</span>"</span>, user
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>We can test the output of this method like this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsersHelperTest</span> &lt; ActionView::TestCase</span>
+  test <span class="hljs-string">"should return the user's full name"</span> <span class="hljs-keyword">do</span>
+    user = users(<span class="hljs-symbol">:david</span>)
+
+    assert_dom_equal <span class="hljs-string">%{&lt;a href="/user/<span class="hljs-subst">#{user.id}</span>"&gt;David Heinemeier Hansson&lt;/a&gt;}</span>, link_to_user(user)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Moreover, since the test class extends from <code>ActionView::TestCase</code>, you have
+access to Rails' helper methods such as <code>link_to</code> or <code>pluralize</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="testing-your-mailers"></a><a href="#testing-your-mailers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Testing Your Mailers</h2>
+<p>Testing mailer classes requires some specific tools to do a thorough job.</p>
+<h3><a class="anchor" aria-hidden="true" id="keeping-the-postman-in-check"></a><a href="#keeping-the-postman-in-check" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Keeping the Postman in Check</h3>
+<p>Your mailer classes - like every other part of your Rails application - should be tested to ensure that they are working as expected.</p>
+<p>The goals of testing your mailer classes are to ensure that:</p>
+<ul>
+<li>emails are being processed (created and sent)</li>
+<li>the email content is correct (subject, sender, body, etc)</li>
+<li>the right emails are being sent at the right times</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="from-all-sides"></a><a href="#from-all-sides" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>From All Sides</h4>
+<p>There are two aspects of testing your mailer, the unit tests and the functional tests. In the unit tests, you run the mailer in isolation with tightly controlled inputs and compare the output to a known value (a fixture.) In the functional tests you don't so much test the minute details produced by the mailer; instead, we test that our controllers and models are using the mailer in the right way. You test to prove that the right email was sent at the right time.</p>
+<h3><a class="anchor" aria-hidden="true" id="unit-testing"></a><a href="#unit-testing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Unit Testing</h3>
+<p>In order to test that your mailer is working as expected, you can use unit tests to compare the actual results of the mailer with pre-written examples of what should be produced.</p>
+<h4><a class="anchor" aria-hidden="true" id="revenge-of-the-fixtures"></a><a href="#revenge-of-the-fixtures" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Revenge of the Fixtures</h4>
+<p>For the purposes of unit testing a mailer, fixtures are used to provide an example of how the output <em>should</em> look. Because these are example emails, and not Active Record data like the other fixtures, they are kept in their own subdirectory apart from the other fixtures. The name of the directory within <code>test/fixtures</code> directly corresponds to the name of the mailer. So, for a mailer named <code>UserMailer</code>, the fixtures should reside in <code>test/fixtures/user_mailer</code> directory.</p>
+<p>If you generated your mailer, the generator does not create stub fixtures for the mailers actions. You'll have to create those files yourself as described above.</p>
+<h4><a class="anchor" aria-hidden="true" id="the-basic-test-case"></a><a href="#the-basic-test-case" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Basic Test Case</h4>
+<p>Here's a unit test to test a mailer named <code>UserMailer</code> whose action <code>invite</code> is used to send an invitation to a friend. It is an adapted version of the base test created by the generator for an <code>invite</code> action.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'test_helper'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserMailerTest</span> &lt; ActionMailer::TestCase</span>
+  test <span class="hljs-string">"invite"</span> <span class="hljs-keyword">do</span>
+    <span class="hljs-comment"># Create the email and store it for further assertions</span>
+    email = UserMailer.create_invite(<span class="hljs-string">'me@example.com'</span>,
+                                     <span class="hljs-string">'friend@example.com'</span>, Time.now)
+
+    <span class="hljs-comment"># Send the email, then test that it got queued</span>
+    assert_emails <span class="hljs-number">1</span> <span class="hljs-keyword">do</span>
+      email.deliver_now
+    <span class="hljs-keyword">end</span>
+
+    <span class="hljs-comment"># Test the body of the sent email contains what we expect it to</span>
+    assert_equal [<span class="hljs-string">'me@example.com'</span>], email.from
+    assert_equal [<span class="hljs-string">'friend@example.com'</span>], email.to
+    assert_equal <span class="hljs-string">'You have been invited by me@example.com'</span>, email.subject
+    assert_equal read_fixture(<span class="hljs-string">'invite'</span>).join, email.body.to_s
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>In the test we create the email and store the returned object in the <code>email</code>
+variable. We then ensure that it was sent (the first assert), then, in the
+second batch of assertions, we ensure that the email does indeed contain what we
+expect. The helper <code>read_fixture</code> is used to read in the content from this file.</p>
+<p>NOTE: <code>email.body.to_s</code> is present when there's only one (HTML or text) part present.
+If the mailer provides both, you can test your fixture against specific parts
+with <code>email.text_part.body.to_s</code> or <code>email.html_part.body.to_s</code>.</p>
+<p>Here's the content of the <code>invite</code> fixture:</p>
+<pre><code class="hljs"><span class="hljs-selector-tag">Hi</span> <span class="hljs-selector-tag">friend</span>@<span class="hljs-keyword">example</span>.<span class="hljs-keyword">com</span>,
+
+You have been invited.
+
+Cheers!
+</code></pre>
+<p>This is the right time to understand a little more about writing tests for your
+mailers. The line <code>ActionMailer::Base.delivery_method = :test</code> in
+<code>config/environments/test.rb</code> sets the delivery method to test mode so that
+email will not actually be delivered (useful to avoid spamming your users while
+testing) but instead it will be appended to an array
+(<code>ActionMailer::Base.deliveries</code>).</p>
+<p>NOTE: The <code>ActionMailer::Base.deliveries</code> array is only reset automatically in
+<code>ActionMailer::TestCase</code> and <code>ActionDispatch::IntegrationTest</code> tests.
+If you want to have a clean slate outside these test cases, you can reset it
+manually with: <code>ActionMailer::Base.deliveries.clear</code></p>
+<h3><a class="anchor" aria-hidden="true" id="functional-and-system-testing"></a><a href="#functional-and-system-testing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Functional and System Testing</h3>
+<p>Unit testing allows us to test the attributes of the email while functional and system testing allows us to test whether user interactions appropriately trigger the email to be delivered. For example, you can check that the invite friend operation is sending an email appropriately:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Integration Test</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'test_helper'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsersControllerTest</span> &lt; ActionDispatch::IntegrationTest</span>
+  test <span class="hljs-string">"invite friend"</span> <span class="hljs-keyword">do</span>
+    <span class="hljs-comment"># Asserts the difference in the ActionMailer::Base.deliveries</span>
+    assert_emails <span class="hljs-number">1</span> <span class="hljs-keyword">do</span>
+      post invite_friend_url, <span class="hljs-symbol">params:</span> { <span class="hljs-symbol">email:</span> <span class="hljs-string">'friend@example.com'</span> }
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># System Test</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'test_helper'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsersTest</span> &lt; ActionDispatch::SystemTestCase</span>
+  driven_by <span class="hljs-symbol">:selenium</span>, <span class="hljs-symbol">using:</span> <span class="hljs-symbol">:headless_chrome</span>
+
+  test <span class="hljs-string">"inviting a friend"</span> <span class="hljs-keyword">do</span>
+    visit invite_users_url
+    fill_in <span class="hljs-string">'Email'</span>, <span class="hljs-symbol">with:</span> <span class="hljs-string">'friend@example.com'</span>
+    assert_emails <span class="hljs-number">1</span> <span class="hljs-keyword">do</span>
+      click_on <span class="hljs-string">'Invite'</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>NOTE: The <code>assert_emails</code> method is not tied to a particular deliver method and will work with emails delivered with either the <code>deliver_now</code> or <code>deliver_later</code> method. If we explicitly want to assert that the email has been enqueued we can use the <code>assert_enqueued_emails</code> method. More information can be found in the  <a href="https://api.rubyonrails.org/classes/ActionMailer/TestHelper.html">documentation here</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="testing-jobs"></a><a href="#testing-jobs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Testing Jobs</h2>
+<p>Since your custom jobs can be queued at different levels inside your application,
+you'll need to test both the jobs themselves (their behavior when they get enqueued)
+and that other entities correctly enqueue them.</p>
+<h3><a class="anchor" aria-hidden="true" id="a-basic-test-case"></a><a href="#a-basic-test-case" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>A Basic Test Case</h3>
+<p>By default, when you generate a job, an associated test will be generated as well
+under the <code>test/jobs</code> directory. Here's an example test with a billing job:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'test_helper'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BillingJobTest</span> &lt; ActiveJob::TestCase</span>
+  test <span class="hljs-string">'that account is charged'</span> <span class="hljs-keyword">do</span>
+    BillingJob.perform_now(account, product)
+    assert account.reload.charged_for?(product)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This test is pretty simple and only asserts that the job got the work done
+as expected.</p>
+<p>By default, <code>ActiveJob::TestCase</code> will set the queue adapter to <code>:test</code> so that
+your jobs are performed inline. It will also ensure that all previously performed
+and enqueued jobs are cleared before any test run so you can safely assume that
+no jobs have already been executed in the scope of each test.</p>
+<h3><a class="anchor" aria-hidden="true" id="custom-assertions-and-testing-jobs-inside-other-components"></a><a href="#custom-assertions-and-testing-jobs-inside-other-components" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Assertions And Testing Jobs Inside Other Components</h3>
+<p>Active Job ships with a bunch of custom assertions that can be used to lessen the verbosity of tests. For a full list of available assertions, see the API documentation for <a href="https://api.rubyonrails.org/classes/ActiveJob/TestHelper.html"><code>ActiveJob::TestHelper</code></a>.</p>
+<p>It's a good practice to ensure that your jobs correctly get enqueued or performed
+wherever you invoke them (e.g. inside your controllers). This is precisely where
+the custom assertions provided by Active Job are pretty useful. For instance,
+within a model:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'test_helper'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductTest</span> &lt; ActiveSupport::TestCase</span>
+  <span class="hljs-keyword">include</span> ActiveJob::TestHelper
+
+  test <span class="hljs-string">'billing job scheduling'</span> <span class="hljs-keyword">do</span>
+    assert_enqueued_with(<span class="hljs-symbol">job:</span> BillingJob) <span class="hljs-keyword">do</span>
+      product.charge(account)
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="asserting-time-arguments-in-jobs"></a><a href="#asserting-time-arguments-in-jobs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Asserting Time Arguments in Jobs</h3>
+<p>When serializing job arguments, <code>Time</code>, <code>DateTime</code>, and <code>ActiveSupport::TimeWithZone</code> lose microsecond precision. This means comparing deserialized time with actual time doesn't always work. To compensate for the loss of precision, <code>assert_enqueued_with</code> and <code>assert_performed_with</code> will remove microseconds from time objects in argument assertions.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'test_helper'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductTest</span> &lt; ActiveSupport::TestCase</span>
+  <span class="hljs-keyword">include</span> ActiveJob::TestHelper
+
+  test <span class="hljs-string">'that product is reserved at a given time'</span> <span class="hljs-keyword">do</span>
+    now = Time.now
+    assert_performed_with(<span class="hljs-symbol">job:</span> ReservationJob, <span class="hljs-symbol">args:</span> [product, now]) <span class="hljs-keyword">do</span>
+      product.reserve(now)
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="testing-action-cable"></a><a href="#testing-action-cable" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Testing Action Cable</h2>
+<p>Since Action Cable is used at different levels inside your application,
+you'll need to test both the channels, connection classes themselves, and that other
+entities broadcast correct messages.</p>
+<h3><a class="anchor" aria-hidden="true" id="connection-test-case"></a><a href="#connection-test-case" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Connection Test Case</h3>
+<p>By default, when you generate new Rails application with Action Cable, a test for the base connection class (<code>ApplicationCable::Connection</code>) is generated as well under <code>test/channels/application_cable</code> directory.</p>
+<p>Connection tests aim to check whether a connection's identifiers get assigned properly
+or that any improper connection requests are rejected. Here is an example:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationCable::ConnectionTest</span> &lt; ActionCable::Connection::<span class="hljs-title">TestCase</span></span>
+  test <span class="hljs-string">"connects with params"</span> <span class="hljs-keyword">do</span>
+    <span class="hljs-comment"># Simulate a connection opening by calling the `connect` method</span>
+    connect <span class="hljs-symbol">params:</span> { <span class="hljs-symbol">user_id:</span> <span class="hljs-number">42</span> }
+
+    <span class="hljs-comment"># You can access the Connection object via `connection` in tests</span>
+    assert_equal connection.user_id, <span class="hljs-string">"42"</span>
+  <span class="hljs-keyword">end</span>
+
+  test <span class="hljs-string">"rejects connection without params"</span> <span class="hljs-keyword">do</span>
+    <span class="hljs-comment"># Use `assert_reject_connection` matcher to verify that</span>
+    <span class="hljs-comment"># connection is rejected</span>
+    assert_reject_connection { connect }
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>You can also specify request cookies the same way you do in integration tests:</p>
+<pre><code class="hljs css language-ruby">test <span class="hljs-string">"connects with cookies"</span> <span class="hljs-keyword">do</span>
+  cookies.signed[<span class="hljs-symbol">:user_id</span>] = <span class="hljs-string">"42"</span>
+
+  connect
+
+  assert_equal connection.user_id, <span class="hljs-string">"42"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>See the API documentation for <a href="https://api.rubyonrails.org/classes/ActionCable/Connection/TestCase.html"><code>ActionCable::Connection::TestCase</code></a> for more information.</p>
+<h3><a class="anchor" aria-hidden="true" id="channel-test-case"></a><a href="#channel-test-case" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Channel Test Case</h3>
+<p>By default, when you generate a channel, an associated test will be generated as well
+under the <code>test/channels</code> directory. Here's an example test with a chat channel:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">"test_helper"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChatChannelTest</span> &lt; ActionCable::Channel::<span class="hljs-title">TestCase</span></span>
+  test <span class="hljs-string">"subscribes and stream for room"</span> <span class="hljs-keyword">do</span>
+    <span class="hljs-comment"># Simulate a subscription creation by calling `subscribe`</span>
+    subscribe <span class="hljs-symbol">room:</span> <span class="hljs-string">"15"</span>
+
+    <span class="hljs-comment"># You can access the Channel object via `subscription` in tests</span>
+    assert subscription.confirmed?
+    assert_has_stream <span class="hljs-string">"chat_15"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This test is pretty simple and only asserts that the channel subscribes the connection to a particular stream.</p>
+<p>You can also specify the underlying connection identifiers. Here's an example test with a web notifications channel:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">"test_helper"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WebNotificationsChannelTest</span> &lt; ActionCable::Channel::<span class="hljs-title">TestCase</span></span>
+  test <span class="hljs-string">"subscribes and stream for user"</span> <span class="hljs-keyword">do</span>
+    stub_connection <span class="hljs-symbol">current_user:</span> users(<span class="hljs-symbol">:john</span>)
+
+    subscribe
+
+    assert_has_stream_for users(<span class="hljs-symbol">:john</span>)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>See the API documentation for <a href="https://api.rubyonrails.org/classes/ActionCable/Channel/TestCase.html"><code>ActionCable::Channel::TestCase</code></a> for more information.</p>
+<h3><a class="anchor" aria-hidden="true" id="custom-assertions-and-testing-broadcasts-inside-other-components"></a><a href="#custom-assertions-and-testing-broadcasts-inside-other-components" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Assertions And Testing Broadcasts Inside Other Components</h3>
+<p>Action Cable ships with a bunch of custom assertions that can be used to lessen the verbosity of tests. For a full list of available assertions, see the API documentation for <a href="https://api.rubyonrails.org/classes/ActionCable/TestHelper.html"><code>ActionCable::TestHelper</code></a>.</p>
+<p>It's a good practice to ensure that the correct message has been broadcasted inside other components (e.g. inside your controllers). This is precisely where
+the custom assertions provided by Action Cable are pretty useful. For instance,
+within a model:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'test_helper'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductTest</span> &lt; ActionCable::TestCase</span>
+  test <span class="hljs-string">"broadcast status after charge"</span> <span class="hljs-keyword">do</span>
+    assert_broadcast_on(<span class="hljs-string">"products:<span class="hljs-subst">#{product.id}</span>"</span>, <span class="hljs-symbol">type:</span> <span class="hljs-string">"charged"</span>) <span class="hljs-keyword">do</span>
+      product.charge(account)
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If you want to test the broadcasting made with <code>Channel.broadcast_to</code>, you shoud use
+<code>Channel.broadcasting_for</code> to generate an underlying stream name:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># app/jobs/chat_relay_job.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChatRelayJob</span> &lt; ApplicationJob</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">perform_later</span><span class="hljs-params">(room, message)</span></span>
+    ChatChannel.broadcast_to room, <span class="hljs-symbol">text:</span> message
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># test/jobs/chat_relay_job_test.rb</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'test_helper'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChatRelayJobTest</span> &lt; ActiveJob::TestCase</span>
+  <span class="hljs-keyword">include</span> ActionCable::TestHelper
+
+  test <span class="hljs-string">"broadcast message to room"</span> <span class="hljs-keyword">do</span>
+    room = rooms(<span class="hljs-symbol">:all</span>)
+
+    assert_broadcast_on(ChatChannel.broadcasting_for(room), <span class="hljs-symbol">text:</span> <span class="hljs-string">"Hi!"</span>) <span class="hljs-keyword">do</span>
+      ChatRelayJob.perform_now(room, <span class="hljs-string">"Hi!"</span>)
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="additional-testing-resources"></a><a href="#additional-testing-resources" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Additional Testing Resources</h2>
+<h3><a class="anchor" aria-hidden="true" id="testing-time-dependent-code"></a><a href="#testing-time-dependent-code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Testing Time-Dependent Code</h3>
+<p>Rails provides built-in helper methods that enable you to assert that your time-sensitive code works as expected.</p>
+<p>Here is an example using the <a href="https://api.rubyonrails.org/classes/ActiveSupport/Testing/TimeHelpers.html#method-i-travel_to"><code>travel_to</code></a> helper:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Lets say that a user is eligible for gifting a month after they register.</span>
+user = User.create(<span class="hljs-symbol">name:</span> <span class="hljs-string">'Gaurish'</span>, <span class="hljs-symbol">activation_date:</span> Date.new(<span class="hljs-number">2004</span>, <span class="hljs-number">10</span>, <span class="hljs-number">24</span>))
+assert_not user.applicable_for_gifting?
+travel_to Date.new(<span class="hljs-number">2004</span>, <span class="hljs-number">11</span>, <span class="hljs-number">24</span>) <span class="hljs-keyword">do</span>
+  assert_equal Date.new(<span class="hljs-number">2004</span>, <span class="hljs-number">10</span>, <span class="hljs-number">24</span>), user.activation_date <span class="hljs-comment"># inside the `travel_to` block `Date.current` is mocked</span>
+  assert user.applicable_for_gifting?
+<span class="hljs-keyword">end</span>
+assert_equal Date.new(<span class="hljs-number">2004</span>, <span class="hljs-number">10</span>, <span class="hljs-number">24</span>), user.activation_date <span class="hljs-comment"># The change was visible only inside the `travel_to` block.</span>
+</code></pre>
+<p>Please see <a href="https://api.rubyonrails.org/classes/ActiveSupport/Testing/TimeHelpers.html"><code>ActiveSupport::Testing::TimeHelpers</code> API Documentation</a>
+for in-depth information about the available time helpers.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-7</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/rails/rails-i18n"><span class="arrow-prev">← </span><span>Rails Internationalization (I18n) API</span></a><a class="docs-next button" href="/rails-setup/docs/rails/securing-rails"><span>Securing Rails Applications</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#why-write-tests-for-your-rails-applications">Why Write Tests for your Rails Applications?</a></li><li><a href="#introduction-to-testing">Introduction to Testing</a><ul class="toc-headings"><li><a href="#rails-sets-up-for-testing-from-the-word-go">Rails Sets up for Testing from the Word Go</a></li><li><a href="#the-test-environment">The Test Environment</a></li><li><a href="#rails-meets-minitest">Rails meets Minitest</a></li><li><a href="#available-assertions">Available Assertions</a></li><li><a href="#rails-specific-assertions">Rails Specific Assertions</a></li><li><a href="#a-brief-note-about-test-cases">A Brief Note About Test Cases</a></li><li><a href="#the-rails-test-runner">The Rails Test Runner</a></li></ul></li><li><a href="#parallel-testing">Parallel Testing</a><ul class="toc-headings"><li><a href="#parallel-testing-with-processes">Parallel testing with processes</a></li><li><a href="#parallel-testing-with-threads">Parallel testing with threads</a></li></ul></li><li><a href="#the-test-database">The Test Database</a><ul class="toc-headings"><li><a href="#maintaining-the-test-database-schema">Maintaining the test database schema</a></li><li><a href="#the-low-down-on-fixtures">The Low-Down on Fixtures</a></li></ul></li><li><a href="#model-testing">Model Testing</a></li><li><a href="#system-testing">System Testing</a><ul class="toc-headings"><li><a href="#changing-the-default-settings">Changing the default settings</a></li><li><a href="#screenshot-helper">Screenshot Helper</a></li><li><a href="#implementing-a-system-test">Implementing a system test</a></li></ul></li><li><a href="#integration-testing">Integration Testing</a><ul class="toc-headings"><li><a href="#helpers-available-for-integration-tests">Helpers Available for Integration Tests</a></li><li><a href="#implementing-an-integration-test">Implementing an integration test</a></li></ul></li><li><a href="#functional-tests-for-your-controllers">Functional Tests for Your Controllers</a><ul class="toc-headings"><li><a href="#what-to-include-in-your-functional-tests">What to include in your Functional Tests</a></li><li><a href="#available-request-types-for-functional-tests">Available Request Types for Functional Tests</a></li><li><a href="#testing-xhr-ajax-requests">Testing XHR (AJAX) requests</a></li><li><a href="#the-three-hashes-of-the-apocalypse">The Three Hashes of the Apocalypse</a></li><li><a href="#instance-variables-available">Instance Variables Available</a></li><li><a href="#setting-headers-and-cgi-variables">Setting Headers and CGI variables</a></li><li><a href="#testing-flash-notices">Testing <code>flash</code> notices</a></li><li><a href="#putting-it-together">Putting it together</a></li><li><a href="#test-helpers">Test helpers</a></li></ul></li><li><a href="#testing-routes">Testing Routes</a></li><li><a href="#testing-views">Testing Views</a></li><li><a href="#testing-helpers">Testing Helpers</a></li><li><a href="#testing-your-mailers">Testing Your Mailers</a><ul class="toc-headings"><li><a href="#keeping-the-postman-in-check">Keeping the Postman in Check</a></li><li><a href="#unit-testing">Unit Testing</a></li><li><a href="#functional-and-system-testing">Functional and System Testing</a></li></ul></li><li><a href="#testing-jobs">Testing Jobs</a><ul class="toc-headings"><li><a href="#a-basic-test-case">A Basic Test Case</a></li><li><a href="#custom-assertions-and-testing-jobs-inside-other-components">Custom Assertions And Testing Jobs Inside Other Components</a></li><li><a href="#asserting-time-arguments-in-jobs">Asserting Time Arguments in Jobs</a></li></ul></li><li><a href="#testing-action-cable">Testing Action Cable</a><ul class="toc-headings"><li><a href="#connection-test-case">Connection Test Case</a></li><li><a href="#channel-test-case">Channel Test Case</a></li><li><a href="#custom-assertions-and-testing-broadcasts-inside-other-components">Custom Assertions And Testing Broadcasts Inside Other Components</a></li></ul></li><li><a href="#additional-testing-resources">Additional Testing Resources</a><ul class="toc-headings"><li><a href="#testing-time-dependent-code">Testing Time-Dependent Code</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Rails Setup 2019</section></footer></div></body></html>

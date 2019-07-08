@@ -1,0 +1,1037 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Autoloading and Reloading Constants · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This guide documents how constant autoloading and reloading works.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Autoloading and Reloading Constants · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;This guide documents how constant autoloading and reloading works.&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/rails/getting-started" target="_self">Rails</a></li><li class=""><a href="/rails-setup/docs/devise/overview" target="_self">Devise</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Digging Deeper</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start Here<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/getting-started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/development-dependencies-install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Models<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/multiple-databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Views<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/layouts-and-rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view-form-helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Controllers<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Other Components<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Digging Deeper<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/testing-rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/securing-rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/debugging-rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/configuring-rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-command-line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/asset-pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/working-with-javascript">Working with JavaScript in Rails</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/rails/autoloading-and-reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/caching-with-rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-only-apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Extending Rails<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-on-rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/generators-&amp;-templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/application-templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/creating-rails-plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contributions<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/contributing-to-rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/guides-guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Policies<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/maintenance-policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Autoloading and Reloading Constants</h1></header><article><div><span><p>This guide documents how constant autoloading and reloading works.</p>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>Key aspects of Ruby constants</li>
+<li>What are the <code>autoload_paths</code> and how does eager loading work in production?</li>
+<li>How constant autoloading works</li>
+<li>What is <code>require_dependency</code></li>
+<li>How constant reloading works</li>
+<li>Solutions to common autoloading gotchas</li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="introduction"></a><a href="#introduction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Introduction</h2>
+<p>Ruby on Rails allows applications to be written as if their code was preloaded.</p>
+<p>In a normal Ruby program classes need to load their dependencies:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'application_controller'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'post'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostsController</span> &lt; ApplicationController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+    @posts = Post.all
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Our Rubyist instinct quickly sees some redundancy in there: If classes were
+defined in files matching their name, couldn't their loading be automated
+somehow? We could save scanning the file for dependencies, which is brittle.</p>
+<p>Moreover, <code>Kernel#require</code> loads files once, but development is much more smooth
+if code gets refreshed when it changes without restarting the server. It would
+be nice to be able to use <code>Kernel#load</code> in development, and <code>Kernel#require</code> in
+production.</p>
+<p>Indeed, those features are provided by Ruby on Rails, where we just write</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostsController</span> &lt; ApplicationController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+    @posts = Post.all
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This guide documents how that works.</p>
+<h2><a class="anchor" aria-hidden="true" id="constants-refresher"></a><a href="#constants-refresher" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Constants Refresher</h2>
+<p>While constants are trivial in most programming languages, they are a rich
+topic in Ruby.</p>
+<p>It is beyond the scope of this guide to document Ruby constants, but we are
+nevertheless going to highlight a few key topics. Truly grasping the following
+sections is instrumental to understanding constant autoloading and reloading.</p>
+<h3><a class="anchor" aria-hidden="true" id="nesting"></a><a href="#nesting" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Nesting</h3>
+<p>Class and module definitions can be nested to create namespaces:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">XML</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SAXParser</span></span>
+    <span class="hljs-comment"># (1)</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The <em>nesting</em> at any given place is the collection of enclosing nested class and
+module objects outwards. The nesting at any given place can be inspected with
+<code>Module.nesting</code>. For example, in the previous example, the nesting at
+(1) is</p>
+<pre><code class="hljs css language-ruby">[XML::SAXParser, XML]
+</code></pre>
+<p>It is important to understand that the nesting is composed of class and module
+<em>objects</em>, it has nothing to do with the constants used to access them, and is
+also unrelated to their names.</p>
+<p>For instance, while this definition is similar to the previous one:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">XML::SAXParser</span></span>
+  <span class="hljs-comment"># (2)</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>the nesting in (2) is different:</p>
+<pre><code class="hljs css language-ruby">[XML::SAXParser]
+</code></pre>
+<p><code>XML</code> does not belong to it.</p>
+<p>We can see in this example that the name of a class or module that belongs to a
+certain nesting does not necessarily correlate with the namespaces at the spot.</p>
+<p>Even more, they are totally independent, take for instance</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">X</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Y</span></span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">A</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">B</span></span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">X::Y</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">A::B</span></span>
+    <span class="hljs-comment"># (3)</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The nesting in (3) consists of two module objects:</p>
+<pre><code class="hljs css language-ruby">[A::B, X::Y]
+</code></pre>
+<p>So, it not only doesn't end in <code>A</code>, which does not even belong to the nesting,
+but it also contains <code>X::Y</code>, which is independent from <code>A::B</code>.</p>
+<p>The nesting is an internal stack maintained by the interpreter, and it gets
+modified according to these rules:</p>
+<ul>
+<li><p>The class object following a <code>class</code> keyword gets pushed when its body is
+executed, and popped after it.</p></li>
+<li><p>The module object following a <code>module</code> keyword gets pushed when its body is
+executed, and popped after it.</p></li>
+<li><p>A singleton class opened with <code>class &lt;&lt; object</code> gets pushed, and popped later.</p></li>
+<li><p>When <code>instance_eval</code> is called using a string argument,
+the singleton class of the receiver is pushed to the nesting of the eval'ed
+code. When <code>class_eval</code> or <code>module_eval</code> is called using a string argument,
+the receiver is pushed to the nesting of the eval'ed code.</p></li>
+<li><p>The nesting at the top-level of code interpreted by <code>Kernel#load</code> is empty
+unless the <code>load</code> call receives a true value as second argument, in which case
+a newly created anonymous module is pushed by Ruby.</p></li>
+</ul>
+<p>It is interesting to observe that blocks do not modify the stack. In particular
+the blocks that may be passed to <code>Class.new</code> and <code>Module.new</code> do not get the
+class or module being defined pushed to their nesting. That's one of the
+differences between defining classes and modules in one way or another.</p>
+<h3><a class="anchor" aria-hidden="true" id="class-and-module-definitions-are-constant-assignments"></a><a href="#class-and-module-definitions-are-constant-assignments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Class and Module Definitions are Constant Assignments</h3>
+<p>Let's suppose the following snippet creates a class (rather than reopening it):</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span></span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Ruby creates a constant <code>C</code> in <code>Object</code> and stores in that constant a class
+object. The name of the class instance is &quot;C&quot;, a string, named after the
+constant.</p>
+<p>That is,</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Project</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>performs a constant assignment equivalent to</p>
+<pre><code class="hljs css language-ruby">Project = Class.new(ApplicationRecord)
+</code></pre>
+<p>including setting the name of the class as a side-effect:</p>
+<pre><code class="hljs css language-ruby">Project.name <span class="hljs-comment"># =&gt; "Project"</span>
+</code></pre>
+<p>Constant assignment has a special rule to make that happen: if the object
+being assigned is an anonymous class or module, Ruby sets the object's name to
+the name of the constant.</p>
+<p>INFO. From then on, what happens to the constant and the instance does not
+matter. For example, the constant could be deleted, the class object could be
+assigned to a different constant, be stored in no constant anymore, etc. Once
+the name is set, it doesn't change.</p>
+<p>Similarly, module creation using the <code>module</code> keyword as in</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Admin</span></span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>performs a constant assignment equivalent to</p>
+<pre><code class="hljs css language-ruby">Admin = Module.new
+</code></pre>
+<p>including setting the name as a side-effect:</p>
+<pre><code class="hljs css language-ruby">Admin.name <span class="hljs-comment"># =&gt; "Admin"</span>
+</code></pre>
+<p>WARNING. The execution context of a block passed to <code>Class.new</code> or <code>Module.new</code>
+is not entirely equivalent to the one of the body of the definitions using the
+<code>class</code> and <code>module</code> keywords. But both idioms result in the same constant
+assignment.</p>
+<p>Thus, an informal expression like &quot;the <code>String</code> class&quot; technically means the
+class object stored in the constant called &quot;String&quot;. That constant, in turn,
+belongs to the class object stored in the constant called &quot;Object&quot;.</p>
+<p><code>String</code> is an ordinary constant, and everything related to them such as
+resolution algorithms applies to it.</p>
+<p>Likewise, in the controller</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostsController</span> &lt; ApplicationController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+    @posts = Post.all
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p><code>Post</code> is not syntax for a class. Rather, <code>Post</code> is a regular Ruby constant. If
+all is good, the constant is evaluated to an object that responds to <code>all</code>.</p>
+<p>That is why we talk about <em>constant</em> autoloading, Rails has the ability to
+load constants on the fly.</p>
+<h3><a class="anchor" aria-hidden="true" id="constants-are-stored-in-modules"></a><a href="#constants-are-stored-in-modules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Constants are Stored in Modules</h3>
+<p>Constants belong to modules in a very literal sense. Classes and modules have
+a constant table; think of it as a hash table.</p>
+<p>Let's analyze an example to really understand what that means. While common
+abuses of language like &quot;the <code>String</code> class&quot; are convenient, the exposition is
+going to be precise here for didactic purposes.</p>
+<p>Let's consider the following module definition:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Colors</span></span>
+  RED = <span class="hljs-string">'0xff0000'</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>First, when the <code>module</code> keyword is processed, the interpreter creates a new
+entry in the constant table of the class object stored in the <code>Object</code> constant.
+Said entry associates the name &quot;Colors&quot; to a newly created module object.
+Furthermore, the interpreter sets the name of the new module object to be the
+string &quot;Colors&quot;.</p>
+<p>Later, when the body of the module definition is interpreted, a new entry is
+created in the constant table of the module object stored in the <code>Colors</code>
+constant. That entry maps the name &quot;RED&quot; to the string &quot;0xff0000&quot;.</p>
+<p>In particular, <code>Colors::RED</code> is totally unrelated to any other <code>RED</code> constant
+that may live in any other class or module object. If there were any, they
+would have separate entries in their respective constant tables.</p>
+<p>Pay special attention in the previous paragraphs to the distinction between
+class and module objects, constant names, and value objects associated to them
+in constant tables.</p>
+<h3><a class="anchor" aria-hidden="true" id="resolution-algorithms"></a><a href="#resolution-algorithms" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Resolution Algorithms</h3>
+<h4><a class="anchor" aria-hidden="true" id="resolution-algorithm-for-relative-constants"></a><a href="#resolution-algorithm-for-relative-constants" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Resolution Algorithm for Relative Constants</h4>
+<p>At any given place in the code, let's define <em>cref</em> to be the first element of
+the nesting if it is not empty, or <code>Object</code> otherwise.</p>
+<p>Without getting too much into the details, the resolution algorithm for relative
+constant references goes like this:</p>
+<ol>
+<li><p>If the nesting is not empty the constant is looked up in its elements and in
+order. The ancestors of those elements are ignored.</p></li>
+<li><p>If not found, then the algorithm walks up the ancestor chain of the cref.</p></li>
+<li><p>If not found and the cref is a module, the constant is looked up in <code>Object</code>.</p></li>
+<li><p>If not found, <code>const_missing</code> is invoked on the cref. The default
+implementation of <code>const_missing</code> raises <code>NameError</code>, but it can be overridden.</p></li>
+</ol>
+<p>Rails autoloading <strong>does not emulate this algorithm</strong>, but its starting point is
+the name of the constant to be autoloaded, and the cref. See more in <a href="#autoloading-algorithms-relative-references">Relative
+References</a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="resolution-algorithm-for-qualified-constants"></a><a href="#resolution-algorithm-for-qualified-constants" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Resolution Algorithm for Qualified Constants</h4>
+<p>Qualified constants look like this:</p>
+<pre><code class="hljs css language-ruby">Billing::Invoice
+</code></pre>
+<p><code>Billing::Invoice</code> is composed of two constants: <code>Billing</code> is relative and is
+resolved using the algorithm of the previous section.</p>
+<p>INFO. Leading colons would make the first segment absolute rather than
+relative: <code>::Billing::Invoice</code>. That would force <code>Billing</code> to be looked up
+only as a top-level constant.</p>
+<p><code>Invoice</code> on the other hand is qualified by <code>Billing</code> and we are going to see
+its resolution next. Let's define <em>parent</em> to be that qualifying class or module
+object, that is, <code>Billing</code> in the example above. The algorithm for qualified
+constants goes like this:</p>
+<ol>
+<li><p>The constant is looked up in the parent and its ancestors. In Ruby &gt;= 2.5,
+<code>Object</code> is skipped if present among the ancestors. <code>Kernel</code> and <code>BasicObject</code>
+are still checked though.</p></li>
+<li><p>If the lookup fails, <code>const_missing</code> is invoked in the parent. The default
+implementation of <code>const_missing</code> raises <code>NameError</code>, but it can be overridden.</p></li>
+</ol>
+<p>INFO. In Ruby &lt; 2.5 <code>String::Hash</code> evaluates to <code>Hash</code> and the interpreter
+issues a warning: &quot;toplevel constant Hash referenced by String::Hash&quot;. Starting
+with 2.5, <code>String::Hash</code> raises <code>NameError</code> because <code>Object</code> is skipped.</p>
+<p>As you see, this algorithm is simpler than the one for relative constants. In
+particular, the nesting plays no role here, and modules are not special-cased,
+if neither they nor their ancestors have the constants, <code>Object</code> is <strong>not</strong>
+checked.</p>
+<p>Rails autoloading <strong>does not emulate this algorithm</strong>, but its starting point is
+the name of the constant to be autoloaded, and the parent. See more in
+<a href="#autoloading-algorithms-qualified-references">Qualified References</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="vocabulary"></a><a href="#vocabulary" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Vocabulary</h2>
+<h3><a class="anchor" aria-hidden="true" id="parent-namespaces"></a><a href="#parent-namespaces" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parent Namespaces</h3>
+<p>Given a string with a constant path we define its <em>parent namespace</em> to be the
+string that results from removing its rightmost segment.</p>
+<p>For example, the parent namespace of the string &quot;A::B::C&quot; is the string &quot;A::B&quot;,
+the parent namespace of &quot;A::B&quot; is &quot;A&quot;, and the parent namespace of &quot;A&quot; is &quot;&quot;.</p>
+<p>The interpretation of a parent namespace when thinking about classes and modules
+is tricky though. Let's consider a module M named &quot;A::B&quot;:</p>
+<ul>
+<li><p>The parent namespace, &quot;A&quot;, may not reflect nesting at a given spot.</p></li>
+<li><p>The constant <code>A</code> may no longer exist, some code could have removed it from
+<code>Object</code>.</p></li>
+<li><p>If <code>A</code> exists, the class or module that was originally in <code>A</code> may not be there
+anymore. For example, if after a constant removal there was another constant
+assignment there would generally be a different object in there.</p></li>
+<li><p>In such case, it could even happen that the reassigned <code>A</code> held a new class or
+module called also &quot;A&quot;!</p></li>
+<li><p>In the previous scenarios M would no longer be reachable through <code>A::B</code> but
+the module object itself could still be alive somewhere and its name would
+still be &quot;A::B&quot;.</p></li>
+</ul>
+<p>The idea of a parent namespace is at the core of the autoloading algorithms
+and helps explain and understand their motivation intuitively, but as you see
+that metaphor leaks easily. Given an edge case to reason about, take always into
+account that by &quot;parent namespace&quot; the guide means exactly that specific string
+derivation.</p>
+<h3><a class="anchor" aria-hidden="true" id="loading-mechanism"></a><a href="#loading-mechanism" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Loading Mechanism</h3>
+<p>Rails autoloads files with <code>Kernel#load</code> when <code>config.cache_classes</code> is false,
+the default in development mode, and with <code>Kernel#require</code> otherwise, the
+default in production mode.</p>
+<p><code>Kernel#load</code> allows Rails to execute files more than once if <a href="#constant-reloading">constant
+reloading</a> is enabled.</p>
+<p>This guide uses the word &quot;load&quot; freely to mean a given file is interpreted, but
+the actual mechanism can be <code>Kernel#load</code> or <code>Kernel#require</code> depending on that
+flag.</p>
+<h2><a class="anchor" aria-hidden="true" id="autoloading-availability"></a><a href="#autoloading-availability" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Autoloading Availability</h2>
+<p>Rails is always able to autoload provided its environment is in place. For
+example the <code>runner</code> command autoloads:</p>
+<pre><code class="hljs">$ rails runner <span class="hljs-string">'p User.column_names'</span>
+[<span class="hljs-meta"><span class="hljs-meta-string">"id"</span>, <span class="hljs-meta-string">"email"</span>, <span class="hljs-meta-string">"created_at"</span>, <span class="hljs-meta-string">"updated_at"</span></span>]
+</code></pre>
+<p>The console autoloads, the test suite autoloads, and of course the application
+autoloads.</p>
+<p>By default, Rails eager loads the application files when it boots in production
+mode, so most of the autoloading going on in development does not happen. But
+autoloading may still be triggered during eager loading.</p>
+<p>For example, given</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BeachHouse</span> &lt; House</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>if <code>House</code> is still unknown when <code>app/models/beach_house.rb</code> is being eager
+loaded, Rails autoloads it.</p>
+<h2><a class="anchor" aria-hidden="true" id="autoload_paths-and-eager_load_paths"></a><a href="#autoload_paths-and-eager_load_paths" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>autoload_paths and eager_load_paths</h2>
+<p>As you probably know, when <code>require</code> gets a relative file name:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'erb'</span>
+</code></pre>
+<p>Ruby looks for the file in the directories listed in <code>$LOAD_PATH</code>. That is, Ruby
+iterates over all its directories and for each one of them checks whether they
+have a file called &quot;erb.rb&quot;, or &quot;erb.so&quot;, or &quot;erb.o&quot;, or &quot;erb.dll&quot;. If it finds
+any of them, the interpreter loads it and ends the search. Otherwise, it tries
+again in the next directory of the list. If the list gets exhausted, <code>LoadError</code>
+is raised.</p>
+<p>We are going to cover how constant autoloading works in more detail later, but
+the idea is that when a constant like <code>Post</code> is hit and missing, if there's a
+<code>post.rb</code> file for example in <code>app/models</code> Rails is going to find it, evaluate
+it, and have <code>Post</code> defined as a side-effect.</p>
+<p>All right, Rails has a collection of directories similar to <code>$LOAD_PATH</code> in which
+to look up <code>post.rb</code>. That collection is called <code>autoload_paths</code> and by
+default it contains:</p>
+<ul>
+<li><p>All subdirectories of <code>app</code> in the application and engines present at boot
+time. For example, <code>app/controllers</code>. They do not need to be the default
+ones, any custom directories like <code>app/workers</code> belong automatically to
+<code>autoload_paths</code>.</p></li>
+<li><p>Any existing second level directories called <code>app/*/concerns</code> in the
+application and engines.</p></li>
+<li><p>The directory <code>test/mailers/previews</code>.</p></li>
+</ul>
+<p><code>eager_load_paths</code> is initially the <code>app</code> paths above</p>
+<p>How files are autoloaded depends on <code>eager_load</code> and <code>cache_classes</code> config settings which typically vary in development, production, and test modes:</p>
+<ul>
+<li>In <strong>development</strong>, you want quicker startup with incremental loading of application code.  So <code>eager_load</code> should be set to <code>false</code>, and Rails will autoload files as needed (see <a href="#autoloading-algorithms">Autoloading Algorithms</a> below) -- and then reload them when they change (see <a href="#constant-reloading">Constant Reloading</a> below).</li>
+<li>In <strong>production</strong>, however, you want consistency and thread-safety and can live with a longer boot time. So <code>eager_load</code> is set to <code>true</code>, and then during boot (before the app is ready to receive requests) Rails loads all files in the <code>eager_load_paths</code>  and then turns off auto loading (NB: autoloading may be needed during eager loading). Not autoloading after boot is a <code>good thing</code>, as autoloading can cause the app to be have thread-safety problems.</li>
+<li>In <strong>test</strong>, for speed of execution (of individual tests) <code>eager_load</code> is <code>false</code>, so Rails follows development behaviour.</li>
+</ul>
+<p>What is described above are the defaults with a newly generated Rails app. There are multiple ways this can be configured differently (see <a href="configuring.html#rails-general-configuration">Configuring Rails Applications</a>.
+). But using <code>autoload_paths</code> on its own  in the past (before Rails 5) developers might configure <code>autoload_paths</code> to add in extra locations (e.g. <code>lib</code> which used to be an autoload path list years ago, but no longer is).  However this is now discouraged for most purposes, as it is likely to lead to production-only errors. It is possible to add new locations to both <code>config.eager_load_paths</code> and <code>config.autoload_paths</code> but use at your own risk.</p>
+<p>See also <a href="#autoloading-in-the-test-environment">Autoloading in the Test Environment</a>.</p>
+<p><code>config.autoload_paths</code> is not changeable from environment-specific configuration files.</p>
+<p>The value of <code>autoload_paths</code> can be inspected. In a just-generated application
+it is (edited):</p>
+<pre><code class="hljs">$ rails r <span class="hljs-string">'puts ActiveSupport::Dependencies.autoload_paths'</span>
+...<span class="hljs-regexp">/app/</span>assets
+...<span class="hljs-regexp">/app/</span>channels
+...<span class="hljs-regexp">/app/</span>controllers
+...<span class="hljs-regexp">/app/</span>controllers/concerns
+...<span class="hljs-regexp">/app/</span>helpers
+...<span class="hljs-regexp">/app/</span>jobs
+...<span class="hljs-regexp">/app/</span>mailers
+...<span class="hljs-regexp">/app/</span>models
+...<span class="hljs-regexp">/app/</span>models/concerns
+...<span class="hljs-regexp">/activestorage/</span>app/assets
+...<span class="hljs-regexp">/activestorage/</span>app/controllers
+...<span class="hljs-regexp">/activestorage/</span>app/javascript
+...<span class="hljs-regexp">/activestorage/</span>app/jobs
+...<span class="hljs-regexp">/activestorage/</span>app/models
+...<span class="hljs-regexp">/actioncable/</span>app/assets
+...<span class="hljs-regexp">/actionview/</span>app/assets
+...<span class="hljs-regexp">/test/</span>mailers/previews
+</code></pre>
+<p>INFO. <code>autoload_paths</code> is computed and cached during the initialization process.
+The application needs to be restarted to reflect any changes in the directory
+structure.</p>
+<h2><a class="anchor" aria-hidden="true" id="autoloading-algorithms"></a><a href="#autoloading-algorithms" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Autoloading Algorithms</h2>
+<h3><a class="anchor" aria-hidden="true" id="relative-references"></a><a href="#relative-references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relative References</h3>
+<p>A relative constant reference may appear in several places, for example, in</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostsController</span> &lt; ApplicationController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+    @posts = Post.all
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>all three constant references are relative.</p>
+<h4><a class="anchor" aria-hidden="true" id="constants-after-the-class-and-module-keywords"></a><a href="#constants-after-the-class-and-module-keywords" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Constants after the <code>class</code> and <code>module</code> Keywords</h4>
+<p>Ruby performs a lookup for the constant that follows a <code>class</code> or <code>module</code>
+keyword because it needs to know if the class or module is going to be created
+or reopened.</p>
+<p>If the constant is not defined at that point it is not considered to be a
+missing constant, autoloading is <strong>not</strong> triggered.</p>
+<p>So, in the previous example, if <code>PostsController</code> is not defined when the file
+is interpreted Rails autoloading is not going to be triggered, Ruby will just
+define the controller.</p>
+<h4><a class="anchor" aria-hidden="true" id="top-level-constants"></a><a href="#top-level-constants" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Top-Level Constants</h4>
+<p>On the contrary, if <code>ApplicationController</code> is unknown, the constant is
+considered missing and an autoload is going to be attempted by Rails.</p>
+<p>In order to load <code>ApplicationController</code>, Rails iterates over <code>autoload_paths</code>.
+First it checks if <code>app/assets/application_controller.rb</code> exists. If it does not,
+which is normally the case, it continues and finds
+<code>app/controllers/application_controller.rb</code>.</p>
+<p>If the file defines the constant <code>ApplicationController</code> all is fine, otherwise
+<code>LoadError</code> is raised:</p>
+<pre><code class="hljs">unable <span class="hljs-keyword">to</span> autoload constant ApplicationController, expected
+&lt;<span class="hljs-literal">full</span> path <span class="hljs-keyword">to</span> application_controller.rb&gt; <span class="hljs-keyword">to</span> <span class="hljs-class"><span class="hljs-keyword">define</span> <span class="hljs-title">it</span> </span>(LoadError)
+</code></pre>
+<p>INFO. Rails does not require the value of autoloaded constants to be a class or
+module object. For example, if the file <code>app/models/max_clients.rb</code> defines
+<code>MAX_CLIENTS = 100</code> autoloading <code>MAX_CLIENTS</code> works just fine.</p>
+<h4><a class="anchor" aria-hidden="true" id="namespaces"></a><a href="#namespaces" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Namespaces</h4>
+<p>Autoloading <code>ApplicationController</code> looks directly under the directories of
+<code>autoload_paths</code> because the nesting in that spot is empty. The situation of
+<code>Post</code> is different, the nesting in that line is <code>[PostsController]</code> and support
+for namespaces comes into play.</p>
+<p>The basic idea is that given</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Admin</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BaseController</span> &lt; ApplicationController</span>
+    @@all_roles = Role.all
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>to autoload <code>Role</code> we are going to check if it is defined in the current or
+parent namespaces, one at a time. So, conceptually we want to try to autoload
+any of</p>
+<pre><code class="hljs">Admin::BaseController::<span class="hljs-keyword">Role</span>
+<span class="hljs-title">Admin</span>::<span class="hljs-keyword">Role</span>
+<span class="hljs-title">Role</span>
+</code></pre>
+<p>in that order. That's the idea. To do so, Rails looks in <code>autoload_paths</code>
+respectively for file names like these:</p>
+<pre><code class="hljs">admin/base_controller/role<span class="hljs-selector-class">.rb</span>
+admin/role<span class="hljs-selector-class">.rb</span>
+role<span class="hljs-selector-class">.rb</span>
+</code></pre>
+<p>modulus some additional directory lookups we are going to cover soon.</p>
+<p>INFO. <code>'Constant::Name'.underscore</code> gives the relative path without extension of
+the file name where <code>Constant::Name</code> is expected to be defined.</p>
+<p>Let's see how Rails autoloads the <code>Post</code> constant in the <code>PostsController</code>
+above assuming the application has a <code>Post</code> model defined in
+<code>app/models/post.rb</code>.</p>
+<p>First it checks for <code>posts_controller/post.rb</code> in <code>autoload_paths</code>:</p>
+<pre><code class="hljs"><span class="hljs-keyword">app</span>/assets/posts_controller/<span class="hljs-keyword">post</span>.rb
+<span class="hljs-keyword">app</span>/controllers/posts_controller/<span class="hljs-keyword">post</span>.rb
+<span class="hljs-keyword">app</span>/helpers/posts_controller/<span class="hljs-keyword">post</span>.rb
+...
+<span class="hljs-keyword">test</span>/mailers/previews/posts_controller/<span class="hljs-keyword">post</span>.rb
+</code></pre>
+<p>Since the lookup is exhausted without success, a similar search for a directory
+is performed, we are going to see why in the <a href="#automatic-modules">next section</a>:</p>
+<pre><code class="hljs"><span class="hljs-keyword">app</span>/assets/posts_controller/<span class="hljs-keyword">post</span>
+<span class="hljs-keyword">app</span>/controllers/posts_controller/<span class="hljs-keyword">post</span>
+<span class="hljs-keyword">app</span>/helpers/posts_controller/<span class="hljs-keyword">post</span>
+...
+<span class="hljs-keyword">test</span>/mailers/previews/posts_controller/<span class="hljs-keyword">post</span>
+</code></pre>
+<p>If all those attempts fail, then Rails starts the lookup again in the parent
+namespace. In this case only the top-level remains:</p>
+<pre><code class="hljs"><span class="hljs-keyword">app</span>/assets/<span class="hljs-keyword">post</span>.rb
+<span class="hljs-keyword">app</span>/controllers/<span class="hljs-keyword">post</span>.rb
+<span class="hljs-keyword">app</span>/helpers/<span class="hljs-keyword">post</span>.rb
+<span class="hljs-keyword">app</span>/mailers/<span class="hljs-keyword">post</span>.rb
+<span class="hljs-keyword">app</span>/models/<span class="hljs-keyword">post</span>.rb
+</code></pre>
+<p>A matching file is found in <code>app/models/post.rb</code>. The lookup stops there and the
+file is loaded. If the file actually defines <code>Post</code> all is fine, otherwise
+<code>LoadError</code> is raised.</p>
+<h3><a class="anchor" aria-hidden="true" id="qualified-references"></a><a href="#qualified-references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Qualified References</h3>
+<p>When a qualified constant is missing Rails does not look for it in the parent
+namespaces. But there is a caveat: when a constant is missing, Rails is
+unable to tell if the trigger was a relative reference or a qualified one.</p>
+<p>For example, consider</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Admin</span></span>
+  User
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>and</p>
+<pre><code class="hljs css language-ruby">Admin::User
+</code></pre>
+<p>If <code>User</code> is missing, in either case all Rails knows is that a constant called
+&quot;User&quot; was missing in a module called &quot;Admin&quot;.</p>
+<p>If there is a top-level <code>User</code> Ruby would resolve it in the former example, but
+wouldn't in the latter. In general, Rails does not emulate the Ruby constant
+resolution algorithms, but in this case it tries using the following heuristic:</p>
+<blockquote>
+<p>If none of the parent namespaces of the class or module has the missing
+constant then Rails assumes the reference is relative. Otherwise qualified.</p>
+</blockquote>
+<p>For example, if this code triggers autoloading</p>
+<pre><code class="hljs css language-ruby">Admin::User
+</code></pre>
+<p>and the <code>User</code> constant is already present in <code>Object</code>, it is not possible that
+the situation is</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Admin</span></span>
+  User
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>because otherwise Ruby would have resolved <code>User</code> and no autoloading would have
+been triggered in the first place. Thus, Rails assumes a qualified reference and
+considers the file <code>admin/user.rb</code> and directory <code>admin/user</code> to be the only
+valid options.</p>
+<p>In practice, this works quite well as long as the nesting matches all parent
+namespaces respectively and the constants that make the rule apply are known at
+that time.</p>
+<p>However, autoloading happens on demand. If by chance the top-level <code>User</code> was
+not yet loaded, then Rails assumes a relative reference by contract.</p>
+<p>Naming conflicts of this kind are rare in practice, but if one occurs,
+<code>require_dependency</code> provides a solution by ensuring that the constant needed
+to trigger the heuristic is defined in the conflicting place.</p>
+<h3><a class="anchor" aria-hidden="true" id="automatic-modules"></a><a href="#automatic-modules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Automatic Modules</h3>
+<p>When a module acts as a namespace, Rails does not require the application to
+define a file for it, a directory matching the namespace is enough.</p>
+<p>Suppose an application has a back office whose controllers are stored in
+<code>app/controllers/admin</code>. If the <code>Admin</code> module is not yet loaded when
+<code>Admin::UsersController</code> is hit, Rails needs first to autoload the constant
+<code>Admin</code>.</p>
+<p>If <code>autoload_paths</code> has a file called <code>admin.rb</code> Rails is going to load that
+one, but if there's no such file and a directory called <code>admin</code> is found, Rails
+creates an empty module and assigns it to the <code>Admin</code> constant on the fly.</p>
+<h3><a class="anchor" aria-hidden="true" id="generic-procedure"></a><a href="#generic-procedure" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generic Procedure</h3>
+<p>Relative references are reported to be missing in the cref where they were hit,
+and qualified references are reported to be missing in their parent (see
+<a href="#resolution-algorithm-for-relative-constants">Resolution Algorithm for Relative
+Constants</a> at the beginning of
+this guide for the definition of <em>cref</em>, and <a href="#resolution-algorithm-for-qualified-constants">Resolution Algorithm for Qualified
+Constants</a> for the definition of
+<em>parent</em>).</p>
+<p>The procedure to autoload constant <code>C</code> in an arbitrary situation is as follows:</p>
+<pre><code class="hljs"><span class="hljs-keyword">if</span> the <span class="hljs-keyword">class</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">module</span> <span class="hljs-keyword">in</span> which C <span class="hljs-keyword">is</span> missing <span class="hljs-keyword">is</span> <span class="hljs-built_in">Object</span>
+  <span class="hljs-keyword">let</span> ns = <span class="hljs-comment">''</span>
+<span class="hljs-keyword">else</span>
+  <span class="hljs-keyword">let</span> M = the <span class="hljs-keyword">class</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">module</span> <span class="hljs-keyword">in</span> which C <span class="hljs-keyword">is</span> missing
+
+  <span class="hljs-keyword">if</span> M <span class="hljs-keyword">is</span> anonymous
+    <span class="hljs-keyword">let</span> ns = <span class="hljs-comment">''</span>
+  <span class="hljs-keyword">else</span>
+    <span class="hljs-keyword">let</span> ns = M.name
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">loop</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-meta"># Look for a regular file.</span>
+  <span class="hljs-keyword">for</span> dir <span class="hljs-keyword">in</span> autoload_paths
+    <span class="hljs-keyword">if</span> the file <span class="hljs-string">"#{dir}/#{ns.underscore}/c.rb"</span> exists
+      load/require <span class="hljs-string">"#{dir}/#{ns.underscore}/c.rb"</span>
+
+      <span class="hljs-keyword">if</span> C <span class="hljs-keyword">is</span> now defined
+        <span class="hljs-keyword">return</span>
+      <span class="hljs-keyword">else</span>
+        raise LoadError
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-meta"># Look for an automatic module.</span>
+  <span class="hljs-keyword">for</span> dir <span class="hljs-keyword">in</span> autoload_paths
+    <span class="hljs-keyword">if</span> the directory <span class="hljs-string">"#{dir}/#{ns.underscore}/c"</span> exists
+      <span class="hljs-keyword">if</span> ns <span class="hljs-keyword">is</span> an empty <span class="hljs-built_in">string</span>
+        <span class="hljs-keyword">let</span> C = <span class="hljs-keyword">Module</span>.<span class="hljs-keyword">new</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">Object</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">return</span>
+      <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">let</span> C = <span class="hljs-keyword">Module</span>.<span class="hljs-keyword">new</span> <span class="hljs-keyword">in</span> ns.constantize <span class="hljs-keyword">and</span> <span class="hljs-keyword">return</span>
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-keyword">if</span> ns <span class="hljs-keyword">is</span> empty
+    <span class="hljs-meta"># We reached the top-level without finding the constant.</span>
+    raise NameError
+  <span class="hljs-keyword">else</span>
+    <span class="hljs-keyword">if</span> C exists <span class="hljs-keyword">in</span> any <span class="hljs-keyword">of</span> the parent namespaces
+      <span class="hljs-meta"># Qualified constants heuristic.</span>
+      raise NameError
+    <span class="hljs-keyword">else</span>
+      <span class="hljs-meta"># Try again in the parent namespace.</span>
+      <span class="hljs-keyword">let</span> ns = the parent <span class="hljs-keyword">namespace</span> <span class="hljs-keyword">of</span> ns <span class="hljs-keyword">and</span> retry
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="require_dependency"></a><a href="#require_dependency" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>require_dependency</h2>
+<p>Constant autoloading is triggered on demand and therefore code that uses a
+certain constant may have it already defined or may trigger an autoload. That
+depends on the execution path and it may vary between runs.</p>
+<p>There are times, however, in which you want to make sure a certain constant is
+known when the execution reaches some code. <code>require_dependency</code> provides a way
+to load a file using the current <a href="#loading-mechanism">loading mechanism</a>, and
+keeping track of constants defined in that file as if they were autoloaded to
+have them reloaded as needed.</p>
+<p><code>require_dependency</code> is rarely needed, but see a couple of use cases in
+<a href="#autoloading-and-sti">Autoloading and STI</a> and <a href="#when-constants-aren-t-missed">When Constants aren't
+Triggered</a>.</p>
+<p>WARNING. Unlike autoloading, <code>require_dependency</code> does not expect the file to
+define any particular constant. Exploiting this behavior would be a bad practice
+though, file and constant paths should match.</p>
+<h2><a class="anchor" aria-hidden="true" id="constant-reloading"></a><a href="#constant-reloading" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Constant Reloading</h2>
+<p>When <code>config.cache_classes</code> is false Rails is able to reload autoloaded
+constants.</p>
+<p>For example, if you're in a console session and edit some file behind the
+scenes, the code can be reloaded with the <code>reload!</code> command:</p>
+<pre><code class="hljs"><span class="hljs-quote">&gt; reload!</span>
+</code></pre>
+<p>When the application runs, code is reloaded when something relevant to this
+logic changes. In order to do that, Rails monitors a number of things:</p>
+<ul>
+<li><p><code>config/routes.rb</code>.</p></li>
+<li><p>Locales.</p></li>
+<li><p>Ruby files under <code>autoload_paths</code>.</p></li>
+<li><p><code>db/schema.rb</code> and <code>db/structure.sql</code>.</p></li>
+</ul>
+<p>If anything in there changes, there is a middleware that detects it and reloads
+the code.</p>
+<p>Autoloading keeps track of autoloaded constants. Reloading is implemented by
+removing them all from their respective classes and modules using
+<code>Module#remove_const</code>. That way, when the code goes on, those constants are
+going to be unknown again, and files reloaded on demand.</p>
+<p>INFO. This is an all-or-nothing operation, Rails does not attempt to reload only
+what changed since dependencies between classes makes that really tricky.
+Instead, everything is wiped.</p>
+<h2><a class="anchor" aria-hidden="true" id="module-autoload-isn-t-involved"></a><a href="#module-autoload-isn-t-involved" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Module#autoload isn't Involved</h2>
+<p><code>Module#autoload</code> provides a lazy way to load constants that is fully integrated
+with the Ruby constant lookup algorithms, dynamic constant API, etc. It is quite
+transparent.</p>
+<p>Rails internals make extensive use of it to defer as much work as possible from
+the boot process. But constant autoloading in Rails is <strong>not</strong> implemented with
+<code>Module#autoload</code>.</p>
+<p>One possible implementation based on <code>Module#autoload</code> would be to walk the
+application tree and issue <code>autoload</code> calls that map existing file names to
+their conventional constant name.</p>
+<p>There are a number of reasons that prevent Rails from using that implementation.</p>
+<p>For example, <code>Module#autoload</code> is only capable of loading files using <code>require</code>,
+so reloading would not be possible. Not only that, it uses an internal <code>require</code>
+which is not <code>Kernel#require</code>.</p>
+<p>Then, it provides no way to remove declarations in case a file is deleted. If a
+constant gets removed with <code>Module#remove_const</code> its <code>autoload</code> is not triggered
+again. Also, it doesn't support qualified names, so files with namespaces should
+be interpreted during the walk tree to install their own <code>autoload</code> calls, but
+those files could have constant references not yet configured.</p>
+<p>An implementation based on <code>Module#autoload</code> would be awesome but, as you see,
+at least as of today it is not possible. Constant autoloading in Rails is
+implemented with <code>Module#const_missing</code>, and that's why it has its own contract,
+documented in this guide.</p>
+<h2><a class="anchor" aria-hidden="true" id="common-gotchas"></a><a href="#common-gotchas" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Common Gotchas</h2>
+<h3><a class="anchor" aria-hidden="true" id="nesting-and-qualified-constants"></a><a href="#nesting-and-qualified-constants" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Nesting and Qualified Constants</h3>
+<p>Let's consider</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Admin</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsersController</span> &lt; ApplicationController</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+      @users = User.all
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>and</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Admin::UsersController</span> &lt; ApplicationController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+    @users = User.all
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>To resolve <code>User</code> Ruby checks <code>Admin</code> in the former case, but it does not in
+the latter because it does not belong to the nesting (see <a href="#nesting">Nesting</a>
+and <a href="#resolution-algorithms">Resolution Algorithms</a>).</p>
+<p>Unfortunately Rails autoloading does not know the nesting in the spot where the
+constant was missing and so it is not able to act as Ruby would. In particular,
+<code>Admin::User</code> will get autoloaded in either case.</p>
+<p>Albeit qualified constants with <code>class</code> and <code>module</code> keywords may technically
+work with autoloading in some cases, it is preferable to use relative constants
+instead:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Admin</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsersController</span> &lt; ApplicationController</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+      @users = User.all
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="autoloading-and-sti"></a><a href="#autoloading-and-sti" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Autoloading and STI</h3>
+<p>Single Table Inheritance (STI) is a feature of Active Record that enables
+storing a hierarchy of models in one single table. The API of such models is
+aware of the hierarchy and encapsulates some common needs. For example, given
+these classes:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># app/models/polygon.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Polygon</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/triangle.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Triangle</span> &lt; Polygon</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/rectangle.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Rectangle</span> &lt; Polygon</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p><code>Triangle.create</code> creates a row that represents a triangle, and
+<code>Rectangle.create</code> creates a row that represents a rectangle. If <code>id</code> is the
+ID of an existing record, <code>Polygon.find(id)</code> returns an object of the correct
+type.</p>
+<p>Methods that operate on collections are also aware of the hierarchy. For
+example, <code>Polygon.all</code> returns all the records of the table, because all
+rectangles and triangles are polygons. Active Record takes care of returning
+instances of their corresponding class in the result set.</p>
+<p>Types are autoloaded as needed. For example, if <code>Polygon.first</code> is a rectangle
+and <code>Rectangle</code> has not yet been loaded, Active Record autoloads it and the
+record is correctly instantiated.</p>
+<p>All good, but if instead of performing queries based on the root class we need
+to work on some subclass, things get interesting.</p>
+<p>While working with <code>Polygon</code> you do not need to be aware of all its descendants,
+because anything in the table is by definition a polygon, but when working with
+subclasses Active Record needs to be able to enumerate the types it is looking
+for. Let's see an example.</p>
+<p><code>Rectangle.all</code> only loads rectangles by adding a type constraint to the query:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-string">"polygons"</span>.* <span class="hljs-keyword">FROM</span> <span class="hljs-string">"polygons"</span>
+<span class="hljs-keyword">WHERE</span> <span class="hljs-string">"polygons"</span>.<span class="hljs-string">"type"</span> <span class="hljs-keyword">IN</span> (<span class="hljs-string">"Rectangle"</span>)
+</code></pre>
+<p>Let's introduce now a subclass of <code>Rectangle</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># app/models/square.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Square</span> &lt; Rectangle</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p><code>Rectangle.all</code> should now return rectangles <strong>and</strong> squares:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-string">"polygons"</span>.* <span class="hljs-keyword">FROM</span> <span class="hljs-string">"polygons"</span>
+<span class="hljs-keyword">WHERE</span> <span class="hljs-string">"polygons"</span>.<span class="hljs-string">"type"</span> <span class="hljs-keyword">IN</span> (<span class="hljs-string">"Rectangle"</span>, <span class="hljs-string">"Square"</span>)
+</code></pre>
+<p>But there's a caveat here: How does Active Record know that the class <code>Square</code>
+exists at all?</p>
+<p>Even if the file <code>app/models/square.rb</code> exists and defines the <code>Square</code> class,
+if no code yet used that class, <code>Rectangle.all</code> issues the query</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-string">"polygons"</span>.* <span class="hljs-keyword">FROM</span> <span class="hljs-string">"polygons"</span>
+<span class="hljs-keyword">WHERE</span> <span class="hljs-string">"polygons"</span>.<span class="hljs-string">"type"</span> <span class="hljs-keyword">IN</span> (<span class="hljs-string">"Rectangle"</span>)
+</code></pre>
+<p>That is not a bug, the query includes all <em>known</em> descendants of <code>Rectangle</code>.</p>
+<p>A way to ensure this works correctly regardless of the order of execution is to
+manually load the direct subclasses at the bottom of the file that defines each
+intermediate class:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># app/models/rectangle.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Rectangle</span> &lt; Polygon</span>
+<span class="hljs-keyword">end</span>
+require_dependency <span class="hljs-string">'square'</span>
+</code></pre>
+<p>This needs to happen for every intermediate (non-root and non-leaf) class. The
+root class does not scope the query by type, and therefore does not necessarily
+have to know all its descendants.</p>
+<h3><a class="anchor" aria-hidden="true" id="autoloading-and-require"></a><a href="#autoloading-and-require" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Autoloading and <code>require</code></h3>
+<p>Files defining constants to be autoloaded should never be <code>require</code>d:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'user'</span> <span class="hljs-comment"># DO NOT DO THIS</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsersController</span> &lt; ApplicationController</span>
+  ...
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>There are two possible gotchas here in development mode:</p>
+<ol>
+<li><p>If <code>User</code> is autoloaded before reaching the <code>require</code>, <code>app/models/user.rb</code>
+runs again because <code>load</code> does not update <code>$LOADED_FEATURES</code>.</p></li>
+<li><p>If the <code>require</code> runs first Rails does not mark <code>User</code> as an autoloaded
+constant and changes to <code>app/models/user.rb</code> aren't reloaded.</p></li>
+</ol>
+<p>Just follow the flow and use constant autoloading always, never mix
+autoloading and <code>require</code>. As a last resort, if some file absolutely needs to
+load a certain file use <code>require_dependency</code> to play nice with constant
+autoloading. This option is rarely needed in practice, though.</p>
+<p>Of course, using <code>require</code> in autoloaded files to load ordinary 3rd party
+libraries is fine, and Rails is able to distinguish their constants, they are
+not marked as autoloaded.</p>
+<h3><a class="anchor" aria-hidden="true" id="autoloading-and-initializers"></a><a href="#autoloading-and-initializers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Autoloading and Initializers</h3>
+<p>Consider this assignment in <code>config/initializers/set_auth_service.rb</code>:</p>
+<pre><code class="hljs css language-ruby">AUTH_SERVICE = <span class="hljs-keyword">if</span> Rails.env.production?
+  RealAuthService
+<span class="hljs-keyword">else</span>
+  MockedAuthService
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The purpose of this setup would be that the application uses the class that
+corresponds to the environment via <code>AUTH_SERVICE</code>. In development mode
+<code>MockedAuthService</code> gets autoloaded when the initializer runs. Let's suppose
+we do some requests, change its implementation, and hit the application again.
+To our surprise the changes are not reflected. Why?</p>
+<p>As <a href="#constant-reloading">we saw earlier</a>, Rails removes autoloaded constants,
+but <code>AUTH_SERVICE</code> stores the original class object. Stale, non-reachable
+using the original constant, but perfectly functional.</p>
+<p>The following code summarizes the situation:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">quack</span></span>
+    <span class="hljs-string">'quack!'</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+X = C
+Object.instance_eval { remove_const(<span class="hljs-symbol">:C</span>) }
+X.new.quack <span class="hljs-comment"># =&gt; quack!</span>
+X.name      <span class="hljs-comment"># =&gt; C</span>
+C           <span class="hljs-comment"># =&gt; uninitialized constant C (NameError)</span>
+</code></pre>
+<p>Because of that, it is not a good idea to autoload constants on application
+initialization.</p>
+<p>In the case above we could implement a dynamic access point:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># app/models/auth_service.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AuthService</span></span>
+  <span class="hljs-keyword">if</span> Rails.env.production?
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">self</span>.<span class="hljs-title">instance</span></span>
+      RealAuthService
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">else</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">self</span>.<span class="hljs-title">instance</span></span>
+      MockedAuthService
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>and have the application use <code>AuthService.instance</code> instead. <code>AuthService</code>
+would be loaded on demand and be autoload-friendly.</p>
+<h3><a class="anchor" aria-hidden="true" id="require_dependency-and-initializers"></a><a href="#require_dependency-and-initializers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>require_dependency</code> and Initializers</h3>
+<p>As we saw before, <code>require_dependency</code> loads files in an autoloading-friendly
+way. Normally, though, such a call does not make sense in an initializer.</p>
+<p>One could think about doing some <a href="#require-dependency"><code>require_dependency</code></a>
+calls in an initializer to make sure certain constants are loaded upfront, for
+example as an attempt to address the <a href="#autoloading-and-sti">gotcha with STIs</a>.</p>
+<p>Problem is, in development mode <a href="#constant-reloading">autoloaded constants are wiped</a>
+if there is any relevant change in the file system. If that happens then
+we are in the very same situation the initializer wanted to avoid!</p>
+<p>Calls to <code>require_dependency</code> have to be strategically written in autoloaded
+spots.</p>
+<h3><a class="anchor" aria-hidden="true" id="when-constants-aren-t-missed"></a><a href="#when-constants-aren-t-missed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>When Constants aren't Missed</h3>
+<h4><a class="anchor" aria-hidden="true" id="relative-references-1"></a><a href="#relative-references-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relative References</h4>
+<p>Let's consider a flight simulator. The application has a default flight model</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># app/models/flight_model.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FlightModel</span></span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>that can be overridden by each airplane, for instance</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># app/models/bell_x1/flight_model.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">BellX1</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FlightModel</span> &lt; FlightModel</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/bell_x1/aircraft.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">BellX1</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Aircraft</span></span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>
+      @flight_model = FlightModel.new
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The initializer wants to create a <code>BellX1::FlightModel</code> and nesting has
+<code>BellX1</code>, that looks good. But if the default flight model is loaded and the
+one for the Bell-X1 is not, the interpreter is able to resolve the top-level
+<code>FlightModel</code> and autoloading is thus not triggered for <code>BellX1::FlightModel</code>.</p>
+<p>That code depends on the execution path.</p>
+<p>These kind of ambiguities can often be resolved using qualified constants:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">BellX1</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Plane</span></span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">flight_model</span></span>
+      @flight_model <span class="hljs-params">||</span>= BellX1::FlightModel.new
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Also, <code>require_dependency</code> is a solution:</p>
+<pre><code class="hljs css language-ruby">require_dependency <span class="hljs-string">'bell_x1/flight_model'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">BellX1</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Plane</span></span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">flight_model</span></span>
+      @flight_model <span class="hljs-params">||</span>= FlightModel.new
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="qualified-references-1"></a><a href="#qualified-references-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Qualified References</h4>
+<p>WARNING. This gotcha is only possible in Ruby &lt; 2.5.</p>
+<p>Given</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># app/models/hotel.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hotel</span></span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/image.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Image</span></span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/hotel/image.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hotel</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Image</span> &lt; Image</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>the expression <code>Hotel::Image</code> is ambiguous because it depends on the execution
+path.</p>
+<p>As <a href="#resolution-algorithm-for-qualified-constants">we saw before</a>, Ruby looks
+up the constant in <code>Hotel</code> and its ancestors. If <code>app/models/image.rb</code> has
+been loaded but <code>app/models/hotel/image.rb</code> hasn't, Ruby does not find <code>Image</code>
+in <code>Hotel</code>, but it does in <code>Object</code>:</p>
+<pre><code class="hljs"><span class="hljs-variable">$ </span>rails r <span class="hljs-string">'Image; p Hotel::Image'</span> <span class="hljs-number">2</span>&gt;<span class="hljs-regexp">/dev/null</span>
+Image <span class="hljs-comment"># NOT Hotel::Image!</span>
+</code></pre>
+<p>The code evaluating <code>Hotel::Image</code> needs to make sure
+<code>app/models/hotel/image.rb</code> has been loaded, possibly with
+<code>require_dependency</code>.</p>
+<p>In these cases the interpreter issues a warning though:</p>
+<pre><code class="hljs"><span class="hljs-built_in">warning</span>: toplevel <span class="hljs-keyword">constant</span> Image referenced <span class="hljs-keyword">by</span> Hotel::Image
+</code></pre>
+<p>This surprising constant resolution can be observed with any qualifying class:</p>
+<pre><code class="hljs"><span class="hljs-number">2.1</span>.<span class="hljs-number">5</span> :<span class="hljs-number">001</span> &gt; <span class="hljs-built_in">String</span>::<span class="hljs-keyword">Array</span>
+(irb):<span class="hljs-number">1</span>: <span class="hljs-literal">warning</span>: toplevel <span class="hljs-keyword">constant</span> <span class="hljs-keyword">Array</span> referenced by <span class="hljs-built_in">String</span>::<span class="hljs-keyword">Array</span>
+ =&gt; <span class="hljs-keyword">Array</span>
+</code></pre>
+<p>WARNING. To find this gotcha the qualifying namespace has to be a class,
+<code>Object</code> is not an ancestor of modules.</p>
+<h3><a class="anchor" aria-hidden="true" id="autoloading-within-singleton-classes"></a><a href="#autoloading-within-singleton-classes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Autoloading within Singleton Classes</h3>
+<p>Let's suppose we have these class definitions:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># app/models/hotel/services.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Hotel</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Services</span></span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/hotel/geo_location.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Hotel</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GeoLocation</span></span>
+    <span class="hljs-class"><span class="hljs-keyword">class</span> &lt;&lt; self</span>
+      Services
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If <code>Hotel::Services</code> is known by the time <code>app/models/hotel/geo_location.rb</code>
+is being loaded, <code>Services</code> is resolved by Ruby because <code>Hotel</code> belongs to the
+nesting when the singleton class of <code>Hotel::GeoLocation</code> is opened.</p>
+<p>But if <code>Hotel::Services</code> is not known, Rails is not able to autoload it, the
+application raises <code>NameError</code>.</p>
+<p>The reason is that autoloading is triggered for the singleton class, which is
+anonymous, and as <a href="#generic-procedure">we saw before</a>, Rails only checks the
+top-level namespace in that edge case.</p>
+<p>An easy solution to this caveat is to qualify the constant:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Hotel</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GeoLocation</span></span>
+    <span class="hljs-class"><span class="hljs-keyword">class</span> &lt;&lt; self</span>
+      Hotel::Services
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="autoloading-in-basicobject"></a><a href="#autoloading-in-basicobject" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Autoloading in <code>BasicObject</code></h3>
+<p>Direct descendants of <code>BasicObject</code> do not have <code>Object</code> among their ancestors
+and cannot resolve top-level constants:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> &lt; BasicObject</span>
+  String <span class="hljs-comment"># NameError: uninitialized constant C::String</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>When autoloading is involved that plot has a twist. Let's consider:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> &lt; BasicObject</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">user</span></span>
+    User <span class="hljs-comment"># WRONG</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Since Rails checks the top-level namespace <code>User</code> gets autoloaded just fine the
+first time the <code>user</code> method is invoked. You only get the exception if the
+<code>User</code> constant is known at that point, in particular in a <em>second</em> call to
+<code>user</code>:</p>
+<pre><code class="hljs css language-ruby">c = C.new
+c.user <span class="hljs-comment"># surprisingly fine, User</span>
+c.user <span class="hljs-comment"># NameError: uninitialized constant C::User</span>
+</code></pre>
+<p>because it detects that a parent namespace already has the constant (see <a href="#autoloading-algorithms-qualified-references">Qualified
+References</a>).</p>
+<p>As with pure Ruby, within the body of a direct descendant of <code>BasicObject</code> use
+always absolute constant paths:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> &lt; BasicObject</span>
+  <span class="hljs-symbol">:</span><span class="hljs-symbol">:String</span> <span class="hljs-comment"># RIGHT</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">user</span></span>
+    <span class="hljs-symbol">:</span><span class="hljs-symbol">:User</span> <span class="hljs-comment"># RIGHT</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="autoloading-in-the-test-environment"></a><a href="#autoloading-in-the-test-environment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Autoloading in the Test Environment</h3>
+<p>When configuring the <code>test</code> environment for autoloading you might consider multiple factors.</p>
+<p>For example it might be worth running your tests with an identical setup to production (<code>config.eager_load = true</code>, <code>config.cache_classes = true</code>) in order to catch any problems before they hit production (this is compensation for the lack of dev-prod parity). However this will slow down the boot time for individual tests on a dev machine (and is not immediately compatible with spring see below). So one possibility is to do this on a
+<a href="https://en.wikipedia.org/wiki/Continuous_integration">CI</a> machine only (which should run without spring).</p>
+<p>On a development machine you can then have your tests running with whatever is fastest (ideally <code>config.eager_load = false</code>).</p>
+<p>With the <a href="https://github.com/rails/spring">Spring</a> pre-loader (included with new Rails apps), you ideally keep <code>config.eager_load = false</code> as per development. Sometimes you may end up with a hybrid configuration (<code>config.eager_load = true</code>, <code>config.cache_classes = true</code> AND <code>config.enable_dependency_loading = true</code>), see <a href="https://github.com/rails/spring/issues/519#issuecomment-348324369">spring issue</a>. However it might be simpler to keep the same configuration as development, and work out whatever it is that is causing autoloading to fail (perhaps by the results of your CI test results).</p>
+<p>Occasionally you may need to explicitly eager_load by using <code>Rails .application.eager_load!</code> in the setup of your tests -- this might occur if your <a href="https://stackoverflow.com/questions/25796409/in-rails-how-can-i-eager-load-all-code-before-a-specific-rspec-test">tests involve multithreading</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="troubleshooting"></a><a href="#troubleshooting" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Troubleshooting</h2>
+<h3><a class="anchor" aria-hidden="true" id="tracing-autoloads"></a><a href="#tracing-autoloads" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tracing Autoloads</h3>
+<p>Active Support is able to report constants as they are autoloaded. To enable these traces in a Rails application, put the following two lines in some initializer:</p>
+<pre><code class="hljs css language-ruby">ActiveSupport::Dependencies.logger = Rails.logger
+ActiveSupport::Dependencies.verbose = <span class="hljs-literal">true</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="where-is-a-given-autoload-triggered"></a><a href="#where-is-a-given-autoload-triggered" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Where is a Given Autoload Triggered?</h3>
+<p>If constant <code>Foo</code> is being autoloaded, and you'd like to know where is that autoload coming from, just throw</p>
+<pre><code class="hljs css language-ruby">puts caller
+</code></pre>
+<p>at the top of <code>foo.rb</code> and inspect the printed stack trace.</p>
+<h3><a class="anchor" aria-hidden="true" id="which-constants-have-been-autoloaded"></a><a href="#which-constants-have-been-autoloaded" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Which Constants Have Been Autoloaded?</h3>
+<p>At any given time,</p>
+<pre><code class="hljs css language-ruby">ActiveSupport::Dependencies.autoloaded_constants
+</code></pre>
+<p>has the collection of constants that have been autoloaded so far.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-7</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/rails/working-with-javascript"><span class="arrow-prev">← </span><span class="function-name-prevnext">Working with JavaScript in Rails</span></a><a class="docs-next button" href="/rails-setup/docs/rails/caching-with-rails"><span>Caching with Rails: An Overview</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#introduction">Introduction</a></li><li><a href="#constants-refresher">Constants Refresher</a><ul class="toc-headings"><li><a href="#nesting">Nesting</a></li><li><a href="#class-and-module-definitions-are-constant-assignments">Class and Module Definitions are Constant Assignments</a></li><li><a href="#constants-are-stored-in-modules">Constants are Stored in Modules</a></li><li><a href="#resolution-algorithms">Resolution Algorithms</a></li></ul></li><li><a href="#vocabulary">Vocabulary</a><ul class="toc-headings"><li><a href="#parent-namespaces">Parent Namespaces</a></li><li><a href="#loading-mechanism">Loading Mechanism</a></li></ul></li><li><a href="#autoloading-availability">Autoloading Availability</a></li><li><a href="#autoload_paths-and-eager_load_paths">autoload_paths and eager_load_paths</a></li><li><a href="#autoloading-algorithms">Autoloading Algorithms</a><ul class="toc-headings"><li><a href="#relative-references">Relative References</a></li><li><a href="#qualified-references">Qualified References</a></li><li><a href="#automatic-modules">Automatic Modules</a></li><li><a href="#generic-procedure">Generic Procedure</a></li></ul></li><li><a href="#require_dependency">require_dependency</a></li><li><a href="#constant-reloading">Constant Reloading</a></li><li><a href="#module-autoload-isn-t-involved">Module#autoload isn't Involved</a></li><li><a href="#common-gotchas">Common Gotchas</a><ul class="toc-headings"><li><a href="#nesting-and-qualified-constants">Nesting and Qualified Constants</a></li><li><a href="#autoloading-and-sti">Autoloading and STI</a></li><li><a href="#autoloading-and-require">Autoloading and <code>require</code></a></li><li><a href="#autoloading-and-initializers">Autoloading and Initializers</a></li><li><a href="#require_dependency-and-initializers"><code>require_dependency</code> and Initializers</a></li><li><a href="#when-constants-aren-t-missed">When Constants aren't Missed</a></li><li><a href="#autoloading-within-singleton-classes">Autoloading within Singleton Classes</a></li><li><a href="#autoloading-in-basicobject">Autoloading in <code>BasicObject</code></a></li><li><a href="#autoloading-in-the-test-environment">Autoloading in the Test Environment</a></li></ul></li><li><a href="#troubleshooting">Troubleshooting</a><ul class="toc-headings"><li><a href="#tracing-autoloads">Tracing Autoloads</a></li><li><a href="#where-is-a-given-autoload-triggered">Where is a Given Autoload Triggered?</a></li><li><a href="#which-constants-have-been-autoloaded">Which Constants Have Been Autoloaded?</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Rails Setup 2019</section></footer></div></body></html>

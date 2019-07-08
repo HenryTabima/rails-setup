@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Test helpers · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Devise includes some test helpers for controller and integration tests.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Test helpers · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;Devise includes some test helpers for controller and integration tests.&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/rails-setup/docs/rails/getting-started" target="_self">Rails</a></li><li class="siteNavGroupActive"><a href="/rails-setup/docs/devise/overview" target="_self">Devise</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Advanced Topics</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">General<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/starting-with-rails">Starting with rails?</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Getting Started<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/controller-filters-and-helpers">Controller filters and helpers</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-models">Configuring Models</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/strong-parameters">Strong Parameters</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-views">Configuring views</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-controllers">Configuring controllers</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-routes">Configuring routes</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Advanced Topics<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/i18n">I18n</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/devise/test-helpers">Test helpers</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/omniauth">OmniAuth</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-multiple-models">Configuring multiple models</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/activejob-integration">ActiveJob integration</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/password-reset-tokens-and-rails-logs">Password reset tokens and Rails logs</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/other-orms">Other ORMs</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/rails-api-mode">Rails API mode</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Guides<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/guides-list">Guides list</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Project<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/extensions">Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/example-applications">Example Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/contributing">Contributing</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/bug-reports">Bug reports</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/additional-information">Additional information</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Test helpers</h1></header><article><div><span><p>Devise includes some test helpers for controller and integration tests.
+In order to use them, you need to include the respective module in your test
+cases/specs.</p>
+<h2><a class="anchor" aria-hidden="true" id="controller-tests"></a><a href="#controller-tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Controller tests</h2>
+<p>Controller tests require that you include <code>Devise::Test::ControllerHelpers</code> on
+your test case or its parent <code>ActionController::TestCase</code> superclass.
+For Rails 5, include <code>Devise::Test::IntegrationHelpers</code> instead, since the superclass
+for controller tests has been changed to ActionDispatch::IntegrationTest
+(for more details, see the <a href="#integration-tests">Integration tests</a> section).</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostsControllerTest</span> &lt; ActionController::TestCase</span>
+  <span class="hljs-keyword">include</span> Devise::Test::ControllerHelpers
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If you're using RSpec, you can put the following inside a file named
+<code>spec/support/devise.rb</code> or in your <code>spec/spec_helper.rb</code> (or
+<code>spec/rails_helper.rb</code> if you are using <code>rspec-rails</code>):</p>
+<pre><code class="hljs css language-ruby">RSpec.configure <span class="hljs-keyword">do</span> <span class="hljs-params">|config|</span>
+  config.<span class="hljs-keyword">include</span> Devise::Test::ControllerHelpers, <span class="hljs-symbol">type:</span> <span class="hljs-symbol">:controller</span>
+  config.<span class="hljs-keyword">include</span> Devise::Test::ControllerHelpers, <span class="hljs-symbol">type:</span> <span class="hljs-symbol">:view</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Just be sure that this inclusion is made <em>after</em> the <code>require 'rspec/rails'</code> directive.</p>
+<p>Now you are ready to use the <code>sign_in</code> and <code>sign_out</code> methods on your controller
+tests:</p>
+<pre><code class="hljs css language-ruby">sign_in @user
+sign_in @user, <span class="hljs-symbol">scope:</span> <span class="hljs-symbol">:admin</span>
+</code></pre>
+<p>If you are testing Devise internal controllers or a controller that inherits
+from Devise's, you need to tell Devise which mapping should be used before a
+request. This is necessary because Devise gets this information from the router,
+but since controller tests do not pass through the router, it needs to be stated
+explicitly. For example, if you are testing the user scope, simply use:</p>
+<pre><code class="hljs css language-ruby">test <span class="hljs-string">'GET new'</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-comment"># Mimic the router behavior of setting the Devise scope through the env.</span>
+  @request.env[<span class="hljs-string">'devise.mapping'</span>] = Devise.mappings[<span class="hljs-symbol">:user</span>]
+
+  <span class="hljs-comment"># Use the sign_in helper to sign in a fixture `User` record.</span>
+  sign_in users(<span class="hljs-symbol">:alice</span>)
+
+  get <span class="hljs-symbol">:new</span>
+
+  <span class="hljs-comment"># assert something</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="integration-tests"></a><a href="#integration-tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Integration tests</h2>
+<p>Integration test helpers are available by including the
+<code>Devise::Test::IntegrationHelpers</code> module.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostsTests</span> &lt; ActionDispatch::IntegrationTest</span>
+  <span class="hljs-keyword">include</span> Devise::Test::IntegrationHelpers
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Now you can use the following <code>sign_in</code> and <code>sign_out</code> methods in your integration
+tests:</p>
+<pre><code class="hljs css language-ruby">sign_in users(<span class="hljs-symbol">:bob</span>)
+sign_in users(<span class="hljs-symbol">:bob</span>), <span class="hljs-symbol">scope:</span> <span class="hljs-symbol">:admin</span>
+
+sign_out <span class="hljs-symbol">:user</span>
+</code></pre>
+<p>RSpec users can include the <code>IntegrationHelpers</code> module on their <code>:feature</code> specs.</p>
+<pre><code class="hljs css language-ruby">RSpec.configure <span class="hljs-keyword">do</span> <span class="hljs-params">|config|</span>
+  config.<span class="hljs-keyword">include</span> Devise::Test::IntegrationHelpers, <span class="hljs-symbol">type:</span> <span class="hljs-symbol">:feature</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Unlike controller tests, integration tests do not need to supply the
+<code>devise.mapping</code> <code>env</code> value, as the mapping can be inferred by the routes that
+are executed in your tests.</p>
+<p>You can read more about testing your Rails 3 - Rails 4 controllers with RSpec in the wiki:</p>
+<ul>
+<li><a href="https://github.com/plataformatec/devise/wiki/How-To:-Test-controllers-with-Rails-(and-RSpec)">https://github.com/plataformatec/devise/wiki/How-To:-Test-controllers-with-Rails-(and-RSpec)</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-7</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/devise/i18n"><span class="arrow-prev">← </span><span>I18n</span></a><a class="docs-next button" href="/rails-setup/docs/devise/omniauth"><span class="function-name-prevnext">OmniAuth</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#controller-tests">Controller tests</a></li><li><a href="#integration-tests">Integration tests</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Rails Setup 2019</section></footer></div></body></html>

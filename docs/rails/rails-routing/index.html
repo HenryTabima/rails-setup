@@ -1,0 +1,902 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Rails Routing from the Outside In · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This guide covers the user-facing features of Rails routing.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Rails Routing from the Outside In · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;This guide covers the user-facing features of Rails routing.&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/rails/getting-started" target="_self">Rails</a></li><li class=""><a href="/rails-setup/docs/devise/overview" target="_self">Devise</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Controllers</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start Here<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/getting-started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/development-dependencies-install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Models<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/multiple-databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Views<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/layouts-and-rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view-form-helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Controllers<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-controller">Action Controller Overview</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/rails/rails-routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Other Components<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Digging Deeper<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/testing-rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/securing-rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/debugging-rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/configuring-rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-command-line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/asset-pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/working-with-javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/autoloading-and-reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/caching-with-rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-only-apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Extending Rails<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-on-rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/generators-&amp;-templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/application-templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/creating-rails-plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contributions<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/contributing-to-rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/guides-guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Policies<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/maintenance-policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Rails Routing from the Outside In</h1></header><article><div><span><p>This guide covers the user-facing features of Rails routing.</p>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>How to interpret the code in <code>config/routes.rb</code>.</li>
+<li>How to construct your own routes, using either the preferred resourceful style or the <code>match</code> method.</li>
+<li>How to declare route parameters, which are passed onto controller actions.</li>
+<li>How to automatically create paths and URLs using route helpers.</li>
+<li>Advanced techniques such as creating constraints and mounting Rack endpoints.</li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="the-purpose-of-the-rails-router"></a><a href="#the-purpose-of-the-rails-router" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Purpose of the Rails Router</h2>
+<p>The Rails router recognizes URLs and dispatches them to a controller's action, or to a Rack application. It can also generate paths and URLs, avoiding the need to hardcode strings in your views.</p>
+<h3><a class="anchor" aria-hidden="true" id="connecting-urls-to-code"></a><a href="#connecting-urls-to-code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Connecting URLs to Code</h3>
+<p>When your Rails application receives an incoming request for:</p>
+<pre><code class="hljs"><span class="hljs-builtin-name">GET</span> /patients/17
+</code></pre>
+<p>it asks the router to match it to a controller action. If the first matching route is:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'/patients/:id'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'patients#show'</span>
+</code></pre>
+<p>the request is dispatched to the <code>patients</code> controller's <code>show</code> action with <code>{ id: '17' }</code> in <code>params</code>.</p>
+<p>NOTE: Rails uses snake_case for controller names here, if you have a multiple word controller like <code>MonsterTrucksController</code>, you want to use <code>monster_trucks#show</code> for example.</p>
+<h3><a class="anchor" aria-hidden="true" id="generating-paths-and-urls-from-code"></a><a href="#generating-paths-and-urls-from-code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generating Paths and URLs from Code</h3>
+<p>You can also generate paths and URLs. If the route above is modified to be:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'/patients/:id'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'patients#show'</span>, <span class="hljs-symbol">as:</span> <span class="hljs-string">'patient'</span>
+</code></pre>
+<p>and your application contains this code in the controller:</p>
+<pre><code class="hljs css language-ruby">@patient = Patient.find(params[<span class="hljs-symbol">:id</span>])
+</code></pre>
+<p>and this in the corresponding view:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> link_to <span class="hljs-string">'Patient Record'</span>, patient_path(@patient) </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>then the router will generate the path <code>/patients/17</code>. This reduces the brittleness of your view and makes your code easier to understand. Note that the id does not need to be specified in the route helper.</p>
+<h3><a class="anchor" aria-hidden="true" id="configuring-the-rails-router"></a><a href="#configuring-the-rails-router" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring the Rails Router</h3>
+<p>The routes for your application or engine live in the file <code>config/routes.rb</code> and typically looks like this:</p>
+<pre><code class="hljs css language-ruby">Rails.application.routes.draw <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:brands</span>, <span class="hljs-symbol">only:</span> [<span class="hljs-symbol">:index</span>, <span class="hljs-symbol">:show</span>] <span class="hljs-keyword">do</span>
+    resources <span class="hljs-symbol">:products</span>, <span class="hljs-symbol">only:</span> [<span class="hljs-symbol">:index</span>, <span class="hljs-symbol">:show</span>]
+  <span class="hljs-keyword">end</span>
+
+  resource <span class="hljs-symbol">:basket</span>, <span class="hljs-symbol">only:</span> [<span class="hljs-symbol">:show</span>, <span class="hljs-symbol">:update</span>, <span class="hljs-symbol">:destroy</span>]
+
+  resolve(<span class="hljs-string">"Basket"</span>) { route_for(<span class="hljs-symbol">:basket</span>) }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Since this is a regular Ruby source file you can use all of its features to help you define your routes but be careful with variable names as they can clash with the DSL methods of the router.</p>
+<p>NOTE: The <code>Rails.application.routes.draw do ... end</code> block that wraps your route definitions is required to establish the scope for the router DSL and must not be deleted.</p>
+<h2><a class="anchor" aria-hidden="true" id="resource-routing-the-rails-default"></a><a href="#resource-routing-the-rails-default" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Resource Routing: the Rails Default</h2>
+<p>Resource routing allows you to quickly declare all of the common routes for a given resourceful controller. Instead of declaring separate routes for your <code>index</code>, <code>show</code>, <code>new</code>, <code>edit</code>, <code>create</code>, <code>update</code> and <code>destroy</code> actions, a resourceful route declares them in a single line of code.</p>
+<h3><a class="anchor" aria-hidden="true" id="resources-on-the-web"></a><a href="#resources-on-the-web" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Resources on the Web</h3>
+<p>Browsers request pages from Rails by making a request for a URL using a specific HTTP method, such as <code>GET</code>, <code>POST</code>, <code>PATCH</code>, <code>PUT</code> and <code>DELETE</code>. Each method is a request to perform an operation on the resource. A resource route maps a number of related requests to actions in a single controller.</p>
+<p>When your Rails application receives an incoming request for:</p>
+<pre><code class="hljs"><span class="hljs-keyword">DELETE</span> <span class="hljs-regexp">/photos/</span><span class="hljs-number">17</span>
+</code></pre>
+<p>it asks the router to map it to a controller action. If the first matching route is:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:photos</span>
+</code></pre>
+<p>Rails would dispatch that request to the <code>destroy</code> action on the <code>photos</code> controller with <code>{ id: '17' }</code> in <code>params</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="crud-verbs-and-actions"></a><a href="#crud-verbs-and-actions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CRUD, Verbs, and Actions</h3>
+<p>In Rails, a resourceful route provides a mapping between HTTP verbs and URLs to
+controller actions. By convention, each action also maps to a specific CRUD
+operation in a database. A single entry in the routing file, such as:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:photos</span>
+</code></pre>
+<p>creates seven different routes in your application, all mapping to the <code>Photos</code> controller:</p>
+<table>
+<thead>
+<tr><th>HTTP Verb</th><th>Path</th><th>Controller#Action</th><th>Used for</th></tr>
+</thead>
+<tbody>
+<tr><td>GET</td><td>/photos</td><td>photos#index</td><td>display a list of all photos</td></tr>
+<tr><td>GET</td><td>/photos/new</td><td>photos#new</td><td>return an HTML form for creating a new photo</td></tr>
+<tr><td>POST</td><td>/photos</td><td>photos#create</td><td>create a new photo</td></tr>
+<tr><td>GET</td><td>/photos/:id</td><td>photos#show</td><td>display a specific photo</td></tr>
+<tr><td>GET</td><td>/photos/:id/edit</td><td>photos#edit</td><td>return an HTML form for editing a photo</td></tr>
+<tr><td>PATCH/PUT</td><td>/photos/:id</td><td>photos#update</td><td>update a specific photo</td></tr>
+<tr><td>DELETE</td><td>/photos/:id</td><td>photos#destroy</td><td>delete a specific photo</td></tr>
+</tbody>
+</table>
+<p>NOTE: Because the router uses the HTTP verb and URL to match inbound requests, four URLs map to seven different actions.</p>
+<p>NOTE: Rails routes are matched in the order they are specified, so if you have a <code>resources :photos</code> above a <code>get 'photos/poll'</code> the <code>show</code> action's route for the <code>resources</code> line will be matched before the <code>get</code> line. To fix this, move the <code>get</code> line <strong>above</strong> the <code>resources</code> line so that it is matched first.</p>
+<h3><a class="anchor" aria-hidden="true" id="path-and-url-helpers"></a><a href="#path-and-url-helpers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Path and URL Helpers</h3>
+<p>Creating a resourceful route will also expose a number of helpers to the controllers in your application. In the case of <code>resources :photos</code>:</p>
+<ul>
+<li><code>photos_path</code> returns <code>/photos</code></li>
+<li><code>new_photo_path</code> returns <code>/photos/new</code></li>
+<li><code>edit_photo_path(:id)</code> returns <code>/photos/:id/edit</code> (for instance, <code>edit_photo_path(10)</code> returns <code>/photos/10/edit</code>)</li>
+<li><code>photo_path(:id)</code> returns <code>/photos/:id</code> (for instance, <code>photo_path(10)</code> returns <code>/photos/10</code>)</li>
+</ul>
+<p>Each of these helpers has a corresponding <code>_url</code> helper (such as <code>photos_url</code>) which returns the same path prefixed with the current host, port, and path prefix.</p>
+<h3><a class="anchor" aria-hidden="true" id="defining-multiple-resources-at-the-same-time"></a><a href="#defining-multiple-resources-at-the-same-time" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Defining Multiple Resources at the Same Time</h3>
+<p>If you need to create routes for more than one resource, you can save a bit of typing by defining them all with a single call to <code>resources</code>:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:photos</span>, <span class="hljs-symbol">:books</span>, <span class="hljs-symbol">:videos</span>
+</code></pre>
+<p>This works exactly the same as:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:photos</span>
+resources <span class="hljs-symbol">:books</span>
+resources <span class="hljs-symbol">:videos</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="singular-resources"></a><a href="#singular-resources" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Singular Resources</h3>
+<p>Sometimes, you have a resource that clients always look up without referencing an ID. For example, you would like <code>/profile</code> to always show the profile of the currently logged in user. In this case, you can use a singular resource to map <code>/profile</code> (rather than <code>/profile/:id</code>) to the <code>show</code> action:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'profile'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'users#show'</span>
+</code></pre>
+<p>Passing a <code>String</code> to <code>to:</code> will expect a <code>controller#action</code> format. When using a <code>Symbol</code>, the <code>to:</code> option should be replaced with <code>action:</code>. When using a <code>String</code> without a <code>#</code>, the <code>to:</code> option should be replaced with <code>controller:</code>:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'profile'</span>, <span class="hljs-symbol">action:</span> <span class="hljs-symbol">:show</span>, <span class="hljs-symbol">controller:</span> <span class="hljs-string">'users'</span>
+</code></pre>
+<p>This resourceful route:</p>
+<pre><code class="hljs css language-ruby">resource <span class="hljs-symbol">:geocoder</span>
+resolve(<span class="hljs-string">'Geocoder'</span>) { [<span class="hljs-symbol">:geocoder</span>] }
+</code></pre>
+<p>creates six different routes in your application, all mapping to the <code>Geocoders</code> controller:</p>
+<table>
+<thead>
+<tr><th>HTTP Verb</th><th>Path</th><th>Controller#Action</th><th>Used for</th></tr>
+</thead>
+<tbody>
+<tr><td>GET</td><td>/geocoder/new</td><td>geocoders#new</td><td>return an HTML form for creating the geocoder</td></tr>
+<tr><td>POST</td><td>/geocoder</td><td>geocoders#create</td><td>create the new geocoder</td></tr>
+<tr><td>GET</td><td>/geocoder</td><td>geocoders#show</td><td>display the one and only geocoder resource</td></tr>
+<tr><td>GET</td><td>/geocoder/edit</td><td>geocoders#edit</td><td>return an HTML form for editing the geocoder</td></tr>
+<tr><td>PATCH/PUT</td><td>/geocoder</td><td>geocoders#update</td><td>update the one and only geocoder resource</td></tr>
+<tr><td>DELETE</td><td>/geocoder</td><td>geocoders#destroy</td><td>delete the geocoder resource</td></tr>
+</tbody>
+</table>
+<p>NOTE: Because you might want to use the same controller for a singular route (<code>/account</code>) and a plural route (<code>/accounts/45</code>), singular resources map to plural controllers. So that, for example, <code>resource :photo</code> and <code>resources :photos</code> creates both singular and plural routes that map to the same controller (<code>PhotosController</code>).</p>
+<p>A singular resourceful route generates these helpers:</p>
+<ul>
+<li><code>new_geocoder_path</code> returns <code>/geocoder/new</code></li>
+<li><code>edit_geocoder_path</code> returns <code>/geocoder/edit</code></li>
+<li><code>geocoder_path</code> returns <code>/geocoder</code></li>
+</ul>
+<p>As with plural resources, the same helpers ending in <code>_url</code> will also include the host, port, and path prefix.</p>
+<h3><a class="anchor" aria-hidden="true" id="controller-namespaces-and-routing"></a><a href="#controller-namespaces-and-routing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Controller Namespaces and Routing</h3>
+<p>You may wish to organize groups of controllers under a namespace. Most commonly, you might group a number of administrative controllers under an <code>Admin::</code> namespace. You would place these controllers under the <code>app/controllers/admin</code> directory, and you can group them together in your router:</p>
+<pre><code class="hljs css language-ruby">namespace <span class="hljs-symbol">:admin</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:articles</span>, <span class="hljs-symbol">:comments</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This will create a number of routes for each of the <code>articles</code> and <code>comments</code> controller. For <code>Admin::ArticlesController</code>, Rails will create:</p>
+<table>
+<thead>
+<tr><th>HTTP Verb</th><th>Path</th><th>Controller#Action</th><th>Named Helper</th></tr>
+</thead>
+<tbody>
+<tr><td>GET</td><td>/admin/articles</td><td>admin/articles#index</td><td>admin_articles_path</td></tr>
+<tr><td>GET</td><td>/admin/articles/new</td><td>admin/articles#new</td><td>new_admin_article_path</td></tr>
+<tr><td>POST</td><td>/admin/articles</td><td>admin/articles#create</td><td>admin_articles_path</td></tr>
+<tr><td>GET</td><td>/admin/articles/:id</td><td>admin/articles#show</td><td>admin_article_path(:id)</td></tr>
+<tr><td>GET</td><td>/admin/articles/:id/edit</td><td>admin/articles#edit</td><td>edit_admin_article_path(:id)</td></tr>
+<tr><td>PATCH/PUT</td><td>/admin/articles/:id</td><td>admin/articles#update</td><td>admin_article_path(:id)</td></tr>
+<tr><td>DELETE</td><td>/admin/articles/:id</td><td>admin/articles#destroy</td><td>admin_article_path(:id)</td></tr>
+</tbody>
+</table>
+<p>If you want to route <code>/articles</code> (without the prefix <code>/admin</code>) to <code>Admin::ArticlesController</code>, you could use:</p>
+<pre><code class="hljs css language-ruby">scope <span class="hljs-class"><span class="hljs-keyword">module</span>: '<span class="hljs-title">admin</span>' <span class="hljs-title">do</span></span>
+  resources <span class="hljs-symbol">:articles</span>, <span class="hljs-symbol">:comments</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>or, for a single case:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:articles</span>, <span class="hljs-class"><span class="hljs-keyword">module</span>: '<span class="hljs-title">admin</span>'</span>
+</code></pre>
+<p>If you want to route <code>/admin/articles</code> to <code>ArticlesController</code> (without the <code>Admin::</code> module prefix), you could use:</p>
+<pre><code class="hljs css language-ruby">scope <span class="hljs-string">'/admin'</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:articles</span>, <span class="hljs-symbol">:comments</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>or, for a single case:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:articles</span>, <span class="hljs-symbol">path:</span> <span class="hljs-string">'/admin/articles'</span>
+</code></pre>
+<p>In each of these cases, the named routes remain the same as if you did not use <code>scope</code>. In the last case, the following paths map to <code>ArticlesController</code>:</p>
+<table>
+<thead>
+<tr><th>HTTP Verb</th><th>Path</th><th>Controller#Action</th><th>Named Helper</th></tr>
+</thead>
+<tbody>
+<tr><td>GET</td><td>/admin/articles</td><td>articles#index</td><td>articles_path</td></tr>
+<tr><td>GET</td><td>/admin/articles/new</td><td>articles#new</td><td>new_article_path</td></tr>
+<tr><td>POST</td><td>/admin/articles</td><td>articles#create</td><td>articles_path</td></tr>
+<tr><td>GET</td><td>/admin/articles/:id</td><td>articles#show</td><td>article_path(:id)</td></tr>
+<tr><td>GET</td><td>/admin/articles/:id/edit</td><td>articles#edit</td><td>edit_article_path(:id)</td></tr>
+<tr><td>PATCH/PUT</td><td>/admin/articles/:id</td><td>articles#update</td><td>article_path(:id)</td></tr>
+<tr><td>DELETE</td><td>/admin/articles/:id</td><td>articles#destroy</td><td>article_path(:id)</td></tr>
+</tbody>
+</table>
+<p>TIP: <em>If you need to use a different controller namespace inside a <code>namespace</code> block you can specify an absolute controller path, e.g: <code>get '/foo', to: '/foo#index'</code>.</em></p>
+<h3><a class="anchor" aria-hidden="true" id="nested-resources"></a><a href="#nested-resources" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Nested Resources</h3>
+<p>It's common to have resources that are logically children of other resources. For example, suppose your application includes these models:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Magazine</span> &lt; ApplicationRecord</span>
+  has_many <span class="hljs-symbol">:ads</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ad</span> &lt; ApplicationRecord</span>
+  belongs_to <span class="hljs-symbol">:magazine</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Nested routes allow you to capture this relationship in your routing. In this case, you could include this route declaration:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:magazines</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:ads</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>In addition to the routes for magazines, this declaration will also route ads to an <code>AdsController</code>. The ad URLs require a magazine:</p>
+<table>
+<thead>
+<tr><th>HTTP Verb</th><th>Path</th><th>Controller#Action</th><th>Used for</th></tr>
+</thead>
+<tbody>
+<tr><td>GET</td><td>/magazines/:magazine_id/ads</td><td>ads#index</td><td>display a list of all ads for a specific magazine</td></tr>
+<tr><td>GET</td><td>/magazines/:magazine_id/ads/new</td><td>ads#new</td><td>return an HTML form for creating a new ad belonging to a specific magazine</td></tr>
+<tr><td>POST</td><td>/magazines/:magazine_id/ads</td><td>ads#create</td><td>create a new ad belonging to a specific magazine</td></tr>
+<tr><td>GET</td><td>/magazines/:magazine_id/ads/:id</td><td>ads#show</td><td>display a specific ad belonging to a specific magazine</td></tr>
+<tr><td>GET</td><td>/magazines/:magazine_id/ads/:id/edit</td><td>ads#edit</td><td>return an HTML form for editing an ad belonging to a specific magazine</td></tr>
+<tr><td>PATCH/PUT</td><td>/magazines/:magazine_id/ads/:id</td><td>ads#update</td><td>update a specific ad belonging to a specific magazine</td></tr>
+<tr><td>DELETE</td><td>/magazines/:magazine_id/ads/:id</td><td>ads#destroy</td><td>delete a specific ad belonging to a specific magazine</td></tr>
+</tbody>
+</table>
+<p>This will also create routing helpers such as <code>magazine_ads_url</code> and <code>edit_magazine_ad_path</code>. These helpers take an instance of Magazine as the first parameter (<code>magazine_ads_url(@magazine)</code>).</p>
+<h4><a class="anchor" aria-hidden="true" id="limits-to-nesting"></a><a href="#limits-to-nesting" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Limits to Nesting</h4>
+<p>You can nest resources within other nested resources if you like. For example:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:publishers</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:magazines</span> <span class="hljs-keyword">do</span>
+    resources <span class="hljs-symbol">:photos</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Deeply-nested resources quickly become cumbersome. In this case, for example, the application would recognize paths such as:</p>
+<pre><code class="hljs">/publishers/<span class="hljs-number">1</span>/magazines/<span class="hljs-number">2</span>/photos/<span class="hljs-number">3</span>
+</code></pre>
+<p>The corresponding route helper would be <code>publisher_magazine_photo_url</code>, requiring you to specify objects at all three levels. Indeed, this situation is confusing enough that a popular <a href="http://weblog.jamisbuck.org/2007/2/5/nesting-resources">article</a> by Jamis Buck proposes a rule of thumb for good Rails design:</p>
+<p>TIP: <em>Resources should never be nested more than 1 level deep.</em></p>
+<h4><a class="anchor" aria-hidden="true" id="shallow-nesting"></a><a href="#shallow-nesting" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Shallow Nesting</h4>
+<p>One way to avoid deep nesting (as recommended above) is to generate the collection actions scoped under the parent, so as to get a sense of the hierarchy, but to not nest the member actions. In other words, to only build routes with the minimal amount of information to uniquely identify the resource, like this:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:articles</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:comments</span>, <span class="hljs-symbol">only:</span> [<span class="hljs-symbol">:index</span>, <span class="hljs-symbol">:new</span>, <span class="hljs-symbol">:create</span>]
+<span class="hljs-keyword">end</span>
+resources <span class="hljs-symbol">:comments</span>, <span class="hljs-symbol">only:</span> [<span class="hljs-symbol">:show</span>, <span class="hljs-symbol">:edit</span>, <span class="hljs-symbol">:update</span>, <span class="hljs-symbol">:destroy</span>]
+</code></pre>
+<p>This idea strikes a balance between descriptive routes and deep nesting. There exists shorthand syntax to achieve just that, via the <code>:shallow</code> option:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:articles</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:comments</span>, <span class="hljs-symbol">shallow:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This will generate the exact same routes as the first example. You can also specify the <code>:shallow</code> option in the parent resource, in which case all of the nested resources will be shallow:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:articles</span>, <span class="hljs-symbol">shallow:</span> <span class="hljs-literal">true</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:comments</span>
+  resources <span class="hljs-symbol">:quotes</span>
+  resources <span class="hljs-symbol">:drafts</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The <code>shallow</code> method of the DSL creates a scope inside of which every nesting is shallow. This generates the same routes as the previous example:</p>
+<pre><code class="hljs css language-ruby">shallow <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:articles</span> <span class="hljs-keyword">do</span>
+    resources <span class="hljs-symbol">:comments</span>
+    resources <span class="hljs-symbol">:quotes</span>
+    resources <span class="hljs-symbol">:drafts</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>There exist two options for <code>scope</code> to customize shallow routes. <code>:shallow_path</code> prefixes member paths with the specified parameter:</p>
+<pre><code class="hljs css language-ruby">scope <span class="hljs-symbol">shallow_path:</span> <span class="hljs-string">"sekret"</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:articles</span> <span class="hljs-keyword">do</span>
+    resources <span class="hljs-symbol">:comments</span>, <span class="hljs-symbol">shallow:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The comments resource here will have the following routes generated for it:</p>
+<table>
+<thead>
+<tr><th>HTTP Verb</th><th>Path</th><th>Controller#Action</th><th>Named Helper</th></tr>
+</thead>
+<tbody>
+<tr><td>GET</td><td>/articles/:article_id/comments(.:format)</td><td>comments#index</td><td>article_comments_path</td></tr>
+<tr><td>POST</td><td>/articles/:article_id/comments(.:format)</td><td>comments#create</td><td>article_comments_path</td></tr>
+<tr><td>GET</td><td>/articles/:article_id/comments/new(.:format)</td><td>comments#new</td><td>new_article_comment_path</td></tr>
+<tr><td>GET</td><td>/sekret/comments/:id/edit(.:format)</td><td>comments#edit</td><td>edit_comment_path</td></tr>
+<tr><td>GET</td><td>/sekret/comments/:id(.:format)</td><td>comments#show</td><td>comment_path</td></tr>
+<tr><td>PATCH/PUT</td><td>/sekret/comments/:id(.:format)</td><td>comments#update</td><td>comment_path</td></tr>
+<tr><td>DELETE</td><td>/sekret/comments/:id(.:format)</td><td>comments#destroy</td><td>comment_path</td></tr>
+</tbody>
+</table>
+<p>The <code>:shallow_prefix</code> option adds the specified parameter to the named helpers:</p>
+<pre><code class="hljs css language-ruby">scope <span class="hljs-symbol">shallow_prefix:</span> <span class="hljs-string">"sekret"</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:articles</span> <span class="hljs-keyword">do</span>
+    resources <span class="hljs-symbol">:comments</span>, <span class="hljs-symbol">shallow:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The comments resource here will have the following routes generated for it:</p>
+<table>
+<thead>
+<tr><th>HTTP Verb</th><th>Path</th><th>Controller#Action</th><th>Named Helper</th></tr>
+</thead>
+<tbody>
+<tr><td>GET</td><td>/articles/:article_id/comments(.:format)</td><td>comments#index</td><td>article_comments_path</td></tr>
+<tr><td>POST</td><td>/articles/:article_id/comments(.:format)</td><td>comments#create</td><td>article_comments_path</td></tr>
+<tr><td>GET</td><td>/articles/:article_id/comments/new(.:format)</td><td>comments#new</td><td>new_article_comment_path</td></tr>
+<tr><td>GET</td><td>/comments/:id/edit(.:format)</td><td>comments#edit</td><td>edit_sekret_comment_path</td></tr>
+<tr><td>GET</td><td>/comments/:id(.:format)</td><td>comments#show</td><td>sekret_comment_path</td></tr>
+<tr><td>PATCH/PUT</td><td>/comments/:id(.:format)</td><td>comments#update</td><td>sekret_comment_path</td></tr>
+<tr><td>DELETE</td><td>/comments/:id(.:format)</td><td>comments#destroy</td><td>sekret_comment_path</td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="routing-concerns"></a><a href="#routing-concerns" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Routing concerns</h3>
+<p>Routing concerns allow you to declare common routes that can be reused inside other resources and routes. To define a concern:</p>
+<pre><code class="hljs css language-ruby">concern <span class="hljs-symbol">:commentable</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:comments</span>
+<span class="hljs-keyword">end</span>
+
+concern <span class="hljs-symbol">:image_attachable</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:images</span>, <span class="hljs-symbol">only:</span> <span class="hljs-symbol">:index</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>These concerns can be used in resources to avoid code duplication and share behavior across routes:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:messages</span>, <span class="hljs-symbol">concerns:</span> <span class="hljs-symbol">:commentable</span>
+
+resources <span class="hljs-symbol">:articles</span>, <span class="hljs-symbol">concerns:</span> [<span class="hljs-symbol">:commentable</span>, <span class="hljs-symbol">:image_attachable</span>]
+</code></pre>
+<p>The above is equivalent to:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:messages</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:comments</span>
+<span class="hljs-keyword">end</span>
+
+resources <span class="hljs-symbol">:articles</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:comments</span>
+  resources <span class="hljs-symbol">:images</span>, <span class="hljs-symbol">only:</span> <span class="hljs-symbol">:index</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Also you can use them in any place that you want inside the routes, for example in a <code>scope</code> or <code>namespace</code> call:</p>
+<pre><code class="hljs css language-ruby">namespace <span class="hljs-symbol">:articles</span> <span class="hljs-keyword">do</span>
+  concerns <span class="hljs-symbol">:commentable</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="creating-paths-and-urls-from-objects"></a><a href="#creating-paths-and-urls-from-objects" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating Paths and URLs From Objects</h3>
+<p>In addition to using the routing helpers, Rails can also create paths and URLs from an array of parameters. For example, suppose you have this set of routes:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:magazines</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:ads</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>When using <code>magazine_ad_path</code>, you can pass in instances of <code>Magazine</code> and <code>Ad</code> instead of the numeric IDs:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> link_to <span class="hljs-string">'Ad details'</span>, magazine_ad_path(@magazine, @ad) </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>You can also use <code>url_for</code> with a set of objects, and Rails will automatically determine which route you want:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> link_to <span class="hljs-string">'Ad details'</span>, url_for([@magazine, @ad]) </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>In this case, Rails will see that <code>@magazine</code> is a <code>Magazine</code> and <code>@ad</code> is an <code>Ad</code> and will therefore use the <code>magazine_ad_path</code> helper. In helpers like <code>link_to</code>, you can specify just the object in place of the full <code>url_for</code> call:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> link_to <span class="hljs-string">'Ad details'</span>, [@magazine, @ad] </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>If you wanted to link to just a magazine:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> link_to <span class="hljs-string">'Magazine details'</span>, @magazine </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>For other actions, you just need to insert the action name as the first element of the array:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> link_to <span class="hljs-string">'Edit Ad'</span>, [<span class="hljs-symbol">:edit</span>, @magazine, @ad] </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>This allows you to treat instances of your models as URLs, and is a key advantage to using the resourceful style.</p>
+<h3><a class="anchor" aria-hidden="true" id="adding-more-restful-actions"></a><a href="#adding-more-restful-actions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding More RESTful Actions</h3>
+<p>You are not limited to the seven routes that RESTful routing creates by default. If you like, you may add additional routes that apply to the collection or individual members of the collection.</p>
+<h4><a class="anchor" aria-hidden="true" id="adding-member-routes"></a><a href="#adding-member-routes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding Member Routes</h4>
+<p>To add a member route, just add a <code>member</code> block into the resource block:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:photos</span> <span class="hljs-keyword">do</span>
+  member <span class="hljs-keyword">do</span>
+    get <span class="hljs-string">'preview'</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This will recognize <code>/photos/1/preview</code> with GET, and route to the <code>preview</code> action of <code>PhotosController</code>, with the resource id value passed in <code>params[:id]</code>. It will also create the <code>preview_photo_url</code> and <code>preview_photo_path</code> helpers.</p>
+<p>Within the block of member routes, each route name specifies the HTTP verb that
+will be recognized. You can use <code>get</code>, <code>patch</code>, <code>put</code>, <code>post</code>, or <code>delete</code> here
+. If you don't have multiple <code>member</code> routes, you can also pass <code>:on</code> to a
+route, eliminating the block:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:photos</span> <span class="hljs-keyword">do</span>
+  get <span class="hljs-string">'preview'</span>, <span class="hljs-symbol">on:</span> <span class="hljs-symbol">:member</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>You can leave out the <code>:on</code> option, this will create the same member route except that the resource id value will be available in <code>params[:photo_id]</code> instead of <code>params[:id]</code>. Route helpers will also be renamed from <code>preview_photo_url</code> and <code>preview_photo_path</code> to <code>photo_preview_url</code> and <code>photo_preview_path</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="adding-collection-routes"></a><a href="#adding-collection-routes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding Collection Routes</h4>
+<p>To add a route to the collection:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:photos</span> <span class="hljs-keyword">do</span>
+  collection <span class="hljs-keyword">do</span>
+    get <span class="hljs-string">'search'</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This will enable Rails to recognize paths such as <code>/photos/search</code> with GET, and route to the <code>search</code> action of <code>PhotosController</code>. It will also create the <code>search_photos_url</code> and <code>search_photos_path</code> route helpers.</p>
+<p>Just as with member routes, you can pass <code>:on</code> to a route:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:photos</span> <span class="hljs-keyword">do</span>
+  get <span class="hljs-string">'search'</span>, <span class="hljs-symbol">on:</span> <span class="hljs-symbol">:collection</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>NOTE: If you're defining additional resource routes with a symbol as the first positional argument, be mindful that it is not equivalent to using a string. Symbols infer controller actions while strings infer paths.</p>
+<h4><a class="anchor" aria-hidden="true" id="adding-routes-for-additional-new-actions"></a><a href="#adding-routes-for-additional-new-actions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding Routes for Additional New Actions</h4>
+<p>To add an alternate new action using the <code>:on</code> shortcut:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:comments</span> <span class="hljs-keyword">do</span>
+  get <span class="hljs-string">'preview'</span>, <span class="hljs-symbol">on:</span> <span class="hljs-symbol">:new</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This will enable Rails to recognize paths such as <code>/comments/new/preview</code> with GET, and route to the <code>preview</code> action of <code>CommentsController</code>. It will also create the <code>preview_new_comment_url</code> and <code>preview_new_comment_path</code> route helpers.</p>
+<p>TIP: If you find yourself adding many extra actions to a resourceful route, it's time to stop and ask yourself whether you're disguising the presence of another resource.</p>
+<h2><a class="anchor" aria-hidden="true" id="non-resourceful-routes"></a><a href="#non-resourceful-routes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Non-Resourceful Routes</h2>
+<p>In addition to resource routing, Rails has powerful support for routing arbitrary URLs to actions. Here, you don't get groups of routes automatically generated by resourceful routing. Instead, you set up each route separately within your application.</p>
+<p>While you should usually use resourceful routing, there are still many places where the simpler routing is more appropriate. There's no need to try to shoehorn every last piece of your application into a resourceful framework if that's not a good fit.</p>
+<p>In particular, simple routing makes it very easy to map legacy URLs to new Rails actions.</p>
+<h3><a class="anchor" aria-hidden="true" id="bound-parameters"></a><a href="#bound-parameters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bound Parameters</h3>
+<p>When you set up a regular route, you supply a series of symbols that Rails maps to parts of an incoming HTTP request. For example, consider this route:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'photos(/:id)'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'photos#display'</span>
+</code></pre>
+<p>If an incoming request of <code>/photos/1</code> is processed by this route (because it hasn't matched any previous route in the file), then the result will be to invoke the <code>display</code> action of the <code>PhotosController</code>, and to make the final parameter <code>&quot;1&quot;</code> available as <code>params[:id]</code>. This route will also route the incoming request of <code>/photos</code> to <code>PhotosController#display</code>, since <code>:id</code> is an optional parameter, denoted by parentheses.</p>
+<h3><a class="anchor" aria-hidden="true" id="dynamic-segments"></a><a href="#dynamic-segments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dynamic Segments</h3>
+<p>You can set up as many dynamic segments within a regular route as you like. Any segment will be available to the action as part of <code>params</code>. If you set up this route:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'photos/:id/:user_id'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'photos#show'</span>
+</code></pre>
+<p>An incoming path of <code>/photos/1/2</code> will be dispatched to the <code>show</code> action of the <code>PhotosController</code>. <code>params[:id]</code> will be <code>&quot;1&quot;</code>, and <code>params[:user_id]</code> will be <code>&quot;2&quot;</code>.</p>
+<p>TIP: By default, dynamic segments don't accept dots - this is because the dot is used as a separator for formatted routes. If you need to use a dot within a dynamic segment, add a constraint that overrides this – for example, <code>id: /[^\/]+/</code> allows anything except a slash.</p>
+<h3><a class="anchor" aria-hidden="true" id="static-segments"></a><a href="#static-segments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Static Segments</h3>
+<p>You can specify static segments when creating a route by not prepending a colon to a fragment:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'photos/:id/with_user/:user_id'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'photos#show'</span>
+</code></pre>
+<p>This route would respond to paths such as <code>/photos/1/with_user/2</code>. In this case, <code>params</code> would be <code>{ controller: 'photos', action: 'show', id: '1', user_id: '2' }</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="the-query-string"></a><a href="#the-query-string" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Query String</h3>
+<p>The <code>params</code> will also include any parameters from the query string. For example, with this route:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'photos/:id'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'photos#show'</span>
+</code></pre>
+<p>An incoming path of <code>/photos/1?user_id=2</code> will be dispatched to the <code>show</code> action of the <code>Photos</code> controller. <code>params</code> will be <code>{ controller: 'photos', action: 'show', id: '1', user_id: '2' }</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="defining-defaults"></a><a href="#defining-defaults" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Defining Defaults</h3>
+<p>You can define defaults in a route by supplying a hash for the <code>:defaults</code> option. This even applies to parameters that you do not specify as dynamic segments. For example:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'photos/:id'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'photos#show'</span>, <span class="hljs-symbol">defaults:</span> { <span class="hljs-symbol">format:</span> <span class="hljs-string">'jpg'</span> }
+</code></pre>
+<p>Rails would match <code>photos/12</code> to the <code>show</code> action of <code>PhotosController</code>, and set <code>params[:format]</code> to <code>&quot;jpg&quot;</code>.</p>
+<p>You can also use <code>defaults</code> in a block format to define the defaults for multiple items:</p>
+<pre><code class="hljs css language-ruby">defaults <span class="hljs-symbol">format:</span> <span class="hljs-symbol">:json</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:photos</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>NOTE: You cannot override defaults via query parameters - this is for security reasons. The only defaults that can be overridden are dynamic segments via substitution in the URL path.</p>
+<h3><a class="anchor" aria-hidden="true" id="naming-routes"></a><a href="#naming-routes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Naming Routes</h3>
+<p>You can specify a name for any route using the <code>:as</code> option:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'exit'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'sessions#destroy'</span>, <span class="hljs-symbol">as:</span> <span class="hljs-symbol">:logout</span>
+</code></pre>
+<p>This will create <code>logout_path</code> and <code>logout_url</code> as named helpers in your application. Calling <code>logout_path</code> will return <code>/exit</code></p>
+<p>You can also use this to override routing methods defined by resources, like this:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">':username'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'users#show'</span>, <span class="hljs-symbol">as:</span> <span class="hljs-symbol">:user</span>
+</code></pre>
+<p>This will define a <code>user_path</code> method that will be available in controllers, helpers, and views that will go to a route such as <code>/bob</code>. Inside the <code>show</code> action of <code>UsersController</code>, <code>params[:username]</code> will contain the username for the user. Change <code>:username</code> in the route definition if you do not want your parameter name to be <code>:username</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="http-verb-constraints"></a><a href="#http-verb-constraints" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>HTTP Verb Constraints</h3>
+<p>In general, you should use the <code>get</code>, <code>post</code>, <code>put</code>, <code>patch</code>  and <code>delete</code> methods to constrain a route to a particular verb. You can use the <code>match</code> method with the <code>:via</code> option to match multiple verbs at once:</p>
+<pre><code class="hljs css language-ruby">match <span class="hljs-string">'photos'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'photos#show'</span>, <span class="hljs-symbol">via:</span> [<span class="hljs-symbol">:get</span>, <span class="hljs-symbol">:post</span>]
+</code></pre>
+<p>You can match all verbs to a particular route using <code>via: :all</code>:</p>
+<pre><code class="hljs css language-ruby">match <span class="hljs-string">'photos'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'photos#show'</span>, <span class="hljs-symbol">via:</span> <span class="hljs-symbol">:all</span>
+</code></pre>
+<p>NOTE: Routing both <code>GET</code> and <code>POST</code> requests to a single action has security implications. In general, you should avoid routing all verbs to an action unless you have a good reason to.</p>
+<p>NOTE: <code>GET</code> in Rails won't check for CSRF token. You should never write to the database from <code>GET</code> requests, for more information see the <a href="security.html#csrf-countermeasures">security guide</a> on CSRF countermeasures.</p>
+<h3><a class="anchor" aria-hidden="true" id="segment-constraints"></a><a href="#segment-constraints" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Segment Constraints</h3>
+<p>You can use the <code>:constraints</code> option to enforce a format for a dynamic segment:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'photos/:id'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'photos#show'</span>, <span class="hljs-symbol">constraints:</span> { <span class="hljs-symbol">id:</span> /[A-Z]\d{<span class="hljs-number">5</span>}/ }
+</code></pre>
+<p>This route would match paths such as <code>/photos/A12345</code>, but not <code>/photos/893</code>. You can more succinctly express the same route this way:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'photos/:id'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'photos#show'</span>, <span class="hljs-symbol">id:</span> /[A-Z]\d{<span class="hljs-number">5</span>}/
+</code></pre>
+<p><code>:constraints</code> takes regular expressions with the restriction that regexp anchors can't be used. For example, the following route will not work:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'/:id'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'articles#show'</span>, <span class="hljs-symbol">constraints:</span> { <span class="hljs-symbol">id:</span> /^\d/ }
+</code></pre>
+<p>However, note that you don't need to use anchors because all routes are anchored at the start.</p>
+<p>For example, the following routes would allow for <code>articles</code> with <code>to_param</code> values like <code>1-hello-world</code> that always begin with a number and <code>users</code> with <code>to_param</code> values like <code>david</code> that never begin with a number to share the root namespace:</p>
+<pre><code class="hljs css language-ruby">get '/:id', to: 'articles#show', constraints: { id: /\d.+/ }
+get '/:username', to: 'users#show'
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="request-based-constraints"></a><a href="#request-based-constraints" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Request-Based Constraints</h3>
+<p>You can also constrain a route based on any method on the <a href="action_controller_overview.html#the-request-object">Request object</a> that returns a <code>String</code>.</p>
+<p>You specify a request-based constraint the same way that you specify a segment constraint:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'photos'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'photos#index'</span>, <span class="hljs-symbol">constraints:</span> { <span class="hljs-symbol">subdomain:</span> <span class="hljs-string">'admin'</span> }
+</code></pre>
+<p>You can also specify constraints in a block form:</p>
+<pre><code class="hljs css language-ruby">namespace <span class="hljs-symbol">:admin</span> <span class="hljs-keyword">do</span>
+  constraints <span class="hljs-symbol">subdomain:</span> <span class="hljs-string">'admin'</span> <span class="hljs-keyword">do</span>
+    resources <span class="hljs-symbol">:photos</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>NOTE: Request constraints work by calling a method on the <a href="action_controller_overview.html#the-request-object">Request object</a> with the same name as the hash key and then compare the return value with the hash value. Therefore, constraint values should match the corresponding Request object method return type. For example: <code>constraints: { subdomain: 'api' }</code> will match an <code>api</code> subdomain as expected, however using a symbol <code>constraints: { subdomain: :api }</code> will not, because <code>request.subdomain</code> returns <code>'api'</code> as a String.</p>
+<p>NOTE: There is an exception for the <code>format</code> constraint: while it's a method on the Request object, it's also an implicit optional parameter on every path. Segment constraints take precedence and the <code>format</code> constraint is only applied as such when enforced through a hash. For example, <code>get 'foo', constraints: { format: 'json' }</code> will match <code>GET /foo</code> because the format is optional by default. However, you can <a href="#advanced-constraints">use a lambda</a> like in <code>get 'foo', constraints: lambda { |req| req.format == :json }</code> and the route will only match explicit JSON requests.</p>
+<h3><a class="anchor" aria-hidden="true" id="advanced-constraints"></a><a href="#advanced-constraints" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Advanced Constraints</h3>
+<p>If you have a more advanced constraint, you can provide an object that responds to <code>matches?</code> that Rails should use. Let's say you wanted to route all users on a restricted list to the <code>RestrictedListController</code>. You could do:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RestrictedListConstraint</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>
+    @ips = RestrictedList.retrieve_ips
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">matches?</span><span class="hljs-params">(request)</span></span>
+    @ips.<span class="hljs-keyword">include</span>?(request.remote_ip)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+Rails.application.routes.draw <span class="hljs-keyword">do</span>
+  get <span class="hljs-string">'*path'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'restricted_list#index'</span>,
+    <span class="hljs-symbol">constraints:</span> RestrictedListConstraint.new
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>You can also specify constraints as a lambda:</p>
+<pre><code class="hljs css language-ruby">Rails.application.routes.draw <span class="hljs-keyword">do</span>
+  get <span class="hljs-string">'*path'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'restricted_list#index'</span>,
+    <span class="hljs-symbol">constraints:</span> lambda { <span class="hljs-params">|request|</span> RestrictedList.retrieve_ips.<span class="hljs-keyword">include</span>?(request.remote_ip) }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Both the <code>matches?</code> method and the lambda gets the <code>request</code> object as an argument.</p>
+<h3><a class="anchor" aria-hidden="true" id="route-globbing-and-wildcard-segments"></a><a href="#route-globbing-and-wildcard-segments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Route Globbing and Wildcard Segments</h3>
+<p>Route globbing is a way to specify that a particular parameter should be matched to all the remaining parts of a route. For example:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'photos/*other'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'photos#unknown'</span>
+</code></pre>
+<p>This route would match <code>photos/12</code> or <code>/photos/long/path/to/12</code>, setting <code>params[:other]</code> to <code>&quot;12&quot;</code> or <code>&quot;long/path/to/12&quot;</code>. The fragments prefixed with a star are called &quot;wildcard segments&quot;.</p>
+<p>Wildcard segments can occur anywhere in a route. For example:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'books/*section/:title'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'books#show'</span>
+</code></pre>
+<p>would match <code>books/some/section/last-words-a-memoir</code> with <code>params[:section]</code> equals <code>'some/section'</code>, and <code>params[:title]</code> equals <code>'last-words-a-memoir'</code>.</p>
+<p>Technically, a route can have even more than one wildcard segment. The matcher assigns segments to parameters in an intuitive way. For example:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'*a/foo/*b'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'test#index'</span>
+</code></pre>
+<p>would match <code>zoo/woo/foo/bar/baz</code> with <code>params[:a]</code> equals <code>'zoo/woo'</code>, and <code>params[:b]</code> equals <code>'bar/baz'</code>.</p>
+<p>NOTE: By requesting <code>'/foo/bar.json'</code>, your <code>params[:pages]</code> will be equal to <code>'foo/bar'</code> with the request format of JSON. If you want the old 3.0.x behavior back, you could supply <code>format: false</code> like this:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'*pages'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'pages#show'</span>, <span class="hljs-symbol">format:</span> <span class="hljs-literal">false</span>
+</code></pre>
+<p>NOTE: If you want to make the format segment mandatory, so it cannot be omitted, you can supply <code>format: true</code> like this:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'*pages'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'pages#show'</span>, <span class="hljs-symbol">format:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="redirection"></a><a href="#redirection" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Redirection</h3>
+<p>You can redirect any path to another path using the <code>redirect</code> helper in your router:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'/stories'</span>, <span class="hljs-symbol">to:</span> redirect(<span class="hljs-string">'/articles'</span>)
+</code></pre>
+<p>You can also reuse dynamic segments from the match in the path to redirect to:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'/stories/:name'</span>, <span class="hljs-symbol">to:</span> redirect(<span class="hljs-string">'/articles/%{name}'</span>)
+</code></pre>
+<p>You can also provide a block to redirect, which receives the symbolized path parameters and the request object:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'/stories/:name'</span>, <span class="hljs-symbol">to:</span> redirect { <span class="hljs-params">|path_params, req|</span> <span class="hljs-string">"/articles/<span class="hljs-subst">#{path_params[<span class="hljs-symbol">:name</span>].pluralize}</span>"</span> }
+get <span class="hljs-string">'/stories'</span>, <span class="hljs-symbol">to:</span> redirect { <span class="hljs-params">|path_params, req|</span> <span class="hljs-string">"/articles/<span class="hljs-subst">#{req.subdomain}</span>"</span> }
+</code></pre>
+<p>Please note that default redirection is a 301 &quot;Moved Permanently&quot; redirect. Keep in mind that some web browsers or proxy servers will cache this type of redirect, making the old page inaccessible. You can use the <code>:status</code> option to change the response status:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'/stories/:name'</span>, <span class="hljs-symbol">to:</span> redirect(<span class="hljs-string">'/articles/%{name}'</span>, <span class="hljs-symbol">status:</span> <span class="hljs-number">302</span>)
+</code></pre>
+<p>In all of these cases, if you don't provide the leading host (<code>http://www.example.com</code>), Rails will take those details from the current request.</p>
+<h3><a class="anchor" aria-hidden="true" id="routing-to-rack-applications"></a><a href="#routing-to-rack-applications" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Routing to Rack Applications</h3>
+<p>Instead of a String like <code>'articles#index'</code>, which corresponds to the <code>index</code> action in the <code>ArticlesController</code>, you can specify any <a href="/rails-setup/docs/rails/rails-on-rack">Rack application</a> as the endpoint for a matcher:</p>
+<pre><code class="hljs css language-ruby">match <span class="hljs-string">'/application.js'</span>, <span class="hljs-symbol">to:</span> MyRackApp, <span class="hljs-symbol">via:</span> <span class="hljs-symbol">:all</span>
+</code></pre>
+<p>As long as <code>MyRackApp</code> responds to <code>call</code> and returns a <code>[status, headers, body]</code>, the router won't know the difference between the Rack application and an action. This is an appropriate use of <code>via: :all</code>, as you will want to allow your Rack application to handle all verbs as it considers appropriate.</p>
+<p>NOTE: For the curious, <code>'articles#index'</code> actually expands out to <code>ArticlesController.action(:index)</code>, which returns a valid Rack application.</p>
+<p>If you specify a Rack application as the endpoint for a matcher, remember that
+the route will be unchanged in the receiving application. With the following
+route your Rack application should expect the route to be <code>/admin</code>:</p>
+<pre><code class="hljs css language-ruby">match <span class="hljs-string">'/admin'</span>, <span class="hljs-symbol">to:</span> AdminApp, <span class="hljs-symbol">via:</span> <span class="hljs-symbol">:all</span>
+</code></pre>
+<p>If you would prefer to have your Rack application receive requests at the root
+path instead, use <code>mount</code>:</p>
+<pre><code class="hljs css language-ruby">mount AdminApp, <span class="hljs-symbol">at:</span> <span class="hljs-string">'/admin'</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="using-root"></a><a href="#using-root" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using <code>root</code></h3>
+<p>You can specify what Rails should route <code>'/'</code> to with the <code>root</code> method:</p>
+<pre><code class="hljs css language-ruby">root <span class="hljs-symbol">to:</span> <span class="hljs-string">'pages#main'</span>
+root <span class="hljs-string">'pages#main'</span> <span class="hljs-comment"># shortcut for the above</span>
+</code></pre>
+<p>You should put the <code>root</code> route at the top of the file, because it is the most popular route and should be matched first.</p>
+<p>NOTE: The <code>root</code> route only routes <code>GET</code> requests to the action.</p>
+<p>You can also use root inside namespaces and scopes as well. For example:</p>
+<pre><code class="hljs css language-ruby">namespace <span class="hljs-symbol">:admin</span> <span class="hljs-keyword">do</span>
+  root <span class="hljs-symbol">to:</span> <span class="hljs-string">"admin#index"</span>
+<span class="hljs-keyword">end</span>
+
+root <span class="hljs-symbol">to:</span> <span class="hljs-string">"home#index"</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="unicode-character-routes"></a><a href="#unicode-character-routes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Unicode character routes</h3>
+<p>You can specify unicode character routes directly. For example:</p>
+<pre><code class="hljs css language-ruby">get <span class="hljs-string">'こんにちは'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'welcome#index'</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="direct-routes"></a><a href="#direct-routes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Direct routes</h3>
+<p>You can create custom URL helpers directly. For example:</p>
+<pre><code class="hljs css language-ruby">direct <span class="hljs-symbol">:homepage</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-string">"http://www.rubyonrails.org"</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># &gt;&gt; homepage_url</span>
+<span class="hljs-comment"># =&gt; "http://www.rubyonrails.org"</span>
+</code></pre>
+<p>The return value of the block must be a valid argument for the <code>url_for</code> method. So, you can pass a valid string URL, Hash, Array, an Active Model instance, or an Active Model class.</p>
+<pre><code class="hljs css language-ruby">direct <span class="hljs-symbol">:commentable</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|model|</span>
+  [ model, <span class="hljs-symbol">anchor:</span> model.dom_id ]
+<span class="hljs-keyword">end</span>
+
+direct <span class="hljs-symbol">:main</span> <span class="hljs-keyword">do</span>
+  { <span class="hljs-symbol">controller:</span> <span class="hljs-string">'pages'</span>, <span class="hljs-symbol">action:</span> <span class="hljs-string">'index'</span>, <span class="hljs-symbol">subdomain:</span> <span class="hljs-string">'www'</span> }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="using-resolve"></a><a href="#using-resolve" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using <code>resolve</code></h3>
+<p>The <code>resolve</code> method allows customizing polymorphic mapping of models. For example:</p>
+<pre><code class="hljs css language-ruby">resource <span class="hljs-symbol">:basket</span>
+
+resolve(<span class="hljs-string">"Basket"</span>) { [<span class="hljs-symbol">:basket</span>] }
+</code></pre>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> form_for @basket <span class="hljs-keyword">do</span> <span class="hljs-params">|form|</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-comment">&lt;!-- basket form --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">end</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>This will generate the singular URL <code>/basket</code> instead of the usual <code>/baskets/:id</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="customizing-resourceful-routes"></a><a href="#customizing-resourceful-routes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customizing Resourceful Routes</h2>
+<p>While the default routes and helpers generated by <code>resources :articles</code> will usually serve you well, you may want to customize them in some way. Rails allows you to customize virtually any generic part of the resourceful helpers.</p>
+<h3><a class="anchor" aria-hidden="true" id="specifying-a-controller-to-use"></a><a href="#specifying-a-controller-to-use" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Specifying a Controller to Use</h3>
+<p>The <code>:controller</code> option lets you explicitly specify a controller to use for the resource. For example:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:photos</span>, <span class="hljs-symbol">controller:</span> <span class="hljs-string">'images'</span>
+</code></pre>
+<p>will recognize incoming paths beginning with <code>/photos</code> but route to the <code>Images</code> controller:</p>
+<table>
+<thead>
+<tr><th>HTTP Verb</th><th>Path</th><th>Controller#Action</th><th>Named Helper</th></tr>
+</thead>
+<tbody>
+<tr><td>GET</td><td>/photos</td><td>images#index</td><td>photos_path</td></tr>
+<tr><td>GET</td><td>/photos/new</td><td>images#new</td><td>new_photo_path</td></tr>
+<tr><td>POST</td><td>/photos</td><td>images#create</td><td>photos_path</td></tr>
+<tr><td>GET</td><td>/photos/:id</td><td>images#show</td><td>photo_path(:id)</td></tr>
+<tr><td>GET</td><td>/photos/:id/edit</td><td>images#edit</td><td>edit_photo_path(:id)</td></tr>
+<tr><td>PATCH/PUT</td><td>/photos/:id</td><td>images#update</td><td>photo_path(:id)</td></tr>
+<tr><td>DELETE</td><td>/photos/:id</td><td>images#destroy</td><td>photo_path(:id)</td></tr>
+</tbody>
+</table>
+<p>NOTE: Use <code>photos_path</code>, <code>new_photo_path</code>, etc. to generate paths for this resource.</p>
+<p>For namespaced controllers you can use the directory notation. For example:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:user_permissions</span>, <span class="hljs-symbol">controller:</span> <span class="hljs-string">'admin/user_permissions'</span>
+</code></pre>
+<p>This will route to the <code>Admin::UserPermissions</code> controller.</p>
+<p>NOTE: Only the directory notation is supported. Specifying the
+controller with Ruby constant notation (eg. <code>controller: 'Admin::UserPermissions'</code>)
+can lead to routing problems and results in
+a warning.</p>
+<h3><a class="anchor" aria-hidden="true" id="specifying-constraints"></a><a href="#specifying-constraints" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Specifying Constraints</h3>
+<p>You can use the <code>:constraints</code> option to specify a required format on the implicit <code>id</code>. For example:</p>
+<pre><code class="hljs css language-ruby">resources :photos, constraints: { id: /[A-Z][A-Z][0-9]+/ }
+</code></pre>
+<p>This declaration constrains the <code>:id</code> parameter to match the supplied regular expression. So, in this case, the router would no longer match <code>/photos/1</code> to this route. Instead, <code>/photos/RR27</code> would match.</p>
+<p>You can specify a single constraint to apply to a number of routes by using the block form:</p>
+<pre><code class="hljs css language-ruby">constraints(id: /[A-Z][A-Z][0-9]+/) do
+  resources :photos
+  resources :accounts
+end
+</code></pre>
+<p>NOTE: Of course, you can use the more advanced constraints available in non-resourceful routes in this context.</p>
+<p>TIP: By default the <code>:id</code> parameter doesn't accept dots - this is because the dot is used as a separator for formatted routes. If you need to use a dot within an <code>:id</code> add a constraint which overrides this - for example <code>id: /[^\/]+/</code> allows anything except a slash.</p>
+<h3><a class="anchor" aria-hidden="true" id="overriding-the-named-helpers"></a><a href="#overriding-the-named-helpers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overriding the Named Helpers</h3>
+<p>The <code>:as</code> option lets you override the normal naming for the named route helpers. For example:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:photos</span>, <span class="hljs-symbol">as:</span> <span class="hljs-string">'images'</span>
+</code></pre>
+<p>will recognize incoming paths beginning with <code>/photos</code> and route the requests to <code>PhotosController</code>, but use the value of the <code>:as</code> option to name the helpers.</p>
+<table>
+<thead>
+<tr><th>HTTP Verb</th><th>Path</th><th>Controller#Action</th><th>Named Helper</th></tr>
+</thead>
+<tbody>
+<tr><td>GET</td><td>/photos</td><td>photos#index</td><td>images_path</td></tr>
+<tr><td>GET</td><td>/photos/new</td><td>photos#new</td><td>new_image_path</td></tr>
+<tr><td>POST</td><td>/photos</td><td>photos#create</td><td>images_path</td></tr>
+<tr><td>GET</td><td>/photos/:id</td><td>photos#show</td><td>image_path(:id)</td></tr>
+<tr><td>GET</td><td>/photos/:id/edit</td><td>photos#edit</td><td>edit_image_path(:id)</td></tr>
+<tr><td>PATCH/PUT</td><td>/photos/:id</td><td>photos#update</td><td>image_path(:id)</td></tr>
+<tr><td>DELETE</td><td>/photos/:id</td><td>photos#destroy</td><td>image_path(:id)</td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="overriding-the-new-and-edit-segments"></a><a href="#overriding-the-new-and-edit-segments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overriding the <code>new</code> and <code>edit</code> Segments</h3>
+<p>The <code>:path_names</code> option lets you override the automatically-generated <code>new</code> and <code>edit</code> segments in paths:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:photos</span>, <span class="hljs-symbol">path_names:</span> { <span class="hljs-symbol">new:</span> <span class="hljs-string">'make'</span>, <span class="hljs-symbol">edit:</span> <span class="hljs-string">'change'</span> }
+</code></pre>
+<p>This would cause the routing to recognize paths such as:</p>
+<pre><code class="hljs"><span class="hljs-meta-keyword">/photos/</span>make
+<span class="hljs-meta-keyword">/photos/</span><span class="hljs-number">1</span>/change
+</code></pre>
+<p>NOTE: The actual action names aren't changed by this option. The two paths shown would still route to the <code>new</code> and <code>edit</code> actions.</p>
+<p>TIP: If you find yourself wanting to change this option uniformly for all of your routes, you can use a scope.</p>
+<pre><code class="hljs css language-ruby">scope <span class="hljs-symbol">path_names:</span> { <span class="hljs-symbol">new:</span> <span class="hljs-string">'make'</span> } <span class="hljs-keyword">do</span>
+  <span class="hljs-comment"># rest of your routes</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="prefixing-the-named-route-helpers"></a><a href="#prefixing-the-named-route-helpers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prefixing the Named Route Helpers</h3>
+<p>You can use the <code>:as</code> option to prefix the named route helpers that Rails generates for a route. Use this option to prevent name collisions between routes using a path scope. For example:</p>
+<pre><code class="hljs css language-ruby">scope <span class="hljs-string">'admin'</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:photos</span>, <span class="hljs-symbol">as:</span> <span class="hljs-string">'admin_photos'</span>
+<span class="hljs-keyword">end</span>
+
+resources <span class="hljs-symbol">:photos</span>
+</code></pre>
+<p>This will provide route helpers such as <code>admin_photos_path</code>, <code>new_admin_photo_path</code>, etc.</p>
+<p>To prefix a group of route helpers, use <code>:as</code> with <code>scope</code>:</p>
+<pre><code class="hljs css language-ruby">scope <span class="hljs-string">'admin'</span>, <span class="hljs-symbol">as:</span> <span class="hljs-string">'admin'</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:photos</span>, <span class="hljs-symbol">:accounts</span>
+<span class="hljs-keyword">end</span>
+
+resources <span class="hljs-symbol">:photos</span>, <span class="hljs-symbol">:accounts</span>
+</code></pre>
+<p>This will generate routes such as <code>admin_photos_path</code> and <code>admin_accounts_path</code> which map to <code>/admin/photos</code> and <code>/admin/accounts</code> respectively.</p>
+<p>NOTE: The <code>namespace</code> scope will automatically add <code>:as</code> as well as <code>:module</code> and <code>:path</code> prefixes.</p>
+<p>You can prefix routes with a named parameter also:</p>
+<pre><code class="hljs css language-ruby">scope <span class="hljs-string">':username'</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:articles</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This will provide you with URLs such as <code>/bob/articles/1</code> and will allow you to reference the <code>username</code> part of the path as <code>params[:username]</code> in controllers, helpers, and views.</p>
+<h3><a class="anchor" aria-hidden="true" id="restricting-the-routes-created"></a><a href="#restricting-the-routes-created" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Restricting the Routes Created</h3>
+<p>By default, Rails creates routes for the seven default actions (<code>index</code>, <code>show</code>, <code>new</code>, <code>create</code>, <code>edit</code>, <code>update</code>, and <code>destroy</code>) for every RESTful route in your application. You can use the <code>:only</code> and <code>:except</code> options to fine-tune this behavior. The <code>:only</code> option tells Rails to create only the specified routes:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:photos</span>, <span class="hljs-symbol">only:</span> [<span class="hljs-symbol">:index</span>, <span class="hljs-symbol">:show</span>]
+</code></pre>
+<p>Now, a <code>GET</code> request to <code>/photos</code> would succeed, but a <code>POST</code> request to <code>/photos</code> (which would ordinarily be routed to the <code>create</code> action) will fail.</p>
+<p>The <code>:except</code> option specifies a route or list of routes that Rails should <em>not</em> create:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:photos</span>, <span class="hljs-symbol">except:</span> <span class="hljs-symbol">:destroy</span>
+</code></pre>
+<p>In this case, Rails will create all of the normal routes except the route for <code>destroy</code> (a <code>DELETE</code> request to <code>/photos/:id</code>).</p>
+<p>TIP: If your application has many RESTful routes, using <code>:only</code> and <code>:except</code> to generate only the routes that you actually need can cut down on memory use and speed up the routing process.</p>
+<h3><a class="anchor" aria-hidden="true" id="translated-paths"></a><a href="#translated-paths" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Translated Paths</h3>
+<p>Using <code>scope</code>, we can alter path names generated by <code>resources</code>:</p>
+<pre><code class="hljs css language-ruby">scope(<span class="hljs-symbol">path_names:</span> { <span class="hljs-symbol">new:</span> <span class="hljs-string">'neu'</span>, <span class="hljs-symbol">edit:</span> <span class="hljs-string">'bearbeiten'</span> }) <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:categories</span>, <span class="hljs-symbol">path:</span> <span class="hljs-string">'kategorien'</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Rails now creates routes to the <code>CategoriesController</code>.</p>
+<table>
+<thead>
+<tr><th>HTTP Verb</th><th>Path</th><th>Controller#Action</th><th>Named Helper</th></tr>
+</thead>
+<tbody>
+<tr><td>GET</td><td>/kategorien</td><td>categories#index</td><td>categories_path</td></tr>
+<tr><td>GET</td><td>/kategorien/neu</td><td>categories#new</td><td>new_category_path</td></tr>
+<tr><td>POST</td><td>/kategorien</td><td>categories#create</td><td>categories_path</td></tr>
+<tr><td>GET</td><td>/kategorien/:id</td><td>categories#show</td><td>category_path(:id)</td></tr>
+<tr><td>GET</td><td>/kategorien/:id/bearbeiten</td><td>categories#edit</td><td>edit_category_path(:id)</td></tr>
+<tr><td>PATCH/PUT</td><td>/kategorien/:id</td><td>categories#update</td><td>category_path(:id)</td></tr>
+<tr><td>DELETE</td><td>/kategorien/:id</td><td>categories#destroy</td><td>category_path(:id)</td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="overriding-the-singular-form"></a><a href="#overriding-the-singular-form" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overriding the Singular Form</h3>
+<p>If you want to define the singular form of a resource, you should add additional rules to the <code>Inflector</code>:</p>
+<pre><code class="hljs css language-ruby">ActiveSupport::Inflector.inflections <span class="hljs-keyword">do</span> <span class="hljs-params">|inflect|</span>
+  inflect.irregular <span class="hljs-string">'tooth'</span>, <span class="hljs-string">'teeth'</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="using-as-in-nested-resources"></a><a href="#using-as-in-nested-resources" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using <code>:as</code> in Nested Resources</h3>
+<p>The <code>:as</code> option overrides the automatically-generated name for the resource in nested route helpers. For example:</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:magazines</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:ads</span>, <span class="hljs-symbol">as:</span> <span class="hljs-string">'periodical_ads'</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This will create routing helpers such as <code>magazine_periodical_ads_url</code> and <code>edit_magazine_periodical_ad_path</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="overriding-named-route-parameters"></a><a href="#overriding-named-route-parameters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overriding Named Route Parameters</h3>
+<p>The <code>:param</code> option overrides the default resource identifier <code>:id</code> (name of
+the <a href="routing.html#dynamic-segments">dynamic segment</a> used to generate the
+routes). You can access that segment from your controller using
+<code>params[&lt;:param&gt;]</code>.</p>
+<pre><code class="hljs css language-ruby">resources <span class="hljs-symbol">:videos</span>, <span class="hljs-symbol">param:</span> <span class="hljs-symbol">:identifier</span>
+</code></pre>
+<pre><code class="hljs">    videos GET  /videos(.<span class="hljs-symbol">:format</span>)                  videos<span class="hljs-comment">#index</span>
+           POST /videos(.<span class="hljs-symbol">:format</span>)                  videos<span class="hljs-comment">#create</span>
+ new_video GET  /videos/new(.<span class="hljs-symbol">:format</span>)              videos<span class="hljs-comment">#new</span>
+edit_video GET  /videos/<span class="hljs-symbol">:identifier/edit</span>(.<span class="hljs-symbol">:format</span>) videos<span class="hljs-comment">#edit</span>
+</code></pre>
+<pre><code class="hljs css language-ruby">Video.find_by(<span class="hljs-symbol">identifier:</span> params[<span class="hljs-symbol">:identifier</span>])
+</code></pre>
+<p>You can override <code>ActiveRecord::Base#to_param</code> of a related model to construct
+a URL:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Video</span> &lt; ApplicationRecord</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">to_param</span></span>
+    identifier
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+video = Video.find_by(<span class="hljs-symbol">identifier:</span> <span class="hljs-string">"Roman-Holiday"</span>)
+edit_video_path(video) <span class="hljs-comment"># =&gt; "/videos/Roman-Holiday/edit"</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="inspecting-and-testing-routes"></a><a href="#inspecting-and-testing-routes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inspecting and Testing Routes</h2>
+<p>Rails offers facilities for inspecting and testing your routes.</p>
+<h3><a class="anchor" aria-hidden="true" id="listing-existing-routes"></a><a href="#listing-existing-routes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Listing Existing Routes</h3>
+<p>To get a complete list of the available routes in your application, visit <code>http://localhost:3000/rails/info/routes</code> in your browser while your server is running in the <strong>development</strong> environment. You can also execute the <code>rails routes</code> command in your terminal to produce the same output.</p>
+<p>Both methods will list all of your routes, in the same order that they appear in <code>config/routes.rb</code>. For each route, you'll see:</p>
+<ul>
+<li>The route name (if any)</li>
+<li>The HTTP verb used (if the route doesn't respond to all verbs)</li>
+<li>The URL pattern to match</li>
+<li>The routing parameters for the route</li>
+</ul>
+<p>For example, here's a small section of the <code>rails routes</code> output for a RESTful route:</p>
+<pre><code class="hljs">   <span class="hljs-built_in"> users </span><span class="hljs-builtin-name">GET</span>    /users(.:format)          users#index
+          POST   /users(.:format)          users#create
+ new_user <span class="hljs-builtin-name">GET</span>    /users/new(.:format)      users#new
+edit_user <span class="hljs-builtin-name">GET</span>    /users/:id/<span class="hljs-builtin-name">edit</span>(.:format) users#<span class="hljs-builtin-name">edit</span>
+</code></pre>
+<p>You can also use the <code>--expanded</code> option to turn on the expanded table formatting mode.</p>
+<pre><code class="hljs">$ rails routes --expanded
+
+--[<span class="hljs-built_in"> Route </span>1 ]----------------------------------------------------<span class="hljs-built_in">
+Prefix </span>           |<span class="hljs-built_in"> users
+</span>Verb              | <span class="hljs-builtin-name">GET</span>
+URI               | /users(.:format)
+Controller#Action | users#index
+--[<span class="hljs-built_in"> Route </span>2 ]----------------------------------------------------<span class="hljs-built_in">
+Prefix </span>           |
+Verb              | POST
+URI               | /users(.:format)
+Controller#Action | users#create
+--[<span class="hljs-built_in"> Route </span>3 ]----------------------------------------------------<span class="hljs-built_in">
+Prefix </span>           | new_user
+Verb              | <span class="hljs-builtin-name">GET</span>
+URI               | /users/new(.:format)
+Controller#Action | users#new
+--[<span class="hljs-built_in"> Route </span>4 ]----------------------------------------------------<span class="hljs-built_in">
+Prefix </span>           | edit_user
+Verb              | <span class="hljs-builtin-name">GET</span>
+URI               | /users/:id/<span class="hljs-builtin-name">edit</span>(.:format)
+Controller#Action | users#<span class="hljs-builtin-name">edit</span>
+</code></pre>
+<p>You can search through your routes with the grep option: -g. This outputs any routes that partially match the URL helper method name, the HTTP verb, or the URL path.</p>
+<pre><code class="hljs"><span class="hljs-variable">$ </span>rails routes -g new_comment
+<span class="hljs-variable">$ </span>rails routes -g POST
+<span class="hljs-variable">$ </span>rails routes -g admin
+</code></pre>
+<p>If you only want to see the routes that map to a specific controller, there's the -c option.</p>
+<pre><code class="hljs">$ rails routes -c<span class="hljs-built_in"> users
+</span>$ rails routes -c admin<span class="hljs-built_in">/users
+</span>$ rails routes -c Comments
+$ rails routes -c Articles::CommentsController
+</code></pre>
+<p>TIP: You'll find that the output from <code>rails routes</code> is much more readable if you widen your terminal window until the output lines don't wrap.</p>
+<h3><a class="anchor" aria-hidden="true" id="testing-routes"></a><a href="#testing-routes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Testing Routes</h3>
+<p>Routes should be included in your testing strategy (just like the rest of your application). Rails offers three <a href="https://api.rubyonrails.org/classes/ActionDispatch/Assertions/RoutingAssertions.html">built-in assertions</a> designed to make testing routes simpler:</p>
+<ul>
+<li><code>assert_generates</code></li>
+<li><code>assert_recognizes</code></li>
+<li><code>assert_routing</code></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="the-assert_generates-assertion"></a><a href="#the-assert_generates-assertion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The <code>assert_generates</code> Assertion</h4>
+<p><code>assert_generates</code> asserts that a particular set of options generate a particular path and can be used with default routes or custom routes. For example:</p>
+<pre><code class="hljs css language-ruby">assert_generates <span class="hljs-string">'/photos/1'</span>, { <span class="hljs-symbol">controller:</span> <span class="hljs-string">'photos'</span>, <span class="hljs-symbol">action:</span> <span class="hljs-string">'show'</span>, <span class="hljs-symbol">id:</span> <span class="hljs-string">'1'</span> }
+assert_generates <span class="hljs-string">'/about'</span>, <span class="hljs-symbol">controller:</span> <span class="hljs-string">'pages'</span>, <span class="hljs-symbol">action:</span> <span class="hljs-string">'about'</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="the-assert_recognizes-assertion"></a><a href="#the-assert_recognizes-assertion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The <code>assert_recognizes</code> Assertion</h4>
+<p><code>assert_recognizes</code> is the inverse of <code>assert_generates</code>. It asserts that a given path is recognized and routes it to a particular spot in your application. For example:</p>
+<pre><code class="hljs css language-ruby">assert_recognizes({ <span class="hljs-symbol">controller:</span> <span class="hljs-string">'photos'</span>, <span class="hljs-symbol">action:</span> <span class="hljs-string">'show'</span>, <span class="hljs-symbol">id:</span> <span class="hljs-string">'1'</span> }, <span class="hljs-string">'/photos/1'</span>)
+</code></pre>
+<p>You can supply a <code>:method</code> argument to specify the HTTP verb:</p>
+<pre><code class="hljs css language-ruby">assert_recognizes({ <span class="hljs-symbol">controller:</span> <span class="hljs-string">'photos'</span>, <span class="hljs-symbol">action:</span> <span class="hljs-string">'create'</span> }, { <span class="hljs-symbol">path:</span> <span class="hljs-string">'photos'</span>, <span class="hljs-symbol">method:</span> <span class="hljs-symbol">:post</span> })
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="the-assert_routing-assertion"></a><a href="#the-assert_routing-assertion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The <code>assert_routing</code> Assertion</h4>
+<p>The <code>assert_routing</code> assertion checks the route both ways: it tests that the path generates the options, and that the options generate the path. Thus, it combines the functions of <code>assert_generates</code> and <code>assert_recognizes</code>:</p>
+<pre><code class="hljs css language-ruby">assert_routing({ <span class="hljs-symbol">path:</span> <span class="hljs-string">'photos'</span>, <span class="hljs-symbol">method:</span> <span class="hljs-symbol">:post</span> }, { <span class="hljs-symbol">controller:</span> <span class="hljs-string">'photos'</span>, <span class="hljs-symbol">action:</span> <span class="hljs-string">'create'</span> })
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-7</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/rails/action-controller"><span class="arrow-prev">← </span><span>Action Controller Overview</span></a><a class="docs-next button" href="/rails-setup/docs/rails/active-support-core"><span>Active Support Core Extensions</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#the-purpose-of-the-rails-router">The Purpose of the Rails Router</a><ul class="toc-headings"><li><a href="#connecting-urls-to-code">Connecting URLs to Code</a></li><li><a href="#generating-paths-and-urls-from-code">Generating Paths and URLs from Code</a></li><li><a href="#configuring-the-rails-router">Configuring the Rails Router</a></li></ul></li><li><a href="#resource-routing-the-rails-default">Resource Routing: the Rails Default</a><ul class="toc-headings"><li><a href="#resources-on-the-web">Resources on the Web</a></li><li><a href="#crud-verbs-and-actions">CRUD, Verbs, and Actions</a></li><li><a href="#path-and-url-helpers">Path and URL Helpers</a></li><li><a href="#defining-multiple-resources-at-the-same-time">Defining Multiple Resources at the Same Time</a></li><li><a href="#singular-resources">Singular Resources</a></li><li><a href="#controller-namespaces-and-routing">Controller Namespaces and Routing</a></li><li><a href="#nested-resources">Nested Resources</a></li><li><a href="#routing-concerns">Routing concerns</a></li><li><a href="#creating-paths-and-urls-from-objects">Creating Paths and URLs From Objects</a></li><li><a href="#adding-more-restful-actions">Adding More RESTful Actions</a></li></ul></li><li><a href="#non-resourceful-routes">Non-Resourceful Routes</a><ul class="toc-headings"><li><a href="#bound-parameters">Bound Parameters</a></li><li><a href="#dynamic-segments">Dynamic Segments</a></li><li><a href="#static-segments">Static Segments</a></li><li><a href="#the-query-string">The Query String</a></li><li><a href="#defining-defaults">Defining Defaults</a></li><li><a href="#naming-routes">Naming Routes</a></li><li><a href="#http-verb-constraints">HTTP Verb Constraints</a></li><li><a href="#segment-constraints">Segment Constraints</a></li><li><a href="#request-based-constraints">Request-Based Constraints</a></li><li><a href="#advanced-constraints">Advanced Constraints</a></li><li><a href="#route-globbing-and-wildcard-segments">Route Globbing and Wildcard Segments</a></li><li><a href="#redirection">Redirection</a></li><li><a href="#routing-to-rack-applications">Routing to Rack Applications</a></li><li><a href="#using-root">Using <code>root</code></a></li><li><a href="#unicode-character-routes">Unicode character routes</a></li><li><a href="#direct-routes">Direct routes</a></li><li><a href="#using-resolve">Using <code>resolve</code></a></li></ul></li><li><a href="#customizing-resourceful-routes">Customizing Resourceful Routes</a><ul class="toc-headings"><li><a href="#specifying-a-controller-to-use">Specifying a Controller to Use</a></li><li><a href="#specifying-constraints">Specifying Constraints</a></li><li><a href="#overriding-the-named-helpers">Overriding the Named Helpers</a></li><li><a href="#overriding-the-new-and-edit-segments">Overriding the <code>new</code> and <code>edit</code> Segments</a></li><li><a href="#prefixing-the-named-route-helpers">Prefixing the Named Route Helpers</a></li><li><a href="#restricting-the-routes-created">Restricting the Routes Created</a></li><li><a href="#translated-paths">Translated Paths</a></li><li><a href="#overriding-the-singular-form">Overriding the Singular Form</a></li><li><a href="#using-as-in-nested-resources">Using <code>:as</code> in Nested Resources</a></li><li><a href="#overriding-named-route-parameters">Overriding Named Route Parameters</a></li></ul></li><li><a href="#inspecting-and-testing-routes">Inspecting and Testing Routes</a><ul class="toc-headings"><li><a href="#listing-existing-routes">Listing Existing Routes</a></li><li><a href="#testing-routes">Testing Routes</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Rails Setup 2019</section></footer></div></body></html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Active Record and PostgreSQL · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This guide covers PostgreSQL specific usage of Active Record.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Active Record and PostgreSQL · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;This guide covers PostgreSQL specific usage of Active Record.&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/rails/getting-started" target="_self">Rails</a></li><li class=""><a href="/rails-setup/docs/devise/overview" target="_self">Devise</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Models</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start Here<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/getting-started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/development-dependencies-install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Models<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/multiple-databases">Multiple Databases with Active Record</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/rails/active-record-postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Views<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/layouts-and-rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view-form-helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Controllers<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Other Components<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Digging Deeper<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/testing-rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/securing-rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/debugging-rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/configuring-rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-command-line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/asset-pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/working-with-javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/autoloading-and-reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/caching-with-rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-only-apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Extending Rails<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-on-rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/generators-&amp;-templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/application-templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/creating-rails-plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contributions<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/contributing-to-rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/guides-guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Policies<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/maintenance-policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Active Record and PostgreSQL</h1></header><article><div><span><p>This guide covers PostgreSQL specific usage of Active Record.</p>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>How to use PostgreSQL's datatypes.</li>
+<li>How to use UUID primary keys.</li>
+<li>How to implement full text search with PostgreSQL.</li>
+<li>How to back your Active Record models with database views.</li>
+</ul>
+<hr>
+<p>In order to use the PostgreSQL adapter you need to have at least version 9.3
+installed. Older versions are not supported.</p>
+<p>To get started with PostgreSQL have a look at the
+<a href="configuring.html#configuring-a-postgresql-database">configuring Rails guide</a>.
+It describes how to properly setup Active Record for PostgreSQL.</p>
+<h2><a class="anchor" aria-hidden="true" id="datatypes"></a><a href="#datatypes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Datatypes</h2>
+<p>PostgreSQL offers a number of specific datatypes. Following is a list of types,
+that are supported by the PostgreSQL adapter.</p>
+<h3><a class="anchor" aria-hidden="true" id="bytea"></a><a href="#bytea" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bytea</h3>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/static/datatype-binary.html">type definition</a></li>
+<li><a href="https://www.postgresql.org/docs/current/static/functions-binarystring.html">functions and operators</a></li>
+</ul>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># db/migrate/20140207133952_create_documents.rb</span>
+create_table <span class="hljs-symbol">:documents</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  t.binary <span class="hljs-string">'payload'</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/document.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Document</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Usage</span>
+data = File.read(Rails.root + <span class="hljs-string">"tmp/output.pdf"</span>)
+Document.create <span class="hljs-symbol">payload:</span> data
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="array"></a><a href="#array" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Array</h3>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/static/arrays.html">type definition</a></li>
+<li><a href="https://www.postgresql.org/docs/current/static/functions-array.html">functions and operators</a></li>
+</ul>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># db/migrate/20140207133952_create_books.rb</span>
+create_table <span class="hljs-symbol">:books</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  t.string <span class="hljs-string">'title'</span>
+  t.string <span class="hljs-string">'tags'</span>, <span class="hljs-symbol">array:</span> <span class="hljs-literal">true</span>
+  t.integer <span class="hljs-string">'ratings'</span>, <span class="hljs-symbol">array:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+add_index <span class="hljs-symbol">:books</span>, <span class="hljs-symbol">:tags</span>, <span class="hljs-symbol">using:</span> <span class="hljs-string">'gin'</span>
+add_index <span class="hljs-symbol">:books</span>, <span class="hljs-symbol">:ratings</span>, <span class="hljs-symbol">using:</span> <span class="hljs-string">'gin'</span>
+
+<span class="hljs-comment"># app/models/book.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Book</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Usage</span>
+Book.create <span class="hljs-symbol">title:</span> <span class="hljs-string">"Brave New World"</span>,
+            <span class="hljs-symbol">tags:</span> [<span class="hljs-string">"fantasy"</span>, <span class="hljs-string">"fiction"</span>],
+            <span class="hljs-symbol">ratings:</span> [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+
+<span class="hljs-comment">## Books for a single tag</span>
+Book.where(<span class="hljs-string">"'fantasy' = ANY (tags)"</span>)
+
+<span class="hljs-comment">## Books for multiple tags</span>
+Book.where(<span class="hljs-string">"tags @&gt; ARRAY[?]::varchar[]"</span>, [<span class="hljs-string">"fantasy"</span>, <span class="hljs-string">"fiction"</span>])
+
+<span class="hljs-comment">## Books with 3 or more ratings</span>
+Book.where(<span class="hljs-string">"array_length(ratings, 1) &gt;= 3"</span>)
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="hstore"></a><a href="#hstore" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hstore</h3>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/static/hstore.html">type definition</a></li>
+<li><a href="https://www.postgresql.org/docs/current/static/hstore.html#id-1.11.7.26.5">functions and operators</a></li>
+</ul>
+<p>NOTE: You need to enable the <code>hstore</code> extension to use hstore.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># db/migrate/20131009135255_create_profiles.rb</span>
+ActiveRecord::Schema.define <span class="hljs-keyword">do</span>
+  enable_extension <span class="hljs-string">'hstore'</span> <span class="hljs-keyword">unless</span> extension_enabled?(<span class="hljs-string">'hstore'</span>)
+  create_table <span class="hljs-symbol">:profiles</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+    t.hstore <span class="hljs-string">'settings'</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/profile.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Profile</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Usage</span>
+Profile.create(<span class="hljs-symbol">settings:</span> { <span class="hljs-string">"color"</span> =&gt; <span class="hljs-string">"blue"</span>, <span class="hljs-string">"resolution"</span> =&gt; <span class="hljs-string">"800x600"</span> })
+
+profile = Profile.first
+profile.settings <span class="hljs-comment"># =&gt; {"color"=&gt;"blue", "resolution"=&gt;"800x600"}</span>
+
+profile.settings = {<span class="hljs-string">"color"</span> =&gt; <span class="hljs-string">"yellow"</span>, <span class="hljs-string">"resolution"</span> =&gt; <span class="hljs-string">"1280x1024"</span>}
+profile.save!
+
+Profile.where(<span class="hljs-string">"settings-&gt;'color' = ?"</span>, <span class="hljs-string">"yellow"</span>)
+<span class="hljs-comment"># =&gt; #&lt;ActiveRecord::Relation [#&lt;Profile id: 1, settings: {"color"=&gt;"yellow", "resolution"=&gt;"1280x1024"}&gt;]&gt;</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="json-and-jsonb"></a><a href="#json-and-jsonb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JSON and JSONB</h3>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/static/datatype-json.html">type definition</a></li>
+<li><a href="https://www.postgresql.org/docs/current/static/functions-json.html">functions and operators</a></li>
+</ul>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># db/migrate/20131220144913_create_events.rb</span>
+<span class="hljs-comment"># ... for json datatype:</span>
+create_table <span class="hljs-symbol">:events</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  t.json <span class="hljs-string">'payload'</span>
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment"># ... or for jsonb datatype:</span>
+create_table <span class="hljs-symbol">:events</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  t.jsonb <span class="hljs-string">'payload'</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/event.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Event</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Usage</span>
+Event.create(<span class="hljs-symbol">payload:</span> { <span class="hljs-symbol">kind:</span> <span class="hljs-string">"user_renamed"</span>, <span class="hljs-symbol">change:</span> [<span class="hljs-string">"jack"</span>, <span class="hljs-string">"john"</span>]})
+
+event = Event.first
+event.payload <span class="hljs-comment"># =&gt; {"kind"=&gt;"user_renamed", "change"=&gt;["jack", "john"]}</span>
+
+<span class="hljs-comment">## Query based on JSON document</span>
+<span class="hljs-comment"># The -&gt; operator returns the original JSON type (which might be an object), whereas -&gt;&gt; returns text</span>
+Event.where(<span class="hljs-string">"payload-&gt;&gt;'kind' = ?"</span>, <span class="hljs-string">"user_renamed"</span>)
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="range-types"></a><a href="#range-types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Range Types</h3>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/static/rangetypes.html">type definition</a></li>
+<li><a href="https://www.postgresql.org/docs/current/static/functions-range.html">functions and operators</a></li>
+</ul>
+<p>This type is mapped to Ruby <a href="https://ruby-doc.org/core-2.2.2/Range.html"><code>Range</code></a> objects.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># db/migrate/20130923065404_create_events.rb</span>
+create_table <span class="hljs-symbol">:events</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  t.daterange <span class="hljs-string">'duration'</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/event.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Event</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Usage</span>
+Event.create(<span class="hljs-symbol">duration:</span> Date.new(<span class="hljs-number">2014</span>, <span class="hljs-number">2</span>, <span class="hljs-number">11</span>)..Date.new(<span class="hljs-number">2014</span>, <span class="hljs-number">2</span>, <span class="hljs-number">12</span>))
+
+event = Event.first
+event.duration <span class="hljs-comment"># =&gt; Tue, 11 Feb 2014...Thu, 13 Feb 2014</span>
+
+<span class="hljs-comment">## All Events on a given date</span>
+Event.where(<span class="hljs-string">"duration @&gt; ?::date"</span>, Date.new(<span class="hljs-number">2014</span>, <span class="hljs-number">2</span>, <span class="hljs-number">12</span>))
+
+<span class="hljs-comment">## Working with range bounds</span>
+event = Event.
+  select(<span class="hljs-string">"lower(duration) AS starts_at"</span>).
+  select(<span class="hljs-string">"upper(duration) AS ends_at"</span>).first
+
+event.starts_at <span class="hljs-comment"># =&gt; Tue, 11 Feb 2014</span>
+event.ends_at <span class="hljs-comment"># =&gt; Thu, 13 Feb 2014</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="composite-types"></a><a href="#composite-types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Composite Types</h3>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/static/rowtypes.html">type definition</a></li>
+</ul>
+<p>Currently there is no special support for composite types. They are mapped to
+normal text columns:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TYPE</span> full_address <span class="hljs-keyword">AS</span>
+(
+  city <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">90</span>),
+  street <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">90</span>)
+);
+</code></pre>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># db/migrate/20140207133952_create_contacts.rb</span>
+execute <span class="hljs-string">&lt;&lt;-SQL
+ CREATE TYPE full_address AS
+ (
+   city VARCHAR(90),
+   street VARCHAR(90)
+ );
+SQL</span>
+create_table <span class="hljs-symbol">:contacts</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  t.column <span class="hljs-symbol">:address</span>, <span class="hljs-symbol">:full_address</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/contact.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Contact</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Usage</span>
+Contact.create <span class="hljs-symbol">address:</span> <span class="hljs-string">"(Paris,Champs-Élysées)"</span>
+contact = Contact.first
+contact.address <span class="hljs-comment"># =&gt; "(Paris,Champs-Élysées)"</span>
+contact.address = <span class="hljs-string">"(Paris,Rue Basse)"</span>
+contact.save!
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="enumerated-types"></a><a href="#enumerated-types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Enumerated Types</h3>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/static/datatype-enum.html">type definition</a></li>
+</ul>
+<p>Currently there is no special support for enumerated types. They are mapped as
+normal text columns:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># db/migrate/20131220144913_create_articles.rb</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">up</span></span>
+  execute <span class="hljs-string">&lt;&lt;-SQL
+    CREATE TYPE article_status AS ENUM ('draft', 'published');
+  SQL</span>
+  create_table <span class="hljs-symbol">:articles</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+    t.column <span class="hljs-symbol">:status</span>, <span class="hljs-symbol">:article_status</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># <span class="hljs-doctag">NOTE:</span> It's important to drop table before dropping enum.</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">down</span></span>
+  drop_table <span class="hljs-symbol">:articles</span>
+
+  execute <span class="hljs-string">&lt;&lt;-SQL
+    DROP TYPE article_status;
+  SQL</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/article.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Article</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Usage</span>
+Article.create <span class="hljs-symbol">status:</span> <span class="hljs-string">"draft"</span>
+article = Article.first
+article.status <span class="hljs-comment"># =&gt; "draft"</span>
+
+article.status = <span class="hljs-string">"published"</span>
+article.save!
+</code></pre>
+<p>To add a new value before/after existing one you should use <a href="https://www.postgresql.org/docs/current/static/sql-altertype.html">ALTER TYPE</a>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># db/migrate/20150720144913_add_new_state_to_articles.rb</span>
+<span class="hljs-comment"># <span class="hljs-doctag">NOTE:</span> ALTER TYPE ... ADD VALUE cannot be executed inside of a transaction block so here we are using disable_ddl_transaction!</span>
+disable_ddl_transaction!
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">up</span></span>
+  execute <span class="hljs-string">&lt;&lt;-SQL
+    ALTER TYPE article_status ADD VALUE IF NOT EXISTS 'archived' AFTER 'published';
+  SQL</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>NOTE: ENUM values can't be dropped currently. You can read why <a href="https://www.postgresql.org/message-id/29F36C7C98AB09499B1A209D48EAA615B7653DBC8A@mail2a.alliedtesting.com">here</a>.</p>
+<p>Hint: to show all the values of the all enums you have, you should call this query in <code>rails db</code> or <code>psql</code> console:</p>
+<pre><code class="hljs css language-sql"><span class="hljs-keyword">SELECT</span> n.nspname <span class="hljs-keyword">AS</span> enum_schema,
+       t.typname <span class="hljs-keyword">AS</span> enum_name,
+       e.enumlabel <span class="hljs-keyword">AS</span> enum_value
+  <span class="hljs-keyword">FROM</span> pg_type t
+      <span class="hljs-keyword">JOIN</span> pg_enum e <span class="hljs-keyword">ON</span> t.oid = e.enumtypid
+      <span class="hljs-keyword">JOIN</span> pg_catalog.pg_namespace n <span class="hljs-keyword">ON</span> n.oid = t.typnamespace
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="uuid"></a><a href="#uuid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>UUID</h3>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/static/datatype-uuid.html">type definition</a></li>
+<li><a href="https://www.postgresql.org/docs/current/static/pgcrypto.html#id-1.11.7.35.7">pgcrypto generator function</a></li>
+<li><a href="https://www.postgresql.org/docs/current/static/uuid-ossp.html">uuid-ossp generator functions</a></li>
+</ul>
+<p>NOTE: You need to enable the <code>pgcrypto</code> (only PostgreSQL &gt;= 9.4) or <code>uuid-ossp</code>
+extension to use uuid.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># db/migrate/20131220144913_create_revisions.rb</span>
+create_table <span class="hljs-symbol">:revisions</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  t.uuid <span class="hljs-symbol">:identifier</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/revision.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Revision</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Usage</span>
+Revision.create <span class="hljs-symbol">identifier:</span> <span class="hljs-string">"A0EEBC99-9C0B-4EF8-BB6D-6BB9BD380A11"</span>
+
+revision = Revision.first
+revision.identifier <span class="hljs-comment"># =&gt; "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11"</span>
+</code></pre>
+<p>You can use <code>uuid</code> type to define references in migrations:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># db/migrate/20150418012400_create_blog.rb</span>
+enable_extension <span class="hljs-string">'pgcrypto'</span> <span class="hljs-keyword">unless</span> extension_enabled?(<span class="hljs-string">'pgcrypto'</span>)
+create_table <span class="hljs-symbol">:posts</span>, <span class="hljs-symbol">id:</span> <span class="hljs-symbol">:uuid</span>, <span class="hljs-symbol">default:</span> <span class="hljs-string">'gen_random_uuid()'</span>
+
+create_table <span class="hljs-symbol">:comments</span>, <span class="hljs-symbol">id:</span> <span class="hljs-symbol">:uuid</span>, <span class="hljs-symbol">default:</span> <span class="hljs-string">'gen_random_uuid()'</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  <span class="hljs-comment"># t.belongs_to :post, type: :uuid</span>
+  t.references <span class="hljs-symbol">:post</span>, <span class="hljs-symbol">type:</span> <span class="hljs-symbol">:uuid</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/post.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Post</span> &lt; ApplicationRecord</span>
+  has_many <span class="hljs-symbol">:comments</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/comment.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Comment</span> &lt; ApplicationRecord</span>
+  belongs_to <span class="hljs-symbol">:post</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>See <a href="#uuid-primary-keys">this section</a> for more details on using UUIDs as primary key.</p>
+<h3><a class="anchor" aria-hidden="true" id="bit-string-types"></a><a href="#bit-string-types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bit String Types</h3>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/static/datatype-bit.html">type definition</a></li>
+<li><a href="https://www.postgresql.org/docs/current/static/functions-bitstring.html">functions and operators</a></li>
+</ul>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># db/migrate/20131220144913_create_users.rb</span>
+create_table <span class="hljs-symbol">:users</span>, <span class="hljs-symbol">force:</span> <span class="hljs-literal">true</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  t.column <span class="hljs-symbol">:settings</span>, <span class="hljs-string">"bit(8)"</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/user.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Usage</span>
+User.create <span class="hljs-symbol">settings:</span> <span class="hljs-string">"01010011"</span>
+user = User.first
+user.settings <span class="hljs-comment"># =&gt; "01010011"</span>
+user.settings = <span class="hljs-string">"0xAF"</span>
+user.settings <span class="hljs-comment"># =&gt; 10101111</span>
+user.save!
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="network-address-types"></a><a href="#network-address-types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Network Address Types</h3>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/static/datatype-net-types.html">type definition</a></li>
+</ul>
+<p>The types <code>inet</code> and <code>cidr</code> are mapped to Ruby
+<a href="https://ruby-doc.org/stdlib-2.2.2/libdoc/ipaddr/rdoc/IPAddr.html"><code>IPAddr</code></a>
+objects. The <code>macaddr</code> type is mapped to normal text.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># db/migrate/20140508144913_create_devices.rb</span>
+create_table(<span class="hljs-symbol">:devices</span>, <span class="hljs-symbol">force:</span> <span class="hljs-literal">true</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  t.inet <span class="hljs-string">'ip'</span>
+  t.cidr <span class="hljs-string">'network'</span>
+  t.macaddr <span class="hljs-string">'address'</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/device.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Device</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Usage</span>
+macbook = Device.create(<span class="hljs-symbol">ip:</span> <span class="hljs-string">"192.168.1.12"</span>,
+                        <span class="hljs-symbol">network:</span> <span class="hljs-string">"192.168.2.0/24"</span>,
+                        <span class="hljs-symbol">address:</span> <span class="hljs-string">"32:01:16:6d:05:ef"</span>)
+
+macbook.ip
+<span class="hljs-comment"># =&gt; #&lt;IPAddr: IPv4:192.168.1.12/255.255.255.255&gt;</span>
+
+macbook.network
+<span class="hljs-comment"># =&gt; #&lt;IPAddr: IPv4:192.168.2.0/255.255.255.0&gt;</span>
+
+macbook.address
+<span class="hljs-comment"># =&gt; "32:01:16:6d:05:ef"</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="geometric-types"></a><a href="#geometric-types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Geometric Types</h3>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/static/datatype-geometric.html">type definition</a></li>
+</ul>
+<p>All geometric types, with the exception of <code>points</code> are mapped to normal text.
+A point is casted to an array containing <code>x</code> and <code>y</code> coordinates.</p>
+<h2><a class="anchor" aria-hidden="true" id="uuid-primary-keys"></a><a href="#uuid-primary-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>UUID Primary Keys</h2>
+<p>NOTE: You need to enable the <code>pgcrypto</code> (only PostgreSQL &gt;= 9.4) or <code>uuid-ossp</code>
+extension to generate random UUIDs.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># db/migrate/20131220144913_create_devices.rb</span>
+enable_extension <span class="hljs-string">'pgcrypto'</span> <span class="hljs-keyword">unless</span> extension_enabled?(<span class="hljs-string">'pgcrypto'</span>)
+create_table <span class="hljs-symbol">:devices</span>, <span class="hljs-symbol">id:</span> <span class="hljs-symbol">:uuid</span>, <span class="hljs-symbol">default:</span> <span class="hljs-string">'gen_random_uuid()'</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  t.string <span class="hljs-symbol">:kind</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># app/models/device.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Device</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Usage</span>
+device = Device.create
+device.id <span class="hljs-comment"># =&gt; "814865cd-5a1d-4771-9306-4268f188fe9e"</span>
+</code></pre>
+<p>NOTE: <code>gen_random_uuid()</code> (from <code>pgcrypto</code>) is assumed if no <code>:default</code> option was
+passed to <code>create_table</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="full-text-search"></a><a href="#full-text-search" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Full Text Search</h2>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># db/migrate/20131220144913_create_documents.rb</span>
+create_table <span class="hljs-symbol">:documents</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+  t.string <span class="hljs-string">'title'</span>
+  t.string <span class="hljs-string">'body'</span>
+<span class="hljs-keyword">end</span>
+
+add_index <span class="hljs-symbol">:documents</span>, <span class="hljs-string">"to_tsvector('english', title || ' ' || body)"</span>, <span class="hljs-symbol">using:</span> <span class="hljs-symbol">:gin</span>, <span class="hljs-symbol">name:</span> <span class="hljs-string">'documents_idx'</span>
+
+<span class="hljs-comment"># app/models/document.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Document</span> &lt; ApplicationRecord</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Usage</span>
+Document.create(<span class="hljs-symbol">title:</span> <span class="hljs-string">"Cats and Dogs"</span>, <span class="hljs-symbol">body:</span> <span class="hljs-string">"are nice!"</span>)
+
+<span class="hljs-comment">## all documents matching 'cat &amp; dog'</span>
+Document.where(<span class="hljs-string">"to_tsvector('english', title || ' ' || body) @@ to_tsquery(?)"</span>,
+                 <span class="hljs-string">"cat &amp; dog"</span>)
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="database-views"></a><a href="#database-views" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Database Views</h2>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/static/sql-createview.html">view creation</a></li>
+</ul>
+<p>Imagine you need to work with a legacy database containing the following table:</p>
+<pre><code class="hljs">rails_pg_guide=# \d <span class="hljs-string">"TBL_ART"</span>
+                                        Table <span class="hljs-string">"public.TBL_ART"</span>
+   Column   |            <span class="hljs-keyword">Type</span>             |                         Modifiers
+<span class="hljs-comment">------------+-----------------------------+------------------------------------------------------------</span>
+ INT_ID     | <span class="hljs-built_in">integer</span>                     | <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">default</span> nextval('<span class="hljs-string">"TBL_ART_INT_ID_seq"</span>'::regclass)
+ STR_TITLE  | <span class="hljs-built_in">character</span> varying           |
+ STR_STAT   | <span class="hljs-built_in">character</span> varying           | <span class="hljs-keyword">default</span> <span class="hljs-symbol">'draft</span>'::<span class="hljs-built_in">character</span> varying
+ DT_PUBL_AT | timestamp without <span class="hljs-built_in">time</span> zone |
+ BL_ARCH    | <span class="hljs-built_in">boolean</span>                     | <span class="hljs-keyword">default</span> <span class="hljs-literal">false</span>
+Indexes:
+    <span class="hljs-string">"TBL_ART_pkey"</span> PRIMARY KEY, btree (<span class="hljs-string">"INT_ID"</span>)
+</code></pre>
+<p>This table does not follow the Rails conventions at all.
+Because simple PostgreSQL views are updateable by default,
+we can wrap it as follows:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># db/migrate/20131220144913_create_articles_view.rb</span>
+execute <span class="hljs-string">&lt;&lt;-SQL
+CREATE VIEW articles AS
+  SELECT "INT_ID" AS id,
+         "STR_TITLE" AS title,
+         "STR_STAT" AS status,
+         "DT_PUBL_AT" AS published_at,
+         "BL_ARCH" AS archived
+  FROM "TBL_ART"
+  WHERE "BL_ARCH" = 'f'
+  SQL</span>
+
+<span class="hljs-comment"># app/models/article.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Article</span> &lt; ApplicationRecord</span>
+  <span class="hljs-keyword">self</span>.primary_key = <span class="hljs-string">"id"</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">archive!</span></span>
+    update_attribute <span class="hljs-symbol">:archived</span>, <span class="hljs-literal">true</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Usage</span>
+first = Article.create! <span class="hljs-symbol">title:</span> <span class="hljs-string">"Winter is coming"</span>,
+                        <span class="hljs-symbol">status:</span> <span class="hljs-string">"published"</span>,
+                        <span class="hljs-symbol">published_at:</span> <span class="hljs-number">1</span>.year.ago
+second = Article.create! <span class="hljs-symbol">title:</span> <span class="hljs-string">"Brace yourself"</span>,
+                         <span class="hljs-symbol">status:</span> <span class="hljs-string">"draft"</span>,
+                         <span class="hljs-symbol">published_at:</span> <span class="hljs-number">1</span>.month.ago
+
+Article.count <span class="hljs-comment"># =&gt; 2</span>
+first.archive!
+Article.count <span class="hljs-comment"># =&gt; 1</span>
+</code></pre>
+<p>NOTE: This application only cares about non-archived <code>Articles</code>. A view also
+allows for conditions so we can exclude the archived <code>Articles</code> directly.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-7</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/rails/multiple-databases"><span class="arrow-prev">← </span><span>Multiple Databases with Active Record</span></a><a class="docs-next button" href="/rails-setup/docs/rails/layouts-and-rendering"><span>Layouts and Rendering in Rails</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#datatypes">Datatypes</a><ul class="toc-headings"><li><a href="#bytea">Bytea</a></li><li><a href="#array">Array</a></li><li><a href="#hstore">Hstore</a></li><li><a href="#json-and-jsonb">JSON and JSONB</a></li><li><a href="#range-types">Range Types</a></li><li><a href="#composite-types">Composite Types</a></li><li><a href="#enumerated-types">Enumerated Types</a></li><li><a href="#uuid">UUID</a></li><li><a href="#bit-string-types">Bit String Types</a></li><li><a href="#network-address-types">Network Address Types</a></li><li><a href="#geometric-types">Geometric Types</a></li></ul></li><li><a href="#uuid-primary-keys">UUID Primary Keys</a></li><li><a href="#full-text-search">Full Text Search</a></li><li><a href="#database-views">Database Views</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Rails Setup 2019</section></footer></div></body></html>

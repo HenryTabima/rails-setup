@@ -1,0 +1,438 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Working with JavaScript in Rails · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This guide covers the built-in Ajax/JavaScript functionality of Rails (and&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Working with JavaScript in Rails · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;This guide covers the built-in Ajax/JavaScript functionality of Rails (and&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/rails/getting-started" target="_self">Rails</a></li><li class=""><a href="/rails-setup/docs/devise/overview" target="_self">Devise</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Digging Deeper</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start Here<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/getting-started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/development-dependencies-install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Models<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/multiple-databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Views<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/layouts-and-rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view-form-helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Controllers<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Other Components<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Digging Deeper<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/testing-rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/securing-rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/debugging-rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/configuring-rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-command-line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/asset-pipeline">The Asset Pipeline</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/rails/working-with-javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/autoloading-and-reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/caching-with-rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-only-apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Extending Rails<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-on-rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/generators-&amp;-templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/application-templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/creating-rails-plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contributions<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/contributing-to-rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/guides-guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Policies<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/maintenance-policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Working with JavaScript in Rails</h1></header><article><div><span><p>This guide covers the built-in Ajax/JavaScript functionality of Rails (and
+more); it will enable you to create rich and dynamic Ajax applications with
+ease!</p>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>The basics of Ajax.</li>
+<li>Unobtrusive JavaScript.</li>
+<li>How Rails' built-in helpers assist you.</li>
+<li>How to handle Ajax on the server side.</li>
+<li>The Turbolinks gem.</li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="an-introduction-to-ajax"></a><a href="#an-introduction-to-ajax" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>An Introduction to Ajax</h2>
+<p>In order to understand Ajax, you must first understand what a web browser does
+normally.</p>
+<p>When you type <code>http://localhost:3000</code> into your browser's address bar and hit
+'Go', the browser (your 'client') makes a request to the server. It parses the
+response, then fetches all associated assets, like JavaScript files,
+stylesheets and images. It then assembles the page. If you click a link, it
+does the same process: fetch the page, fetch the assets, put it all together,
+show you the results. This is called the 'request response cycle'.</p>
+<p>JavaScript can also make requests to the server, and parse the response. It
+also has the ability to update information on the page. Combining these two
+powers, a JavaScript writer can make a web page that can update just parts of
+itself, without needing to get the full page data from the server. This is a
+powerful technique that we call Ajax.</p>
+<p>Rails ships with CoffeeScript by default, and so the rest of the examples
+in this guide will be in CoffeeScript. All of these lessons, of course, apply
+to vanilla JavaScript as well.</p>
+<p>As an example, here's some CoffeeScript code that makes an Ajax request using
+the jQuery library:</p>
+<pre><code class="hljs css language-coffeescript">$.ajax(url: <span class="hljs-string">"/test"</span>).done (html) -&gt;
+  $(<span class="hljs-string">"#results"</span>).append html
+</code></pre>
+<p>This code fetches data from &quot;/test&quot;, and then appends the result to the <code>div</code>
+with an id of <code>results</code>.</p>
+<p>Rails provides quite a bit of built-in support for building web pages with this
+technique. You rarely have to write this code yourself. The rest of this guide
+will show you how Rails can help you write websites in this way, but it's
+all built on top of this fairly simple technique.</p>
+<h2><a class="anchor" aria-hidden="true" id="unobtrusive-javascript"></a><a href="#unobtrusive-javascript" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Unobtrusive JavaScript</h2>
+<p>Rails uses a technique called &quot;Unobtrusive JavaScript&quot; to handle attaching
+JavaScript to the DOM. This is generally considered to be a best-practice
+within the frontend community, but you may occasionally read tutorials that
+demonstrate other ways.</p>
+<p>Here's the simplest way to write JavaScript. You may see it referred to as
+'inline JavaScript':</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"this.style.backgroundColor='#990000'"</span>&gt;</span>Paint it red<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</code></pre>
+<p>When clicked, the link background will become red. Here's the problem: what
+happens when we have lots of JavaScript we want to execute on a click?</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"this.style.backgroundColor='#009900';this.style.color='#FFFFFF';"</span>&gt;</span>Paint it green<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</code></pre>
+<p>Awkward, right? We could pull the function definition out of the click handler,
+and turn it into CoffeeScript:</p>
+<pre><code class="hljs css language-coffeescript">@paintIt = <span class="hljs-function"><span class="hljs-params">(element, backgroundColor, textColor)</span> -&gt;</span>
+  element.style.backgroundColor = backgroundColor
+  <span class="hljs-keyword">if</span> textColor?
+    element.style.color = textColor
+</code></pre>
+<p>And then on our page:</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"paintIt(this, '#990000')"</span>&gt;</span>Paint it red<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</code></pre>
+<p>That's a little bit better, but what about multiple links that have the same
+effect?</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"paintIt(this, '#990000')"</span>&gt;</span>Paint it red<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"paintIt(this, '#009900', '#FFFFFF')"</span>&gt;</span>Paint it green<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"paintIt(this, '#000099', '#FFFFFF')"</span>&gt;</span>Paint it blue<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</code></pre>
+<p>Not very DRY, eh? We can fix this by using events instead. We'll add a <code>data-*</code>
+attribute to our link, and then bind a handler to the click event of every link
+that has that attribute:</p>
+<pre><code class="hljs css language-coffeescript">@paintIt = <span class="hljs-function"><span class="hljs-params">(element, backgroundColor, textColor)</span> -&gt;</span>
+  element.style.backgroundColor = backgroundColor
+  <span class="hljs-keyword">if</span> textColor?
+    element.style.color = textColor
+
+$ -&gt;
+  $(<span class="hljs-string">"a[data-background-color]"</span>).click (e) -&gt;
+    e.preventDefault()
+
+    backgroundColor = $(<span class="hljs-keyword">this</span>).data(<span class="hljs-string">"background-color"</span>)
+    textColor = $(<span class="hljs-keyword">this</span>).data(<span class="hljs-string">"text-color"</span>)
+    paintIt(<span class="hljs-keyword">this</span>, backgroundColor, textColor)
+</code></pre>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">data-background-color</span>=<span class="hljs-string">"#990000"</span>&gt;</span>Paint it red<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">data-background-color</span>=<span class="hljs-string">"#009900"</span> <span class="hljs-attr">data-text-color</span>=<span class="hljs-string">"#FFFFFF"</span>&gt;</span>Paint it green<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">data-background-color</span>=<span class="hljs-string">"#000099"</span> <span class="hljs-attr">data-text-color</span>=<span class="hljs-string">"#FFFFFF"</span>&gt;</span>Paint it blue<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</code></pre>
+<p>We call this 'unobtrusive' JavaScript because we're no longer mixing our
+JavaScript into our HTML. We've properly separated our concerns, making future
+change easy. We can easily add behavior to any link by adding the data
+attribute. We can run all of our JavaScript through a minimizer and
+concatenator. We can serve our entire JavaScript bundle on every page, which
+means that it'll get downloaded on the first page load and then be cached on
+every page after that. Lots of little benefits really add up.</p>
+<p>The Rails team strongly encourages you to write your CoffeeScript (and
+JavaScript) in this style, and you can expect that many libraries will also
+follow this pattern.</p>
+<h2><a class="anchor" aria-hidden="true" id="built-in-helpers"></a><a href="#built-in-helpers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Built-in Helpers</h2>
+<h3><a class="anchor" aria-hidden="true" id="remote-elements"></a><a href="#remote-elements" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Remote elements</h3>
+<p>Rails provides a bunch of view helper methods written in Ruby to assist you
+in generating HTML. Sometimes, you want to add a little Ajax to those elements,
+and Rails has got your back in those cases.</p>
+<p>Because of Unobtrusive JavaScript, the Rails &quot;Ajax helpers&quot; are actually in two
+parts: the JavaScript half and the Ruby half.</p>
+<p>Unless you have disabled the Asset Pipeline,
+<a href="https://github.com/rails/rails/tree/master/actionview/app/assets/javascripts">rails-ujs</a>
+provides the JavaScript half, and the regular Ruby view helpers add appropriate
+tags to your DOM.</p>
+<p>You can read below about the different events that are fired dealing with
+remote elements inside your application.</p>
+<h4><a class="anchor" aria-hidden="true" id="form_with"></a><a href="#form_with" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>form_with</h4>
+<p><a href="https://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-form_with"><code>form_with</code></a>
+is a helper that assists with writing forms. By default, <code>form_with</code> assumes that
+your form will be using Ajax. You can opt out of this behavior by
+passing the <code>:local</code> option <code>form_with</code>.</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> form_with(<span class="hljs-symbol">model:</span> @article) <span class="hljs-keyword">do</span> <span class="hljs-params">|f|</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  ...
+<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">end</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>This will generate the following HTML:</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"/articles"</span> <span class="hljs-attr">accept-charset</span>=<span class="hljs-string">"UTF-8"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span> <span class="hljs-attr">data-remote</span>=<span class="hljs-string">"true"</span>&gt;</span>
+  ...
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</code></pre>
+<p>Note the <code>data-remote=&quot;true&quot;</code>. Now, the form will be submitted by Ajax rather
+than by the browser's normal submit mechanism.</p>
+<p>You probably don't want to just sit there with a filled out <code>&lt;form&gt;</code>, though.
+You probably want to do something upon a successful submission. To do that,
+bind to the <code>ajax:success</code> event. On failure, use <code>ajax:error</code>. Check it out:</p>
+<pre><code class="hljs css language-coffeescript">$(<span class="hljs-built_in">document</span>).ready -&gt;
+  $(<span class="hljs-string">"#new_article"</span>).<span class="hljs-literal">on</span>(<span class="hljs-string">"ajax:success"</span>, <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    [data, status, xhr] = event.detail
+    $(<span class="hljs-string">"#new_article"</span>).append xhr.responseText
+  ).<span class="hljs-literal">on</span> <span class="hljs-string">"ajax:error"</span>, <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    $(<span class="hljs-string">"#new_article"</span>).append <span class="hljs-string">"&lt;p&gt;ERROR&lt;/p&gt;"</span>
+</code></pre>
+<p>Obviously, you'll want to be a bit more sophisticated than that, but it's a
+start.</p>
+<p>NOTE: As of Rails 5.1 and the new <code>rails-ujs</code>, the parameters <code>data, status, xhr</code>
+have been bundled into <code>event.detail</code>. For information about the previously used
+<code>jquery-ujs</code> in Rails 5 and earlier, read the <a href="https://github.com/rails/jquery-ujs/wiki/ajax"><code>jquery-ujs</code> wiki</a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="link_to"></a><a href="#link_to" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>link_to</h4>
+<p><a href="https://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-link_to"><code>link_to</code></a>
+is a helper that assists with generating links. It has a <code>:remote</code> option you
+can use like this:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> link_to <span class="hljs-string">"an article"</span>, @article, <span class="hljs-symbol">remote:</span> <span class="hljs-literal">true</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>which generates</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/articles/1"</span> <span class="hljs-attr">data-remote</span>=<span class="hljs-string">"true"</span>&gt;</span>an article<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</code></pre>
+<p>You can bind to the same Ajax events as <code>form_with</code>. Here's an example. Let's
+assume that we have a list of articles that can be deleted with just one
+click. We would generate some HTML like this:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> link_to <span class="hljs-string">"Delete article"</span>, @article, <span class="hljs-symbol">remote:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">method:</span> <span class="hljs-symbol">:delete</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>and write some CoffeeScript like this:</p>
+<pre><code class="hljs css language-coffeescript">$ -&gt;
+  $(<span class="hljs-string">"a[data-remote]"</span>).<span class="hljs-literal">on</span> <span class="hljs-string">"ajax:success"</span>, <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    alert <span class="hljs-string">"The article was deleted."</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="button_to"></a><a href="#button_to" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>button_to</h4>
+<p><a href="https://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-button_to"><code>button_to</code></a> is a helper that helps you create buttons. It has a <code>:remote</code> option that you can call like this:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> button_to <span class="hljs-string">"An article"</span>, @article, <span class="hljs-symbol">remote:</span> <span class="hljs-literal">true</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>this generates</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"/articles/1"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button_to"</span> <span class="hljs-attr">data-remote</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"An article"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</code></pre>
+<p>Since it's just a <code>&lt;form&gt;</code>, all of the information on <code>form_with</code> also applies.</p>
+<h3><a class="anchor" aria-hidden="true" id="customize-remote-elements"></a><a href="#customize-remote-elements" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customize remote elements</h3>
+<p>It is possible to customize the behavior of elements with a <code>data-remote</code>
+attribute without writing a line of JavaScript. You can specify extra <code>data-</code>
+attributes to accomplish this.</p>
+<h4><a class="anchor" aria-hidden="true" id="data-method"></a><a href="#data-method" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>data-method</code></h4>
+<p>Activating hyperlinks always results in an HTTP GET request. However, if your
+application is <a href="https://en.wikipedia.org/wiki/Representational_State_Transfer">RESTful</a>,
+some links are in fact actions that change data on the server, and must be
+performed with non-GET requests. This attribute allows marking up such links
+with an explicit method such as &quot;post&quot;, &quot;put&quot; or &quot;delete&quot;.</p>
+<p>The way it works is that, when the link is activated, it constructs a hidden form
+in the document with the &quot;action&quot; attribute corresponding to &quot;href&quot; value of the
+link, and the method corresponding to <code>data-method</code> value, and submits that form.</p>
+<p>NOTE: Because submitting forms with HTTP methods other than GET and POST isn't
+widely supported across browsers, all other HTTP methods are actually sent over
+POST with the intended method indicated in the <code>_method</code> parameter. Rails
+automatically detects and compensates for this.</p>
+<h4><a class="anchor" aria-hidden="true" id="data-url-and-data-params"></a><a href="#data-url-and-data-params" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>data-url</code> and <code>data-params</code></h4>
+<p>Certain elements of your page aren't actually referring to any URL, but you may want
+them to trigger Ajax calls. Specifying the <code>data-url</code> attribute along with
+the <code>data-remote</code> one will trigger an Ajax call to the given URL. You can also
+specify extra parameters through the <code>data-params</code> attribute.</p>
+<p>This can be useful to trigger an action on check-boxes for instance:</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> <span class="hljs-attr">data-remote</span>=<span class="hljs-string">"true"</span>
+    <span class="hljs-attr">data-url</span>=<span class="hljs-string">"/update"</span> <span class="hljs-attr">data-params</span>=<span class="hljs-string">"id=10"</span> <span class="hljs-attr">data-method</span>=<span class="hljs-string">"put"</span>&gt;</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="data-type"></a><a href="#data-type" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>data-type</code></h4>
+<p>It is also possible to define the Ajax <code>dataType</code> explicitly while performing
+requests for <code>data-remote</code> elements, by way of the <code>data-type</code> attribute.</p>
+<h3><a class="anchor" aria-hidden="true" id="confirmations"></a><a href="#confirmations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Confirmations</h3>
+<p>You can ask for an extra confirmation of the user by adding a <code>data-confirm</code>
+attribute on links and forms. The user will be presented a JavaScript <code>confirm()</code>
+dialog containing the attribute's text. If the user chooses to cancel, the action
+doesn't take place.</p>
+<p>Adding this attribute on links will trigger the dialog on click, and adding it
+on forms will trigger it on submit. For example:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> link_to <span class="hljs-string">"Dangerous zone"</span>, dangerous_zone_path,
+  <span class="hljs-symbol">data:</span> { <span class="hljs-symbol">confirm:</span> <span class="hljs-string">'Are you sure?'</span> } </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>This generates:</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"..."</span> <span class="hljs-attr">data-confirm</span>=<span class="hljs-string">"Are you sure?"</span>&gt;</span>Dangerous zone<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</code></pre>
+<p>The attribute is also allowed on form submit buttons. This allows you to customize
+the warning message depending on the button which was activated. In this case,
+you should <strong>not</strong> have <code>data-confirm</code> on the form itself.</p>
+<p>The default confirmation uses a JavaScript confirm dialog, but you can customize
+this by listening to the <code>confirm</code> event, which is fired just before the confirmation
+window appears to the user. To cancel this default confirmation, have the confirm
+handler to return <code>false</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="automatic-disabling"></a><a href="#automatic-disabling" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Automatic disabling</h3>
+<p>It is also possible to automatically disable an input while the form is submitting
+by using the <code>data-disable-with</code> attribute. This is to prevent accidental
+double-clicks from the user, which could result in duplicate HTTP requests that
+the backend may not detect as such. The value of the attribute is the text that will
+become the new value of the button in its disabled state.</p>
+<p>This also works for links with <code>data-method</code> attribute.</p>
+<p>For example:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> form_with(<span class="hljs-symbol">model:</span> @article.new) <span class="hljs-keyword">do</span> <span class="hljs-params">|f|</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> f.submit <span class="hljs-symbol">data:</span> { <span class="hljs-string">"disable-with"</span>: <span class="hljs-string">"Saving..."</span> } </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> <span class="hljs-keyword">end</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>This generates a form with:</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data-disable-with</span>=<span class="hljs-string">"Saving..."</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="rails-ujs-event-handlers"></a><a href="#rails-ujs-event-handlers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rails-ujs event handlers</h3>
+<p>Rails 5.1 introduced rails-ujs and dropped jQuery as a dependency.
+As a result the Unobtrusive JavaScript (UJS) driver has been rewritten to operate without jQuery.
+These introductions cause small changes to <code>custom events</code> fired during the request:</p>
+<p>NOTE: Signature of calls to UJS's event handlers has changed.
+Unlike the version with jQuery, all custom events return only one parameter: <code>event</code>.
+In this parameter, there is an additional attribute <code>detail</code> which contains an array of extra parameters.</p>
+<table>
+<thead>
+<tr><th>Event name</th><th>Extra parameters (event.detail)</th><th>Fired</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ajax:before</code></td><td></td><td>Before the whole ajax business.</td></tr>
+<tr><td><code>ajax:beforeSend</code></td><td>[xhr, options]</td><td>Before the request is sent.</td></tr>
+<tr><td><code>ajax:send</code></td><td>[xhr]</td><td>When the request is sent.</td></tr>
+<tr><td><code>ajax:stopped</code></td><td></td><td>When the request is stopped.</td></tr>
+<tr><td><code>ajax:success</code></td><td>[response, status, xhr]</td><td>After completion, if the response was a success.</td></tr>
+<tr><td><code>ajax:error</code></td><td>[response, status, xhr]</td><td>After completion, if the response was an error.</td></tr>
+<tr><td><code>ajax:complete</code></td><td>[xhr, status]</td><td>After the request has been completed, no matter the outcome.</td></tr>
+</tbody>
+</table>
+<p>Example usage:</p>
+<pre><code class="hljs css language-html">document.body.addEventListener('ajax:success', function(event) {
+  var detail = event.detail;
+  var data = detail[0], status = detail[1], xhr = detail[2];
+})
+</code></pre>
+<p>NOTE: As of Rails 5.1 and the new <code>rails-ujs</code>, the parameters <code>data, status, xhr</code>
+have been bundled into <code>event.detail</code>. For information about the previously used
+<code>jquery-ujs</code> in Rails 5 and earlier, read the <a href="https://github.com/rails/jquery-ujs/wiki/ajax"><code>jquery-ujs</code> wiki</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="stoppable-events"></a><a href="#stoppable-events" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Stoppable events</h3>
+<p>You can stop execution of the Ajax request by running <code>event.preventDefault()</code>
+from the handlers methods <code>ajax:before</code> or <code>ajax:beforeSend</code>.
+The <code>ajax:before</code> event can manipulate form data before serialization and the
+<code>ajax:beforeSend</code> event is useful for adding custom request headers.</p>
+<p>If you stop the <code>ajax:aborted:file</code> event, the default behavior of allowing the
+browser to submit the form via normal means (i.e. non-Ajax submission) will be
+canceled and the form will not be submitted at all. This is useful for
+implementing your own Ajax file upload workaround.</p>
+<p>Note, you should use <code>return false</code> to prevent event for <code>jquery-ujs</code> and
+<code>e.preventDefault()</code> for <code>rails-ujs</code></p>
+<h2><a class="anchor" aria-hidden="true" id="server-side-concerns"></a><a href="#server-side-concerns" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Server-Side Concerns</h2>
+<p>Ajax isn't just client-side, you also need to do some work on the server
+side to support it. Often, people like their Ajax requests to return JSON
+rather than HTML. Let's discuss what it takes to make that happen.</p>
+<h3><a class="anchor" aria-hidden="true" id="a-simple-example"></a><a href="#a-simple-example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>A Simple Example</h3>
+<p>Imagine you have a series of users that you would like to display and provide a
+form on that same page to create a new user. The index action of your
+controller looks like this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsersController</span> &lt; ApplicationController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+    @users = User.all
+    @user = User.new
+  <span class="hljs-keyword">end</span>
+  <span class="hljs-comment"># ...</span>
+</code></pre>
+<p>The index view (<code>app/views/users/index.html.erb</code>) contains:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Users<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"users"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> render @users </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> form_with(<span class="hljs-symbol">model:</span> @user) <span class="hljs-keyword">do</span> <span class="hljs-params">|f|</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> f.label <span class="hljs-symbol">:name</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> f.text_field <span class="hljs-symbol">:name</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> f.submit </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="ruby"> <span class="hljs-keyword">end</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>The <code>app/views/users/_user.html.erb</code> partial contains the following:</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> user.name </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+</span></code></pre>
+<p>The top portion of the index page displays the users. The bottom portion
+provides a form to create a new user.</p>
+<p>The bottom form will call the <code>create</code> action on the <code>UsersController</code>. Because
+the form's remote option is set to true, the request will be posted to the
+<code>UsersController</code> as an Ajax request, looking for JavaScript. In order to
+serve that request, the <code>create</code> action of your controller would look like
+this:</p>
+<pre><code class="hljs css language-ruby">  <span class="hljs-comment"># app/controllers/users_controller.rb</span>
+  <span class="hljs-comment"># ......</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
+    @user = User.new(params[<span class="hljs-symbol">:user</span>])
+
+    respond_to <span class="hljs-keyword">do</span> <span class="hljs-params">|format|</span>
+      <span class="hljs-keyword">if</span> @user.save
+        format.html { redirect_to @user, <span class="hljs-symbol">notice:</span> <span class="hljs-string">'User was successfully created.'</span> }
+        format.js
+        format.json { render <span class="hljs-symbol">json:</span> @user, <span class="hljs-symbol">status:</span> <span class="hljs-symbol">:created</span>, <span class="hljs-symbol">location:</span> @user }
+      <span class="hljs-keyword">else</span>
+        format.html { render <span class="hljs-symbol">action:</span> <span class="hljs-string">"new"</span> }
+        format.json { render <span class="hljs-symbol">json:</span> @user.errors, <span class="hljs-symbol">status:</span> <span class="hljs-symbol">:unprocessable_entity</span> }
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+</code></pre>
+<p>Notice the <code>format.js</code> in the <code>respond_to</code> block: that allows the controller to
+respond to your Ajax request. You then have a corresponding
+<code>app/views/users/create.js.erb</code> view file that generates the actual JavaScript
+code that will be sent and executed on the client side.</p>
+<pre><code class="hljs css language-erb"><span class="xml">$("<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> escape_javascript(render @user) </span><span class="xml"><span class="hljs-tag">%&gt;</span>").appendTo("#users");
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="turbolinks"></a><a href="#turbolinks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Turbolinks</h2>
+<p>Rails ships with the <a href="https://github.com/turbolinks/turbolinks">Turbolinks library</a>,
+which uses Ajax to speed up page rendering in most applications.</p>
+<h3><a class="anchor" aria-hidden="true" id="how-turbolinks-works"></a><a href="#how-turbolinks-works" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How Turbolinks Works</h3>
+<p>Turbolinks attaches a click handler to all <code>&lt;a&gt;</code> tags on the page. If your browser
+supports
+<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history#The_pushState%28%29_method">PushState</a>,
+Turbolinks will make an Ajax request for the page, parse the response, and
+replace the entire <code>&lt;body&gt;</code> of the page with the <code>&lt;body&gt;</code> of the response. It
+will then use PushState to change the URL to the correct one, preserving
+refresh semantics and giving you pretty URLs.</p>
+<p>If you want to disable Turbolinks for certain links, add a <code>data-turbolinks=&quot;false&quot;</code>
+attribute to the tag:</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"..."</span> <span class="hljs-attr">data-turbolinks</span>=<span class="hljs-string">"false"</span>&gt;</span>No turbolinks here<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>.
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="page-change-events"></a><a href="#page-change-events" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Page Change Events</h3>
+<p>When writing CoffeeScript, you'll often want to do some sort of processing upon
+page load. With jQuery, you'd write something like this:</p>
+<pre><code class="hljs css language-coffeescript">$(<span class="hljs-built_in">document</span>).ready -&gt;
+  alert <span class="hljs-string">"page has loaded!"</span>
+</code></pre>
+<p>However, because Turbolinks overrides the normal page loading process, the
+event that this relies upon will not be fired. If you have code that looks like
+this, you must change your code to do this instead:</p>
+<pre><code class="hljs css language-coffeescript">$(<span class="hljs-built_in">document</span>).<span class="hljs-literal">on</span> <span class="hljs-string">"turbolinks:load"</span>, <span class="hljs-function">-&gt;</span>
+  alert <span class="hljs-string">"page has loaded!"</span>
+</code></pre>
+<p>For more details, including other events you can bind to, check out <a href="https://github.com/turbolinks/turbolinks/blob/master/README.md">the
+Turbolinks
+README</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="other-resources"></a><a href="#other-resources" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other Resources</h2>
+<p>Here are some helpful links to help you learn even more:</p>
+<ul>
+<li><a href="https://github.com/rails/jquery-ujs/wiki">jquery-ujs wiki</a></li>
+<li><a href="https://github.com/rails/jquery-ujs/wiki/External-articles">jquery-ujs list of external articles</a></li>
+<li><a href="http://www.alfajango.com/blog/rails-3-remote-links-and-forms/">Rails 3 Remote Links and Forms: A Definitive Guide</a></li>
+<li><a href="http://railscasts.com/episodes/205-unobtrusive-javascript">Railscasts: Unobtrusive JavaScript</a></li>
+<li><a href="http://railscasts.com/episodes/390-turbolinks">Railscasts: Turbolinks</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-7</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/rails/asset-pipeline"><span class="arrow-prev">← </span><span>The Asset Pipeline</span></a><a class="docs-next button" href="/rails-setup/docs/rails/autoloading-and-reloading"><span>Autoloading and Reloading Constants</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#an-introduction-to-ajax">An Introduction to Ajax</a></li><li><a href="#unobtrusive-javascript">Unobtrusive JavaScript</a></li><li><a href="#built-in-helpers">Built-in Helpers</a><ul class="toc-headings"><li><a href="#remote-elements">Remote elements</a></li><li><a href="#customize-remote-elements">Customize remote elements</a></li><li><a href="#confirmations">Confirmations</a></li><li><a href="#automatic-disabling">Automatic disabling</a></li><li><a href="#rails-ujs-event-handlers">Rails-ujs event handlers</a></li><li><a href="#stoppable-events">Stoppable events</a></li></ul></li><li><a href="#server-side-concerns">Server-Side Concerns</a><ul class="toc-headings"><li><a href="#a-simple-example">A Simple Example</a></li></ul></li><li><a href="#turbolinks">Turbolinks</a><ul class="toc-headings"><li><a href="#how-turbolinks-works">How Turbolinks Works</a></li><li><a href="#page-change-events">Page Change Events</a></li></ul></li><li><a href="#other-resources">Other Resources</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Rails Setup 2019</section></footer></div></body></html>

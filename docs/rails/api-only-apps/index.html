@@ -1,0 +1,396 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Using Rails for API-only Applications · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;In this guide you will learn:&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Using Rails for API-only Applications · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;In this guide you will learn:&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/rails/getting-started" target="_self">Rails</a></li><li class=""><a href="/rails-setup/docs/devise/overview" target="_self">Devise</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Digging Deeper</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start Here<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/getting-started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/development-dependencies-install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Models<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/multiple-databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Views<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/layouts-and-rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view-form-helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Controllers<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Other Components<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Digging Deeper<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/testing-rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/securing-rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/debugging-rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/configuring-rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-command-line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/asset-pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/working-with-javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/autoloading-and-reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/caching-with-rails">Caching with Rails: An Overview</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/rails/api-only-apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Extending Rails<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-on-rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/generators-&amp;-templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/application-templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/creating-rails-plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contributions<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/contributing-to-rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/guides-guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Policies<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/maintenance-policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Using Rails for API-only Applications</h1></header><article><div><span><p>In this guide you will learn:</p>
+<ul>
+<li>What Rails provides for API-only applications</li>
+<li>How to configure Rails to start without any browser features</li>
+<li>How to decide which middleware you will want to include</li>
+<li>How to decide which modules to use in your controller</li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="what-is-an-api-application"></a><a href="#what-is-an-api-application" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is an API Application?</h2>
+<p>Traditionally, when people said that they used Rails as an &quot;API&quot;, they meant
+providing a programmatically accessible API alongside their web application.
+For example, GitHub provides <a href="https://developer.github.com">an API</a> that you
+can use from your own custom clients.</p>
+<p>With the advent of client-side frameworks, more developers are using Rails to
+build a back-end that is shared between their web application and other native
+applications.</p>
+<p>For example, Twitter uses its <a href="https://developer.twitter.com/">public API</a> in its web
+application, which is built as a static site that consumes JSON resources.</p>
+<p>Instead of using Rails to generate HTML that communicates with the server
+through forms and links, many developers are treating their web application as
+just an API client delivered as HTML with JavaScript that consumes a JSON API.</p>
+<p>This guide covers building a Rails application that serves JSON resources to an
+API client, including client-side frameworks.</p>
+<h2><a class="anchor" aria-hidden="true" id="why-use-rails-for-json-apis"></a><a href="#why-use-rails-for-json-apis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why Use Rails for JSON APIs?</h2>
+<p>The first question a lot of people have when thinking about building a JSON API
+using Rails is: &quot;isn't using Rails to spit out some JSON overkill? Shouldn't I
+just use something like Sinatra?&quot;.</p>
+<p>For very simple APIs, this may be true. However, even in very HTML-heavy
+applications, most of an application's logic lives outside of the view
+layer.</p>
+<p>The reason most people use Rails is that it provides a set of defaults that
+allows developers to get up and running quickly, without having to make a lot of trivial
+decisions.</p>
+<p>Let's take a look at some of the things that Rails provides out of the box that are
+still applicable to API applications.</p>
+<p>Handled at the middleware layer:</p>
+<ul>
+<li>Reloading: Rails applications support transparent reloading. This works even if
+your application gets big and restarting the server for every request becomes
+non-viable.</li>
+<li>Development Mode: Rails applications come with smart defaults for development,
+making development pleasant without compromising production-time performance.</li>
+<li>Test Mode: Ditto development mode.</li>
+<li>Logging: Rails applications log every request, with a level of verbosity
+appropriate for the current mode. Rails logs in development include information
+about the request environment, database queries, and basic performance
+information.</li>
+<li>Security: Rails detects and thwarts <a href="https://en.wikipedia.org/wiki/IP_address_spoofing">IP spoofing
+attacks</a> and handles
+cryptographic signatures in a <a href="https://en.wikipedia.org/wiki/Timing_attack">timing
+attack</a> aware way. Don't know what
+an IP spoofing attack or a timing attack is? Exactly.</li>
+<li>Parameter Parsing: Want to specify your parameters as JSON instead of as a
+URL-encoded String? No problem. Rails will decode the JSON for you and make
+it available in <code>params</code>. Want to use nested URL-encoded parameters? That
+works too.</li>
+<li>Conditional GETs: Rails handles conditional <code>GET</code> (<code>ETag</code> and <code>Last-Modified</code>)
+processing request headers and returning the correct response headers and status
+code. All you need to do is use the
+<a href="https://api.rubyonrails.org/classes/ActionController/ConditionalGet.html#method-i-stale-3F"><code>stale?</code></a>
+check in your controller, and Rails will handle all of the HTTP details for you.</li>
+<li>HEAD requests: Rails will transparently convert <code>HEAD</code> requests into <code>GET</code> ones,
+and return just the headers on the way out. This makes <code>HEAD</code> work reliably in
+all Rails APIs.</li>
+</ul>
+<p>While you could obviously build these up in terms of existing Rack middleware,
+this list demonstrates that the default Rails middleware stack provides a lot
+of value, even if you're &quot;just generating JSON&quot;.</p>
+<p>Handled at the Action Pack layer:</p>
+<ul>
+<li>Resourceful Routing: If you're building a RESTful JSON API, you want to be
+using the Rails router. Clean and conventional mapping from HTTP to controllers
+means not having to spend time thinking about how to model your API in terms
+of HTTP.</li>
+<li>URL Generation: The flip side of routing is URL generation. A good API based
+on HTTP includes URLs (see <a href="https://developer.github.com/v3/gists/">the GitHub Gist API</a>
+for an example).</li>
+<li>Header and Redirection Responses: <code>head :no_content</code> and
+<code>redirect_to user_url(current_user)</code> come in handy. Sure, you could manually
+add the response headers, but why?</li>
+<li>Caching: Rails provides page, action, and fragment caching. Fragment caching
+is especially helpful when building up a nested JSON object.</li>
+<li>Basic, Digest, and Token Authentication: Rails comes with out-of-the-box support
+for three kinds of HTTP authentication.</li>
+<li>Instrumentation: Rails has an instrumentation API that triggers registered
+handlers for a variety of events, such as action processing, sending a file or
+data, redirection, and database queries. The payload of each event comes with
+relevant information (for the action processing event, the payload includes
+the controller, action, parameters, request format, request method, and the
+request's full path).</li>
+<li>Generators: It is often handy to generate a resource and get your model,
+controller, test stubs, and routes created for you in a single command for
+further tweaking. Same for migrations and others.</li>
+<li>Plugins: Many third-party libraries come with support for Rails that reduce
+or eliminate the cost of setting up and gluing together the library and the
+web framework. This includes things like overriding default generators, adding
+Rake tasks, and honoring Rails choices (like the logger and cache back-end).</li>
+</ul>
+<p>Of course, the Rails boot process also glues together all registered components.
+For example, the Rails boot process is what uses your <code>config/database.yml</code> file
+when configuring Active Record.</p>
+<p><strong>The short version is</strong>: you may not have thought about which parts of Rails
+are still applicable even if you remove the view layer, but the answer turns out
+to be most of it.</p>
+<h2><a class="anchor" aria-hidden="true" id="the-basic-configuration"></a><a href="#the-basic-configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Basic Configuration</h2>
+<p>If you're building a Rails application that will be an API server first and
+foremost, you can start with a more limited subset of Rails and add in features
+as needed.</p>
+<h3><a class="anchor" aria-hidden="true" id="creating-a-new-application"></a><a href="#creating-a-new-application" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating a new application</h3>
+<p>You can generate a new api Rails app:</p>
+<pre><code class="hljs css language-bash">$ rails new my_api --api
+</code></pre>
+<p>This will do three main things for you:</p>
+<ul>
+<li>Configure your application to start with a more limited set of middleware
+than normal. Specifically, it will not include any middleware primarily useful
+for browser applications (like cookies support) by default.</li>
+<li>Make <code>ApplicationController</code> inherit from <code>ActionController::API</code> instead of
+<code>ActionController::Base</code>. As with middleware, this will leave out any Action
+Controller modules that provide functionalities primarily used by browser
+applications.</li>
+<li>Configure the generators to skip generating views, helpers, and assets when
+you generate a new resource.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="changing-an-existing-application"></a><a href="#changing-an-existing-application" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Changing an existing application</h3>
+<p>If you want to take an existing application and make it an API one, read the
+following steps.</p>
+<p>In <code>config/application.rb</code> add the following line at the top of the <code>Application</code>
+class definition:</p>
+<pre><code class="hljs css language-ruby">config.api_only = <span class="hljs-literal">true</span>
+</code></pre>
+<p>In <code>config/environments/development.rb</code>, set <code>config.debug_exception_response_format</code>
+to configure the format used in responses when errors occur in development mode.</p>
+<p>To render an HTML page with debugging information, use the value <code>:default</code>.</p>
+<pre><code class="hljs css language-ruby">config.debug_exception_response_format = <span class="hljs-symbol">:default</span>
+</code></pre>
+<p>To render debugging information preserving the response format, use the value <code>:api</code>.</p>
+<pre><code class="hljs css language-ruby">config.debug_exception_response_format = <span class="hljs-symbol">:api</span>
+</code></pre>
+<p>By default, <code>config.debug_exception_response_format</code> is set to <code>:api</code>, when <code>config.api_only</code> is set to true.</p>
+<p>Finally, inside <code>app/controllers/application_controller.rb</code>, instead of:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> &lt; ActionController::Base</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>do:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> &lt; ActionController::API</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="choosing-middleware"></a><a href="#choosing-middleware" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Choosing Middleware</h2>
+<p>An API application comes with the following middleware by default:</p>
+<ul>
+<li><code>Rack::Sendfile</code></li>
+<li><code>ActionDispatch::Static</code></li>
+<li><code>ActionDispatch::Executor</code></li>
+<li><code>ActiveSupport::Cache::Strategy::LocalCache::Middleware</code></li>
+<li><code>Rack::Runtime</code></li>
+<li><code>ActionDispatch::RequestId</code></li>
+<li><code>ActionDispatch::RemoteIp</code></li>
+<li><code>Rails::Rack::Logger</code></li>
+<li><code>ActionDispatch::ShowExceptions</code></li>
+<li><code>ActionDispatch::DebugExceptions</code></li>
+<li><code>ActionDispatch::Reloader</code></li>
+<li><code>ActionDispatch::Callbacks</code></li>
+<li><code>ActiveRecord::Migration::CheckPending</code></li>
+<li><code>Rack::Head</code></li>
+<li><code>Rack::ConditionalGet</code></li>
+<li><code>Rack::ETag</code></li>
+</ul>
+<p>See the <a href="rails_on_rack.html#internal-middleware-stack">internal middleware</a>
+section of the Rack guide for further information on them.</p>
+<p>Other plugins, including Active Record, may add additional middleware. In
+general, these middleware are agnostic to the type of application you are
+building, and make sense in an API-only Rails application.</p>
+<p>You can get a list of all middleware in your application via:</p>
+<pre><code class="hljs css language-bash">$ rails middleware
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="using-the-cache-middleware"></a><a href="#using-the-cache-middleware" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using the Cache Middleware</h3>
+<p>By default, Rails will add a middleware that provides a cache store based on
+the configuration of your application (memcache by default). This means that
+the built-in HTTP cache will rely on it.</p>
+<p>For instance, using the <code>stale?</code> method:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span></span>
+  @post = Post.find(params[<span class="hljs-symbol">:id</span>])
+
+  <span class="hljs-keyword">if</span> stale?(<span class="hljs-symbol">last_modified:</span> @post.updated_at)
+    render <span class="hljs-symbol">json:</span> @post
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The call to <code>stale?</code> will compare the <code>If-Modified-Since</code> header in the request
+with <code>@post.updated_at</code>. If the header is newer than the last modified, this
+action will return a &quot;304 Not Modified&quot; response. Otherwise, it will render the
+response and include a <code>Last-Modified</code> header in it.</p>
+<p>Normally, this mechanism is used on a per-client basis. The cache middleware
+allows us to share this caching mechanism across clients. We can enable
+cross-client caching in the call to <code>stale?</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span></span>
+  @post = Post.find(params[<span class="hljs-symbol">:id</span>])
+
+  <span class="hljs-keyword">if</span> stale?(<span class="hljs-symbol">last_modified:</span> @post.updated_at, <span class="hljs-symbol">public:</span> <span class="hljs-literal">true</span>)
+    render <span class="hljs-symbol">json:</span> @post
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This means that the cache middleware will store off the <code>Last-Modified</code> value
+for a URL in the Rails cache, and add an <code>If-Modified-Since</code> header to any
+subsequent inbound requests for the same URL.</p>
+<p>Think of it as page caching using HTTP semantics.</p>
+<h3><a class="anchor" aria-hidden="true" id="using-rack-sendfile"></a><a href="#using-rack-sendfile" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Rack::Sendfile</h3>
+<p>When you use the <code>send_file</code> method inside a Rails controller, it sets the
+<code>X-Sendfile</code> header. <code>Rack::Sendfile</code> is responsible for actually sending the
+file.</p>
+<p>If your front-end server supports accelerated file sending, <code>Rack::Sendfile</code>
+will offload the actual file sending work to the front-end server.</p>
+<p>You can configure the name of the header that your front-end server uses for
+this purpose using <code>config.action_dispatch.x_sendfile_header</code> in the appropriate
+environment's configuration file.</p>
+<p>You can learn more about how to use <code>Rack::Sendfile</code> with popular
+front-ends in <a href="https://www.rubydoc.info/github/rack/rack/master/Rack/Sendfile">the Rack::Sendfile
+documentation</a>.</p>
+<p>Here are some values for this header for some popular servers, once these servers are configured to support
+accelerated file sending:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Apache and lighttpd</span>
+config.action_dispatch.x_sendfile_header = <span class="hljs-string">"X-Sendfile"</span>
+
+<span class="hljs-comment"># Nginx</span>
+config.action_dispatch.x_sendfile_header = <span class="hljs-string">"X-Accel-Redirect"</span>
+</code></pre>
+<p>Make sure to configure your server to support these options following the
+instructions in the <code>Rack::Sendfile</code> documentation.</p>
+<h3><a class="anchor" aria-hidden="true" id="using-actiondispatch-request"></a><a href="#using-actiondispatch-request" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using ActionDispatch::Request</h3>
+<p><code>ActionDispatch::Request#params</code> will take parameters from the client in the JSON
+format and make them available in your controller inside <code>params</code>.</p>
+<p>To use this, your client will need to make a request with JSON-encoded parameters
+and specify the <code>Content-Type</code> as <code>application/json</code>.</p>
+<p>Here's an example in jQuery:</p>
+<pre><code class="hljs css language-javascript">jQuery.ajax({
+  <span class="hljs-attr">type</span>: <span class="hljs-string">'POST'</span>,
+  <span class="hljs-attr">url</span>: <span class="hljs-string">'/people'</span>,
+  <span class="hljs-attr">dataType</span>: <span class="hljs-string">'json'</span>,
+  <span class="hljs-attr">contentType</span>: <span class="hljs-string">'application/json'</span>,
+  <span class="hljs-attr">data</span>: <span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">person</span>: { <span class="hljs-attr">firstName</span>: <span class="hljs-string">"Yehuda"</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">"Katz"</span> } }),
+  <span class="hljs-attr">success</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">json</span>) </span>{ }
+});
+</code></pre>
+<p><code>ActionDispatch::Request</code> will see the <code>Content-Type</code> and your parameters
+will be:</p>
+<pre><code class="hljs css language-ruby">{ <span class="hljs-symbol">:person</span> =&gt; { <span class="hljs-symbol">:firstName</span> =&gt; <span class="hljs-string">"Yehuda"</span>, <span class="hljs-symbol">:lastName</span> =&gt; <span class="hljs-string">"Katz"</span> } }
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="other-middleware"></a><a href="#other-middleware" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other Middleware</h3>
+<p>Rails ships with a number of other middleware that you might want to use in an
+API application, especially if one of your API clients is the browser:</p>
+<ul>
+<li><code>Rack::MethodOverride</code></li>
+<li><code>ActionDispatch::Cookies</code></li>
+<li><code>ActionDispatch::Flash</code></li>
+<li>For session management
+<ul>
+<li><code>ActionDispatch::Session::CacheStore</code></li>
+<li><code>ActionDispatch::Session::CookieStore</code></li>
+<li><code>ActionDispatch::Session::MemCacheStore</code></li>
+</ul></li>
+</ul>
+<p>Any of these middleware can be added via:</p>
+<pre><code class="hljs css language-ruby">config.middleware.use Rack::MethodOverride
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removing-middleware"></a><a href="#removing-middleware" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Removing Middleware</h3>
+<p>If you don't want to use a middleware that is included by default in the API-only
+middleware set, you can remove it with:</p>
+<pre><code class="hljs css language-ruby">config.middleware.delete <span class="hljs-symbol">:</span><span class="hljs-symbol">:Rack</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:Sendfile</span>
+</code></pre>
+<p>Keep in mind that removing these middlewares will remove support for certain
+features in Action Controller.</p>
+<h2><a class="anchor" aria-hidden="true" id="choosing-controller-modules"></a><a href="#choosing-controller-modules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Choosing Controller Modules</h2>
+<p>An API application (using <code>ActionController::API</code>) comes with the following
+controller modules by default:</p>
+<ul>
+<li><code>ActionController::UrlFor</code>: Makes <code>url_for</code> and similar helpers available.</li>
+<li><code>ActionController::Redirecting</code>: Support for <code>redirect_to</code>.</li>
+<li><code>AbstractController::Rendering</code> and <code>ActionController::ApiRendering</code>: Basic support for rendering.</li>
+<li><code>ActionController::Renderers::All</code>: Support for <code>render :json</code> and friends.</li>
+<li><code>ActionController::ConditionalGet</code>: Support for <code>stale?</code>.</li>
+<li><code>ActionController::BasicImplicitRender</code>: Makes sure to return an empty response, if there isn't an explicit one.</li>
+<li><code>ActionController::StrongParameters</code>: Support for parameters filtering in combination with Active Model mass assignment.</li>
+<li><code>ActionController::DataStreaming</code>: Support for <code>send_file</code> and <code>send_data</code>.</li>
+<li><code>AbstractController::Callbacks</code>: Support for <code>before_action</code> and
+similar helpers.</li>
+<li><code>ActionController::Rescue</code>: Support for <code>rescue_from</code>.</li>
+<li><code>ActionController::Instrumentation</code>: Support for the instrumentation
+hooks defined by Action Controller (see <a href="active_support_instrumentation.html#action-controller">the instrumentation
+guide</a> for
+more information regarding this).</li>
+<li><code>ActionController::ParamsWrapper</code>: Wraps the parameters hash into a nested hash,
+so that you don't have to specify root elements sending POST requests for instance.</li>
+<li><code>ActionController::Head</code>: Support for returning a response with no content, only headers</li>
+</ul>
+<p>Other plugins may add additional modules. You can get a list of all modules
+included into <code>ActionController::API</code> in the rails console:</p>
+<pre><code class="hljs css language-bash">$ rails c
+&gt;&gt; ActionController::API.ancestors - ActionController::Metal.ancestors
+=&gt; [ActionController::API,
+    ActiveRecord::Railties::ControllerRuntime,
+    ActionDispatch::Routing::RouteSet::MountedHelpers,
+    ActionController::ParamsWrapper,
+    ... ,
+    AbstractController::Rendering,
+    ActionView::ViewPaths]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="adding-other-modules"></a><a href="#adding-other-modules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding Other Modules</h3>
+<p>All Action Controller modules know about their dependent modules, so you can feel
+free to include any modules into your controllers, and all dependencies will be
+included and set up as well.</p>
+<p>Some common modules you might want to add:</p>
+<ul>
+<li><code>AbstractController::Translation</code>: Support for the <code>l</code> and <code>t</code> localization
+and translation methods.</li>
+<li>Support for basic, digest, or token HTTP authentication:
+<ul>
+<li><code>ActionController::HttpAuthentication::Basic::ControllerMethods</code>,</li>
+<li><code>ActionController::HttpAuthentication::Digest::ControllerMethods</code>,</li>
+<li><code>ActionController::HttpAuthentication::Token::ControllerMethods</code></li>
+</ul></li>
+<li><code>ActionView::Layouts</code>: Support for layouts when rendering.</li>
+<li><code>ActionController::MimeResponds</code>: Support for <code>respond_to</code>.</li>
+<li><code>ActionController::Cookies</code>: Support for <code>cookies</code>, which includes
+support for signed and encrypted cookies. This requires the cookies middleware.</li>
+<li><code>ActionController::Caching</code>: Support view caching for the API controller. Please notice that
+you will need to manually specify cache store inside the controller like:
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> &lt; ActionController::API</span>
+  <span class="hljs-keyword">include</span> <span class="hljs-symbol">:</span><span class="hljs-symbol">:ActionController</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:Caching</span>
+  <span class="hljs-keyword">self</span>.cache_store = <span class="hljs-symbol">:mem_cached_store</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+Rails does <em>not</em> pass this configuration automatically.</li>
+</ul>
+<p>The best place to add a module is in your <code>ApplicationController</code>, but you can
+also add modules to individual controllers.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-7</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/rails/caching-with-rails"><span class="arrow-prev">← </span><span>Caching with Rails: An Overview</span></a><a class="docs-next button" href="/rails-setup/docs/rails/threading"><span>Threading and Code Execution in Rails</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#what-is-an-api-application">What is an API Application?</a></li><li><a href="#why-use-rails-for-json-apis">Why Use Rails for JSON APIs?</a></li><li><a href="#the-basic-configuration">The Basic Configuration</a><ul class="toc-headings"><li><a href="#creating-a-new-application">Creating a new application</a></li><li><a href="#changing-an-existing-application">Changing an existing application</a></li></ul></li><li><a href="#choosing-middleware">Choosing Middleware</a><ul class="toc-headings"><li><a href="#using-the-cache-middleware">Using the Cache Middleware</a></li><li><a href="#using-rack-sendfile">Using Rack::Sendfile</a></li><li><a href="#using-actiondispatch-request">Using ActionDispatch::Request</a></li><li><a href="#other-middleware">Other Middleware</a></li><li><a href="#removing-middleware">Removing Middleware</a></li></ul></li><li><a href="#choosing-controller-modules">Choosing Controller Modules</a><ul class="toc-headings"><li><a href="#adding-other-modules">Adding Other Modules</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Rails Setup 2019</section></footer></div></body></html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Configuring routes · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Devise also ships with default routes. If you need to customize them, you should probably be able to do it through the devise_for method. It accepts several options like :class_name, :path_prefix and so on, including the possibility to change path names for I18n:&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Configuring routes · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;Devise also ships with default routes. If you need to customize them, you should probably be able to do it through the devise_for method. It accepts several options like :class_name, :path_prefix and so on, including the possibility to change path names for I18n:&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/rails-setup/docs/rails/getting-started" target="_self">Rails</a></li><li class="siteNavGroupActive"><a href="/rails-setup/docs/devise/overview" target="_self">Devise</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Getting Started</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">General<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/starting-with-rails">Starting with rails?</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Getting Started<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/controller-filters-and-helpers">Controller filters and helpers</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-models">Configuring Models</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/strong-parameters">Strong Parameters</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-views">Configuring views</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-controllers">Configuring controllers</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/devise/configuring-routes">Configuring routes</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Advanced Topics<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/i18n">I18n</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/test-helpers">Test helpers</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/omniauth">OmniAuth</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-multiple-models">Configuring multiple models</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/activejob-integration">ActiveJob integration</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/password-reset-tokens-and-rails-logs">Password reset tokens and Rails logs</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/other-orms">Other ORMs</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/rails-api-mode">Rails API mode</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Guides<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/guides-list">Guides list</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Project<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/extensions">Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/example-applications">Example Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/contributing">Contributing</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/bug-reports">Bug reports</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/additional-information">Additional information</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Configuring routes</h1></header><article><div><span><p>Devise also ships with default routes. If you need to customize them, you should probably be able to do it through the devise_for method. It accepts several options like :class_name, :path_prefix and so on, including the possibility to change path names for I18n:</p>
+<pre><code class="hljs css language-ruby">devise_for <span class="hljs-symbol">:users</span>, <span class="hljs-symbol">path:</span> <span class="hljs-string">'auth'</span>, <span class="hljs-symbol">path_names:</span> { <span class="hljs-symbol">sign_in:</span> <span class="hljs-string">'login'</span>, <span class="hljs-symbol">sign_out:</span> <span class="hljs-string">'logout'</span>, <span class="hljs-symbol">password:</span> <span class="hljs-string">'secret'</span>, <span class="hljs-symbol">confirmation:</span> <span class="hljs-string">'verification'</span>, <span class="hljs-symbol">unlock:</span> <span class="hljs-string">'unblock'</span>, <span class="hljs-symbol">registration:</span> <span class="hljs-string">'register'</span>, <span class="hljs-symbol">sign_up:</span> <span class="hljs-string">'cmon_let_me_in'</span> }
+</code></pre>
+<p>Be sure to check <code>devise_for</code> <a href="http://www.rubydoc.info/github/plataformatec/devise/master/ActionDispatch/Routing/Mapper%3Adevise_for">documentation</a> for details.</p>
+<p>If you have the need for more deep customization, for instance to also allow &quot;/sign_in&quot; besides &quot;/users/sign_in&quot;, all you need to do is create your routes normally and wrap them in a <code>devise_scope</code> block in the router:</p>
+<pre><code class="hljs css language-ruby">devise_scope <span class="hljs-symbol">:user</span> <span class="hljs-keyword">do</span>
+  get <span class="hljs-string">'sign_in'</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">'devise/sessions#new'</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This way, you tell Devise to use the scope <code>:user</code> when &quot;/sign_in&quot; is accessed. Notice <code>devise_scope</code> is also aliased as <code>as</code> in your router.</p>
+<p>Please note: You will still need to add <code>devise_for</code> in your routes in order to use helper methods such as <code>current_user</code>.</p>
+<pre><code class="hljs css language-ruby">devise_for <span class="hljs-symbol">:users</span>, <span class="hljs-symbol">skip:</span> <span class="hljs-symbol">:all</span>
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-7</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/devise/configuring-controllers"><span class="arrow-prev">← </span><span>Configuring controllers</span></a><a class="docs-next button" href="/rails-setup/docs/devise/i18n"><span>I18n</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Rails Setup 2019</section></footer></div></body></html>

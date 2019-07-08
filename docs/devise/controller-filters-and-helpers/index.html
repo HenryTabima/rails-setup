@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Controller filters and helpers · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Devise will create some helpers to use inside your controllers and views. To set up a controller with user authentication, just add this before_action (assuming your devise model is &#x27;User&#x27;):&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Controller filters and helpers · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;Devise will create some helpers to use inside your controllers and views. To set up a controller with user authentication, just add this before_action (assuming your devise model is &#x27;User&#x27;):&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/rails-setup/docs/rails/getting-started" target="_self">Rails</a></li><li class="siteNavGroupActive"><a href="/rails-setup/docs/devise/overview" target="_self">Devise</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Getting Started</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">General<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/starting-with-rails">Starting with rails?</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Getting Started<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/installation">Installation</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/devise/controller-filters-and-helpers">Controller filters and helpers</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-models">Configuring Models</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/strong-parameters">Strong Parameters</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-views">Configuring views</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-controllers">Configuring controllers</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-routes">Configuring routes</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Advanced Topics<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/i18n">I18n</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/test-helpers">Test helpers</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/omniauth">OmniAuth</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-multiple-models">Configuring multiple models</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/activejob-integration">ActiveJob integration</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/password-reset-tokens-and-rails-logs">Password reset tokens and Rails logs</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/other-orms">Other ORMs</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/rails-api-mode">Rails API mode</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Guides<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/guides-list">Guides list</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Project<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/extensions">Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/example-applications">Example Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/contributing">Contributing</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/bug-reports">Bug reports</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/additional-information">Additional information</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Controller filters and helpers</h1></header><article><div><span><p>Devise will create some helpers to use inside your controllers and views. To set up a controller with user authentication, just add this before_action (assuming your devise model is 'User'):</p>
+<pre><code class="hljs css language-ruby">before_action <span class="hljs-symbol">:authenticate_user!</span>
+</code></pre>
+<p>For Rails 5, note that <code>protect_from_forgery</code> is no longer prepended to the <code>before_action</code> chain, so if you have set <code>authenticate_user</code> before <code>protect_from_forgery</code>, your request will result in &quot;Can't verify CSRF token authenticity.&quot; To resolve this, either change the order in which you call them, or use <code>protect_from_forgery prepend: true</code>.</p>
+<p>If your devise model is something other than User, replace &quot;_user&quot; with &quot;_yourmodel&quot;. The same logic applies to the instructions below.</p>
+<p>To verify if a user is signed in, use the following helper:</p>
+<pre><code class="hljs css language-ruby">user_signed_in?
+</code></pre>
+<p>For the current signed-in user, this helper is available:</p>
+<pre><code class="hljs css language-ruby">current_user
+</code></pre>
+<p>You can access the session for this scope:</p>
+<pre><code class="hljs css language-ruby">user_session
+</code></pre>
+<p>After signing in a user, confirming the account or updating the password, Devise will look for a scoped root path to redirect to. For instance, when using a <code>:user</code> resource, the <code>user_root_path</code> will be used if it exists; otherwise, the default <code>root_path</code> will be used. This means that you need to set the root inside your routes:</p>
+<pre><code class="hljs css language-ruby">root <span class="hljs-symbol">to:</span> <span class="hljs-string">'home#index'</span>
+</code></pre>
+<p>You can also override <code>after_sign_in_path_for</code> and <code>after_sign_out_path_for</code> to customize your redirect hooks.</p>
+<p>Notice that if your Devise model is called <code>Member</code> instead of <code>User</code>, for example, then the helpers available are:</p>
+<pre><code class="hljs css language-ruby">before_action <span class="hljs-symbol">:authenticate_member!</span>
+
+member_signed_in?
+
+current_member
+
+member_session
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-7</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/devise/installation"><span class="arrow-prev">← </span><span>Installation</span></a><a class="docs-next button" href="/rails-setup/docs/devise/configuring-models"><span>Configuring Models</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Rails Setup 2019</section></footer></div></body></html>

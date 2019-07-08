@@ -1,0 +1,895 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Rails Internationalization (I18n) API · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;The Ruby I18n (shorthand for &lt;em&gt;internationalization&lt;/em&gt;) gem which is shipped with Ruby on Rails (starting from Rails 2.2) provides an easy-to-use and extensible framework for &lt;strong&gt;translating your application to a single custom language&lt;/strong&gt; other than English or for &lt;strong&gt;providing multi-language support&lt;/strong&gt; in your application.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Rails Internationalization (I18n) API · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;p&gt;The Ruby I18n (shorthand for &lt;em&gt;internationalization&lt;/em&gt;) gem which is shipped with Ruby on Rails (starting from Rails 2.2) provides an easy-to-use and extensible framework for &lt;strong&gt;translating your application to a single custom language&lt;/strong&gt; other than English or for &lt;strong&gt;providing multi-language support&lt;/strong&gt; in your application.&lt;/p&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/rails-setup/docs/rails/getting-started" target="_self">Rails</a></li><li class=""><a href="/rails-setup/docs/devise/overview" target="_self">Devise</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Digging Deeper</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start Here<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/getting-started">Getting Started with Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/development-dependencies-install">Development Dependencies Install</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Models<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-basics">Active Record Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-migrations">Active Record Migrations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-validations">Active Record Validations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-callbacks">Active Record Callbacks</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-associations">Active Record Associations</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-query">Active Record Query Interface</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/multiple-databases">Multiple Databases with Active Record</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-record-postgresql">Active Record and PostgreSQL</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Views<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/layouts-and-rendering">Layouts and Rendering in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view">Action View Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-view-form-helpers">Action View Form Helpers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Controllers<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-controller">Action Controller Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-routing">Rails Routing from the Outside In</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Other Components<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-core">Active Support Core Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-support-instrumentation">Active Support Instrumentation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailer">Action Mailer Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-mailbox">Action Mailbox Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-model">Active Model Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-job">Active Job Basics</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-text">Action Text Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/active-storage">Active Storage Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/action-cable">Action Cable Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Digging Deeper<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/rails/rails-i18n">Rails Internationalization (I18n) API</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/testing-rails">Testing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/securing-rails">Securing Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/debugging-rails">Debugging Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/configuring-rails">Configuring Rails Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-command-line">The Rails Command Line</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/asset-pipeline">The Asset Pipeline</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/working-with-javascript">Working with JavaScript in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/autoloading-and-reloading">Autoloading and Reloading Constants</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/caching-with-rails">Caching with Rails: An Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-only-apps">Using Rails for API-only Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/threading">Threading and Code Execution in Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/initialization">The Rails Initialization Process</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/engines">Getting Started with Engines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Extending Rails<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/rails-on-rack">Rails on Rack</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/generators-&amp;-templates">Creating and Customizing Rails Generators &amp; Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/application-templates">Rails Application Templates</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/creating-rails-plugins">The Basics of Creating Rails Plugins</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contributions<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/contributing-to-rails">Contributing to Ruby on Rails</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/api-documentation">API Documentation Guidelines</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/guides-guidelines">Ruby on Rails Guides Guidelines</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Policies<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/rails/maintenance-policy">Maintenance Policy for Ruby on Rails</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Rails Internationalization (I18n) API</h1></header><article><div><span><p>The Ruby I18n (shorthand for <em>internationalization</em>) gem which is shipped with Ruby on Rails (starting from Rails 2.2) provides an easy-to-use and extensible framework for <strong>translating your application to a single custom language</strong> other than English or for <strong>providing multi-language support</strong> in your application.</p>
+<p>The process of &quot;internationalization&quot; usually means to abstract all strings and other locale specific bits (such as date or currency formats) out of your application. The process of &quot;localization&quot; means to provide translations and localized formats for these bits.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>So, in the process of <em>internationalizing</em> your Rails application you have to:</p>
+<ul>
+<li>Ensure you have support for i18n.</li>
+<li>Tell Rails where to find locale dictionaries.</li>
+<li>Tell Rails how to set, preserve, and switch locales.</li>
+</ul>
+<p>In the process of <em>localizing</em> your application you'll probably want to do the following three things:</p>
+<ul>
+<li>Replace or supplement Rails' default locale - e.g. date and time formats, month names, Active Record model names, etc.</li>
+<li>Abstract strings in your application into keyed dictionaries - e.g. flash messages, static text in your views, etc.</li>
+<li>Store the resulting dictionaries somewhere.</li>
+</ul>
+<p>This guide will walk you through the I18n API and contains a tutorial on how to internationalize a Rails application from the start.</p>
+<p>After reading this guide, you will know:</p>
+<ul>
+<li>How I18n works in Ruby on Rails</li>
+<li>How to correctly use I18n into a RESTful application in various ways</li>
+<li>How to use I18n to translate Active Record errors or Action Mailer E-mail subjects</li>
+<li>Some other tools to go further with the translation process of your application</li>
+</ul>
+<hr>
+<p>NOTE: The Ruby I18n framework provides you with all necessary means for internationalization/localization of your Rails application. You may, also use various gems available to add additional functionality or features. See the <a href="https://github.com/svenfuchs/rails-i18n">rails-i18n gem</a> for more information.</p>
+<h2><a class="anchor" aria-hidden="true" id="how-i18n-in-ruby-on-rails-works"></a><a href="#how-i18n-in-ruby-on-rails-works" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How I18n in Ruby on Rails Works</h2>
+<p>Internationalization is a complex problem. Natural languages differ in so many ways (e.g. in pluralization rules) that it is hard to provide tools for solving all problems at once. For that reason the Rails I18n API focuses on:</p>
+<ul>
+<li>providing support for English and similar languages out of the box</li>
+<li>making it easy to customize and extend everything for other languages</li>
+</ul>
+<p>As part of this solution, <strong>every static string in the Rails framework</strong> - e.g. Active Record validation messages, time and date formats - <strong>has been internationalized</strong>. <em>Localization</em> of a Rails application means defining translated values for these strings in desired languages.</p>
+<p>To localize store and update <em>content</em> in your application (e.g. translate blog posts), see the <a href="#translating-model-content">Translating model content</a> section.</p>
+<h3><a class="anchor" aria-hidden="true" id="the-overall-architecture-of-the-library"></a><a href="#the-overall-architecture-of-the-library" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Overall Architecture of the Library</h3>
+<p>Thus, the Ruby I18n gem is split into two parts:</p>
+<ul>
+<li>The public API of the i18n framework - a Ruby module with public methods that define how the library works</li>
+<li>A default backend (which is intentionally named <em>Simple</em> backend) that implements these methods</li>
+</ul>
+<p>As a user you should always only access the public methods on the I18n module, but it is useful to know about the capabilities of the backend.</p>
+<p>NOTE: It is possible to swap the shipped Simple backend with a more powerful one, which would store translation data in a relational database, GetText dictionary, or similar. See section <a href="#using-different-backends">Using different backends</a> below.</p>
+<h3><a class="anchor" aria-hidden="true" id="the-public-i18n-api"></a><a href="#the-public-i18n-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Public I18n API</h3>
+<p>The most important methods of the I18n API are:</p>
+<pre><code class="hljs css language-ruby">translate <span class="hljs-comment"># Lookup text translations</span>
+localize  <span class="hljs-comment"># Localize Date and Time objects to local formats</span>
+</code></pre>
+<p>These have the aliases #t and #l so you can use them like this:</p>
+<pre><code class="hljs css language-ruby">I18n.t <span class="hljs-string">'store.title'</span>
+I18n.l Time.now
+</code></pre>
+<p>There are also attribute readers and writers for the following attributes:</p>
+<pre><code class="hljs css language-ruby">load_path                 <span class="hljs-comment"># Announce your custom translation files</span>
+locale                    <span class="hljs-comment"># Get and set the current locale</span>
+default_locale            <span class="hljs-comment"># Get and set the default locale</span>
+available_locales         <span class="hljs-comment"># Permitted locales available for the application</span>
+enforce_available_locales <span class="hljs-comment"># Enforce locale permission (true or false)</span>
+exception_handler         <span class="hljs-comment"># Use a different exception_handler</span>
+backend                   <span class="hljs-comment"># Use a different backend</span>
+</code></pre>
+<p>So, let's internationalize a simple Rails application from the ground up in the next chapters!</p>
+<h2><a class="anchor" aria-hidden="true" id="setup-the-rails-application-for-internationalization"></a><a href="#setup-the-rails-application-for-internationalization" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup the Rails Application for Internationalization</h2>
+<p>There are a few steps to get up and running with I18n support for a Rails application.</p>
+<h3><a class="anchor" aria-hidden="true" id="configure-the-i18n-module"></a><a href="#configure-the-i18n-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configure the I18n Module</h3>
+<p>Following the <em>convention over configuration</em> philosophy, Rails I18n provides reasonable default translation strings. When different translation strings are needed, they can be overridden.</p>
+<p>Rails adds all <code>.rb</code> and <code>.yml</code> files from the <code>config/locales</code> directory to the <strong>translations load path</strong>, automatically.</p>
+<p>The default <code>en.yml</code> locale in this directory contains a sample pair of translation strings:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">en:</span>
+<span class="hljs-attr">  hello:</span> <span class="hljs-string">"Hello world"</span>
+</code></pre>
+<p>This means, that in the <code>:en</code> locale, the key <em>hello</em> will map to the <em>Hello world</em> string. Every string inside Rails is internationalized in this way, see for instance Active Model validation messages in the <a href="https://github.com/rails/rails/blob/master/activemodel/lib/active_model/locale/en.yml"><code>activemodel/lib/active_model/locale/en.yml</code></a> file or time and date formats in the <a href="https://github.com/rails/rails/blob/master/activesupport/lib/active_support/locale/en.yml"><code>activesupport/lib/active_support/locale/en.yml</code></a> file. You can use YAML or standard Ruby Hashes to store translations in the default (Simple) backend.</p>
+<p>The I18n library will use <strong>English</strong> as a <strong>default locale</strong>, i.e. if a different locale is not set, <code>:en</code> will be used for looking up translations.</p>
+<p>NOTE: The i18n library takes a <strong>pragmatic approach</strong> to locale keys (after <a href="https://groups.google.com/forum/#!topic/rails-i18n/FN7eLH2-lHA">some discussion</a>), including only the <em>locale</em> (&quot;language&quot;) part, like <code>:en</code>, <code>:pl</code>, not the <em>region</em> part, like <code>:en-US</code> or <code>:en-GB</code>, which are traditionally used for separating &quot;languages&quot; and &quot;regional setting&quot; or &quot;dialects&quot;. Many international applications use only the &quot;language&quot; element of a locale such as <code>:cs</code>, <code>:th</code>, or <code>:es</code> (for Czech, Thai, and Spanish). However, there are also regional differences within different language groups that may be important. For instance, in the <code>:en-US</code> locale you would have $ as a currency symbol, while in <code>:en-GB</code>, you would have £. Nothing stops you from separating regional and other settings in this way: you just have to provide full &quot;English - United Kingdom&quot; locale in a <code>:en-GB</code> dictionary.</p>
+<p>The <strong>translations load path</strong> (<code>I18n.load_path</code>) is an array of paths to files that will be loaded automatically. Configuring this path allows for customization of translations directory structure and file naming scheme.</p>
+<p>NOTE: The backend lazy-loads these translations when a translation is looked up for the first time. This backend can be swapped with something else even after translations have already been announced.</p>
+<p>You can change the default locale as well as configure the translations load paths in <code>config/application.rb</code> as follows:</p>
+<pre><code class="hljs css language-ruby">  config.i18n.load_path += Dir[Rails.root.join(<span class="hljs-string">'my'</span>, <span class="hljs-string">'locales'</span>, <span class="hljs-string">'*.{rb,yml}'</span>)]
+  config.i18n.default_locale = <span class="hljs-symbol">:de</span>
+</code></pre>
+<p>The load path must be specified before any translations are looked up. To change the default locale from an initializer instead of <code>config/application.rb</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># config/initializers/locale.rb</span>
+
+<span class="hljs-comment"># Where the I18n library should search for translation files</span>
+I18n.load_path += Dir[Rails.root.join(<span class="hljs-string">'lib'</span>, <span class="hljs-string">'locale'</span>, <span class="hljs-string">'*.{rb,yml}'</span>)]
+
+<span class="hljs-comment"># Permitted locales available for the application</span>
+I18n.available_locales = [<span class="hljs-symbol">:en</span>, <span class="hljs-symbol">:pt</span>]
+
+<span class="hljs-comment"># Set default locale to something other than :en</span>
+I18n.default_locale = <span class="hljs-symbol">:pt</span>
+</code></pre>
+<p>Note that appending directly to <code>I18n.load_paths</code> instead of to the application's configured i18n will <em>not</em> override translations from external gems.</p>
+<h3><a class="anchor" aria-hidden="true" id="managing-the-locale-across-requests"></a><a href="#managing-the-locale-across-requests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Managing the Locale across Requests</h3>
+<p>A localized application will likely need to provide support for multiple locales. To accomplish this, the locale should be set at the beginning of each request so that all strings are translated using the desired locale during the lifetime of that request.</p>
+<p>The default locale is used for all translations unless <code>I18n.locale=</code> or <code>I18n.with_locale</code> is used.</p>
+<p><code>I18n.locale</code> can leak into subsequent requests served by the same thread/process if it is not consistently set in every controller. For example executing <code>I18n.locale = :es</code> in one POST requests will have effects for all later requests to controllers that don't set the locale, but only in that particular thread/process. For that reason, instead of <code>I18n.locale =</code> you can use <code>I18n.with_locale</code> which does not have this leak issue.</p>
+<p>The locale can be set in an <code>around_action</code> in the <code>ApplicationController</code>:</p>
+<pre><code class="hljs css language-ruby">around_action <span class="hljs-symbol">:switch_locale</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">switch_locale</span><span class="hljs-params">(&amp;action)</span></span>
+  locale = params[<span class="hljs-symbol">:locale</span>] <span class="hljs-params">||</span> I18n.default_locale
+  I18n.with_locale(locale, &amp;action)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This example illustrates this using a URL query parameter to set the locale (e.g. <code>http://example.com/books?locale=pt</code>). With this approach, <code>http://localhost:3000?locale=pt</code> renders the Portuguese localization, while <code>http://localhost:3000?locale=de</code> loads a German localization.</p>
+<p>The locale can be set using one of many different approaches.</p>
+<h4><a class="anchor" aria-hidden="true" id="setting-the-locale-from-the-domain-name"></a><a href="#setting-the-locale-from-the-domain-name" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setting the Locale from the Domain Name</h4>
+<p>One option you have is to set the locale from the domain name where your application runs. For example, we want <code>www.example.com</code> to load the English (or default) locale, and <code>www.example.es</code> to load the Spanish locale. Thus the <em>top-level domain name</em> is used for locale setting. This has several advantages:</p>
+<ul>
+<li>The locale is an <em>obvious</em> part of the URL.</li>
+<li>People intuitively grasp in which language the content will be displayed.</li>
+<li>It is very trivial to implement in Rails.</li>
+<li>Search engines seem to like that content in different languages lives at different, inter-linked domains.</li>
+</ul>
+<p>You can implement it like this in your <code>ApplicationController</code>:</p>
+<pre><code class="hljs css language-ruby">around_action <span class="hljs-symbol">:switch_locale</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">switch_locale</span><span class="hljs-params">(&amp;action)</span></span>
+  locale = extract_locale_from_tld <span class="hljs-params">||</span> I18n.default_locale
+  I18n.with_locale(locale, &amp;action)
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Get locale from top-level domain or return +nil+ if such locale is not available</span>
+<span class="hljs-comment"># You have to put something like:</span>
+<span class="hljs-comment">#   127.0.0.1 application.com</span>
+<span class="hljs-comment">#   127.0.0.1 application.it</span>
+<span class="hljs-comment">#   127.0.0.1 application.pl</span>
+<span class="hljs-comment"># in your /etc/hosts file to try this out locally</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">extract_locale_from_tld</span></span>
+  parsed_locale = request.host.split(<span class="hljs-string">'.'</span>).last
+  I18n.available_locales.map(&amp;<span class="hljs-symbol">:to_s</span>).<span class="hljs-keyword">include</span>?(parsed_locale) ? parsed_locale : <span class="hljs-literal">nil</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>We can also set the locale from the <em>subdomain</em> in a very similar way:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># Get locale code from request subdomain (like http://it.application.local:3000)</span>
+<span class="hljs-comment"># You have to put something like:</span>
+<span class="hljs-comment">#   127.0.0.1 gr.application.local</span>
+<span class="hljs-comment"># in your /etc/hosts file to try this out locally</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">extract_locale_from_subdomain</span></span>
+  parsed_locale = request.subdomains.first
+  I18n.available_locales.map(&amp;<span class="hljs-symbol">:to_s</span>).<span class="hljs-keyword">include</span>?(parsed_locale) ? parsed_locale : <span class="hljs-literal">nil</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>If your application includes a locale switching menu, you would then have something like this in it:</p>
+<pre><code class="hljs css language-ruby">link_to(<span class="hljs-string">"Deutsch"</span>, <span class="hljs-string">"<span class="hljs-subst">#{APP_CONFIG[<span class="hljs-symbol">:deutsch_website_url</span>]}</span><span class="hljs-subst">#{request.env[<span class="hljs-string">'PATH_INFO'</span>]}</span>"</span>)
+</code></pre>
+<p>assuming you would set <code>APP_CONFIG[:deutsch_website_url]</code> to some value like <code>http://www.application.de</code>.</p>
+<p>This solution has aforementioned advantages, however, you may not be able or may not want to provide different localizations (&quot;language versions&quot;) on different domains. The most obvious solution would be to include locale code in the URL params (or request path).</p>
+<h4><a class="anchor" aria-hidden="true" id="setting-the-locale-from-url-params"></a><a href="#setting-the-locale-from-url-params" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setting the Locale from URL Params</h4>
+<p>The most usual way of setting (and passing) the locale would be to include it in URL params, as we did in the <code>I18n.with_locale(params[:locale], &amp;action)</code> <em>around_action</em> in the first example. We would like to have URLs like <code>www.example.com/books?locale=ja</code> or <code>www.example.com/ja/books</code> in this case.</p>
+<p>This approach has almost the same set of advantages as setting the locale from the domain name: namely that it's RESTful and in accord with the rest of the World Wide Web. It does require a little bit more work to implement, though.</p>
+<p>Getting the locale from <code>params</code> and setting it accordingly is not hard; including it in every URL and thus <strong>passing it through the requests</strong> is. To include an explicit option in every URL, e.g. <code>link_to(books_url(locale: I18n.locale))</code>, would be tedious and probably impossible, of course.</p>
+<p>Rails contains infrastructure for &quot;centralizing dynamic decisions about the URLs&quot; in its <a href="https://api.rubyonrails.org/classes/ActionDispatch/Routing/Mapper/Base.html#method-i-default_url_options"><code>ApplicationController#default_url_options</code></a>, which is useful precisely in this scenario: it enables us to set &quot;defaults&quot; for <a href="https://api.rubyonrails.org/classes/ActionDispatch/Routing/UrlFor.html#method-i-url_for"><code>url_for</code></a> and helper methods dependent on it (by implementing/overriding <code>default_url_options</code>).</p>
+<p>We can include something like this in our <code>ApplicationController</code> then:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># app/controllers/application_controller.rb</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">default_url_options</span></span>
+  { <span class="hljs-symbol">locale:</span> I18n.locale }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Every helper method dependent on <code>url_for</code> (e.g. helpers for named routes like <code>root_path</code> or <code>root_url</code>, resource routes like <code>books_path</code> or <code>books_url</code>, etc.) will now <strong>automatically include the locale in the query string</strong>, like this: <code>http://localhost:3001/?locale=ja</code>.</p>
+<p>You may be satisfied with this. It does impact the readability of URLs, though, when the locale &quot;hangs&quot; at the end of every URL in your application. Moreover, from the architectural standpoint, locale is usually hierarchically above the other parts of the application domain: and URLs should reflect this.</p>
+<p>You probably want URLs to look like this: <code>http://www.example.com/en/books</code> (which loads the English locale) and <code>http://www.example.com/nl/books</code> (which loads the Dutch locale). This is achievable with the &quot;over-riding <code>default_url_options</code>&quot; strategy from above: you just have to set up your routes with <a href="https://api.rubyonrails.org/classes/ActionDispatch/Routing/Mapper/Scoping.html"><code>scope</code></a>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># config/routes.rb</span>
+scope <span class="hljs-string">"/:locale"</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:books</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Now, when you call the <code>books_path</code> method you should get <code>&quot;/en/books&quot;</code> (for the default locale). A URL like <code>http://localhost:3001/nl/books</code> should load the Dutch locale, then, and following calls to <code>books_path</code> should return <code>&quot;/nl/books&quot;</code> (because the locale changed).</p>
+<p>WARNING. Since the return value of <code>default_url_options</code> is cached per request, the URLs in a locale selector cannot be generated invoking helpers in a loop that sets the corresponding <code>I18n.locale</code> in each iteration. Instead, leave <code>I18n.locale</code> untouched, and pass an explicit <code>:locale</code> option to the helper, or edit <code>request.original_fullpath</code>.</p>
+<p>If you don't want to force the use of a locale in your routes you can use an optional path scope (denoted by the parentheses) like so:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># config/routes.rb</span>
+scope <span class="hljs-string">"(:locale)"</span>, <span class="hljs-symbol">locale:</span> /en<span class="hljs-params">|nl/ <span class="hljs-keyword">do</span>
+  resources :books
+<span class="hljs-keyword">end</span>
+</span></code></pre>
+<p>With this approach you will not get a <code>Routing Error</code> when accessing your resources such as <code>http://localhost:3001/books</code> without a locale. This is useful for when you want to use the default locale when one is not specified.</p>
+<p>Of course, you need to take special care of the root URL (usually &quot;homepage&quot; or &quot;dashboard&quot;) of your application. A URL like <code>http://localhost:3001/nl</code> will not work automatically, because the <code>root to: &quot;books#index&quot;</code> declaration in your <code>routes.rb</code> doesn't take locale into account. (And rightly so: there's only one &quot;root&quot; URL.)</p>
+<p>You would probably need to map URLs like these:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># config/routes.rb</span>
+get <span class="hljs-string">'/:locale'</span> =&gt; <span class="hljs-string">'dashboard#index'</span>
+</code></pre>
+<p>Do take special care about the <strong>order of your routes</strong>, so this route declaration does not &quot;eat&quot; other ones. (You may want to add it directly before the <code>root :to</code> declaration.)</p>
+<p>NOTE: Have a look at various gems which simplify working with routes: <a href="https://github.com/svenfuchs/routing-filter/tree/master">routing_filter</a>, <a href="https://github.com/francesc/rails-translate-routes">rails-translate-routes</a>, <a href="https://github.com/enriclluelles/route_translator">route_translator</a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="setting-the-locale-from-user-preferences"></a><a href="#setting-the-locale-from-user-preferences" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setting the Locale from User Preferences</h4>
+<p>An application with authenticated users may allow users to set a locale preference through the application's interface. With this approach, a user's selected locale preference is persisted in the database and used to set the locale for authenticated requests by that user.</p>
+<pre><code class="hljs css language-ruby">around_action <span class="hljs-symbol">:switch_locale</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">switch_locale</span><span class="hljs-params">(&amp;action)</span></span>
+  locale = current_user.try(<span class="hljs-symbol">:locale</span>) <span class="hljs-params">||</span> I18n.default_locale
+  I18n.with_locale(locale, &amp;action)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="choosing-an-implied-locale"></a><a href="#choosing-an-implied-locale" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Choosing an Implied Locale</h4>
+<p>When an explicit locale has not been set for a request (e.g. via one of the above methods), an application should attempt to infer the desired locale.</p>
+<h5><a class="anchor" aria-hidden="true" id="inferring-locale-from-the-language-header"></a><a href="#inferring-locale-from-the-language-header" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inferring Locale from the Language Header</h5>
+<p>The <code>Accept-Language</code> HTTP header indicates the preferred language for request's response. Browsers <a href="http://www.w3.org/International/questions/qa-lang-priorities">set this header value based on the user's language preference settings</a>, making it a good first choice when inferring a locale.</p>
+<p>A trivial implementation of using an <code>Accept-Language</code> header would be:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">switch_locale</span><span class="hljs-params">(&amp;action)</span></span>
+  logger.debug <span class="hljs-string">"* Accept-Language: <span class="hljs-subst">#{request.env[<span class="hljs-string">'HTTP_ACCEPT_LANGUAGE'</span>]}</span>"</span>
+  locale = extract_locale_from_accept_language_header
+  logger.debug <span class="hljs-string">"* Locale set to '<span class="hljs-subst">#{locale}</span>'"</span>
+  I18n.with_locale(locale, &amp;action)
+<span class="hljs-keyword">end</span>
+
+private
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">extract_locale_from_accept_language_header</span></span>
+    request.env[<span class="hljs-string">'HTTP_ACCEPT_LANGUAGE'</span>].scan(<span class="hljs-regexp">/^[a-z]{2}/</span>).first
+  <span class="hljs-keyword">end</span>
+</code></pre>
+<p>In practice, more robust code is necessary to do this reliably. Iain Hecker's <a href="https://github.com/iain/http_accept_language/tree/master">http_accept_language</a> library or Ryan Tomayko's <a href="https://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/locale.rb">locale</a> Rack middleware provide solutions to this problem.</p>
+<h5><a class="anchor" aria-hidden="true" id="inferring-the-locale-from-ip-geolocation"></a><a href="#inferring-the-locale-from-ip-geolocation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inferring the Locale from IP Geolocation</h5>
+<p>The IP address of the client making the request can be used to infer the client's region and thus their locale. Services such as <a href="http://www.maxmind.com/app/geolitecountry">GeoIP Lite Country</a> or gems like <a href="https://github.com/alexreisner/geocoder">geocoder</a> can be used to implement this approach.</p>
+<p>In general, this approach is far less reliable than using the language header and is not recommended for most web applications.</p>
+<h4><a class="anchor" aria-hidden="true" id="storing-the-locale-from-the-session-or-cookies"></a><a href="#storing-the-locale-from-the-session-or-cookies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Storing the Locale from the Session or Cookies</h4>
+<p>WARNING: You may be tempted to store the chosen locale in a <em>session</em> or a <em>cookie</em>. However, <strong>do not do this</strong>. The locale should be transparent and a part of the URL. This way you won't break people's basic assumptions about the web itself: if you send a URL to a friend, they should see the same page and content as you. A fancy word for this would be that you're being <a href="https://en.wikipedia.org/wiki/Representational_State_Transfer"><em>RESTful</em></a>. Read more about the RESTful approach in <a href="https://www.infoq.com/articles/rest-introduction">Stefan Tilkov's articles</a>. Sometimes there are exceptions to this rule and those are discussed below.</p>
+<h2><a class="anchor" aria-hidden="true" id="internationalization-and-localization"></a><a href="#internationalization-and-localization" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Internationalization and Localization</h2>
+<p>OK! Now you've initialized I18n support for your Ruby on Rails application and told it which locale to use and how to preserve it between requests.</p>
+<p>Next we need to <em>internationalize</em> our application by abstracting every locale-specific element. Finally, we need to <em>localize</em> it by providing necessary translations for these abstracts.</p>
+<p>Given the following example:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># config/routes.rb</span>
+Rails.application.routes.draw <span class="hljs-keyword">do</span>
+  root <span class="hljs-symbol">to:</span> <span class="hljs-string">"home#index"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># app/controllers/application_controller.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> &lt; ActionController::Base</span>
+
+  around_action <span class="hljs-symbol">:switch_locale</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">switch_locale</span><span class="hljs-params">(&amp;action)</span></span>
+    locale = params[<span class="hljs-symbol">:locale</span>] <span class="hljs-params">||</span> I18n.default_locale
+    I18n.with_locale(locale, &amp;action)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># app/controllers/home_controller.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HomeController</span> &lt; ApplicationController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+    flash[<span class="hljs-symbol">:notice</span>] = <span class="hljs-string">"Hello Flash"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<pre><code class="hljs css language-html+erb"><span class="hljs-meta"># app/views/home/index.html.erb</span>
+<span class="hljs-params">&lt;h1&gt;</span>Hello World<span class="hljs-params">&lt;/h1&gt;</span>
+<span class="hljs-params">&lt;p&gt;</span><span class="hljs-params">&lt;%= flash[:notice] %&gt;</span><span class="hljs-params">&lt;/p&gt;</span>
+</code></pre>
+<p><img src="https://edgeguides.rubyonrails.org/images/i18n/demo_untranslated.png" alt="rails i18n demo untranslated"></p>
+<h3><a class="anchor" aria-hidden="true" id="abstracting-localized-code"></a><a href="#abstracting-localized-code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Abstracting Localized Code</h3>
+<p>There are two strings in our code that are in English and that users will be rendered in our response (&quot;Hello Flash&quot; and &quot;Hello World&quot;). In order to internationalize this code, these strings need to be replaced by calls to Rails' <code>#t</code> helper with an appropriate key for each string:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># app/controllers/home_controller.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HomeController</span> &lt; ApplicationController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+    flash[<span class="hljs-symbol">:notice</span>] = t(<span class="hljs-symbol">:hello_flash</span>)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<pre><code class="hljs css language-html+erb"><span class="xml"># app/views/home/index.html.erb
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> t <span class="hljs-symbol">:hello_world</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> flash[<span class="hljs-symbol">:notice</span>] </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</span></code></pre>
+<p>Now, when this view is rendered, it will show an error message which tells you that the translations for the keys <code>:hello_world</code> and <code>:hello_flash</code> are missing.</p>
+<p><img src="https://edgeguides.rubyonrails.org/images/i18n/demo_translation_missing.png" alt="rails i18n demo translation missing"></p>
+<p>NOTE: Rails adds a <code>t</code> (<code>translate</code>) helper method to your views so that you do not need to spell out <code>I18n.t</code> all the time. Additionally this helper will catch missing translations and wrap the resulting error message into a <code>&lt;span class=&quot;translation_missing&quot;&gt;</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="providing-translations-for-internationalized-strings"></a><a href="#providing-translations-for-internationalized-strings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Providing Translations for Internationalized Strings</h3>
+<p>Add the missing translations into the translation dictionary files:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-comment"># config/locales/en.yml</span>
+<span class="hljs-attr">en:</span>
+<span class="hljs-attr">  hello_world:</span> <span class="hljs-string">Hello</span> <span class="hljs-string">world!</span>
+<span class="hljs-attr">  hello_flash:</span> <span class="hljs-string">Hello</span> <span class="hljs-string">flash!</span>
+
+<span class="hljs-comment"># config/locales/pirate.yml</span>
+<span class="hljs-attr">pirate:</span>
+<span class="hljs-attr">  hello_world:</span> <span class="hljs-string">Ahoy</span> <span class="hljs-string">World</span>
+<span class="hljs-attr">  hello_flash:</span> <span class="hljs-string">Ahoy</span> <span class="hljs-string">Flash</span>
+</code></pre>
+<p>Because the <code>default_locale</code> hasn't changed, translations use the <code>:en</code> locale and the response renders the english strings:</p>
+<p><img src="https://edgeguides.rubyonrails.org/images/i18n/demo_translated_en.png" alt="rails i18n demo translated to English"></p>
+<p>If the locale is set via the URL to the pirate locale (<code>http://localhost:3000?locale=pirate</code>), the response renders the pirate strings:</p>
+<p><img src="https://edgeguides.rubyonrails.org/images/i18n/demo_translated_pirate.png" alt="rails i18n demo translated to pirate"></p>
+<p>NOTE: You need to restart the server when you add new locale files.</p>
+<p>You may use YAML (<code>.yml</code>) or plain Ruby (<code>.rb</code>) files for storing your translations in SimpleStore. YAML is the preferred option among Rails developers. However, it has one big disadvantage. YAML is very sensitive to whitespace and special characters, so the application may not load your dictionary properly. Ruby files will crash your application on first request, so you may easily find what's wrong. (If you encounter any &quot;weird issues&quot; with YAML dictionaries, try putting the relevant portion of your dictionary into a Ruby file.)</p>
+<p>If your translations are stored in YAML files, certain keys must be escaped. They are:</p>
+<ul>
+<li>true, on, yes</li>
+<li>false, off, no</li>
+</ul>
+<p>Examples:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-comment"># config/locales/en.yml</span>
+<span class="hljs-attr">en:</span>
+<span class="hljs-attr">  success:</span>
+<span class="hljs-attr">    'true':</span>  <span class="hljs-string">'True!'</span>
+<span class="hljs-attr">    'on':</span>    <span class="hljs-string">'On!'</span>
+<span class="hljs-attr">    'false':</span> <span class="hljs-string">'False!'</span>
+<span class="hljs-attr">  failure:</span>
+<span class="hljs-attr">    true:</span>    <span class="hljs-string">'True!'</span>
+<span class="hljs-attr">    off:</span>     <span class="hljs-string">'Off!'</span>
+<span class="hljs-attr">    false:</span>   <span class="hljs-string">'False!'</span>
+</code></pre>
+<pre><code class="hljs css language-ruby">I18n.t <span class="hljs-string">'success.true'</span>  <span class="hljs-comment"># =&gt; 'True!'</span>
+I18n.t <span class="hljs-string">'success.on'</span>    <span class="hljs-comment"># =&gt; 'On!'</span>
+I18n.t <span class="hljs-string">'success.false'</span> <span class="hljs-comment"># =&gt; 'False!'</span>
+I18n.t <span class="hljs-string">'failure.false'</span> <span class="hljs-comment"># =&gt; Translation Missing</span>
+I18n.t <span class="hljs-string">'failure.off'</span>   <span class="hljs-comment"># =&gt; Translation Missing</span>
+I18n.t <span class="hljs-string">'failure.true'</span>  <span class="hljs-comment"># =&gt; Translation Missing</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="passing-variables-to-translations"></a><a href="#passing-variables-to-translations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Passing Variables to Translations</h3>
+<p>One key consideration for successfully internationalizing an application is to
+avoid making incorrect assumptions about grammar rules when abstracting localized
+code. Grammar rules that seem fundamental in one locale may not hold true in
+another one.</p>
+<p>Improper abstraction is shown in the following example, where assumptions are
+made about the ordering of the different parts of the translation. Note that Rails
+provides a <code>number_to_currency</code> helper to handle the following case.</p>
+<pre><code class="hljs css language-erb"><span class="xml"># app/views/products/show.html.erb
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> <span class="hljs-string">"<span class="hljs-subst">#{t(<span class="hljs-string">'currency'</span>)}</span><span class="hljs-subst">#{@product.price}</span>"</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<pre><code class="hljs css language-yaml"><span class="hljs-comment"># config/locales/en.yml</span>
+<span class="hljs-attr">en:</span>
+<span class="hljs-attr">  currency:</span> <span class="hljs-string">"$"</span>
+
+<span class="hljs-comment"># config/locales/es.yml</span>
+<span class="hljs-attr">es:</span>
+<span class="hljs-attr">  currency:</span> <span class="hljs-string">"€"</span>
+</code></pre>
+<p>If the product's price is 10 then the proper translation for Spanish is &quot;10 €&quot;
+instead of &quot;€10&quot; but the abstraction cannot give it.</p>
+<p>To create proper abstraction, the I18n gem ships with a feature called variable
+interpolation that allows you to use variables in translation definitions and
+pass the values for these variables to the translation method.</p>
+<p>Proper abstraction is shown in the following example:</p>
+<pre><code class="hljs css language-erb"><span class="xml"># app/views/products/show.html.erb
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> t(<span class="hljs-string">'product_price'</span>, <span class="hljs-symbol">price:</span> @product.price) </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<pre><code class="hljs css language-yaml"><span class="hljs-comment"># config/locales/en.yml</span>
+<span class="hljs-attr">en:</span>
+<span class="hljs-attr">  product_price:</span> <span class="hljs-string">"$<span class="hljs-template-variable">%{price}</span>"</span>
+
+<span class="hljs-comment"># config/locales/es.yml</span>
+<span class="hljs-attr">es:</span>
+<span class="hljs-attr">  product_price:</span> <span class="hljs-string">"<span class="hljs-template-variable">%{price}</span> €"</span>
+</code></pre>
+<p>All grammatical and punctuation decisions are made in the definition itself, so
+the abstraction can give a proper translation.</p>
+<p>NOTE: The <code>default</code> and <code>scope</code> keywords are reserved and can't be used as
+variable names. If used, an <code>I18n::ReservedInterpolationKey</code> exception is raised.
+If a translation expects an interpolation variable, but this has not been passed
+to <code>#translate</code>, an <code>I18n::MissingInterpolationArgument</code> exception is raised.</p>
+<h3><a class="anchor" aria-hidden="true" id="adding-date-time-formats"></a><a href="#adding-date-time-formats" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding Date/Time Formats</h3>
+<p>OK! Now let's add a timestamp to the view, so we can demo the <strong>date/time localization</strong> feature as well. To localize the time format you pass the Time object to <code>I18n.l</code> or (preferably) use Rails' <code>#l</code> helper. You can pick a format by passing the <code>:format</code> option - by default the <code>:default</code> format is used.</p>
+<pre><code class="hljs css language-erb"><span class="xml"># app/views/home/index.html.erb
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> t <span class="hljs-symbol">:hello_world</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> flash[<span class="hljs-symbol">:notice</span>] </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> l Time.now, <span class="hljs-symbol">format:</span> <span class="hljs-symbol">:short</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</span></code></pre>
+<p>And in our pirate translations file let's add a time format (it's already there in Rails' defaults for English):</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-comment"># config/locales/pirate.yml</span>
+<span class="hljs-attr">pirate:</span>
+<span class="hljs-attr">  time:</span>
+<span class="hljs-attr">    formats:</span>
+<span class="hljs-attr">      short:</span> <span class="hljs-string">"arrrround %H'ish"</span>
+</code></pre>
+<p>So that would give you:</p>
+<p><img src="https://edgeguides.rubyonrails.org/images/i18n/demo_localized_pirate.png" alt="rails i18n demo localized time to pirate"></p>
+<p>TIP: Right now you might need to add some more date/time formats in order to make the I18n backend work as expected (at least for the 'pirate' locale). Of course, there's a great chance that somebody already did all the work by <strong>translating Rails' defaults for your locale</strong>. See the <a href="https://github.com/svenfuchs/rails-i18n/tree/master/rails/locale">rails-i18n repository at GitHub</a> for an archive of various locale files. When you put such file(s) in <code>config/locales/</code> directory, they will automatically be ready for use.</p>
+<h3><a class="anchor" aria-hidden="true" id="inflection-rules-for-other-locales"></a><a href="#inflection-rules-for-other-locales" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inflection Rules For Other Locales</h3>
+<p>Rails allows you to define inflection rules (such as rules for singularization and pluralization) for locales other than English. In <code>config/initializers/inflections.rb</code>, you can define these rules for multiple locales. The initializer contains a default example for specifying additional rules for English; follow that format for other locales as you see fit.</p>
+<h3><a class="anchor" aria-hidden="true" id="localized-views"></a><a href="#localized-views" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Localized Views</h3>
+<p>Let's say you have a <em>BooksController</em> in your application. Your <em>index</em> action renders content in <code>app/views/books/index.html.erb</code> template. When you put a <em>localized variant</em> of this template: <code>index.es.html.erb</code> in the same directory, Rails will render content in this template, when the locale is set to <code>:es</code>. When the locale is set to the default locale, the generic <code>index.html.erb</code> view will be used. (Future Rails versions may well bring this <em>automagic</em> localization to assets in <code>public</code>, etc.)</p>
+<p>You can make use of this feature, e.g. when working with a large amount of static content, which would be clumsy to put inside YAML or Ruby dictionaries. Bear in mind, though, that any change you would like to do later to the template must be propagated to all of them.</p>
+<h3><a class="anchor" aria-hidden="true" id="organization-of-locale-files"></a><a href="#organization-of-locale-files" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Organization of Locale Files</h3>
+<p>When you are using the default SimpleStore shipped with the i18n library,
+dictionaries are stored in plain-text files on the disk. Putting translations
+for all parts of your application in one file per locale could be hard to
+manage. You can store these files in a hierarchy which makes sense to you.</p>
+<p>For example, your <code>config/locales</code> directory could look like this:</p>
+<pre><code class="hljs"><span class="hljs-string">|-defaults</span>
+<span class="hljs-string">|---es.rb</span>
+<span class="hljs-string">|---en.rb</span>
+<span class="hljs-string">|-models</span>
+<span class="hljs-string">|---book</span>
+<span class="hljs-string">|-----es.rb</span>
+<span class="hljs-string">|-----en.rb</span>
+<span class="hljs-string">|-views</span>
+<span class="hljs-string">|---defaults</span>
+<span class="hljs-string">|-----es.rb</span>
+<span class="hljs-string">|-----en.rb</span>
+<span class="hljs-string">|---books</span>
+<span class="hljs-string">|-----es.rb</span>
+<span class="hljs-string">|-----en.rb</span>
+<span class="hljs-string">|---users</span>
+<span class="hljs-string">|-----es.rb</span>
+<span class="hljs-string">|-----en.rb</span>
+<span class="hljs-string">|---navigation</span>
+<span class="hljs-string">|-----es.rb</span>
+<span class="hljs-string">|-----en.rb</span>
+</code></pre>
+<p>This way, you can separate model and model attribute names from text inside views, and all of this from the &quot;defaults&quot; (e.g. date and time formats). Other stores for the i18n library could provide different means of such separation.</p>
+<p>NOTE: The default locale loading mechanism in Rails does not load locale files in nested dictionaries, like we have here. So, for this to work, we must explicitly tell Rails to look further:</p>
+<pre><code class="hljs css language-ruby">  <span class="hljs-comment"># config/application.rb</span>
+  config.i18n.load_path += Dir[Rails.root.join(<span class="hljs-string">'config'</span>, <span class="hljs-string">'locales'</span>, <span class="hljs-string">'**'</span>, <span class="hljs-string">'*.{rb,yml}'</span>)]
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="overview-of-the-i18n-api-features"></a><a href="#overview-of-the-i18n-api-features" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview of the I18n API Features</h2>
+<p>You should have a good understanding of using the i18n library now and know how
+to internationalize a basic Rails application. In the following chapters, we'll
+cover its features in more depth.</p>
+<p>These chapters will show examples using both the <code>I18n.translate</code> method as well as the <a href="https://api.rubyonrails.org/classes/ActionView/Helpers/TranslationHelper.html#method-i-translate"><code>translate</code> view helper method</a> (noting the additional feature provide by the view helper method).</p>
+<p>Covered are features like these:</p>
+<ul>
+<li>looking up translations</li>
+<li>interpolating data into translations</li>
+<li>pluralizing translations</li>
+<li>using safe HTML translations (view helper method only)</li>
+<li>localizing dates, numbers, currency, etc.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="looking-up-translations"></a><a href="#looking-up-translations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Looking up Translations</h3>
+<h4><a class="anchor" aria-hidden="true" id="basic-lookup-scopes-and-nested-keys"></a><a href="#basic-lookup-scopes-and-nested-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Basic Lookup, Scopes, and Nested Keys</h4>
+<p>Translations are looked up by keys which can be both Symbols or Strings, so these calls are equivalent:</p>
+<pre><code class="hljs css language-ruby">I18n.t <span class="hljs-symbol">:message</span>
+I18n.t <span class="hljs-string">'message'</span>
+</code></pre>
+<p>The <code>translate</code> method also takes a <code>:scope</code> option which can contain one or more additional keys that will be used to specify a &quot;namespace&quot; or scope for a translation key:</p>
+<pre><code class="hljs css language-ruby">I18n.t <span class="hljs-symbol">:record_invalid</span>, <span class="hljs-symbol">scope:</span> [<span class="hljs-symbol">:activerecord</span>, <span class="hljs-symbol">:errors</span>, <span class="hljs-symbol">:messages</span>]
+</code></pre>
+<p>This looks up the <code>:record_invalid</code> message in the Active Record error messages.</p>
+<p>Additionally, both the key and scopes can be specified as dot-separated keys as in:</p>
+<pre><code class="hljs css language-ruby">I18n.translate <span class="hljs-string">"activerecord.errors.messages.record_invalid"</span>
+</code></pre>
+<p>Thus the following calls are equivalent:</p>
+<pre><code class="hljs css language-ruby">I18n.t <span class="hljs-string">'activerecord.errors.messages.record_invalid'</span>
+I18n.t <span class="hljs-string">'errors.messages.record_invalid'</span>, <span class="hljs-symbol">scope:</span> <span class="hljs-symbol">:activerecord</span>
+I18n.t <span class="hljs-symbol">:record_invalid</span>, <span class="hljs-symbol">scope:</span> <span class="hljs-string">'activerecord.errors.messages'</span>
+I18n.t <span class="hljs-symbol">:record_invalid</span>, <span class="hljs-symbol">scope:</span> [<span class="hljs-symbol">:activerecord</span>, <span class="hljs-symbol">:errors</span>, <span class="hljs-symbol">:messages</span>]
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="defaults"></a><a href="#defaults" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Defaults</h4>
+<p>When a <code>:default</code> option is given, its value will be returned if the translation is missing:</p>
+<pre><code class="hljs css language-ruby">I18n.t <span class="hljs-symbol">:missing</span>, <span class="hljs-symbol">default:</span> <span class="hljs-string">'Not here'</span>
+<span class="hljs-comment"># =&gt; 'Not here'</span>
+</code></pre>
+<p>If the <code>:default</code> value is a Symbol, it will be used as a key and translated. One can provide multiple values as default. The first one that results in a value will be returned.</p>
+<p>E.g., the following first tries to translate the key <code>:missing</code> and then the key <code>:also_missing.</code> As both do not yield a result, the string &quot;Not here&quot; will be returned:</p>
+<pre><code class="hljs css language-ruby">I18n.t <span class="hljs-symbol">:missing</span>, <span class="hljs-symbol">default:</span> [<span class="hljs-symbol">:also_missing</span>, <span class="hljs-string">'Not here'</span>]
+<span class="hljs-comment"># =&gt; 'Not here'</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="bulk-and-namespace-lookup"></a><a href="#bulk-and-namespace-lookup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bulk and Namespace Lookup</h4>
+<p>To look up multiple translations at once, an array of keys can be passed:</p>
+<pre><code class="hljs css language-ruby">I18n.t [<span class="hljs-symbol">:odd</span>, <span class="hljs-symbol">:even</span>], <span class="hljs-symbol">scope:</span> <span class="hljs-string">'errors.messages'</span>
+<span class="hljs-comment"># =&gt; ["must be odd", "must be even"]</span>
+</code></pre>
+<p>Also, a key can translate to a (potentially nested) hash of grouped translations. E.g., one can receive <em>all</em> Active Record error messages as a Hash with:</p>
+<pre><code class="hljs css language-ruby">I18n.t <span class="hljs-string">'activerecord.errors.messages'</span>
+<span class="hljs-comment"># =&gt; {:inclusion=&gt;"is not included in the list", :exclusion=&gt; ... }</span>
+</code></pre>
+<p>If you want to perform interpolation on a bulk hash of translations, you need to pass <code>deep_interpolation: true</code> as a parameter. When you have the following dictionary:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">en:</span>
+<span class="hljs-attr">  welcome:</span>
+<span class="hljs-attr">    title:</span> <span class="hljs-string">"Welcome!"</span>
+<span class="hljs-attr">    content:</span> <span class="hljs-string">"Welcome to the <span class="hljs-template-variable">%{app_name}</span>"</span>
+</code></pre>
+<p>then the nested interpolation will be ignored without the setting:</p>
+<pre><code class="hljs css language-ruby">I18n.t <span class="hljs-string">'welcome'</span>, <span class="hljs-symbol">app_name:</span> <span class="hljs-string">'book store'</span>
+<span class="hljs-comment"># =&gt; {:title=&gt;"Welcome!", :content=&gt;"Welcome to the %{app_name}"}</span>
+
+I18n.t <span class="hljs-string">'welcome'</span>, <span class="hljs-symbol">deep_interpolation:</span> <span class="hljs-literal">true</span>, <span class="hljs-symbol">app_name:</span> <span class="hljs-string">'book store'</span>
+<span class="hljs-comment"># =&gt; {:title=&gt;"Welcome!", :content=&gt;"Welcome to the book store"}</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="lazy-lookup"></a><a href="#lazy-lookup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>&quot;Lazy&quot; Lookup</h4>
+<p>Rails implements a convenient way to look up the locale inside <em>views</em>. When you have the following dictionary:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">es:</span>
+<span class="hljs-attr">  books:</span>
+<span class="hljs-attr">    index:</span>
+<span class="hljs-attr">      title:</span> <span class="hljs-string">"Título"</span>
+</code></pre>
+<p>you can look up the <code>books.index.title</code> value <strong>inside</strong> <code>app/views/books/index.html.erb</code> template like this (note the dot):</p>
+<pre><code class="hljs css language-erb"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> t <span class="hljs-string">'.title'</span> </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>NOTE: Automatic translation scoping by partial is only available from the <code>translate</code> view helper method.</p>
+<p>&quot;Lazy&quot; lookup can also be used in controllers:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">en:</span>
+<span class="hljs-attr">  books:</span>
+<span class="hljs-attr">    create:</span>
+<span class="hljs-attr">      success:</span> <span class="hljs-string">Book</span> <span class="hljs-string">created!</span>
+</code></pre>
+<p>This is useful for setting flash messages for instance:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BooksController</span> &lt; ApplicationController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
+    <span class="hljs-comment"># ...</span>
+    redirect_to books_url, <span class="hljs-symbol">notice:</span> t(<span class="hljs-string">'.success'</span>)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="pluralization"></a><a href="#pluralization" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pluralization</h3>
+<p>In many languages — including English — there are only two forms, a singular and a plural, for
+a given string, e.g. &quot;1 message&quot; and &quot;2 messages&quot;. Other languages (<a href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#ar">Arabic</a>, <a href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#ja">Japanese</a>, <a href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#ru">Russian</a> and many more) have different grammars that have additional or fewer <a href="http://cldr.unicode.org/index/cldr-spec/plural-rules">plural forms</a>. Thus, the I18n API provides a flexible pluralization feature.</p>
+<p>The <code>:count</code> interpolation variable has a special role in that it both is interpolated to the translation and used to pick a pluralization from the translations according to the pluralization rules defined in the
+pluralization backend. By default, only the English pluralization rules are applied.</p>
+<pre><code class="hljs css language-ruby">I18n.backend.store_translations <span class="hljs-symbol">:en</span>, <span class="hljs-symbol">inbox:</span> {
+  <span class="hljs-symbol">zero:</span> <span class="hljs-string">'no messages'</span>, <span class="hljs-comment"># optional</span>
+  <span class="hljs-symbol">one:</span> <span class="hljs-string">'one message'</span>,
+  <span class="hljs-symbol">other:</span> <span class="hljs-string">'%{count} messages'</span>
+}
+I18n.translate <span class="hljs-symbol">:inbox</span>, <span class="hljs-symbol">count:</span> <span class="hljs-number">2</span>
+<span class="hljs-comment"># =&gt; '2 messages'</span>
+
+I18n.translate <span class="hljs-symbol">:inbox</span>, <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span>
+<span class="hljs-comment"># =&gt; 'one message'</span>
+
+I18n.translate <span class="hljs-symbol">:inbox</span>, <span class="hljs-symbol">count:</span> <span class="hljs-number">0</span>
+<span class="hljs-comment"># =&gt; 'no messages'</span>
+</code></pre>
+<p>The algorithm for pluralizations in <code>:en</code> is as simple as:</p>
+<pre><code class="hljs css language-ruby">lookup_key = <span class="hljs-symbol">:zero</span> <span class="hljs-keyword">if</span> count == <span class="hljs-number">0</span> &amp;&amp; entry.has_key?(<span class="hljs-symbol">:zero</span>)
+lookup_key <span class="hljs-params">||</span>= count == <span class="hljs-number">1</span> ? <span class="hljs-symbol">:one</span> : <span class="hljs-symbol">:other</span>
+entry[lookup_key]
+</code></pre>
+<p>The translation denoted as <code>:one</code> is regarded as singular, and the <code>:other</code> is used as plural. If the count is zero, and a <code>:zero</code> entry is present, then it will be used instead of <code>:other</code>.</p>
+<p>If the lookup for the key does not return a Hash suitable for pluralization, an <code>I18n::InvalidPluralizationData</code> exception is raised.</p>
+<h4><a class="anchor" aria-hidden="true" id="locale-specific-rules"></a><a href="#locale-specific-rules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Locale-specific rules</h4>
+<p>The I18n gem provides a Pluralization backend that can be used to enable locale-specific rules. Include it
+to the Simple backend, then add the localized pluralization algorithms to translation store, as <code>i18n.plural.rule</code>.</p>
+<pre><code class="hljs css language-ruby">I18n::Backend::Simple.<span class="hljs-keyword">include</span>(I18n::Backend::Pluralization)
+I18n.backend.store_translations <span class="hljs-symbol">:pt</span>, <span class="hljs-symbol">i18n:</span> { <span class="hljs-symbol">plural:</span> { <span class="hljs-symbol">rule:</span> lambda { <span class="hljs-params">|n|</span> [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>].<span class="hljs-keyword">include</span>?(n) ? <span class="hljs-symbol">:one</span> : <span class="hljs-symbol">:other</span> } } }
+I18n.backend.store_translations <span class="hljs-symbol">:pt</span>, <span class="hljs-symbol">apples:</span> { <span class="hljs-symbol">one:</span> <span class="hljs-string">'one or none'</span>, <span class="hljs-symbol">other:</span> <span class="hljs-string">'more than one'</span> }
+
+I18n.t <span class="hljs-symbol">:apples</span>, <span class="hljs-symbol">count:</span> <span class="hljs-number">0</span>, <span class="hljs-symbol">locale:</span> <span class="hljs-symbol">:pt</span>
+<span class="hljs-comment"># =&gt; 'one or none'</span>
+</code></pre>
+<p>Alternatively, the separate gem <a href="https://github.com/svenfuchs/rails-i18n">rails-i18n</a> can be used to provide a fuller set of locale-specific pluralization rules.</p>
+<h3><a class="anchor" aria-hidden="true" id="setting-and-passing-a-locale"></a><a href="#setting-and-passing-a-locale" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setting and Passing a Locale</h3>
+<p>The locale can be either set pseudo-globally to <code>I18n.locale</code> (which uses <code>Thread.current</code> like, e.g., <code>Time.zone</code>) or can be passed as an option to <code>#translate</code> and <code>#localize</code>.</p>
+<p>If no locale is passed, <code>I18n.locale</code> is used:</p>
+<pre><code class="hljs css language-ruby">I18n.locale = <span class="hljs-symbol">:de</span>
+I18n.t <span class="hljs-symbol">:foo</span>
+I18n.l Time.now
+</code></pre>
+<p>Explicitly passing a locale:</p>
+<pre><code class="hljs css language-ruby">I18n.t <span class="hljs-symbol">:foo</span>, <span class="hljs-symbol">locale:</span> <span class="hljs-symbol">:de</span>
+I18n.l Time.now, <span class="hljs-symbol">locale:</span> <span class="hljs-symbol">:de</span>
+</code></pre>
+<p>The <code>I18n.locale</code> defaults to <code>I18n.default_locale</code> which defaults to :<code>en</code>. The default locale can be set like this:</p>
+<pre><code class="hljs css language-ruby">I18n.default_locale = <span class="hljs-symbol">:de</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="using-safe-html-translations"></a><a href="#using-safe-html-translations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Safe HTML Translations</h3>
+<p>Keys with a '_html' suffix and keys named 'html' are marked as HTML safe. When you use them in views the HTML will not be escaped.</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-comment"># config/locales/en.yml</span>
+<span class="hljs-attr">en:</span>
+<span class="hljs-attr">  welcome:</span> <span class="hljs-string">&lt;b&gt;welcome!&lt;/b&gt;</span>
+<span class="hljs-attr">  hello_html:</span> <span class="hljs-string">&lt;b&gt;hello!&lt;/b&gt;</span>
+<span class="hljs-attr">  title:</span>
+<span class="hljs-attr">    html:</span> <span class="hljs-string">&lt;b&gt;title!&lt;/b&gt;</span>
+</code></pre>
+<pre><code class="hljs css language-html+erb"><span class="xml"># app/views/home/index.html.erb
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> t(<span class="hljs-string">'welcome'</span>) </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> raw t(<span class="hljs-string">'welcome'</span>) </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> t(<span class="hljs-string">'hello_html'</span>) </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> t(<span class="hljs-string">'title.html'</span>) </span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</span></code></pre>
+<p>Interpolation escapes as needed though. For example, given:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">en:</span>
+<span class="hljs-attr">  welcome_html:</span> <span class="hljs-string">"&lt;b&gt;Welcome <span class="hljs-template-variable">%{username}</span>!&lt;/b&gt;"</span>
+</code></pre>
+<p>you can safely pass the username as set by the user:</p>
+<pre><code class="hljs css language-erb"><span class="xml"></span><span class="hljs-comment">&lt;%# This is safe, it is going to be escaped if needed. %&gt;</span><span class="xml">
+<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> t(<span class="hljs-string">'welcome_html'</span>, <span class="hljs-symbol">username:</span> @current_user.username) </span><span class="xml"><span class="hljs-tag">%&gt;</span>
+</span></code></pre>
+<p>Safe strings on the other hand are interpolated verbatim.</p>
+<p>NOTE: Automatic conversion to HTML safe translate text is only available from the <code>translate</code> view helper method.</p>
+<p><img src="https://edgeguides.rubyonrails.org/images/i18n/demo_html_safe.png" alt="i18n demo html safe"></p>
+<h3><a class="anchor" aria-hidden="true" id="translations-for-active-record-models"></a><a href="#translations-for-active-record-models" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Translations for Active Record Models</h3>
+<p>You can use the methods <code>Model.model_name.human</code> and <code>Model.human_attribute_name(attribute)</code> to transparently look up translations for your model and attribute names.</p>
+<p>For example when you add the following translations:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">en:</span>
+<span class="hljs-attr">  activerecord:</span>
+<span class="hljs-attr">    models:</span>
+<span class="hljs-attr">      user:</span> <span class="hljs-string">Customer</span>
+<span class="hljs-attr">    attributes:</span>
+<span class="hljs-attr">      user:</span>
+<span class="hljs-attr">        login:</span> <span class="hljs-string">"Handle"</span>
+      <span class="hljs-comment"># will translate User attribute "login" as "Handle"</span>
+</code></pre>
+<p>Then <code>User.model_name.human</code> will return &quot;Customer&quot; and <code>User.human_attribute_name(&quot;login&quot;)</code> will return &quot;Handle&quot;.</p>
+<p>You can also set a plural form for model names, adding as following:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">en:</span>
+<span class="hljs-attr">  activerecord:</span>
+<span class="hljs-attr">    models:</span>
+<span class="hljs-attr">      user:</span>
+<span class="hljs-attr">        one:</span> <span class="hljs-string">Customer</span>
+<span class="hljs-attr">        other:</span> <span class="hljs-string">Customers</span>
+</code></pre>
+<p>Then <code>User.model_name.human(count: 2)</code> will return &quot;Customers&quot;. With <code>count: 1</code> or without params will return &quot;Customer&quot;.</p>
+<p>In the event you need to access nested attributes within a given model, you should nest these under <code>model/attribute</code> at the model level of your translation file:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">en:</span>
+<span class="hljs-attr">  activerecord:</span>
+<span class="hljs-attr">    attributes:</span>
+      <span class="hljs-string">user/role:</span>
+<span class="hljs-attr">        admin:</span> <span class="hljs-string">"Admin"</span>
+<span class="hljs-attr">        contributor:</span> <span class="hljs-string">"Contributor"</span>
+</code></pre>
+<p>Then <code>User.human_attribute_name(&quot;role.admin&quot;)</code> will return &quot;Admin&quot;.</p>
+<p>NOTE: If you are using a class which includes <code>ActiveModel</code> and does not inherit from <code>ActiveRecord::Base</code>, replace <code>activerecord</code> with <code>activemodel</code> in the above key paths.</p>
+<h4><a class="anchor" aria-hidden="true" id="error-message-scopes"></a><a href="#error-message-scopes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Error Message Scopes</h4>
+<p>Active Record validation error messages can also be translated easily. Active Record gives you a couple of namespaces where you can place your message translations in order to provide different messages and translation for certain models, attributes, and/or validations. It also transparently takes single table inheritance into account.</p>
+<p>This gives you quite powerful means to flexibly adjust your messages to your application's needs.</p>
+<p>Consider a User model with a validation for the name attribute like this:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> &lt; ApplicationRecord</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The key for the error message in this case is <code>:blank</code>. Active Record will look up this key in the namespaces:</p>
+<pre><code class="hljs css language-ruby">activerecord.errors.models.[model_name].attributes.[attribute_name]
+activerecord.errors.models.[model_name]
+activerecord.errors.messages
+errors.attributes.[attribute_name]
+errors.messages
+</code></pre>
+<p>Thus, in our example it will try the following keys in this order and return the first result:</p>
+<pre><code class="hljs css language-ruby">activerecord.errors.models.user.attributes.name.blank
+activerecord.errors.models.user.blank
+activerecord.errors.messages.blank
+errors.attributes.name.blank
+errors.messages.blank
+</code></pre>
+<p>When your models are additionally using inheritance then the messages are looked up in the inheritance chain.</p>
+<p>For example, you might have an Admin model inheriting from User:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Admin</span> &lt; User</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Then Active Record will look for messages in this order:</p>
+<pre><code class="hljs css language-ruby">activerecord.errors.models.admin.attributes.name.blank
+activerecord.errors.models.admin.blank
+activerecord.errors.models.user.attributes.name.blank
+activerecord.errors.models.user.blank
+activerecord.errors.messages.blank
+errors.attributes.name.blank
+errors.messages.blank
+</code></pre>
+<p>This way you can provide special translations for various error messages at different points in your models inheritance chain and in the attributes, models, or default scopes.</p>
+<h4><a class="anchor" aria-hidden="true" id="error-message-interpolation"></a><a href="#error-message-interpolation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Error Message Interpolation</h4>
+<p>The translated model name, translated attribute name, and value are always available for interpolation as <code>model</code>, <code>attribute</code> and <code>value</code> respectively.</p>
+<p>So, for example, instead of the default error message <code>&quot;cannot be blank&quot;</code> you could use the attribute name like this : <code>&quot;Please fill in your %{attribute}&quot;</code>.</p>
+<ul>
+<li><code>count</code>, where available, can be used for pluralization if present:</li>
+</ul>
+<table>
+<thead>
+<tr><th>validation</th><th>with option</th><th>message</th><th>interpolation</th></tr>
+</thead>
+<tbody>
+<tr><td>confirmation</td><td>-</td><td>:confirmation</td><td>attribute</td></tr>
+<tr><td>acceptance</td><td>-</td><td>:accepted</td><td>-</td></tr>
+<tr><td>presence</td><td>-</td><td>:blank</td><td>-</td></tr>
+<tr><td>absence</td><td>-</td><td>:present</td><td>-</td></tr>
+<tr><td>length</td><td>:within, :in</td><td>:too_short</td><td>count</td></tr>
+<tr><td>length</td><td>:within, :in</td><td>:too_long</td><td>count</td></tr>
+<tr><td>length</td><td>:is</td><td>:wrong_length</td><td>count</td></tr>
+<tr><td>length</td><td>:minimum</td><td>:too_short</td><td>count</td></tr>
+<tr><td>length</td><td>:maximum</td><td>:too_long</td><td>count</td></tr>
+<tr><td>uniqueness</td><td>-</td><td>:taken</td><td>-</td></tr>
+<tr><td>format</td><td>-</td><td>:invalid</td><td>-</td></tr>
+<tr><td>inclusion</td><td>-</td><td>:inclusion</td><td>-</td></tr>
+<tr><td>exclusion</td><td>-</td><td>:exclusion</td><td>-</td></tr>
+<tr><td>associated</td><td>-</td><td>:invalid</td><td>-</td></tr>
+<tr><td>non-optional association</td><td>-</td><td>:required</td><td>-</td></tr>
+<tr><td>numericality</td><td>-</td><td>:not_a_number</td><td>-</td></tr>
+<tr><td>numericality</td><td>:greater_than</td><td>:greater_than</td><td>count</td></tr>
+<tr><td>numericality</td><td>:greater_than_or_equal_to</td><td>:greater_than_or_equal_to</td><td>count</td></tr>
+<tr><td>numericality</td><td>:equal_to</td><td>:equal_to</td><td>count</td></tr>
+<tr><td>numericality</td><td>:less_than</td><td>:less_than</td><td>count</td></tr>
+<tr><td>numericality</td><td>:less_than_or_equal_to</td><td>:less_than_or_equal_to</td><td>count</td></tr>
+<tr><td>numericality</td><td>:other_than</td><td>:other_than</td><td>count</td></tr>
+<tr><td>numericality</td><td>:only_integer</td><td>:not_an_integer</td><td>-</td></tr>
+<tr><td>numericality</td><td>:odd</td><td>:odd</td><td>-</td></tr>
+<tr><td>numericality</td><td>:even</td><td>:even</td><td>-</td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="translations-for-action-mailer-e-mail-subjects"></a><a href="#translations-for-action-mailer-e-mail-subjects" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Translations for Action Mailer E-Mail Subjects</h3>
+<p>If you don't pass a subject to the <code>mail</code> method, Action Mailer will try to find
+it in your translations. The performed lookup will use the pattern
+<code>&lt;mailer_scope&gt;.&lt;action_name&gt;.subject</code> to construct the key.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># user_mailer.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserMailer</span> &lt; ActionMailer::Base</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">welcome</span><span class="hljs-params">(user)</span></span>
+    <span class="hljs-comment">#...</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">en:</span>
+<span class="hljs-attr">  user_mailer:</span>
+<span class="hljs-attr">    welcome:</span>
+<span class="hljs-attr">      subject:</span> <span class="hljs-string">"Welcome to Rails Guides!"</span>
+</code></pre>
+<p>To send parameters to interpolation use the <code>default_i18n_subject</code> method on the mailer.</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># user_mailer.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserMailer</span> &lt; ActionMailer::Base</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">welcome</span><span class="hljs-params">(user)</span></span>
+    mail(<span class="hljs-symbol">to:</span> user.email, <span class="hljs-symbol">subject:</span> default_i18n_subject(<span class="hljs-symbol">user:</span> user.name))
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">en:</span>
+<span class="hljs-attr">  user_mailer:</span>
+<span class="hljs-attr">    welcome:</span>
+<span class="hljs-attr">      subject:</span> <span class="hljs-string">"<span class="hljs-template-variable">%{user}</span>, welcome to Rails Guides!"</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="overview-of-other-built-in-methods-that-provide-i18n-support"></a><a href="#overview-of-other-built-in-methods-that-provide-i18n-support" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview of Other Built-In Methods that Provide I18n Support</h3>
+<p>Rails uses fixed strings and other localizations, such as format strings and other format information in a couple of helpers. Here's a brief overview.</p>
+<h4><a class="anchor" aria-hidden="true" id="action-view-helper-methods"></a><a href="#action-view-helper-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Action View Helper Methods</h4>
+<ul>
+<li><p><code>distance_of_time_in_words</code> translates and pluralizes its result and interpolates the number of seconds, minutes, hours, and so on. See <a href="https://github.com/rails/rails/blob/master/actionview/lib/action_view/locale/en.yml#L4">datetime.distance_in_words</a> translations.</p></li>
+<li><p><code>datetime_select</code> and <code>select_month</code> use translated month names for populating the resulting select tag. See <a href="https://github.com/rails/rails/blob/master/activesupport/lib/active_support/locale/en.yml#L15">date.month_names</a> for translations. <code>datetime_select</code> also looks up the order option from <a href="https://github.com/rails/rails/blob/master/activesupport/lib/active_support/locale/en.yml#L18">date.order</a> (unless you pass the option explicitly). All date selection helpers translate the prompt using the translations in the <a href="https://github.com/rails/rails/blob/master/actionview/lib/action_view/locale/en.yml#L39">datetime.prompts</a> scope if applicable.</p></li>
+<li><p>The <code>number_to_currency</code>, <code>number_with_precision</code>, <code>number_to_percentage</code>, <code>number_with_delimiter</code>, and <code>number_to_human_size</code> helpers use the number format settings located in the <a href="https://github.com/rails/rails/blob/master/activesupport/lib/active_support/locale/en.yml#L37">number</a> scope.</p></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="active-model-methods"></a><a href="#active-model-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Active Model Methods</h4>
+<ul>
+<li><p><code>model_name.human</code> and <code>human_attribute_name</code> use translations for model names and attribute names if available in the <a href="https://github.com/rails/rails/blob/master/activerecord/lib/active_record/locale/en.yml#L36">activerecord.models</a> scope. They also support translations for inherited class names (e.g. for use with STI) as explained above in &quot;Error message scopes&quot;.</p></li>
+<li><p><code>ActiveModel::Errors#generate_message</code> (which is used by Active Model validations but may also be used manually) uses <code>model_name.human</code> and <code>human_attribute_name</code> (see above). It also translates the error message and supports translations for inherited class names as explained above in &quot;Error message scopes&quot;.</p></li>
+<li><p><code>ActiveModel::Errors#full_messages</code> prepends the attribute name to the error message using a separator that will be looked up from <a href="https://github.com/rails/rails/blob/master/activemodel/lib/active_model/locale/en.yml#L4">errors.format</a> (and which defaults to <code>&quot;%{attribute} %{message}&quot;</code>).</p></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="active-support-methods"></a><a href="#active-support-methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Active Support Methods</h4>
+<ul>
+<li><code>Array#to_sentence</code> uses format settings as given in the <a href="https://github.com/rails/rails/blob/master/activesupport/lib/active_support/locale/en.yml#L33">support.array</a> scope.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="how-to-store-your-custom-translations"></a><a href="#how-to-store-your-custom-translations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to Store your Custom Translations</h2>
+<p>The Simple backend shipped with Active Support allows you to store translations in both plain Ruby and YAML format.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<p>For example a Ruby Hash providing translations can look like this:</p>
+<pre><code class="hljs css language-ruby">{
+  <span class="hljs-symbol">pt:</span> {
+    <span class="hljs-symbol">foo:</span> {
+      <span class="hljs-symbol">bar:</span> <span class="hljs-string">"baz"</span>
+    }
+  }
+}
+</code></pre>
+<p>The equivalent YAML file would look like this:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">pt:</span>
+<span class="hljs-attr">  foo:</span>
+<span class="hljs-attr">    bar:</span> <span class="hljs-string">baz</span>
+</code></pre>
+<p>As you see, in both cases the top level key is the locale. <code>:foo</code> is a namespace key and <code>:bar</code> is the key for the translation &quot;baz&quot;.</p>
+<p>Here is a &quot;real&quot; example from the Active Support <code>en.yml</code> translations YAML file:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">en:</span>
+<span class="hljs-attr">  date:</span>
+<span class="hljs-attr">    formats:</span>
+<span class="hljs-attr">      default:</span> <span class="hljs-string">"%Y-%m-%d"</span>
+<span class="hljs-attr">      short:</span> <span class="hljs-string">"%b %d"</span>
+<span class="hljs-attr">      long:</span> <span class="hljs-string">"%B %d, %Y"</span>
+</code></pre>
+<p>So, all of the following equivalent lookups will return the <code>:short</code> date format <code>&quot;%b %d&quot;</code>:</p>
+<pre><code class="hljs css language-ruby">I18n.t <span class="hljs-string">'date.formats.short'</span>
+I18n.t <span class="hljs-string">'formats.short'</span>, <span class="hljs-symbol">scope:</span> <span class="hljs-symbol">:date</span>
+I18n.t <span class="hljs-symbol">:short</span>, <span class="hljs-symbol">scope:</span> <span class="hljs-string">'date.formats'</span>
+I18n.t <span class="hljs-symbol">:short</span>, <span class="hljs-symbol">scope:</span> [<span class="hljs-symbol">:date</span>, <span class="hljs-symbol">:formats</span>]
+</code></pre>
+<p>Generally we recommend using YAML as a format for storing translations. There are cases, though, where you want to store Ruby lambdas as part of your locale data, e.g. for special date formats.</p>
+<h2><a class="anchor" aria-hidden="true" id="customize-your-i18n-setup"></a><a href="#customize-your-i18n-setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customize your I18n Setup</h2>
+<h3><a class="anchor" aria-hidden="true" id="using-different-backends"></a><a href="#using-different-backends" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Different Backends</h3>
+<p>For several reasons the Simple backend shipped with Active Support only does the &quot;simplest thing that could possibly work&quot; <em>for Ruby on Rails</em><sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup> ... which means that it is only guaranteed to work for English and, as a side effect, languages that are very similar to English. Also, the simple backend is only capable of reading translations but cannot dynamically store them to any format.</p>
+<p>That does not mean you're stuck with these limitations, though. The Ruby I18n gem makes it very easy to exchange the Simple backend implementation with something else that fits better for your needs, by passing a backend instance to the <code>I18n.backend=</code> setter.</p>
+<p>For example, you can replace the Simple backend with the Chain backend to chain multiple backends together. This is useful when you want to use standard translations with a Simple backend but store custom application translations in a database or other backends.</p>
+<p>With the Chain backend, you could use the Active Record backend and fall back to the (default) Simple backend:</p>
+<pre><code class="hljs css language-ruby">I18n.backend = I18n::Backend::Chain.new(I18n::Backend::ActiveRecord.new, I18n.backend)
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="using-different-exception-handlers"></a><a href="#using-different-exception-handlers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Different Exception Handlers</h3>
+<p>The I18n API defines the following exceptions that will be raised by backends when the corresponding unexpected conditions occur:</p>
+<pre><code class="hljs css language-ruby">MissingTranslationData       <span class="hljs-comment"># no translation was found for the requested key</span>
+InvalidLocale                <span class="hljs-comment"># the locale set to I18n.locale is invalid (e.g. nil)</span>
+InvalidPluralizationData     <span class="hljs-comment"># a count option was passed but the translation data is not suitable for pluralization</span>
+MissingInterpolationArgument <span class="hljs-comment"># the translation expects an interpolation argument that has not been passed</span>
+ReservedInterpolationKey     <span class="hljs-comment"># the translation contains a reserved interpolation variable name (i.e. one of: scope, default)</span>
+UnknownFileType              <span class="hljs-comment"># the backend does not know how to handle a file type that was added to I18n.load_path</span>
+</code></pre>
+<p>The I18n API will catch all of these exceptions when they are thrown in the backend and pass them to the default_exception_handler method. This method will re-raise all exceptions except for <code>MissingTranslationData</code> exceptions. When a <code>MissingTranslationData</code> exception has been caught, it will return the exception's error message string containing the missing key/scope.</p>
+<p>The reason for this is that during development you'd usually want your views to still render even though a translation is missing.</p>
+<p>In other contexts you might want to change this behavior, though. E.g. the default exception handling does not allow to catch missing translations during automated tests easily. For this purpose a different exception handler can be specified. The specified exception handler must be a method on the I18n module or a class with <code>#call</code> method:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">I18n</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JustRaiseExceptionHandler</span> &lt; ExceptionHandler</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">call</span><span class="hljs-params">(exception, locale, key, options)</span></span>
+      <span class="hljs-keyword">if</span> exception.is_a?(MissingTranslationData)
+        raise exception.to_exception
+      <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">super</span>
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+I18n.exception_handler = I18n::JustRaiseExceptionHandler.new
+</code></pre>
+<p>This would re-raise only the <code>MissingTranslationData</code> exception, passing all other input to the default exception handler.</p>
+<p>However, if you are using <code>I18n::Backend::Pluralization</code> this handler will also raise <code>I18n::MissingTranslationData: translation missing: en.i18n.plural.rule</code> exception that should normally be ignored to fall back to the default pluralization rule for English locale. To avoid this you may use additional check for translation key:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">if</span> exception.is_a?(MissingTranslationData) &amp;&amp; key.to_s != <span class="hljs-string">'i18n.plural.rule'</span>
+  raise exception.to_exception
+<span class="hljs-keyword">else</span>
+  <span class="hljs-keyword">super</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Another example where the default behavior is less desirable is the Rails TranslationHelper which provides the method <code>#t</code> (as well as <code>#translate</code>). When a <code>MissingTranslationData</code> exception occurs in this context, the helper wraps the message into a span with the CSS class <code>translation_missing</code>.</p>
+<p>To do so, the helper forces <code>I18n#translate</code> to raise exceptions no matter what exception handler is defined by setting the <code>:raise</code> option:</p>
+<pre><code class="hljs css language-ruby">I18n.t <span class="hljs-symbol">:foo</span>, <span class="hljs-symbol">raise:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># always re-raises exceptions from the backend</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="translating-model-content"></a><a href="#translating-model-content" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Translating Model Content</h2>
+<p>The I18n API described in this guide is primarily intended for translating interface strings. If you are looking to translate model content (e.g. blog posts), you will need a different solution to help with this.</p>
+<p>Several gems can help with this:</p>
+<ul>
+<li><a href="https://github.com/globalize/globalize">Globalize</a>: Store translations on separate translation tables, one for each translated model</li>
+<li><a href="https://github.com/shioyama/mobility">Mobility</a>: Provides support for storing translations in many formats, including translation tables, json columns (PostgreSQL), etc.</li>
+<li><a href="https://github.com/barsoom/traco">Traco</a>: Translatable columns for Rails 3 and 4, stored in the model table itself</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="conclusion"></a><a href="#conclusion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conclusion</h2>
+<p>At this point you should have a good overview about how I18n support in Ruby on Rails works and are ready to start translating your project.</p>
+<h2><a class="anchor" aria-hidden="true" id="contributing-to-rails-i18n"></a><a href="#contributing-to-rails-i18n" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contributing to Rails I18n</h2>
+<p>I18n support in Ruby on Rails was introduced in the release 2.2 and is still evolving. The project follows the good Ruby on Rails development tradition of evolving solutions in gems and real applications first, and only then cherry-picking the best-of-breed of most widely useful features for inclusion in the core.</p>
+<p>Thus we encourage everybody to experiment with new ideas and features in gems or other libraries and make them available to the community. (Don't forget to announce your work on our <a href="https://groups.google.com/forum/#!forum/rails-i18n">mailing list</a>!)</p>
+<p>If you find your own locale (language) missing from our <a href="https://github.com/svenfuchs/rails-i18n/tree/master/rails/locale">example translations data</a> repository for Ruby on Rails, please <a href="https://github.com/guides/fork-a-project-and-submit-your-modifications"><em>fork</em></a> the repository, add your data, and send a <a href="https://help.github.com/articles/about-pull-requests/">pull request</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="resources"></a><a href="#resources" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Resources</h2>
+<ul>
+<li><a href="https://groups.google.com/forum/#!forum/rails-i18n">Google group: rails-i18n</a> - The project's mailing list.</li>
+<li><a href="https://github.com/svenfuchs/rails-i18n">GitHub: rails-i18n</a> - Code repository and issue tracker for the rails-i18n project. Most importantly you can find lots of <a href="https://github.com/svenfuchs/rails-i18n/tree/master/rails/locale">example translations</a> for Rails that should work for your application in most cases.</li>
+<li><a href="https://github.com/svenfuchs/i18n">GitHub: i18n</a> - Code repository and issue tracker for the i18n gem.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="authors"></a><a href="#authors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Authors</h2>
+<ul>
+<li><a href="http://svenfuchs.com">Sven Fuchs</a> (initial author)</li>
+<li><a href="http://www.karmi.cz">Karel Minařík</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="footnotes"></a><a href="#footnotes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Footnotes</h2>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1"  class="footnote-item"><p>Or, to quote <a href="https://en.wikipedia.org/wiki/Internationalization_and_localization">Wikipedia</a>: <em>&quot;Internationalization is the process of designing a software application so that it can be adapted to various languages and regions without engineering changes. Localization is the process of adapting software for a specific region or language by adding locale-specific components and translating text.&quot;</em> <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2"  class="footnote-item"><p>Other backends might allow or require to use other formats, e.g. a GetText backend might allow to read GetText files. <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn3"  class="footnote-item"><p>One of these reasons is that we don't want to imply any unnecessary load for applications that do not need any I18n capabilities, so we need to keep the I18n library as simple as possible for English. Another reason is that it is virtually impossible to implement a one-fits-all solution for all problems related to I18n for all existing languages. So a solution that allows us to exchange the entire implementation easily is appropriate anyway. This also makes it much easier to experiment with custom features and extensions. <a href="#fnref3" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-7</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/rails/action-cable"><span class="arrow-prev">← </span><span>Action Cable Overview</span></a><a class="docs-next button" href="/rails-setup/docs/rails/testing-rails"><span>Testing Rails Applications</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#how-i18n-in-ruby-on-rails-works">How I18n in Ruby on Rails Works</a><ul class="toc-headings"><li><a href="#the-overall-architecture-of-the-library">The Overall Architecture of the Library</a></li><li><a href="#the-public-i18n-api">The Public I18n API</a></li></ul></li><li><a href="#setup-the-rails-application-for-internationalization">Setup the Rails Application for Internationalization</a><ul class="toc-headings"><li><a href="#configure-the-i18n-module">Configure the I18n Module</a></li><li><a href="#managing-the-locale-across-requests">Managing the Locale across Requests</a></li></ul></li><li><a href="#internationalization-and-localization">Internationalization and Localization</a><ul class="toc-headings"><li><a href="#abstracting-localized-code">Abstracting Localized Code</a></li><li><a href="#providing-translations-for-internationalized-strings">Providing Translations for Internationalized Strings</a></li><li><a href="#passing-variables-to-translations">Passing Variables to Translations</a></li><li><a href="#adding-date-time-formats">Adding Date/Time Formats</a></li><li><a href="#inflection-rules-for-other-locales">Inflection Rules For Other Locales</a></li><li><a href="#localized-views">Localized Views</a></li><li><a href="#organization-of-locale-files">Organization of Locale Files</a></li></ul></li><li><a href="#overview-of-the-i18n-api-features">Overview of the I18n API Features</a><ul class="toc-headings"><li><a href="#looking-up-translations">Looking up Translations</a></li><li><a href="#pluralization">Pluralization</a></li><li><a href="#setting-and-passing-a-locale">Setting and Passing a Locale</a></li><li><a href="#using-safe-html-translations">Using Safe HTML Translations</a></li><li><a href="#translations-for-active-record-models">Translations for Active Record Models</a></li><li><a href="#translations-for-action-mailer-e-mail-subjects">Translations for Action Mailer E-Mail Subjects</a></li><li><a href="#overview-of-other-built-in-methods-that-provide-i18n-support">Overview of Other Built-In Methods that Provide I18n Support</a></li></ul></li><li><a href="#how-to-store-your-custom-translations">How to Store your Custom Translations</a></li><li><a href="#customize-your-i18n-setup">Customize your I18n Setup</a><ul class="toc-headings"><li><a href="#using-different-backends">Using Different Backends</a></li><li><a href="#using-different-exception-handlers">Using Different Exception Handlers</a></li></ul></li><li><a href="#translating-model-content">Translating Model Content</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#contributing-to-rails-i18n">Contributing to Rails I18n</a></li><li><a href="#resources">Resources</a></li><li><a href="#authors">Authors</a></li><li><a href="#footnotes">Footnotes</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Rails Setup 2019</section></footer></div></body></html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>OmniAuth · Rails Setup</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;blockquote&gt;
+&lt;p&gt;Since version 1.2, Devise supports integration with &lt;a href=&quot;http://github.com/intridea/omniauth&quot;&gt;OmniAuth&lt;/a&gt;. This wiki page will cover the basics to have this integration working using an OAuth provider as example.&lt;/p&gt;
+&lt;/blockquote&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="OmniAuth · Rails Setup"/><meta property="og:type" content="website"/><meta property="og:url" content="https://HenryTabima.github.io/rails-setup/"/><meta property="og:description" content="&lt;blockquote&gt;
+&lt;p&gt;Since version 1.2, Devise supports integration with &lt;a href=&quot;http://github.com/intridea/omniauth&quot;&gt;OmniAuth&lt;/a&gt;. This wiki page will cover the basics to have this integration working using an OAuth provider as example.&lt;/p&gt;
+&lt;/blockquote&gt;
+"/><meta property="og:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://HenryTabima.github.io/rails-setup/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/rails-setup/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/rails-setup/js/scrollSpy.js"></script><link rel="stylesheet" href="/rails-setup/css/main.css"/><script src="/rails-setup/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/rails-setup/"><img class="logo" src="/rails-setup/img/favicon.ico" alt="Rails Setup"/><h2 class="headerTitleWithLogo">Rails Setup</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/rails-setup/docs/rails/getting-started" target="_self">Rails</a></li><li class="siteNavGroupActive"><a href="/rails-setup/docs/devise/overview" target="_self">Devise</a></li><li class=""><a href="https://github.com/HenryTabima/rails-setup" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Advanced Topics</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">General<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/starting-with-rails">Starting with rails?</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Getting Started<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/controller-filters-and-helpers">Controller filters and helpers</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-models">Configuring Models</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/strong-parameters">Strong Parameters</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-views">Configuring views</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-controllers">Configuring controllers</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-routes">Configuring routes</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Advanced Topics<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/i18n">I18n</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/test-helpers">Test helpers</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/rails-setup/docs/devise/omniauth">OmniAuth</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/configuring-multiple-models">Configuring multiple models</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/activejob-integration">ActiveJob integration</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/password-reset-tokens-and-rails-logs">Password reset tokens and Rails logs</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/other-orms">Other ORMs</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/rails-api-mode">Rails API mode</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Guides<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/guides-list">Guides list</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Project<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/extensions">Extensions</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/example-applications">Example Applications</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/contributing">Contributing</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/bug-reports">Bug reports</a></li><li class="navListItem"><a class="navItem" href="/rails-setup/docs/devise/additional-information">Additional information</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">OmniAuth</h1></header><article><div><span><blockquote>
+<p>Since version 1.2, Devise supports integration with <a href="http://github.com/intridea/omniauth">OmniAuth</a>. This wiki page will cover the basics to have this integration working using an OAuth provider as example.</p>
+</blockquote>
+<blockquote>
+<p>Since version 1.5, Devise supports OmniAuth 1.0 forward which will be the version covered by this tutorial.</p>
+</blockquote>
+<p>Devise comes with OmniAuth support out of the box to authenticate with other providers. To use it, simply specify your OmniAuth configuration in <code>config/initializers/devise.rb</code>:</p>
+<pre><code class="hljs css language-ruby">config.omniauth <span class="hljs-symbol">:github</span>, <span class="hljs-string">'APP_ID'</span>, <span class="hljs-string">'APP_SECRET'</span>, <span class="hljs-symbol">scope:</span> <span class="hljs-string">'user,public_repo'</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="before-you-start"></a><a href="#before-you-start" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Before you start</h2>
+<p>Remember that <code>config.omniauth</code> adds omniauth provider middleware to your application. This means you should <strong>not</strong> add this provider middleware again in <code>config/initializers/omniauth.rb</code> as they'll clash with each other and result in always-failing authentication.</p>
+<h2><a class="anchor" aria-hidden="true" id="facebook-example"></a><a href="#facebook-example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Facebook example</h2>
+<p>The first step then is to add an OmniAuth gem to your application. This can be done in our <code>Gemfile</code>:</p>
+<pre><code class="hljs css language-ruby">gem <span class="hljs-string">'omniauth-facebook'</span>
+</code></pre>
+<p>Here we'll use Facebook as an example, but you are free to use whatever and as many OmniAuth gems as you'd like. Generally, the gem name is &quot;omniauth-provider&quot; where provider can be &quot;facebook&quot; or &quot;twitter&quot;, for example. For a full list of these providers, please check <a href="https://github.com/intridea/omniauth/wiki/List-of-Strategies">OmniAuth's list of strategies</a>.</p>
+<p>Next up, you should add the columns &quot;provider&quot; (string) and &quot;uid&quot; (string) to your User model.</p>
+<pre><code class="hljs css language-rails"><span class="hljs-symbol">rails</span> g migration <span class="hljs-keyword">AddOmniauthToUsers </span>provider:<span class="hljs-keyword">string </span>uid:<span class="hljs-keyword">string
+</span><span class="hljs-symbol">rake</span> db:migrate
+</code></pre>
+<p>Next, you need to declare the provider in your <code>config/initializers/devise.rb</code>:</p>
+<pre><code class="hljs css language-ruby">config.omniauth <span class="hljs-symbol">:facebook</span>, <span class="hljs-string">"APP_ID"</span>, <span class="hljs-string">"APP_SECRET"</span>
+</code></pre>
+<p>If you are seeing something like <em>Could not authenticate you from Facebook because “Invalid credentials”</em>
+you may need to add <code>token_params: { parse: :json }</code> to your config, i.e.:</p>
+<pre><code class="hljs css language-ruby">config.omniauth <span class="hljs-symbol">:facebook</span>, <span class="hljs-string">"APP_ID"</span>, <span class="hljs-string">"APP_SECRET"</span>, <span class="hljs-symbol">token_params:</span> { <span class="hljs-symbol">parse:</span> <span class="hljs-symbol">:json</span> }
+</code></pre>
+<p>To alter the permissions or scopes requested, check the <a href="https://github.com/mkdynamic/omniauth-facebook">omniauth-facebook</a> gem's README.</p>
+<p>After configuring your strategy, you need to make your model (e.g. <code>app/models/user.rb</code>) omniauthable:</p>
+<pre><code class="hljs css language-ruby">devise <span class="hljs-symbol">:omniauthable</span>, <span class="hljs-symbol">omniauth_providers:</span> %i[facebook]
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: If you're running a rails server, you'll need to restart it to recognize the change in the <code>Devise</code> initializer or adding <code>:omniauthable</code> to your <code>User</code> model will create an error.</p>
+</blockquote>
+<p>Currently, Devise allows only one model to be omniauthable. If you want to use <code>OmniAuth</code> with multiple models, check out <a href="https://github.com/plataformatec/devise/wiki/OmniAuth-with-multiple-models">OmniAuth with multiple models</a>.</p>
+<p>After making a model named <code>User</code> omniauthable and if <code>devise_for :users</code> was already added to your <code>config/routes.rb</code>, Devise will create the following url methods:</p>
+<ul>
+<li>user_{provider}_omniauth_authorize_path</li>
+<li>user_{provider}_omniauth_callback_path</li>
+</ul>
+<p>Note that Devise does not create <code>*_url</code> methods. While you will never use the callback helper above directly, you only need to add the first one to your layouts in order to provide facebook authentication:</p>
+<pre><code class="hljs css language-ruby">&lt;%= link_to <span class="hljs-string">"Sign in with Facebook"</span>, user_facebook_omniauth_authorize_path %&gt;
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: The <code>{provider}</code> in the above <code>*_path</code> methods matches the symbol of the provider passed to Devise's config block. Please check that <code>omniauth-*</code> gem's <strong>README</strong> to know which symbol you should use.</p>
+</blockquote>
+<p>By clicking on the above link, the user will be redirected to <code>Facebook</code>. (If this link doesn't exist, try restarting the server.) After inserting their credentials, they will be redirected back to your application's callback method. To implement a callback, the first step is to go back to our <code>config/routes.rb</code> file and tell Devise in which controller we will implement Omniauth callbacks:</p>
+<pre><code class="hljs css language-ruby">devise_for <span class="hljs-symbol">:users</span>, <span class="hljs-symbol">controllers:</span> { <span class="hljs-symbol">omniauth_callbacks:</span> <span class="hljs-string">'users/omniauth_callbacks'</span> }
+</code></pre>
+<p>Now we just add the file <code>app/controllers/users/omniauth_callbacks_controller.rb</code>:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Users::OmniauthCallbacksController</span> &lt; Devise::OmniauthCallbacksController</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>The callback should be implemented as an action with the same name as the provider. Here is an example action for our facebook provider that we could add to our controller:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Users::OmniauthCallbacksController</span> &lt; Devise::OmniauthCallbacksController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">facebook</span></span>
+    <span class="hljs-comment"># You need to implement the method below in your model (e.g. app/models/user.rb)</span>
+    @user = User.from_omniauth(request.env[<span class="hljs-string">"omniauth.auth"</span>])
+
+    <span class="hljs-keyword">if</span> @user.persisted?
+      sign_in_and_redirect @user, <span class="hljs-symbol">event:</span> <span class="hljs-symbol">:authentication</span> <span class="hljs-comment">#this will throw if <span class="hljs-doctag">@user</span> is not activated</span>
+      set_flash_message(<span class="hljs-symbol">:notice</span>, <span class="hljs-symbol">:success</span>, <span class="hljs-symbol">kind:</span> <span class="hljs-string">"Facebook"</span>) <span class="hljs-keyword">if</span> is_navigational_format?
+    <span class="hljs-keyword">else</span>
+      session[<span class="hljs-string">"devise.facebook_data"</span>] = request.env[<span class="hljs-string">"omniauth.auth"</span>]
+      redirect_to new_user_registration_url
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">failure</span></span>
+    redirect_to root_path
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This action has a few aspects worth describing:</p>
+<ol>
+<li><p>All information retrieved from Facebook by OmniAuth is available as a hash at <code>request.env[&quot;omniauth.auth&quot;]</code>. Check the <a href="https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema">OmniAuth docs</a> and each <a href="https://github.com/mkdynamic/omniauth-facebook#auth-hash">omniauth-facebook</a> gem's README to know which information is being returned.</p></li>
+<li><p>When a valid user is found, they can be signed in with one of two Devise methods: <code>sign_in</code> or <code>sign_in_and_redirect</code>. Passing <code>:event =&gt; :authentication</code> is optional. You should only do so if you wish to use <a href="http://stackoverflow.com/a/13389324/1160916">Warden callbacks</a>.</p></li>
+<li><p>A flash message can also be set using one of Devise's default messages, but that is up to you.</p></li>
+<li><p>In case the user is not persisted, we store the OmniAuth data in the session. Notice we store this data using &quot;devise.&quot; as key namespace. This is useful because Devise removes all the data starting with &quot;devise.&quot; from the session whenever a user signs in, so we get automatic session clean up. At the end, we redirect the user back to our registration form.</p></li>
+</ol>
+<p>After the controller is defined, we need to implement the <code>from_omniauth</code> method in our model (e.g. <code>app/models/user.rb</code>):</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">self</span>.<span class="hljs-title">from_omniauth</span><span class="hljs-params">(auth)</span></span>
+  where(<span class="hljs-symbol">provider:</span> auth.provider, <span class="hljs-symbol">uid:</span> auth.uid).first_or_create <span class="hljs-keyword">do</span> <span class="hljs-params">|user|</span>
+    user.email = auth.info.email
+    user.password = Devise.friendly_token[<span class="hljs-number">0</span>, <span class="hljs-number">20</span>]
+    user.name = auth.info.name   <span class="hljs-comment"># assuming the user model has a name</span>
+    user.image = auth.info.image <span class="hljs-comment"># assuming the user model has an image</span>
+    <span class="hljs-comment"># If you are using confirmable and the provider(s) you use validate emails,</span>
+    <span class="hljs-comment"># uncomment the line below to skip the confirmation emails.</span>
+    <span class="hljs-comment"># user.skip_confirmation!</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This method tries to find an existing user by the <code>provider</code> and <code>uid</code> fields. If no user is found, a new one is created with a random password and some extra information.
+Note that the <a href="http://apidock.com/rails/v3.2.1/ActiveRecord/Relation/first_or_create"><code>first_or_create</code> method</a> automatically sets the <code>provider</code> and <code>uid</code> fields when creating a new user. The <a href="http://apidock.com/rails/v3.2.1/ActiveRecord/Relation/first_or_create!"><code>first_or_create!</code> method</a> operates similarly, except that it will raise an Exception if the user record fails validation.</p>
+<p>Notice that Devise's <code>RegistrationsController</code> by default calls <code>User.new_with_session</code> before building a resource. This means that, if we need to copy data from session whenever a user is initialized before sign up, we just need to implement <code>new_with_session</code> in our model. Here is an example that copies the facebook email if available:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> &lt; ApplicationRecord</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">self</span>.<span class="hljs-title">new_with_session</span><span class="hljs-params">(params, session)</span></span>
+    <span class="hljs-keyword">super</span>.tap <span class="hljs-keyword">do</span> <span class="hljs-params">|user|</span>
+      <span class="hljs-keyword">if</span> data = session[<span class="hljs-string">"devise.facebook_data"</span>] &amp;&amp; session[<span class="hljs-string">"devise.facebook_data"</span>][<span class="hljs-string">"extra"</span>][<span class="hljs-string">"raw_info"</span>]
+        user.email = data[<span class="hljs-string">"email"</span>] <span class="hljs-keyword">if</span> user.email.blank?
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Finally, if you want to allow your users to cancel sign up with Facebook, you can redirect them to <code>cancel_user_registration_path</code>. This will remove all session data starting with <code>devise.</code> and the <code>new_with_session</code> hook above will no longer be called.</p>
+<h3><a class="anchor" aria-hidden="true" id="logout-links"></a><a href="#logout-links" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Logout links</h3>
+<pre><code class="hljs css language-ruby"><span class="hljs-comment"># config/routes.rb</span>
+devise_scope <span class="hljs-symbol">:user</span> <span class="hljs-keyword">do</span>
+  delete <span class="hljs-string">'sign_out'</span>, <span class="hljs-symbol">:to</span> =&gt; <span class="hljs-string">'devise/sessions#destroy'</span>, <span class="hljs-symbol">:as</span> =&gt; <span class="hljs-symbol">:destroy_user_session</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>And that is all you need! After you get your integration working, it's time to write some integration tests:</p>
+<p><a href="https://github.com/intridea/omniauth/wiki/Integration-Testing">https://github.com/intridea/omniauth/wiki/Integration-Testing</a></p>
+<h2><a class="anchor" aria-hidden="true" id="using-omniauth-without-other-authentications"></a><a href="#using-omniauth-without-other-authentications" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using OmniAuth without other authentications</h2>
+<p>If you are using <strong>ONLY</strong> omniauth authentication, you need to define a route named <code>new_user_session</code> (if not defined, root will be used). Below is an example of such routes (you don't need to include it if you are also using database or other authentication with omniauth):</p>
+<pre><code class="hljs css language-ruby">devise_for <span class="hljs-symbol">:users</span>, <span class="hljs-symbol">:controllers</span> =&gt; { <span class="hljs-symbol">:omniauth_callbacks</span> =&gt; <span class="hljs-string">"users/omniauth_callbacks"</span> }
+
+devise_scope <span class="hljs-symbol">:user</span> <span class="hljs-keyword">do</span>
+  get <span class="hljs-string">'sign_in'</span>, <span class="hljs-symbol">:to</span> =&gt; <span class="hljs-string">'devise/sessions#new'</span>, <span class="hljs-symbol">:as</span> =&gt; <span class="hljs-symbol">:new_user_session</span>
+  get <span class="hljs-string">'sign_out'</span>, <span class="hljs-symbol">:to</span> =&gt; <span class="hljs-string">'devise/sessions#destroy'</span>, <span class="hljs-symbol">:as</span> =&gt; <span class="hljs-symbol">:destroy_user_session</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>In the example above, the sessions controller doesn't need to do anything special. For example, showing a link to the provider authentication will suffice.</p>
+<blockquote>
+<p><strong>Note</strong>: If your Devise configuration specifies <code>sign_out_via = :delete</code>, you may need to adjust your sign_out route to match an incoming DELETE request instead.</p>
+</blockquote>
+<p>Also, if you are not using <code>:database_authenticatable</code> you have to define the helper method <code>new_session_path(scope)</code> so it can correctly redirect in case of failure:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> &lt; ActionController::Base</span>
+<span class="hljs-comment"># ...</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">new_session_path</span><span class="hljs-params">(scope)</span></span>
+    new_user_session_path
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="troubleshooting"></a><a href="#troubleshooting" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Troubleshooting</h2>
+<h3><a class="anchor" aria-hidden="true" id="user-didn-t-allow-email-permissions"></a><a href="#user-didn-t-allow-email-permissions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>User didn't allow email permissions</h3>
+<p>In the new Facebook login dialog the user can decline to provide email address.
+Devise usually requires email to register. A quick and dirty solution to this problem is to re-request the email if it wasn't found:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Users::OmniauthCallbacksController</span> &lt; Devise::OmniauthCallbacksController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">facebook</span></span>
+    <span class="hljs-keyword">if</span> request.env[<span class="hljs-string">"omniauth.auth"</span>].info.email.blank?
+      redirect_to <span class="hljs-string">"/users/auth/facebook?auth_type=rerequest&amp;scope=email"</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-comment"># be sure to include an return if there is code after this otherwise it will be executed</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="facebook-returning-nulled-email"></a><a href="#facebook-returning-nulled-email" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Facebook returning nulled email</h3>
+<p>Since July 8th 2015 Facebook changed to api v2.4, you need to add extra <code>info_fields</code> to get email field.</p>
+<pre><code class="hljs css language-ruby">config.omniauth <span class="hljs-symbol">:facebook</span>, <span class="hljs-string">"APP_ID"</span>, <span class="hljs-string">"APP_SECRET"</span>, <span class="hljs-symbol">scope:</span> <span class="hljs-string">'email'</span>, <span class="hljs-symbol">info_fields:</span> <span class="hljs-string">'email,name'</span>
+</code></pre>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-configure-devise-and-omniauth-for-your-rails-application">found solution from here by @techmonster</a></p>
+<p>If this solution doesn't work for you. Please, try to use fields instead of info_fields.</p>
+<h3><a class="anchor" aria-hidden="true" id="extra-config"></a><a href="#extra-config" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Extra config</h3>
+<p>Facebook OAuth gem uses the API version <code>V2.6</code> by default.
+This might not work for you, as your app might be configured to use a different version of GraphAPI.
+So you need to make sure your web-app is making the correct call.
+You need to add extra option <code>client_options</code>. See an example:</p>
+<pre><code class="hljs css language-ruby">config.omniauth <span class="hljs-symbol">:facebook</span>, ENV[<span class="hljs-string">'FB_APP_ID'</span>], ENV[<span class="hljs-string">'FB_APP_SECRET'</span>],
+                <span class="hljs-symbol">scope:</span> <span class="hljs-string">'public_profile,email'</span>,
+                <span class="hljs-symbol">info_fields:</span> <span class="hljs-string">'email,first_name,last_name,gender,birthday,location,picture'</span>,
+                <span class="hljs-symbol">client_options:</span> {
+                    <span class="hljs-symbol">site:</span> <span class="hljs-string">'https://graph.facebook.com/v2.11'</span>,
+                    <span class="hljs-symbol">authorize_url:</span> <span class="hljs-string">"https://www.facebook.com/v2.11/dialog/oauth"</span>
+                }
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="openssl"></a><a href="#openssl" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>OpenSSL</h3>
+<p>If you run into an OpenSSL error like this:</p>
+<pre><code class="hljs css language-ruby">OpenSSL::SSL::SSLError (SSL_connect returned=<span class="hljs-number">1</span> errno=<span class="hljs-number">0</span> state=SSLv3 read server certificate <span class="hljs-symbol">B:</span> certificate verify failed):
+</code></pre>
+<p>Then you need to explicitly tell OmniAuth where to locate your CA certificate file.
+Either use the <a href="https://github.com/stevegraham/certified">certified gem</a> or this method (depending on the OS you are running on):</p>
+<pre><code class="hljs css language-ruby">config.omniauth <span class="hljs-symbol">:facebook</span>, <span class="hljs-string">"APP_ID"</span>, <span class="hljs-string">"APP_SECRET"</span>,
+  <span class="hljs-symbol">client_options:</span> { <span class="hljs-symbol">ssl:</span> { <span class="hljs-symbol">ca_path:</span> <span class="hljs-string">'/etc/ssl/certs'</span> } }
+</code></pre>
+<p>On Heroku, the CA file is located at <code>/usr/lib/ssl/certs/ca-certificates.crt</code></p>
+<p>On Engine Yard Cloud servers, the CA file is located at <code>/etc/ssl/certs/ca-certificates.crt</code>.</p>
+<p>These certificates can be set using the <code>:ca_file</code> key:</p>
+<pre><code class="hljs css language-ruby">config.omniauth <span class="hljs-symbol">:facebook</span>, <span class="hljs-string">"APP_ID"</span>, <span class="hljs-string">"APP_SECRET"</span>,
+  <span class="hljs-symbol">client_options:</span> { <span class="hljs-symbol">ssl:</span> { <span class="hljs-symbol">ca_file:</span> <span class="hljs-string">'/usr/lib/ssl/certs/ca-certificates.crt'</span> } }
+</code></pre>
+<p>If you are using a strategy that uses the OAuth gem eg <a href="https://github.com/intridea/omniauth-oauth">omniauth-oauth</a> then specify the certificate file this way:</p>
+<pre><code class="hljs css language-ruby">config.omniauth <span class="hljs-symbol">:facebook</span>, <span class="hljs-string">"APP_ID"</span>, <span class="hljs-string">"APP_SECRET"</span>,
+  <span class="hljs-symbol">client_options:</span> { <span class="hljs-symbol">ca_file:</span> <span class="hljs-string">'/usr/lib/ssl/certs/ca-certificates.crt'</span> }
+</code></pre>
+<p>On macOS, for development only, it may be easiest just to disable certificate verification because the certificates are stored in the keychain, not the file system:</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">"omniauth-facebook"</span>
+config.omniauth <span class="hljs-symbol">:facebook</span>, <span class="hljs-string">"APP_ID"</span>, <span class="hljs-string">"APP_SECRET"</span>, <span class="hljs-symbol">client_options:</span> { <span class="hljs-symbol">ssl:</span> { <span class="hljs-symbol">verify:</span> !Rails.env.development? } }
+</code></pre>
+<p>A deeper discussion of this error can be found here: <a href="https://github.com/intridea/omniauth/issues/260">https://github.com/intridea/omniauth/issues/260</a></p>
+<h3><a class="anchor" aria-hidden="true" id="cannot-load-strategy-class"></a><a href="#cannot-load-strategy-class" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Cannot load strategy class</h3>
+<p>If for some reason Devise cannot load your strategy class, you can set it explicitly with the <code>:strategy_class</code> option:</p>
+<pre><code class="hljs css language-ruby">config.omniauth <span class="hljs-symbol">:facebook</span>, <span class="hljs-string">"APP_ID"</span>, <span class="hljs-string">"APP_SECRET"</span>, <span class="hljs-symbol">:strategy_class</span> =&gt; OmniAuth::Strategies::Facebook
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-7-7</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/rails-setup/docs/devise/test-helpers"><span class="arrow-prev">← </span><span>Test helpers</span></a><a class="docs-next button" href="/rails-setup/docs/devise/configuring-multiple-models"><span>Configuring multiple models</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#before-you-start">Before you start</a></li><li><a href="#facebook-example">Facebook example</a><ul class="toc-headings"><li><a href="#logout-links">Logout links</a></li></ul></li><li><a href="#using-omniauth-without-other-authentications">Using OmniAuth without other authentications</a></li><li><a href="#troubleshooting">Troubleshooting</a><ul class="toc-headings"><li><a href="#user-didn-t-allow-email-permissions">User didn't allow email permissions</a></li><li><a href="#facebook-returning-nulled-email">Facebook returning nulled email</a></li><li><a href="#extra-config">Extra config</a></li><li><a href="#openssl">OpenSSL</a></li><li><a href="#cannot-load-strategy-class">Cannot load strategy class</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Rails Setup 2019</section></footer></div></body></html>
