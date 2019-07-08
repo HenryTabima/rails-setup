@@ -1,5 +1,5 @@
 {
-  "docs": {
+  "rails": {
     "Start Here": [
       "rails/getting-started",
       "rails/development-dependencies-install"
@@ -62,5 +62,40 @@
       "rails/guides-guidelines"
     ],
     "Policies": ["rails/maintenance-policy"]
+  },
+  "devise": {
+    "General": [
+      "devise/overview",
+      "devise/starting-with-rails"
+    ],
+    "Getting Started": [
+      "devise/installation",
+      "devise/controller-filters-and-helpers",
+      "devise/configuring-models",
+      "devise/strong-parameters",
+      "devise/configuring-views",
+      "devise/configuring-controllers",
+      "devise/configuring-routes"
+    ],
+    "Advanced Topics": [
+      "devise/i18n",
+      "devise/test-helpers",
+      "devise/omniauth",
+      "devise/configuring-multiple-models",
+      "devise/activejob-integration",
+      "devise/password-reset-tokens-and-rails-logs",
+      "devise/other-orms",
+      "devise/rails-api-mode"
+    ],
+    "Guides": [
+      "devise/guides-list"
+    ],
+    "Project": [
+      "devise/extensions",
+      "devise/example-applications",
+      "devise/contributing",
+      "devise/bug-reports",
+      "devise/additional-information"
+    ]
   }
 }
