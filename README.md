@@ -7,7 +7,7 @@ this is a Project to collect in one place and in a friendly way the documentatio
 
 ## Getting started
 
-this site is build on top of docusaurus, [see respective documentation](https://docusaurus.io/docs/en/next/installation) to getting started with this project.
+this site is built on top of docusaurus, [see respective documentation](https://docusaurus.io/docs/en/next/installation) to getting started with this project.
 
 ## Contributing
 
@@ -21,10 +21,10 @@ Summary:
 
 ## Todos
 
-List of posibles contributions that you can do to this project
+List of possible contributions that you can do to this project
 
-* add a list of the projects added to rails-setup website and their last update date
-* fix the broken urls in the links of the rails documentations files (they are just as i copied form the source documentations site)
+* add a list of the projects added to the rails-setup website and their last update date
+* fix the broken URLs in the links of the rails documentation files (they are just as I copied from the source documentation site)
 * add documentation for other common project used with rails (like devise, factory bot and others)
 
 ## Code of conduct
